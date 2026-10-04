@@ -83,3 +83,5 @@ _ide_helper*
 
 # local SQLite database
 /database/database.sqlite
+
+/docs/pre-production-checklist.md
