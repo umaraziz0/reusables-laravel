@@ -1,0 +1,25 @@
+{
+  "hooks": {
+    "Stop": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "php \"${CLAUDE_PROJECT_DIR}/vendor/bin/sloppy\" hook stop"
+          }
+        ]
+      }
+    ],
+    "PostToolUse": [
+      {
+        "matcher": "Edit|Write|MultiEdit",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "php \"${CLAUDE_PROJECT_DIR}/vendor/bin/sloppy\" hook post-edit"
+          }
+        ]
+      }
+    ]
+  }
+}
