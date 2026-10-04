@@ -1,12 +1,44 @@
 version: 2
 updates:
-  - package-ecosystem: "github-actions"
-    directory: "/"
+  - package-ecosystem: 'npm'
+    directory: '/'
     schedule:
-      interval: "weekly"
+      interval: 'weekly'
+      day: 'sunday'
+      time: '16:00'
+      timezone: 'Asia/Jakarta'
+    cooldown:
+      default-days: 5
+    labels:
+      - 'dependencies'
+    open-pull-requests-limit: 100
+
+  - package-ecosystem: 'composer'
+    directory: '/'
+    schedule:
+      interval: 'weekly'
+      day: 'sunday'
+      time: '16:00'
+      timezone: 'Asia/Jakarta'
+    cooldown:
+      default-days: 5
+    labels:
+      - 'dependencies'
+    open-pull-requests-limit: 100
+
+  - package-ecosystem: 'github-actions'
+    directory: '/'
+    schedule:
+      interval: 'weekly'
+      day: 'sunday'
+      time: '16:00'
+      timezone: 'Asia/Jakarta'
     cooldown:
       default-days: 5
     groups:
       github-actions:
         patterns:
-          - "*"
+          - '*'
+    labels:
+      - 'dependencies'
+    open-pull-requests-limit: 100
