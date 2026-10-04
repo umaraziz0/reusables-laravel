@@ -36,7 +36,10 @@ An opinionated starter kit & collection of reusable components etc for Laravel /
 
 #### Styles
 
-- [shadcn/vue](https://www.shadcn-vue.com/) - base UI component library
+- [shadcn/vue](https://www.shadcn-vue.com/) - base UI component library (built on [Reka UI](https://reka-ui.com/), [class-variance-authority](https://cva.style/) and [tw-animate-css](https://github.com/Wombosvideo/tw-animate-css))
+- [Lucide](https://lucide.dev/) - icons
+- [vue-sonner](https://github.com/xiaoluoboding/vue-sonner) - toast notifications
+- [vue-input-otp](https://github.com/wobsoriano/vue-input-otp) - OTP input (2FA codes)
 
 #### Utilities
 
@@ -46,11 +49,12 @@ An opinionated starter kit & collection of reusable components etc for Laravel /
 #### Linting & Formatting
 
 - [Vite+](https://viteplus.dev/guide) - unified frontend formatter and linter with anti-slop and security checks
+- [ESLint](https://eslint.org/) - Vue template linting with [security](https://github.com/eslint-community/eslint-plugin-security), [no-secrets](https://github.com/nickdeis/eslint-plugin-no-secrets) and [no-unsanitized](https://github.com/mozilla/eslint-plugin-no-unsanitized) plugins
 
 #### Data Fetching
 
 - [ky](https://github.com/sindresorhus/ky) - promise-based HTTP client
-- [TanStack Query](https://tanstack.com/query/latest) - data fetching library
+- [TanStack Query](https://tanstack.com/query/latest) - data fetching library, with devtools
 
 #### Components
 
@@ -59,6 +63,7 @@ An opinionated starter kit & collection of reusable components etc for Laravel /
 #### Others
 
 - [Lefthook](https://github.com/evilmartians/lefthook) - git hooks & staged file processing (format, lint, commitlint)
+- [commitlint](https://commitlint.js.org/) - enforces Conventional Commits on `commit-msg`
 - [Betterleaks](https://github.com/betterleaks/betterleaks) - secret scanning on pre-commit (`betterleaks git --pre-commit --staged`, via Lefthook) and in CI
 - [Release Please](https://github.com/googleapis/release-please) - automated semver releases & changelog via GitHub Actions
 
@@ -71,12 +76,13 @@ An opinionated starter kit & collection of reusable components etc for Laravel /
 
 #### Core
 
-- [Laravel Fortify](https://laravel.com/docs/fortify) - headless authentication (login, registration, password reset, 2FA)
+- [Laravel Fortify](https://laravel.com/docs/fortify) - headless authentication (login, registration, password reset, email verification, 2FA, passkeys via [`@laravel/passkeys`](https://www.npmjs.com/package/@laravel/passkeys))
 - [Laravel Essentials](https://github.com/nunomaduro/essentials) - better Laravel default configs
 - [Laravel Permission](https://spatie.be/docs/laravel-permission/v8/introduction) - simple roles & permissions package
 - [Laravel Wayfinder](https://github.com/laravel/wayfinder) - BE to FE routing (replaces Ziggy in older Laravel versions)
 - [Laravel Sanctum](https://laravel.com/docs/13.x/sanctum#installation) - API authentication
 - [Laravolt Indonesia](https://github.com/laravolt/indonesia) - Indonesian regions (provinces, cities, districts, villages)
+- [Flysystem S3](https://laravel.com/docs/13.x/filesystem#s3-driver-configuration) - S3-compatible file storage driver
 
 #### Debugging & Monitoring
 
@@ -91,6 +97,8 @@ An opinionated starter kit & collection of reusable components etc for Laravel /
 - [Laravel Health](https://spatie.be/docs/laravel-health/v1/introduction) - monitors overall application health
 - [Laravel Pulse](https://pulse.laravel.com/) - lightweight, self-hosted application monitoring
 - [Laravel Nightwatch](https://github.com/laravel/nightwatch) - complete application monitoring & observability platform
+- [NewDebugBar](https://github.com/newdebugbar/newdebugbar) - in-browser debug bar (dev only)
+- [Laravel Error Solutions](https://github.com/spatie/laravel-error-solutions) - suggested fixes on the error page (dev only)
 
 #### Documentation
 
@@ -104,15 +112,28 @@ Failed queue jobs send `App\Mail\FailedJobNotification` (template: `resources/vi
 #### Linting & Formatting
 
 - [Laravel Pint](https://laravel.com/docs/pint) - formatter
-- [Rector for Laravel](https://github.com/driftingly/rector-laravel) - linter
-- [Larastan](https://github.com/larastan/larastan) - linter
+- [Rector for Laravel](https://github.com/driftingly/rector-laravel) - automated refactoring & upgrades
+- [Larastan](https://github.com/larastan/larastan) - static analysis
+- [Sloppy](https://github.com/heyosseus/sloppy) - flags AI-slop code patterns in changed PHP (runs in CI)
+
+#### Security
+
+- [Laravel Scalpel](https://github.com/hryagstn/laravel-scalpel) - filesystem intrusion evidence scanner (runs in CI)
 
 #### Others
 
-- [Pest](https://pestphp.com/) - automated testing and code coverage
+- [Pest](https://pestphp.com/) - automated testing, code coverage, type coverage, and test impact analysis
 - [Laravel Pail](https://laravel.com/docs/pail) - live log tailing in the terminal
+- [Laravel Octane](https://laravel.com/docs/octane) - serve application using high-powered servers ([FrankenPHP](https://frankenphp.dev/) via `OCTANE_SERVER`)
+- [Laravel IDE Helper](https://github.com/barryvdh/laravel-ide-helper) - IDE autocompletion stubs (regenerated on `composer update`)
+
+#### AI Agent Tooling
+
 - [Laravel Boost](https://github.com/laravel/boost) - MCP server
-- [Laravel Octane](https://laravel.com/docs/octane) - serve application using high-powered servers
+- [Spatie Boost Guidelines](https://github.com/spatie/boost-spatie-guidelines) - Spatie's Laravel & PHP coding guidelines for Boost
+- [Laravel Auditor](https://github.com/mrpunyapal/laravel-auditor) - evidence-based codebase audit tooling for agents
+- [Pest Agent Plugin](https://github.com/pestphp/pest-plugin-agent) - one-shot verification CLI for agents
+- [Laravel PAO](https://github.com/laravel/pao) - agent-optimized output for PHP testing tools
 
 <br />
 
@@ -183,11 +204,13 @@ For new projects using this as base:
 7. Add new github repository origin and push to this new repository
 8. Create `staging` and `dev` branches locally
 9. Choose the release branch (`main` by default). If changing it to `dev`, update both `.github/workflows/release.yml` and the release instructions in this README, then checkout `dev` to make changes
-10. Set `version` to `0.1.0` on `package.json`, `composer.json`, and `release-please-manifest.json`
+10. Set `version` to `0.1.0` on `package.json`, `composer.json`, and `.release-please-manifest.json`
 11. Set `package-name` to the new project's name on `release-please-config.json`
 12. Change Github default branch from `main` to `dev`
 13. Commit changes and push both the `dev` and `staging` branches
 14. Enable dependabot on Github repository
+
+Before going live, work through [`docs/pre-production-checklist.md`](docs/pre-production-checklist.md).
 
 ## Development
 
@@ -197,11 +220,11 @@ Start the development server:
 composer run dev
 ```
 
-This runs concurrently:
+This runs `php artisan dev`, which starts concurrently (list them with `php artisan dev:list`):
 
-- Laravel development server
-- Queue listener
-- Application logs
+- Octane server with file watching (`octane:start --watch`)
+- Horizon queue workers
+- Application logs (Pail)
 - Vite development server
 
 With `composer run dev`, the app is at http://localhost:8000. With Laravel Herd (default `APP_URL`), use http://reusables-laravel.test.
@@ -272,6 +295,8 @@ The lint job validates code quality and formatting:
 - **Laravel Pint**: Validates PHP code formatting
 - **Rector**: Checks for code improvements and modernization opportunities
 - **PHPStan**: Performs static analysis to catch potential bugs
+- **Sloppy**: Reviews changed PHP for AI-slop patterns (`php artisan sloppy:ci`)
+- **Scalpel**: Scans for intrusion evidence (structural, obfuscated, `.htaccess`, `.user.ini`, env files) and fails on HIGH findings
 
 **Frontend Checks:**
 
@@ -283,8 +308,13 @@ The lint job validates code quality and formatting:
 
 The tests job runs the full test suite:
 
+- **Truss**: Migrates a fresh PostgreSQL database and checks the schema (`truss:doctor --fail-on=warning`)
 - **Type Coverage**: Ensures 100% type coverage across the codebase
 - **Code Coverage**: Runs all Pest tests & maintains minimum 80% code coverage requirement
+
+### TIA Baseline
+
+`.github/workflows/tia-baseline.yml` runs on every push to `main` (or manually). It runs the suite with Pest test impact analysis (`pest --parallel --tia --fresh`) and uploads the baseline as an artifact.
 
 ### Running Locally
 
@@ -314,7 +344,7 @@ See `app/Http/Middleware/SecurityHeaders.php` (CSP, frame options, HSTS in produ
 - Prod uses nonce-based **scripts** (no script `unsafe-inline` / `unsafe-eval`); `style-src` keeps `unsafe-inline` in both envs for Vue `:style` bindings.
 - External allow-list: Turnstile, Google/Bunny fonts.
 
-CSP is skipped (other headers still apply) for: `api`, `docs`, `tinker`, `horizon`, `telescope`, `pulse`, `activitylog-ui`, `log-viewer`, `emails`, `health`, `_laravel-brain`. Edit `$cspExcludedRoutes` in the middleware to change that list.
+CSP is skipped (other headers still apply) for `api/*` and every admin tool in [`App\Enums\AdminTool`](app/Enums/AdminTool.php): API docs, email previews, health, Horizon, Telescope, Pulse, Activity Log UI, Log Viewer, Web Tinker, and Laravel Brain. Tool paths come from each package's config where one exists. Add a case to the enum to register a new admin tool; the enum also defines its access gate (local env or `superadmin`).
 
 Blade inline scripts: `<script nonce="{{ $cspNonce }}">`.
 
