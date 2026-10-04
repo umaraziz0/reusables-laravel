@@ -1,5 +1,14 @@
-packages:
-    - '.'
-
+overrides:
+  'vite@*': 'catalog:'
+  typescript: 'npm:typescript-native-bridge@6.0.3-bridge.15.tsgo.7.0.2'
+ignoreScripts: true
 publicHoistPattern:
-    - '@inertiajs/core'
+  - '@inertiajs/core'
+catalog:
+  vite: npm:@voidzero-dev/vite-plus-core@1.0.0
+  vite-plus: 1.0.0
+peerDependencyRules:
+  allowAny:
+    - vite
+  allowedVersions:
+    vite: '*'
