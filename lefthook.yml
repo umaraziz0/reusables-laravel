@@ -1,0 +1,121 @@
+# EXAMPLE USAGE:
+#
+#   Refer for explanation to following link:
+#   https://lefthook.dev/configuration/
+#
+
+glob_matcher: doublestar
+
+# pre-push:
+#   jobs:
+# - name: Prevent direct push to main/staging
+#   tags:
+#     - security
+#   run: bash .lefthook/pre-push/protect-main-branches.sh
+
+commit-msg:
+  commands:
+    'lint commit message':
+      run: pnpm run commitlint --edit {1}
+
+pre-commit:
+  piped: true
+  exclude:
+    - '.agents/**'
+    - '.claude/**'
+    - '.codex/**'
+    - '.opencode/**'
+    - '.cursor/**'
+  jobs:
+    # --- Security --- #
+
+    - name: Security checks
+      group:
+        parallel: true
+        jobs:
+          - name: Block sensitive paths (env, keys, …)
+            tags:
+              - security
+            run: bash .lefthook/pre-commit/block-sensitive-paths.sh
+
+          # Requires betterleaks on PATH (e.g. brew install betterleaks).
+          - name: Secret scan (betterleaks)
+            tags:
+              - security
+            run: betterleaks git --pre-commit --redact --staged --verbose
+            fail_text: |
+              Betterleaks reported secrets in staged changes (or betterleaks is not installed).
+              Install: brew install betterleaks  — Docs: https://github.com/betterleaks/betterleaks
+
+    # --- Linting --- #
+
+    - name: Staged fixes
+      group:
+        piped: true
+        jobs:
+          - name: Check FE (Vite+)
+            tags:
+              - frontend
+            run: pnpm exec vp staged
+            glob: '**/*.{js,ts,vue,css,md,yml,yaml,json}'
+            stage_fixed: true
+
+          - name: Lint BE (Rector)
+            tags:
+              - backend
+            run: vendor/bin/rector process {staged_files}
+            glob: '**/*.{php,blade.php}'
+            stage_fixed: true
+
+          - name: Format BE
+            tags:
+              - backend
+            run: vendor/bin/pint {staged_files} --parallel
+            glob: '**/*.{php,blade.php}'
+            stage_fixed: true
+
+          - name: Lint Vue templates
+            tags:
+              - frontend
+            run: pnpm run lint:templates
+            glob: '**/*.{js,mjs,ts,vue,css,yml,yaml,json}'
+
+    - name: Typecheck FE
+      tags:
+        - frontend
+      run: pnpm exec vue-tsc --noEmit
+      glob: '**/*.{ts,vue}'
+
+    - name: Lint BE (PHPStan)
+      tags:
+        - backend
+      run: vendor/bin/phpstan analyse # https://phpstan.org/blog/why-you-should-always-analyse-whole-project
+      glob: '**/*.{php,blade.php}'
+      exclude:
+        - '.agents/**'
+        - '.claude/**'
+        - '.codex/**'
+        - '.opencode/**'
+        - '.cursor/**'
+
+post-merge:
+  jobs:
+    - name: Install FE dependencies
+      tags:
+        - frontend
+      run: pnpm install
+
+    - name: Install BE dependencies
+      tags:
+        - backend
+      run: composer install
+
+    - name: Run migrations
+      tags:
+        - backend
+      run: php artisan migrate
+
+    - name: Run self diagnostics
+      tags:
+        - backend
+      run: php artisan self-diagnosis

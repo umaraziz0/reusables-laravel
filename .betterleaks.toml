@@ -1,0 +1,13 @@
+title = "Reusables Laravel"
+
+[extend]
+useDefault = true
+
+[[allowlists]]
+paths = [
+  '''(^|/)\.agents(/|$)''',
+  '''(^|/)\.claude(/|$)''',
+  '''(^|/)\.codex(/|$)''',
+  '''(^|/)\.cursor(/|$)''',
+  '''(^|/)\.opencode(/|$)''',
+]

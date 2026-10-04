@@ -1,0 +1,57 @@
+{
+  "enabled": false,
+  "$schema": "https://docs.renovatebot.com/renovate-schema.json",
+  "extends": ["config:best-practices"],
+  "schedule": ["after 11pm on sunday"],
+  "timezone": "Asia/Jakarta",
+  "packageRules": [
+    {
+      "description": "Group Laravel framework packages",
+      "matchDatasources": ["packagist"],
+      "groupName": "Laravel packages",
+      "matchPackageNames": ["/^laravel//"]
+    },
+    {
+      "description": "Group Laravel ecosystem (Spatie, Inertia, etc.)",
+      "matchDatasources": ["packagist"],
+      "groupName": "Laravel ecosystem",
+      "matchPackageNames": [
+        "/^spatie//",
+        "/^inertiajs//",
+        "/^beyondcode//",
+        "/^nunomaduro//"
+      ]
+    },
+    {
+      "description": "Group Vue and Inertia frontend packages",
+      "groupName": "Vue ecosystem",
+      "matchPackageNames": [
+        "/^@inertiajs//",
+        "/^vue/",
+        "/^@vue//",
+        "/^@vueuse//",
+        "/^vue-/"
+      ]
+    },
+    {
+      "description": "Group Tailwind and related CSS packages",
+      "groupName": "Tailwind CSS",
+      "matchPackageNames": ["/^tailwindcss/", "/^@tailwindcss//"]
+    },
+    {
+      "description": "Automerge patch and minor for devDependencies when CI passes",
+      "matchDepTypes": ["devDependencies"],
+      "matchUpdateTypes": ["patch", "minor"],
+      "automerge": true,
+      "automergeType": "pr"
+    }
+  ],
+  "vulnerabilityAlerts": {
+    "enabled": true,
+    "labels": ["security"]
+  },
+  "osvVulnerabilityAlerts": true,
+  "labels": ["dependencies"],
+  "prConcurrentLimit": 5,
+  "prCreation": "not-pending"
+}

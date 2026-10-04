@@ -14,23 +14,34 @@
     </testsuites>
     <source>
         <include>
-            <directory>app</directory>
+            <directory>app/Actions</directory>
+            <directory>app/Enums</directory>
+            <directory>app/Http</directory>
+            <directory>app/Jobs</directory>
+            <directory>app/Mail</directory>
+            <directory>app/Models</directory>
+            <directory>app/Observers</directory>
+            <directory>app/Rules</directory>
+            <directory>app/Traits</directory>
         </include>
     </source>
     <php>
         <env name="APP_ENV" value="testing"/>
         <env name="APP_MAINTENANCE_DRIVER" value="file"/>
-        <env name="BCRYPT_ROUNDS" value="4"/>
+        <env name="BCRYPT_ROUNDS" value="4" force="true"/>
         <env name="BROADCAST_CONNECTION" value="null"/>
+        <!-- <server> required: Laravel Env reads $_SERVER; <env force> alone does not overwrite it -->
+        <env name="DB_CONNECTION" value="pgsql" force="true"/>
+        <env name="DB_DATABASE" value="reusables_laravel_testing" force="true"/>
+        <server name="DB_CONNECTION" value="pgsql"/>
+        <server name="DB_DATABASE" value="reusables_laravel_testing"/>
         <env name="CACHE_STORE" value="array"/>
-        <env name="DB_CONNECTION" value="sqlite"/>
-        <env name="DB_DATABASE" value=":memory:"/>
-        <env name="DB_URL" value=""/>
         <env name="MAIL_MAILER" value="array"/>
         <env name="QUEUE_CONNECTION" value="sync"/>
         <env name="SESSION_DRIVER" value="array"/>
-        <env name="PULSE_ENABLED" value="false"/>
-        <env name="TELESCOPE_ENABLED" value="false"/>
+        <env name="PULSE_ENABLED" value="true"/>
+        <env name="TELESCOPE_ENABLED" value="true"/>
         <env name="NIGHTWATCH_ENABLED" value="false"/>
+        <env name="INERTIA_SSR_ENABLED" value="false"/>
     </php>
 </phpunit>

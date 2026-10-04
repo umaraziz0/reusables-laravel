@@ -1,13 +1,36 @@
 includes:
     - vendor/larastan/larastan/extension.neon
     - vendor/nesbot/carbon/extension.neon
+    - vendor/pestphp/pest-plugin-phpstan/extension.neon
+    - vendor/phpstan/phpstan-mockery/extension.neon
 
 parameters:
     paths:
-        - app/
+        - app
         - bootstrap/app.php
-        - config/
-        - database/
-        - routes/
+        - config
+        - database
+        - public
+        - routes
+        - tests
+
+    excludePaths:
+        - database/migrations/2025_11_27_095917_create_permission_tables.php
+        - database/migrations/2025_12_01_094354_create_activity_log_table.php
+        - database/migrations/2026_05_29_060227_add_attribute_changes_column_to_activity_log_table.php
+        - database/migrations/2025_12_01_094355_add_event_column_to_activity_log_table.php
+        - database/migrations/2025_12_01_094356_add_batch_uuid_column_to_activity_log_table.php
+        - database/migrations/2026_09_17_075745_add_activitylog_ui_indexes.php
+        - database/migrations/2026_02_23_075918_create_health_tables.php
+        - database/migrations/2016_08_03_072729_create_provinces_table.php
+        - database/migrations/2016_08_03_072804_create_districts_table.php
+        - database/migrations/2016_08_03_072819_create_villages_table.php
+        - database/migrations/2016_08_03_072750_create_cities_table.php
+        - tests/PHPStan/Fixtures
 
     level: 7
+
+    tmpDir: tmp/phpstan
+
+rules:
+    - Tests\PHPStan\Rules\ArrayItemLayoutRule
