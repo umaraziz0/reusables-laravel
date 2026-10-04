@@ -1,5 +1,11 @@
 <?php
 
+declare(strict_types=1);
+
+use App\Models\User;
+use Carbon\CarbonImmutable;
+use Illuminate\Database\Eloquent\Collection;
+use Illuminate\Pagination\LengthAwarePaginator;
 use Illuminate\Support\Str;
 
 return [
@@ -15,7 +21,28 @@ return [
     |
     */
 
-    'default' => env('CACHE_STORE', 'database'),
+    'default' => env('CACHE_STORE', 'redis'),
+
+    /*
+    |--------------------------------------------------------------------------
+    | Serializable Classes
+    |--------------------------------------------------------------------------
+    |
+    | When false, cached PHP objects may only be unserialized if their classes
+    | are listed below. Set to true only if you must allow arbitrary objects
+    | (not recommended). Prefer listing specific classes your app caches.
+    |
+    */
+
+    'serializable_classes' => [
+        Collection::class,
+        LengthAwarePaginator::class,
+        User::class,
+        // Needed by Laravel Pulse.
+        Illuminate\Support\Collection::class,
+        stdClass::class,
+        CarbonImmutable::class,
+    ],
 
     /*
     |--------------------------------------------------------------------------
@@ -28,41 +55,41 @@ return [
     |
     | Supported drivers: "array", "database", "file", "memcached",
     |                    "redis", "dynamodb", "storage", "octane",
-    |                    "session", "failover", "null"
+    |                    "failover", "null"
     |
     */
 
     'stores' => [
 
         'array' => [
-            'driver' => 'array',
+            'driver'    => 'array',
             'serialize' => false,
         ],
 
         'database' => [
-            'driver' => 'database',
-            'connection' => env('DB_CACHE_CONNECTION'),
-            'table' => env('DB_CACHE_TABLE', 'cache'),
+            'driver'          => 'database',
+            'connection'      => env('DB_CACHE_CONNECTION'),
+            'table'           => env('DB_CACHE_TABLE', 'cache'),
             'lock_connection' => env('DB_CACHE_LOCK_CONNECTION'),
-            'lock_table' => env('DB_CACHE_LOCK_TABLE'),
+            'lock_table'      => env('DB_CACHE_LOCK_TABLE'),
         ],
 
         'file' => [
-            'driver' => 'file',
-            'path' => storage_path('framework/cache/data'),
+            'driver'    => 'file',
+            'path'      => storage_path('framework/cache/data'),
             'lock_path' => storage_path('framework/cache/data'),
         ],
 
         'storage' => [
             'driver' => 'storage',
-            'disk' => env('CACHE_STORAGE_DISK'),
-            'path' => env('CACHE_STORAGE_PATH', 'framework/cache/data'),
+            'disk'   => env('CACHE_STORAGE_DISK'),
+            'path'   => env('CACHE_STORAGE_PATH', 'framework/cache/data'),
         ],
 
         'memcached' => [
-            'driver' => 'memcached',
+            'driver'        => 'memcached',
             'persistent_id' => env('MEMCACHED_PERSISTENT_ID'),
-            'sasl' => [
+            'sasl'          => [
                 env('MEMCACHED_USERNAME'),
                 env('MEMCACHED_PASSWORD'),
             ],
@@ -71,25 +98,25 @@ return [
             ],
             'servers' => [
                 [
-                    'host' => env('MEMCACHED_HOST', '127.0.0.1'),
-                    'port' => env('MEMCACHED_PORT', 11211),
+                    'host'   => env('MEMCACHED_HOST', '127.0.0.1'),
+                    'port'   => env('MEMCACHED_PORT', 11211),
                     'weight' => 100,
                 ],
             ],
         ],
 
         'redis' => [
-            'driver' => 'redis',
-            'connection' => env('REDIS_CACHE_CONNECTION', 'cache'),
+            'driver'          => 'redis',
+            'connection'      => env('REDIS_CACHE_CONNECTION', 'cache'),
             'lock_connection' => env('REDIS_CACHE_LOCK_CONNECTION', 'default'),
         ],
 
         'dynamodb' => [
-            'driver' => 'dynamodb',
-            'key' => env('AWS_ACCESS_KEY_ID'),
-            'secret' => env('AWS_SECRET_ACCESS_KEY'),
-            'region' => env('AWS_DEFAULT_REGION', 'us-east-1'),
-            'table' => env('DYNAMODB_CACHE_TABLE', 'cache'),
+            'driver'   => 'dynamodb',
+            'key'      => env('AWS_ACCESS_KEY_ID'),
+            'secret'   => env('AWS_SECRET_ACCESS_KEY'),
+            'region'   => env('AWS_DEFAULT_REGION', 'us-east-1'),
+            'table'    => env('DYNAMODB_CACHE_TABLE', 'cache'),
             'endpoint' => env('DYNAMODB_ENDPOINT'),
         ],
 
@@ -118,19 +145,26 @@ return [
     |
     */
 
-    'prefix' => env('CACHE_PREFIX', Str::slug((string) env('APP_NAME', 'laravel')).'-cache-'),
+    'prefix' => env(
+        'CACHE_PREFIX',
+        Str::slug((string) env('APP_NAME', 'laravel')) . '-' . env('APP_ENV', 'local') . '-cache-'
+    ),
 
     /*
     |--------------------------------------------------------------------------
-    | Serializable Classes
+    | Custom Configurations
     |--------------------------------------------------------------------------
     |
-    | This value determines the classes that can be unserialized from cache
-    | storage. By default, no PHP classes will be unserialized from your
-    | cache to prevent gadget chain attacks if your APP_KEY is leaked.
+    | Add custom cache configurations here.
     |
     */
 
-    'serializable_classes' => false,
-
+    'ttl' => [
+        'five_minutes' => 300,
+        'one_hour'     => 3_600,
+        'one_day'      => 86_400,
+        'one_week'     => 604_800,
+        'one_month'    => 2_629_746,
+        'one_year'     => 31_556_926,
+    ],
 ];

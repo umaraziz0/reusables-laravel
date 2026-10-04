@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 return [
 
     /*
@@ -32,34 +34,50 @@ return [
 
         'local' => [
             'driver' => 'local',
-            'root' => storage_path('app/private'),
-            'serve' => true,
-            'throw' => false,
+            'root'   => storage_path('app/private'),
+            'serve'  => true,
+            'throw'  => false,
             'report' => false,
         ],
 
         'public' => [
-            'driver' => 'local',
-            'root' => storage_path('app/public'),
-            'url' => rtrim((string) env('APP_URL', 'http://localhost'), '/').'/storage',
+            'driver'     => 'local',
+            'root'       => storage_path('app/public'),
+            'url'        => mb_rtrim((string) env('APP_URL', 'http://localhost'), '/') . '/storage',
             'visibility' => 'public',
-            'throw' => false,
-            'report' => false,
+            'throw'      => false,
+            'report'     => false,
         ],
 
         's3' => [
-            'driver' => 's3',
-            'key' => env('AWS_ACCESS_KEY_ID'),
-            'secret' => env('AWS_SECRET_ACCESS_KEY'),
-            'region' => env('AWS_DEFAULT_REGION'),
-            'bucket' => env('AWS_BUCKET'),
-            'url' => env('AWS_URL'),
-            'endpoint' => env('AWS_ENDPOINT'),
+            'driver'                  => 's3',
+            'key'                     => env('AWS_ACCESS_KEY_ID'),
+            'secret'                  => env('AWS_SECRET_ACCESS_KEY'),
+            'region'                  => env('AWS_DEFAULT_REGION'),
+            'bucket'                  => env('AWS_BUCKET'),
+            'url'                     => env('AWS_URL'),
+            'endpoint'                => env('AWS_ENDPOINT'),
             'use_path_style_endpoint' => env('AWS_USE_PATH_STYLE_ENDPOINT', false),
-            'throw' => false,
-            'report' => false,
+            'throw'                   => false,
+            'report'                  => false,
         ],
 
+        'do' => [
+            'driver'                  => 's3',
+            'key'                     => env('DO_ACCESS_KEY_ID'),
+            'secret'                  => env('DO_SECRET_ACCESS_KEY'),
+            'region'                  => env('DO_DEFAULT_REGION'),
+            'bucket'                  => env('DO_BUCKET'),
+            'root'                    => env('DO_ROOT'),
+            'endpoint'                => env('DO_ENDPOINT'),
+            'cdn_endpoint'            => env('DO_CDN_ENDPOINT'),
+            'url'                     => env('DO_CDN_ENDPOINT'),
+            'use_path_style_endpoint' => env('DO_USE_PATH_STYLE_ENDPOINT', false),
+            'purge_cdn_api_token'     => env('DO_PURGE_CDN_API_TOKEN'),
+            'visibility'              => 'public',
+            'throw'                   => false,
+            'report'                  => false,
+        ],
     ],
 
     /*

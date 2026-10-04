@@ -1,5 +1,11 @@
 <?php
 
+declare(strict_types=1);
+
+use Illuminate\Support\Str;
+
+$queueName = static fn (string $name): string => Str::slug((string) env('APP_NAME', 'laravel')) . '-' . env('APP_ENV', 'local') . '-queue-' . $name;
+
 return [
 
     /*
@@ -36,40 +42,40 @@ return [
         ],
 
         'database' => [
-            'driver' => 'database',
-            'connection' => env('DB_QUEUE_CONNECTION'),
-            'table' => env('DB_QUEUE_TABLE', 'jobs'),
-            'queue' => env('DB_QUEUE', 'default'),
-            'retry_after' => (int) env('DB_QUEUE_RETRY_AFTER', 90),
+            'driver'       => 'database',
+            'connection'   => env('DB_QUEUE_CONNECTION'),
+            'table'        => env('DB_QUEUE_TABLE', 'jobs'),
+            'queue'        => env('DB_QUEUE', 'default'),
+            'retry_after'  => (int) env('DB_QUEUE_RETRY_AFTER', 90),
             'after_commit' => false,
         ],
 
         'beanstalkd' => [
-            'driver' => 'beanstalkd',
-            'host' => env('BEANSTALKD_QUEUE_HOST', 'localhost'),
-            'queue' => env('BEANSTALKD_QUEUE', 'default'),
-            'retry_after' => (int) env('BEANSTALKD_QUEUE_RETRY_AFTER', 90),
-            'block_for' => 0,
+            'driver'       => 'beanstalkd',
+            'host'         => env('BEANSTALKD_QUEUE_HOST', 'localhost'),
+            'queue'        => env('BEANSTALKD_QUEUE', 'default'),
+            'retry_after'  => (int) env('BEANSTALKD_QUEUE_RETRY_AFTER', 90),
+            'block_for'    => 0,
             'after_commit' => false,
         ],
 
         'sqs' => [
-            'driver' => 'sqs',
-            'key' => env('AWS_ACCESS_KEY_ID'),
-            'secret' => env('AWS_SECRET_ACCESS_KEY'),
-            'prefix' => env('SQS_PREFIX', 'https://sqs.us-east-1.amazonaws.com/your-account-id'),
-            'queue' => env('SQS_QUEUE', 'default'),
-            'suffix' => env('SQS_SUFFIX'),
-            'region' => env('AWS_DEFAULT_REGION', 'us-east-1'),
+            'driver'       => 'sqs',
+            'key'          => env('AWS_ACCESS_KEY_ID'),
+            'secret'       => env('AWS_SECRET_ACCESS_KEY'),
+            'prefix'       => env('SQS_PREFIX', 'https://sqs.us-east-1.amazonaws.com/your-account-id'),
+            'queue'        => env('SQS_QUEUE', 'default'),
+            'suffix'       => env('SQS_SUFFIX'),
+            'region'       => env('AWS_DEFAULT_REGION', 'us-east-1'),
             'after_commit' => false,
         ],
 
         'redis' => [
-            'driver' => 'redis',
-            'connection' => env('REDIS_QUEUE_CONNECTION', 'default'),
-            'queue' => env('REDIS_QUEUE', 'default'),
-            'retry_after' => (int) env('REDIS_QUEUE_RETRY_AFTER', 90),
-            'block_for' => null,
+            'driver'       => 'redis',
+            'connection'   => env('REDIS_QUEUE_CONNECTION', 'queue'),
+            'queue'        => env('REDIS_QUEUE', 'default'),
+            'retry_after'  => (int) env('REDIS_QUEUE_RETRY_AFTER', 90),
+            'block_for'    => null,
             'after_commit' => false,
         ],
 
@@ -82,7 +88,7 @@ return [
         ],
 
         'failover' => [
-            'driver' => 'failover',
+            'driver'      => 'failover',
             'connections' => [
                 'database',
                 'deferred',
@@ -104,7 +110,7 @@ return [
 
     'batching' => [
         'database' => env('DB_CONNECTION', 'sqlite'),
-        'table' => 'job_batches',
+        'table'    => 'job_batches',
     ],
 
     /*
@@ -121,9 +127,28 @@ return [
     */
 
     'failed' => [
-        'driver' => env('QUEUE_FAILED_DRIVER', 'database-uuids'),
-        'database' => env('DB_CONNECTION', 'sqlite'),
-        'table' => 'failed_jobs',
+        'driver'              => env('QUEUE_FAILED_DRIVER', 'database-uuids'),
+        'database'            => env('DB_CONNECTION', 'sqlite'),
+        'table'               => 'failed_jobs',
+        'notification_emails' => array_values(array_filter(array_map(trim(...), explode(',', (string) env('QUEUE_FAILED_NOTIFICATION_EMAILS', ''))))),
     ],
 
+    /*
+    |--------------------------------------------------------------------------
+    | Custom Queue Names
+    |--------------------------------------------------------------------------
+    |
+    | This a list of the different queues for the application.
+    |
+    */
+
+    'queues' => [
+        'exports'       => $queueName('exports'),
+        'emails'        => $queueName('emails'),
+        'storage'       => $queueName('storage'),
+        'logs_message'  => $queueName('logs-message'),
+        'logs_activity' => $queueName('logs-activity'),
+        'telescope'     => $queueName('telescope'),
+        'notifications' => $queueName('notifications'),
+    ],
 ];
