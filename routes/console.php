@@ -1,8 +1,10 @@
 <?php
 
-use Illuminate\Foundation\Inspiring;
-use Illuminate\Support\Facades\Artisan;
+declare(strict_types=1);
 
-Artisan::command('inspire', function () {
-    $this->comment(Inspiring::quote());
-})->purpose('Display an inspiring quote');
+use Illuminate\Support\Facades\Schedule;
+use Spatie\Health\Commands\RunHealthChecksCommand;
+
+Schedule::command(RunHealthChecksCommand::class)->everyMinute();
+Schedule::command('horizon:snapshot')->everyFiveMinutes();
+Schedule::command('activitylog:clean --force')->daily();
