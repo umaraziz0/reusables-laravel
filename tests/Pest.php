@@ -1,7 +1,16 @@
 <?php
 
+declare(strict_types=1);
+
+use App\Enums\Ability\UserAbility;
+use App\Models\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
+use Laravel\Sanctum\Sanctum;
 use Tests\TestCase;
+
+pest()->tia()
+    ->baselined()
+    ->filtered();
 
 /*
 |--------------------------------------------------------------------------
@@ -10,7 +19,7 @@ use Tests\TestCase;
 |
 | The closure you provide to your test functions is always bound to a specific PHPUnit test
 | case class. By default, that class is "PHPUnit\Framework\TestCase". Of course, you may
-| need to change it using the "pest()" function to bind different classes or traits.
+| need to change it using the "pest()" function to bind a different classes or traits.
 |
 */
 
@@ -18,20 +27,7 @@ pest()->extend(TestCase::class)
     ->use(RefreshDatabase::class)
     ->in('Feature');
 
-/*
-|--------------------------------------------------------------------------
-| Expectations
-|--------------------------------------------------------------------------
-|
-| When you're writing tests, you often need to check that values meet certain conditions. The
-| "expect()" function gives you access to a set of "expectations" methods that you can use
-| to assert different things. Of course, you may extend the Expectation API at any time.
-|
-*/
-
-expect()->extend('toBeOne', function () {
-    return $this->toBe(1);
-});
+pest()->extend(TestCase::class)->in('Unit');
 
 /*
 |--------------------------------------------------------------------------
@@ -44,7 +40,29 @@ expect()->extend('toBeOne', function () {
 |
 */
 
-function something()
+/**
+ * Plain-text password that satisfies configured Password::defaults() rules
+ * (mixed case, letters, numbers, symbols, uncompromised).
+ */
+function validTestPassword(): string
 {
-    // ..
+    return 'Zx7!kQm9@pL2#vR';
+}
+
+/**
+ * Authenticate a request to the private API with Sanctum and a whitelisted IP.
+ *
+ * @param  array<int, UserAbility>  $abilities
+ */
+function authenticatePrivateApi(array $abilities = [UserAbility::View]): User
+{
+    config(['api.allowed_ips' => ['127.0.0.1']]);
+
+    $user = User::factory()->create();
+    Sanctum::actingAs($user, array_map(
+        fn (UserAbility $ability): string => $ability->value,
+        $abilities,
+    ));
+
+    return $user;
 }
