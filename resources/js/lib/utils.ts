@@ -1,12 +1,8 @@
-import type { InertiaLinkProps } from '@inertiajs/vue3';
-import { clsx } from 'clsx';
-import type { ClassValue } from 'clsx';
-import { twMerge } from 'tailwind-merge';
+import { InertiaLinkProps } from '@inertiajs/vue3';
 
-export function cn(...inputs: ClassValue[]) {
-    return twMerge(clsx(inputs));
-}
+export { cn } from 'cn';
 
 export function toUrl(href: NonNullable<InertiaLinkProps['href']>) {
-    return typeof href === 'string' ? href : href?.url;
+  // oxlint-disable-next-line anti-slop/no-runtime-typeof -- Inertia href is string | { url }
+  return typeof href === 'string' ? href : href?.url;
 }

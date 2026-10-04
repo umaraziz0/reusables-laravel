@@ -1,38 +1,44 @@
-import type { Directive } from 'vue';
 import type { Auth } from '@/types/auth';
+import type { FlashToast } from '@/types/ui';
+import type { createHeadManager, Page, Router } from '@inertiajs/core';
+import type { Directive } from 'vue';
 
 // Extend ImportMeta interface for Vite...
 declare module 'vite/client' {
-    interface ImportMetaEnv {
-        readonly VITE_APP_NAME: string;
-        [key: string]: string | boolean | undefined;
-    }
+  interface ImportMetaEnv {
+    readonly VITE_APP_NAME: string;
+    [key: string]: string | boolean | undefined;
+  }
 
-    interface ImportMeta {
-        readonly env: ImportMetaEnv;
-        readonly glob: <T>(pattern: string) => Record<string, () => Promise<T>>;
-    }
+  interface ImportMeta {
+    readonly env: ImportMetaEnv;
+    readonly glob: <T>(pattern: string) => Record<string, () => Promise<T>>;
+  }
 }
 
 declare module '@inertiajs/core' {
-    export interface InertiaConfig {
-        sharedPageProps: {
-            name: string;
-            auth: Auth;
-            sidebarOpen: boolean;
-            [key: string]: unknown;
-        };
-    }
+  export interface InertiaConfig {
+    sharedPageProps: {
+      name: string;
+      auth: Auth;
+      sidebarOpen: boolean;
+      quote?: { message: string; author: string };
+      [key: string]: unknown;
+    };
+    flashDataType: {
+      toast?: FlashToast;
+    };
+  }
 }
 
 declare module 'vue' {
-    interface GlobalDirectives {
-        vFocus: Directive<HTMLElement, boolean | undefined>;
-    }
+  interface GlobalDirectives {
+    vFocus: Directive<HTMLElement, boolean | undefined>;
+  }
 
-    interface ComponentCustomProperties {
-        $inertia: typeof Router;
-        $page: Page;
-        $headManager: ReturnType<typeof createHeadManager>;
-    }
+  interface ComponentCustomProperties {
+    $inertia: Router;
+    $page: Page;
+    $headManager: ReturnType<typeof createHeadManager>;
+  }
 }

@@ -1,14 +1,19 @@
 <script setup lang="ts">
-import AppLayout from '@/layouts/app/AppSidebarLayout.vue';
 import type { BreadcrumbItem } from '@/types';
 
+import { VueQueryDevtools } from '@tanstack/vue-query-devtools';
+
+import AppLayout from '@/layouts/app/AppSidebarLayout.vue';
+
 const { breadcrumbs = [] } = defineProps<{
-    breadcrumbs?: BreadcrumbItem[];
+  breadcrumbs?: BreadcrumbItem[];
 }>();
 </script>
 
 <template>
-    <AppLayout :breadcrumbs="breadcrumbs">
-        <slot />
-    </AppLayout>
+  <AppLayout :breadcrumbs="breadcrumbs">
+    <VueQueryDevtools />
+
+    <slot />
+  </AppLayout>
 </template>
