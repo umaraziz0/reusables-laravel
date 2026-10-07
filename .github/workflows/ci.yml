@@ -173,6 +173,18 @@ jobs:
       - name: Install Composer Dependencies
         run: composer install --no-interaction --prefer-dist --optimize-autoloader
 
+      - name: Prepare Laravel (Wayfinder needs APP_KEY)
+        run: |
+          cp .env.example .env
+          chmod 600 .env
+          php artisan key:generate --no-interaction
+
+      - name: Build Frontend Assets (browser tests)
+        run: pnpm run build
+
+      - name: Install Playwright Browsers
+        run: pnpm exec playwright install --with-deps chromium
+
       - name: Create Testing Database
         run: |
           PGPASSWORD=postgres psql -h 127.0.0.1 -U postgres -tc "SELECT 1 FROM pg_database WHERE datname = 'reusables_laravel_testing'" | grep -q 1 || PGPASSWORD=postgres createdb -h 127.0.0.1 -U postgres reusables_laravel_testing
@@ -191,3 +203,11 @@ jobs:
 
       - name: Run Tests w/ Code Coverage
         run: ./vendor/bin/pest --ci --parallel --coverage --min=80 --compact
+
+      - name: Upload Browser Test Screenshots
+        uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a # v7.0.1
+        if: failure()
+        with:
+          name: browser-tests
+          path: tests/Browser/Screenshots
+          if-no-files-found: ignore

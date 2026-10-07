@@ -85,3 +85,7 @@ _ide_helper*
 /database/database.sqlite
 
 /docs/pre-production-checklist.md
+
+# Pest browser test artifacts
+/tests/Browser/Screenshots
+/tests/Browser/Traces
