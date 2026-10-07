@@ -11,4 +11,4 @@ Read config with Config::string/integer/boolean/array for known types. Use Confi
 
 ## WriteLog three-part operational messages
 
-Operational logs go through WriteLog. Pass `module`, `action`, and `message` separately (modules API, CMS, Jobs, etc; Title Case action; lowercase message). WriteLog joins them as `{Module} - {Action} - {message}`. Wrappers in `app/Actions/Logging` take the same three params. Do not call Log:: directly.
+Operational logs go through WriteLog. Pass `module`, `action`, and `message` separately (modules API, CMS, Jobs, etc; Title Case action; lowercase message). WriteLog joins them as `{Module} - {Action} - {message}`. Wrappers in `app/Actions/Logging` take the same three params. Do not call Log:: directly (enforced by ArchTest, along with logger(), info() and injected loggers).

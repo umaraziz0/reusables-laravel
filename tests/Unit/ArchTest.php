@@ -2,9 +2,13 @@
 
 declare(strict_types=1);
 
+use App\Actions\Logging\WriteLog;
 use App\Jobs\LogActivity;
 use Illuminate\Contracts\Queue\ShouldBeEncrypted;
+use Illuminate\Log\LogManager;
 use Illuminate\Support\Facades\File;
+use Illuminate\Support\Facades\Log;
+use Psr\Log\LoggerInterface;
 
 arch()->preset()->php();
 // arch()->preset()->laravel(); // prevents Controllers to have methods other than default
@@ -18,6 +22,11 @@ arch()
 
 arch()->expect(['env'])->not->toBeUsed(); // prevents direct env() calls except from configs
 arch()->expect(['config'])->not->toBeUsed();
+
+arch()
+    ->expect('App')
+    ->not->toUse([Log::class, LogManager::class, LoggerInterface::class, 'logger', 'info'])
+    ->ignoring(WriteLog::class); // operational logs go through WriteLog
 
 arch()->expect(LogActivity::class)->toImplement(ShouldBeEncrypted::class);
 
