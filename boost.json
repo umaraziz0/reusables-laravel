@@ -16,7 +16,6 @@
         "laramint/laravel-brain",
         "pestphp/pest-plugin-agent",
         "albertoarena/laravel-truss",
-        "mrpunyapal/laravel-auditor",
         "dedoc/scramble"
     ],
     "sail": false,
@@ -37,15 +36,6 @@
         "laravel-permission-development",
         "truss-schema",
         "laravel-brain",
-        "laravel-audit",
-        "laravel-audit-architecture",
-        "laravel-audit-conventions",
-        "laravel-audit-database",
-        "laravel-audit-dsa",
-        "laravel-audit-performance",
-        "laravel-audit-security",
-        "laravel-audit-testing",
-        "laravel-auditor-development",
         "pest-plugin-agent",
         "spatie-laravel-php-standards"
     ]

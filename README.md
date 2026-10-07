@@ -123,17 +123,12 @@ Failed queue jobs send `App\Mail\FailedJobNotification` (template: `resources/vi
 #### Others
 
 - [Pest](https://pestphp.com/) - automated testing, code coverage, type coverage, and test impact analysis
-- [Laravel Pail](https://laravel.com/docs/pail) - live log tailing in the terminal
 - [Laravel Octane](https://laravel.com/docs/octane) - serve application using high-powered servers ([FrankenPHP](https://frankenphp.dev/) via `OCTANE_SERVER`)
 - [Laravel IDE Helper](https://github.com/barryvdh/laravel-ide-helper) - IDE autocompletion stubs (regenerated on `composer update`)
 
 #### AI Agent Tooling
 
-- [Laravel Boost](https://github.com/laravel/boost) - MCP server
-- [Spatie Boost Guidelines](https://github.com/spatie/boost-spatie-guidelines) - Spatie's Laravel & PHP coding guidelines for Boost
-- [Laravel Auditor](https://github.com/mrpunyapal/laravel-auditor) - evidence-based codebase audit tooling for agents
-- [Pest Agent Plugin](https://github.com/pestphp/pest-plugin-agent) - one-shot verification CLI for agents
-- [Laravel PAO](https://github.com/laravel/pao) - agent-optimized output for PHP testing tools
+- [Laravel Boost](https://github.com/laravel/boost) - MCP server & skill management
 
 <br />
 

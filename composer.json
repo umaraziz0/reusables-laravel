@@ -46,7 +46,6 @@
     "laravel/pao": "^1.1.5",
     "laravel/pint": "^1.32.1",
     "mockery/mockery": "^1.6.15",
-    "mrpunyapal/laravel-auditor": "^0.1.7",
     "newdebugbar/newdebugbar": "dev-main",
     "nunomaduro/collision": "^8.9.5",
     "pestphp/pest": "^5.2.1",
