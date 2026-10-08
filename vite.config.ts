@@ -34,6 +34,7 @@ export default defineConfig({
   server: {
     watch: {
       ignored: [
+        '**/.ai/**',
         '**/.agents/**',
         '**/.claude/**',
         '**/.cursor/**',
@@ -63,6 +64,7 @@ export default defineConfig({
       '.codex/**',
       '.cursor/**',
       '.pi/**',
+      '.ai/**',
     ],
     plugins: ['unicorn', 'typescript', 'oxc', 'vue'],
     jsPlugins: [
@@ -187,6 +189,7 @@ export default defineConfig({
       '.codex/**',
       '.cursor/**',
       '.pi/**',
+      '.ai/**',
       'vendor/**',
       'node_modules/**',
       'public/**',
