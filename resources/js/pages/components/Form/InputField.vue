@@ -25,6 +25,8 @@ defineOptions({
 });
 
 const value = ref('');
+
+const email = ref('');
 </script>
 
 <template>
@@ -155,6 +157,23 @@ const value = ref('');
         name="full_name"
         required
         placeholder="Jane Doe"
+      />
+    </div>
+
+    <div class="space-y-3">
+      <h4
+        class="text-xs font-medium tracking-wide text-muted-foreground uppercase"
+      >
+        Email suggestion
+      </h4>
+      <InputField
+        v-model="email"
+        label="Email"
+        name="email"
+        type="email"
+        autocomplete="email"
+        placeholder="jane@example.com"
+        description="Try jane@gmial.com, then move focus away."
       />
     </div>
   </div>

@@ -21,13 +21,13 @@ const feedbackId = computed(() =>
 
 <template>
   <p
-    v-if="feedback"
+    v-if="feedback || $slots.default"
     :id="feedbackId"
     :class="
       error ? 'text-sm text-destructive' : 'text-sm text-muted-foreground'
     "
     :role="error ? 'alert' : undefined"
   >
-    {{ feedback }}
+    <slot>{{ feedback }}</slot>
   </p>
 </template>

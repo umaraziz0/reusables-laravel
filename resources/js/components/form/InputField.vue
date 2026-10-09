@@ -1,5 +1,10 @@
 <script setup lang="ts">
-import { computed, type HTMLAttributes } from 'vue';
+import {
+  computed,
+  ref,
+  type HTMLAttributes,
+  type InputTypeHTMLAttribute,
+} from 'vue';
 // --- Components --- //
 
 import { Input } from '@/components/ui/input';
@@ -27,14 +32,31 @@ const props = defineProps<{
   inputClass?: HTMLAttributes['class'];
   ariaDescribedby?: string;
   ariaInvalid?: boolean | 'true' | 'false';
+  type?: InputTypeHTMLAttribute;
 }>();
 
-// --- Constants --- //
+// --- Refs --- //
+
+const emailSuggestion = ref<string>();
+
+// --- Computed -- //
+
+const emailSpellingListeners = computed(() =>
+  props.type === 'email'
+    ? { blur: checkEmailSpelling, input: clearEmailSuggestion }
+    : {},
+);
 
 const inputId = computed(() => props.id ?? props.name);
 
+const feedbackDescription = computed(() =>
+  emailSuggestion.value
+    ? `Did you mean ${emailSuggestion.value}?`
+    : props.description,
+);
+
 const descriptionId = computed(() =>
-  props.description ? `${inputId.value}-description` : undefined,
+  feedbackDescription.value ? `${inputId.value}-description` : undefined,
 );
 
 const errorId = computed(() =>
@@ -50,6 +72,43 @@ const describedBy = computed(
     [props.ariaDescribedby, feedbackId.value].filter(Boolean).join(' ') ||
     undefined,
 );
+
+// --- Methods --- //
+
+/**
+ * Lazy-loads the spell checker so only email inputs pay for it.
+ */
+async function checkEmailSpelling(event: FocusEvent): Promise<void> {
+  if (!(event.target instanceof HTMLInputElement)) {
+    return;
+  }
+
+  const input = event.target;
+  const email = input.value.trim();
+
+  if (!email) {
+    clearEmailSuggestion();
+
+    return;
+  }
+
+  const { run } = await import('@zootools/email-spell-checker');
+
+  if (input.value.trim() !== email) {
+    return;
+  }
+
+  emailSuggestion.value = run({ email })?.full;
+}
+
+function clearEmailSuggestion(): void {
+  emailSuggestion.value = undefined;
+}
+
+function applyEmailSuggestion(): void {
+  model.value = emailSuggestion.value;
+  clearEmailSuggestion();
+}
 </script>
 
 <template>
@@ -69,15 +128,30 @@ const describedBy = computed(
       :aria-describedby="describedBy"
       :aria-invalid="error ? 'true' : ariaInvalid"
       :required="required"
+      :type="type"
       :default-value="defaultValue"
       v-bind="$attrs"
+      v-on="emailSpellingListeners"
     />
 
     <FieldFeedback
-      :description="description"
+      :description="feedbackDescription"
       :description-id="descriptionId"
       :error="error"
       :error-id="errorId"
-    />
+    >
+      <template v-if="emailSuggestion && !error" #default>
+        <span role="status">
+          Did you mean
+          <button
+            type="button"
+            class="font-medium text-foreground underline underline-offset-4 hover:text-primary"
+            @click="applyEmailSuggestion"
+          >
+            {{ emailSuggestion }}</button
+          >?
+        </span>
+      </template>
+    </FieldFeedback>
   </div>
 </template>
