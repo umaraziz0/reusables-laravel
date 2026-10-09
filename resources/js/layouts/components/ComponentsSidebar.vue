@@ -101,7 +101,9 @@ const { isCurrentUrl } = useCurrentUrl();
                 </SidebarMenuButton>
               </CollapsibleTrigger>
 
-              <CollapsibleContent class="flex flex-col gap-1 py-1 pl-4">
+              <CollapsibleContent
+                class="flex flex-col gap-1 py-1 pl-4 group-data-[collapsible=icon]:pl-0"
+              >
                 <SidebarMenuButton
                   as-child
                   v-for="subItem in item.subItems"
