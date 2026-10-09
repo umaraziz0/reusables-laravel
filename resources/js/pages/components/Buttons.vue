@@ -26,7 +26,7 @@ const variants = [
   'link',
 ] as const;
 
-const sizes = ['default', 'sm', 'lg', 'icon'] as const;
+const sizes = ['default', 'xs', 'sm', 'lg', 'icon'] as const;
 </script>
 
 <template>
