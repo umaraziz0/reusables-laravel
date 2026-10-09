@@ -1,15 +1,20 @@
 <script setup lang="ts">
 import { Link } from '@inertiajs/vue3';
-import { AlertCircle, FormInput, SquarePower, Tag } from '@lucide/vue';
+import {
+  AlertCircle,
+  ChevronDown,
+  FormInput,
+  SquarePower,
+  Tag,
+} from '@lucide/vue';
 
 import { formInputField } from '@/actions/App/Http/Controllers/ComponentPreviewController';
 // --- Types --- //
 import {
-  Accordion,
-  AccordionItem,
-  AccordionTrigger,
-  AccordionContent,
-} from '@/components/ui/accordion';
+  Collapsible,
+  CollapsibleContent,
+  CollapsibleTrigger,
+} from '@/components/ui/collapsible';
 // --- Components --- //
 import {
   Sidebar,
@@ -85,38 +90,31 @@ const { isCurrentUrl } = useCurrentUrl();
         <SidebarMenu>
           <SidebarMenuItem v-for="item in componentNavItems" :key="item.title">
             <!-- Menu Folder -->
-            <Accordion v-if="item.isFolder" type="single" collapsible>
-              <AccordionItem :value="item.title" class="border-b-0">
-                <AccordionTrigger
-                  class="cursor-pointer gap-2 py-0 font-light text-[#4D4D4D] hover:no-underline"
-                >
-                  <SidebarMenuButton
-                    as-child
-                    :is-active="false"
-                    :tooltip="item.title"
-                  >
-                    <div class="flex items-center gap-2">
-                      <component :is="item.icon" />
-                      <span>{{ item.title }}</span>
-                    </div>
-                  </SidebarMenuButton>
-                </AccordionTrigger>
+            <Collapsible v-if="item.isFolder" class="group/collapsible">
+              <CollapsibleTrigger as-child>
+                <SidebarMenuButton class="cursor-pointer" :tooltip="item.title">
+                  <component :is="item.icon" />
+                  <span>{{ item.title }}</span>
+                  <ChevronDown
+                    class="ml-auto transition-transform duration-200 group-data-[state=open]/collapsible:rotate-180"
+                  />
+                </SidebarMenuButton>
+              </CollapsibleTrigger>
 
-                <AccordionContent class="flex flex-col gap-1 py-1 pl-4">
-                  <SidebarMenuButton
-                    as-child
-                    v-for="subItem in item.subItems"
-                    :is-active="isCurrentUrl(subItem.href)"
-                    :key="subItem.title"
-                  >
-                    <Link :href="subItem.href">
-                      <component :is="subItem.icon" />
-                      <span>{{ subItem.title }}</span>
-                    </Link>
-                  </SidebarMenuButton>
-                </AccordionContent>
-              </AccordionItem>
-            </Accordion>
+              <CollapsibleContent class="flex flex-col gap-1 py-1 pl-4">
+                <SidebarMenuButton
+                  as-child
+                  v-for="subItem in item.subItems"
+                  :is-active="isCurrentUrl(subItem.href)"
+                  :key="subItem.title"
+                >
+                  <Link :href="subItem.href">
+                    <component :is="subItem.icon" />
+                    <span>{{ subItem.title }}</span>
+                  </Link>
+                </SidebarMenuButton>
+              </CollapsibleContent>
+            </Collapsible>
 
             <!-- Menu Item -->
             <SidebarMenuButton

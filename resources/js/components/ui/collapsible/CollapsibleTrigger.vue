@@ -16,7 +16,8 @@ const delegatedProps = reactiveOmit(props, 'class');
     data-slot="collapsible-trigger"
     :class="
       cn(
-        'flex w-full items-center justify-between px-4 py-3 text-left font-medium hover:bg-accent hover:text-accent-foreground [&[data-state=open]>svg]:rotate-180',
+        !props.asChild &&
+          'flex w-full items-center justify-between px-4 py-3 text-left font-medium hover:bg-accent hover:text-accent-foreground [&[data-state=open]>svg]:rotate-180',
         props.class,
       )
     "
