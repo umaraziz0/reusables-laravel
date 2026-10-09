@@ -44,7 +44,7 @@ test('component preview pages require authentication', function (string $routeNa
     'badges'           => 'components.badges',
     'buttons'          => 'components.buttons',
     'collapsible'      => 'components.collapsible',
-    'form basic input' => 'components.form.basic-input',
+    'form input field' => 'components.form.input-field',
 ]);
 
 test('component preview pages require superadmin role', function (string $routeName): void {
@@ -58,7 +58,7 @@ test('component preview pages require superadmin role', function (string $routeN
     'badges'           => 'components.badges',
     'buttons'          => 'components.buttons',
     'collapsible'      => 'components.collapsible',
-    'form basic input' => 'components.form.basic-input',
+    'form input field' => 'components.form.input-field',
 ]);
 
 test('superadmin can view component preview pages', function (string $routeName): void {
@@ -73,5 +73,5 @@ test('superadmin can view component preview pages', function (string $routeName)
     'badges'           => 'components.badges',
     'buttons'          => 'components.buttons',
     'collapsible'      => 'components.collapsible',
-    'form basic input' => 'components.form.basic-input',
+    'form input field' => 'components.form.input-field',
 ]);

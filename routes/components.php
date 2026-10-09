@@ -15,7 +15,7 @@ Route::middleware(['auth', 'role:superadmin'])
         Route::get('collapsible', [ComponentPreviewController::class, 'collapsible'])->name('components.collapsible');
 
         Route::prefix('form')->group(function (): void {
-            Route::get('basic-input', [ComponentPreviewController::class, 'formBasicInput'])
-                ->name('components.form.basic-input');
+            Route::get('input-field', [ComponentPreviewController::class, 'formInputField'])
+                ->name('components.form.input-field');
         });
     });

@@ -1,3 +1,3 @@
-export { default as BasicInput } from './BasicInput.vue';
+export { default as InputField } from './InputField.vue';
 
-export { default as InputFeedback } from './InputFeedback.vue';
+export { default as FieldFeedback } from './FieldFeedback.vue';

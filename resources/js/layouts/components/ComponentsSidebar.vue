@@ -2,7 +2,7 @@
 import { Link } from '@inertiajs/vue3';
 import { AlertCircle, FormInput, SquarePower, Tag } from '@lucide/vue';
 
-import { formBasicInput } from '@/actions/App/Http/Controllers/ComponentPreviewController';
+import { formInputField } from '@/actions/App/Http/Controllers/ComponentPreviewController';
 // --- Types --- //
 import {
   Accordion,
@@ -45,13 +45,13 @@ const componentNavItems: NavItem[] = [
   },
   {
     title: 'Form',
-    href: formBasicInput(),
+    href: formInputField(),
     icon: FormInput,
     isFolder: true,
     subItems: [
       {
-        title: 'Basic Input',
-        href: formBasicInput(),
+        title: 'Input Field',
+        href: formInputField(),
         icon: FormInput,
       },
     ],

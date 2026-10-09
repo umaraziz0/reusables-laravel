@@ -37,8 +37,8 @@ class ComponentPreviewController extends Controller
 
     // --- Form Components --- //
 
-    public function formBasicInput(): Response
+    public function formInputField(): Response
     {
-        return Inertia::render('components/Form/BasicInput');
+        return Inertia::render('components/Form/InputField');
     }
 }

@@ -2,9 +2,9 @@
 import { Head } from '@inertiajs/vue3';
 import { ref } from 'vue';
 
-import { formBasicInput } from '@/actions/App/Http/Controllers/ComponentPreviewController';
+import { formInputField } from '@/actions/App/Http/Controllers/ComponentPreviewController';
 // --- Components --- //
-import BasicInput from '@/components/form/BasicInput.vue';
+import InputField from '@/components/form/InputField.vue';
 import Heading from '@/components/Heading.vue';
 
 // --- Props --- //
@@ -14,11 +14,11 @@ defineOptions({
     breadcrumbs: [
       {
         title: 'Form',
-        href: formBasicInput(),
+        href: formInputField(),
       },
       {
-        title: 'Basic Input',
-        href: formBasicInput(),
+        title: 'Input Field',
+        href: formInputField(),
       },
     ],
   },
@@ -28,9 +28,12 @@ const value = ref('');
 </script>
 
 <template>
-  <Head title="Basic Input" />
+  <Head title="Input Field" />
 
-  <Heading title="Basic Input" description="A basic input component" />
+  <Heading
+    title="Input Field"
+    description="A labelled input with description and error feedback"
+  />
 
   <div
     class="grid grid-cols-1 gap-6 md:grid-cols-2 md:items-start 2xl:grid-cols-3"
@@ -42,17 +45,14 @@ const value = ref('');
         Default
       </h4>
 
-      <BasicInput
+      <InputField
         v-model="value"
         label="Name"
         name="name"
         placeholder="Input name..."
         autocomplete="name"
-      >
-        <template #description>
-          <span>Current value: {{ value }}</span>
-        </template>
-      </BasicInput>
+        :description="`Current value: ${value}`"
+      />
     </div>
 
     <div class="space-y-3">
@@ -62,7 +62,7 @@ const value = ref('');
         Description
       </h4>
 
-      <BasicInput
+      <InputField
         label="API token"
         name="api_token"
         autocomplete="off"
@@ -78,7 +78,7 @@ const value = ref('');
         Error
       </h4>
 
-      <BasicInput
+      <InputField
         label="Username"
         name="username"
         default-value="ab"
@@ -94,7 +94,7 @@ const value = ref('');
       >
         Disabled
       </h4>
-      <BasicInput
+      <InputField
         label="Account ID"
         name="account_id"
         default-value="acct_01HZXD8QX9K2P4"
@@ -108,7 +108,7 @@ const value = ref('');
       >
         Read-only
       </h4>
-      <BasicInput
+      <InputField
         label="Created at"
         name="created_at"
         default-value="2026-04-10"
@@ -120,23 +120,9 @@ const value = ref('');
       <h4
         class="text-xs font-medium tracking-wide text-muted-foreground uppercase"
       >
-        Custom label slot
-      </h4>
-      <BasicInput v-model="value" name="notes" placeholder="Internal notes…">
-        <template #label>
-          <span>Notes</span>
-          <span class="font-normal text-muted-foreground">(optional)</span>
-        </template>
-      </BasicInput>
-    </div>
-
-    <div class="space-y-3">
-      <h4
-        class="text-xs font-medium tracking-wide text-muted-foreground uppercase"
-      >
         Hidden label
       </h4>
-      <BasicInput
+      <InputField
         label="Notes"
         name="notes"
         hide-label
@@ -150,7 +136,7 @@ const value = ref('');
       >
         Custom width
       </h4>
-      <BasicInput
+      <InputField
         name="custom-width"
         placeholder="Custom width"
         input-class="w-72"
@@ -164,7 +150,7 @@ const value = ref('');
       >
         Required
       </h4>
-      <BasicInput
+      <InputField
         label="Full name"
         name="full_name"
         required
