@@ -124,6 +124,9 @@ jobs:
       - name: Typecheck FE (vue-tsc)
         run: pnpm run types:check
 
+      - name: Test FE components (Vitest)
+        run: pnpm run test
+
   tests:
     if: github.actor != 'dependabot[bot]'
     runs-on: ubuntu-24.04

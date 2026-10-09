@@ -223,4 +223,8 @@ export default defineConfig({
   staged: {
     '**/*.{js,ts,vue,css,md,yml,yaml,json}': 'vp check --fix',
   },
+  test: {
+    environment: 'happy-dom',
+    include: ['resources/js/**/*.test.ts'],
+  },
 });
