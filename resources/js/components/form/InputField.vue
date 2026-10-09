@@ -9,6 +9,7 @@ import {
 
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
+import { useFieldIds } from '@/composables/useFieldIds';
 import { cn } from '@/lib/utils';
 
 import FieldFeedback from './FieldFeedback.vue';
@@ -55,23 +56,14 @@ const feedbackDescription = computed(() =>
     : props.description,
 );
 
-const descriptionId = computed(() =>
-  feedbackDescription.value ? `${inputId.value}-description` : undefined,
-);
+// --- Hooks --- //
 
-const errorId = computed(() =>
-  props.error ? `${inputId.value}-error` : undefined,
-);
-
-const feedbackId = computed(() =>
-  props.error ? errorId.value : descriptionId.value,
-);
-
-const describedBy = computed(
-  () =>
-    [props.ariaDescribedby, feedbackId.value].filter(Boolean).join(' ') ||
-    undefined,
-);
+const { descriptionId, errorId, describedBy } = useFieldIds({
+  id: inputId,
+  description: feedbackDescription,
+  error: () => props.error,
+  ariaDescribedby: () => props.ariaDescribedby,
+});
 
 // --- Methods --- //
 

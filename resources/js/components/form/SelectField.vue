@@ -10,6 +10,7 @@ import {
   SelectTrigger,
   SelectValue,
 } from '@/components/ui/select';
+import { useFieldIds } from '@/composables/useFieldIds';
 import { cn } from '@/lib/utils';
 
 import FieldFeedback from './FieldFeedback.vue';
@@ -55,23 +56,14 @@ const props = defineProps<{
 
 const selectId = computed(() => props.id ?? props.name);
 
-const descriptionId = computed(() =>
-  props.description ? `${selectId.value}-description` : undefined,
-);
+// --- Hooks --- //
 
-const errorId = computed(() =>
-  props.error ? `${selectId.value}-error` : undefined,
-);
-
-const feedbackId = computed(() =>
-  props.error ? errorId.value : descriptionId.value,
-);
-
-const describedBy = computed(
-  () =>
-    [props.ariaDescribedby, feedbackId.value].filter(Boolean).join(' ') ||
-    undefined,
-);
+const { descriptionId, errorId, describedBy } = useFieldIds({
+  id: selectId,
+  description: () => props.description,
+  error: () => props.error,
+  ariaDescribedby: () => props.ariaDescribedby,
+});
 </script>
 
 <template>
