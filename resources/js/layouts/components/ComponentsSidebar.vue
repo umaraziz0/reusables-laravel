@@ -4,11 +4,15 @@ import {
   AlertCircle,
   ChevronDown,
   FormInput,
+  ListChevronsUpDown,
   SquarePower,
   Tag,
 } from '@lucide/vue';
 
-import { formInputField } from '@/actions/App/Http/Controllers/ComponentPreviewController';
+import {
+  formInputField,
+  formSelectField,
+} from '@/actions/App/Http/Controllers/ComponentPreviewController';
 // --- Types --- //
 import {
   Collapsible,
@@ -58,6 +62,11 @@ const componentNavItems: NavItem[] = [
         title: 'Input Field',
         href: formInputField(),
         icon: FormInput,
+      },
+      {
+        title: 'Select Field',
+        href: formSelectField(),
+        icon: ListChevronsUpDown,
       },
     ],
   },

@@ -17,5 +17,7 @@ Route::middleware(['auth', 'role:superadmin'])
         Route::prefix('form')->group(function (): void {
             Route::get('input-field', [ComponentPreviewController::class, 'formInputField'])
                 ->name('components.form.input-field');
+            Route::get('select-field', [ComponentPreviewController::class, 'formSelectField'])
+                ->name('components.form.select-field');
         });
     });

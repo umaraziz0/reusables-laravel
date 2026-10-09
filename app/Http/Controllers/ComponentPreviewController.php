@@ -41,4 +41,9 @@ class ComponentPreviewController extends Controller
     {
         return Inertia::render('components/Form/InputField');
     }
+
+    public function formSelectField(): Response
+    {
+        return Inertia::render('components/Form/SelectField');
+    }
 }
