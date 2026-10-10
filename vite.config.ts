@@ -6,6 +6,12 @@ import laravel from 'laravel-vite-plugin';
 import { bunny } from 'laravel-vite-plugin/fonts';
 import { defineConfig, lazyPlugins } from 'vite-plus';
 
+// Vitest starts Vite in serve mode, which laravel-vite-plugin refuses to do
+// when CI is set. Component tests don't serve assets, so skip that check.
+if (process.env.VITEST) {
+  process.env.LARAVEL_BYPASS_ENV_CHECK = '1';
+}
+
 export default defineConfig({
   plugins: lazyPlugins(() => [
     laravel({
