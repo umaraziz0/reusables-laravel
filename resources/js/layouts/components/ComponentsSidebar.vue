@@ -7,10 +7,12 @@ import {
   ListChevronsUpDown,
   SquarePower,
   Tag,
+  TextSearch,
 } from '@lucide/vue';
 
 import {
   formInputField,
+  formSearchSelectField,
   formSelectField,
 } from '@/actions/App/Http/Controllers/ComponentPreviewController';
 // --- Types --- //
@@ -67,6 +69,11 @@ const componentNavItems: NavItem[] = [
         title: 'Select Field',
         href: formSelectField(),
         icon: ListChevronsUpDown,
+      },
+      {
+        title: 'Search Select Field',
+        href: formSearchSelectField(),
+        icon: TextSearch,
       },
     ],
   },

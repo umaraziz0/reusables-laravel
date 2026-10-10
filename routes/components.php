@@ -19,5 +19,7 @@ Route::middleware(['auth', 'role:superadmin'])
                 ->name('components.form.input-field');
             Route::get('select-field', [ComponentPreviewController::class, 'formSelectField'])
                 ->name('components.form.select-field');
+            Route::get('search-select-field', [ComponentPreviewController::class, 'formSearchSelectField'])
+                ->name('components.form.search-select-field');
         });
     });
