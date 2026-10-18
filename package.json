@@ -44,7 +44,7 @@
     "@commitlint/config-conventional": "^21.2.3",
     "@laravel/vite-plugin-wayfinder": "^0.1.10",
     "@oxlint/plugins": "^1.87.0",
-    "@shadcn/lint": "^0.2.0",
+    "@shadcn/lint": "^0.2.1",
     "@tailwindcss/vite": "^4.3.3",
     "@types/node": "^26.6.4",
     "@typescript-eslint/parser": "^8.71.1",
