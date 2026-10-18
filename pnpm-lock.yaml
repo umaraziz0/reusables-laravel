@@ -189,8 +189,8 @@ importers:
         specifier: ^0.2.0
         version: 0.2.0(react@19.3.0)(vue@3.5.43(typescript-native-bridge@6.0.3-bridge.15.tsgo.7.0.2))
       '@lucide/vue':
-        specifier: ^1.52.0
-        version: 1.52.0(vue@3.5.43(typescript-native-bridge@6.0.3-bridge.15.tsgo.7.0.2))
+        specifier: ^1.56.0
+        version: 1.56.0(vue@3.5.43(typescript-native-bridge@6.0.3-bridge.15.tsgo.7.0.2))
       '@tanstack/vue-query':
         specifier: ^5.104.1
         version: 5.104.1(vue@3.5.43(typescript-native-bridge@6.0.3-bridge.15.tsgo.7.0.2))
@@ -625,8 +625,8 @@ packages:
   '@laravel/vite-plugin-wayfinder@0.1.10':
     resolution: {integrity: sha512-59ZCMCEeC1UcZkqbvn+G06C4D0C/jCm525gTft7T7RPAo+0ZaHtoKl9r86OFVFd/BwuJiOYky4zJUrAPRKyRaA==}
 
-  '@lucide/vue@1.52.0':
-    resolution: {integrity: sha512-Gwr6c14jhY6BscoFU+B9OKsr7lg8RTAKOLgW0e61kkFwkt9Q7CZmB9AyJcvhoqapEJgRg2bFoeAcO+cqpgKzEQ==}
+  '@lucide/vue@1.56.0':
+    resolution: {integrity: sha512-IA7xSJwb5NQ6zamA1+zUmbVrWeX8TFPxCeqTRKJGLjb7jJmR2+USChuVRy+Opf9T545xkCSz/UJT2g44zyGgng==}
     peerDependencies:
       vue: '>=3.0.1'
 
@@ -3597,7 +3597,7 @@ snapshots:
 
   '@laravel/vite-plugin-wayfinder@0.1.10': {}
 
-  '@lucide/vue@1.52.0(vue@3.5.43(typescript-native-bridge@6.0.3-bridge.15.tsgo.7.0.2))':
+  '@lucide/vue@1.56.0(vue@3.5.43(typescript-native-bridge@6.0.3-bridge.15.tsgo.7.0.2))':
     dependencies:
       vue: 3.5.43(typescript-native-bridge@6.0.3-bridge.15.tsgo.7.0.2)
 
