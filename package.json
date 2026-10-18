@@ -19,7 +19,7 @@
   },
   "dependencies": {
     "@inertiajs/vite": "^3.8.0",
-    "@inertiajs/vue3": "^3.8.0",
+    "@inertiajs/vue3": "^3.9.1",
     "@laravel/passkeys": "^0.2.0",
     "@lucide/vue": "^1.52.0",
     "@tanstack/vue-query": "^5.104.1",

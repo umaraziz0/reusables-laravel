@@ -183,8 +183,8 @@ importers:
         specifier: ^3.8.0
         version: 3.8.0(@voidzero-dev/vite-plus-core@1.1.0(@types/node@26.6.4)(@volar/typescript@2.4.28(typescript-native-bridge@6.0.3-bridge.15.tsgo.7.0.2))(@vue/language-core@3.3.12)(jiti@2.7.0)(typescript-native-bridge@6.0.3-bridge.15.tsgo.7.0.2)(vue-tsc@3.3.12(typescript-native-bridge@6.0.3-bridge.15.tsgo.7.0.2)))
       '@inertiajs/vue3':
-        specifier: ^3.8.0
-        version: 3.8.0(vue@3.5.43(typescript-native-bridge@6.0.3-bridge.15.tsgo.7.0.2))
+        specifier: ^3.9.1
+        version: 3.9.1(vue@3.5.43(typescript-native-bridge@6.0.3-bridge.15.tsgo.7.0.2))
       '@laravel/passkeys':
         specifier: ^0.2.0
         version: 0.2.0(react@19.3.0)(vue@3.5.43(typescript-native-bridge@6.0.3-bridge.15.tsgo.7.0.2))
@@ -550,13 +550,21 @@ packages:
       axios:
         optional: true
 
+  '@inertiajs/core@3.9.1':
+    resolution: {integrity: sha512-ScLQZ1/KXlvmqCEJMEZABSK5updJZIli1kaG/coWXpWMmpSLsazSJkR7esITYp7X5vTgrOGNIrcRmdMp/GQ0NA==}
+    peerDependencies:
+      axios: ^1.15.2
+    peerDependenciesMeta:
+      axios:
+        optional: true
+
   '@inertiajs/vite@3.8.0':
     resolution: {integrity: sha512-Tq1q5PnJWwGppHeWMnPsI1dgc59f0MoTDOyYdhh2tMoKfrfd5HojwEJ6K+Z/SLq1RfDfY9o4Olr7melXpD1FtA==}
     peerDependencies:
       vite: ^7.0.0 || ^8.0.0
 
-  '@inertiajs/vue3@3.8.0':
-    resolution: {integrity: sha512-XCL7yYDUW5V6C677bqjCrd/WYNA3TC3GJtcmdvAwpy5bMTTfArAeQbXvoDtiSNN17/By3z8gUCe0LmoepU3kkA==}
+  '@inertiajs/vue3@3.9.1':
+    resolution: {integrity: sha512-pISiTjoCm86xHFMdG7QhkzKXrX3fMf9Ihgst08xalxv4pOzwQ5L/Hw/RnOzrqO34waykPEWgAr34nyo2IQ80mg==}
     peerDependencies:
       vue: ^3.0.0
 
@@ -3499,6 +3507,12 @@ snapshots:
       es-toolkit: 1.52.0
       laravel-precognition: 2.1.0
 
+  '@inertiajs/core@3.9.1':
+    dependencies:
+      '@jridgewell/trace-mapping': 0.3.31
+      es-toolkit: 1.52.0
+      laravel-precognition: 2.1.0
+
   '@inertiajs/vite@3.8.0(@voidzero-dev/vite-plus-core@1.1.0(@types/node@26.6.4)(@volar/typescript@2.4.28(typescript-native-bridge@6.0.3-bridge.15.tsgo.7.0.2))(@vue/language-core@3.3.12)(jiti@2.7.0)(typescript-native-bridge@6.0.3-bridge.15.tsgo.7.0.2)(vue-tsc@3.3.12(typescript-native-bridge@6.0.3-bridge.15.tsgo.7.0.2)))':
     dependencies:
       '@inertiajs/core': 3.8.0
@@ -3507,9 +3521,9 @@ snapshots:
     transitivePeerDependencies:
       - axios
 
-  '@inertiajs/vue3@3.8.0(vue@3.5.43(typescript-native-bridge@6.0.3-bridge.15.tsgo.7.0.2))':
+  '@inertiajs/vue3@3.9.1(vue@3.5.43(typescript-native-bridge@6.0.3-bridge.15.tsgo.7.0.2))':
     dependencies:
-      '@inertiajs/core': 3.8.0
+      '@inertiajs/core': 3.9.1
       es-toolkit: 1.52.0
       laravel-precognition: 2.1.0
       vue: 3.5.43(typescript-native-bridge@6.0.3-bridge.15.tsgo.7.0.2)
