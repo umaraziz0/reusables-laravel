@@ -46,7 +46,7 @@
     "@oxlint/plugins": "^1.87.0",
     "@shadcn/lint": "^0.2.0",
     "@tailwindcss/vite": "^4.3.3",
-    "@types/node": "^26.6.4",
+    "@types/node": "^26.6.5",
     "@typescript-eslint/parser": "^8.71.1",
     "@vitejs/plugin-vue": "^6.0.9",
     "@vue/test-utils": "^2.5.1",
