@@ -181,7 +181,7 @@ importers:
     dependencies:
       '@inertiajs/vite':
         specifier: ^3.8.0
-        version: 3.8.0(@voidzero-dev/vite-plus-core@1.1.0(@types/node@26.6.4)(@volar/typescript@2.4.28(typescript-native-bridge@6.0.3-bridge.15.tsgo.7.0.2))(@vue/language-core@3.3.12)(jiti@2.7.0)(typescript-native-bridge@6.0.3-bridge.15.tsgo.7.0.2)(vue-tsc@3.3.12(typescript-native-bridge@6.0.3-bridge.15.tsgo.7.0.2)))
+        version: 3.8.0(@voidzero-dev/vite-plus-core@1.1.0(@types/node@26.6.4)(@volar/typescript@2.4.28(typescript-native-bridge@6.0.3-bridge.15.tsgo.7.0.2))(@vue/language-core@3.3.13)(jiti@2.7.0)(typescript-native-bridge@6.0.3-bridge.15.tsgo.7.0.2)(vue-tsc@3.3.13(typescript-native-bridge@6.0.3-bridge.15.tsgo.7.0.2)))
       '@inertiajs/vue3':
         specifier: ^3.8.0
         version: 3.8.0(vue@3.5.43(typescript-native-bridge@6.0.3-bridge.15.tsgo.7.0.2))
@@ -217,7 +217,7 @@ importers:
         version: 2.1.0
       laravel-vite-plugin:
         specifier: ^3.2.0
-        version: 3.2.0(@voidzero-dev/vite-plus-core@1.1.0(@types/node@26.6.4)(@volar/typescript@2.4.28(typescript-native-bridge@6.0.3-bridge.15.tsgo.7.0.2))(@vue/language-core@3.3.12)(jiti@2.7.0)(typescript-native-bridge@6.0.3-bridge.15.tsgo.7.0.2)(vue-tsc@3.3.12(typescript-native-bridge@6.0.3-bridge.15.tsgo.7.0.2)))
+        version: 3.2.0(@voidzero-dev/vite-plus-core@1.1.0(@types/node@26.6.4)(@volar/typescript@2.4.28(typescript-native-bridge@6.0.3-bridge.15.tsgo.7.0.2))(@vue/language-core@3.3.13)(jiti@2.7.0)(typescript-native-bridge@6.0.3-bridge.15.tsgo.7.0.2)(vue-tsc@3.3.13(typescript-native-bridge@6.0.3-bridge.15.tsgo.7.0.2)))
       reka-ui:
         specifier: ^2.11.0
         version: 2.11.0(vue@3.5.43(typescript-native-bridge@6.0.3-bridge.15.tsgo.7.0.2))
@@ -257,7 +257,7 @@ importers:
         version: 0.2.0(@typescript-eslint/parser@8.71.1(eslint@10.12.0(jiti@2.7.0)(supports-color@10.2.2))(supports-color@10.2.2)(typescript-native-bridge@6.0.3-bridge.15.tsgo.7.0.2))(eslint@10.12.0(jiti@2.7.0)(supports-color@10.2.2))
       '@tailwindcss/vite':
         specifier: ^4.3.3
-        version: 4.3.3(@voidzero-dev/vite-plus-core@1.1.0(@types/node@26.6.4)(@volar/typescript@2.4.28(typescript-native-bridge@6.0.3-bridge.15.tsgo.7.0.2))(@vue/language-core@3.3.12)(jiti@2.7.0)(typescript-native-bridge@6.0.3-bridge.15.tsgo.7.0.2)(vue-tsc@3.3.12(typescript-native-bridge@6.0.3-bridge.15.tsgo.7.0.2)))
+        version: 4.3.3(@voidzero-dev/vite-plus-core@1.1.0(@types/node@26.6.4)(@volar/typescript@2.4.28(typescript-native-bridge@6.0.3-bridge.15.tsgo.7.0.2))(@vue/language-core@3.3.13)(jiti@2.7.0)(typescript-native-bridge@6.0.3-bridge.15.tsgo.7.0.2)(vue-tsc@3.3.13(typescript-native-bridge@6.0.3-bridge.15.tsgo.7.0.2)))
       '@types/node':
         specifier: ^26.6.4
         version: 26.6.4
@@ -266,7 +266,7 @@ importers:
         version: 8.71.1(eslint@10.12.0(jiti@2.7.0)(supports-color@10.2.2))(supports-color@10.2.2)(typescript-native-bridge@6.0.3-bridge.15.tsgo.7.0.2)
       '@vitejs/plugin-vue':
         specifier: ^6.0.9
-        version: 6.0.9(@voidzero-dev/vite-plus-core@1.1.0(@types/node@26.6.4)(@volar/typescript@2.4.28(typescript-native-bridge@6.0.3-bridge.15.tsgo.7.0.2))(@vue/language-core@3.3.12)(jiti@2.7.0)(typescript-native-bridge@6.0.3-bridge.15.tsgo.7.0.2)(vue-tsc@3.3.12(typescript-native-bridge@6.0.3-bridge.15.tsgo.7.0.2)))(vue@3.5.43(typescript-native-bridge@6.0.3-bridge.15.tsgo.7.0.2))
+        version: 6.0.9(@voidzero-dev/vite-plus-core@1.1.0(@types/node@26.6.4)(@volar/typescript@2.4.28(typescript-native-bridge@6.0.3-bridge.15.tsgo.7.0.2))(@vue/language-core@3.3.13)(jiti@2.7.0)(typescript-native-bridge@6.0.3-bridge.15.tsgo.7.0.2)(vue-tsc@3.3.13(typescript-native-bridge@6.0.3-bridge.15.tsgo.7.0.2)))(vue@3.5.43(typescript-native-bridge@6.0.3-bridge.15.tsgo.7.0.2))
       '@vue/test-utils':
         specifier: ^2.5.1
         version: 2.5.1(@vue/compiler-dom@3.5.43)(@vue/server-renderer@3.5.43)(vue@3.5.43(typescript-native-bridge@6.0.3-bridge.15.tsgo.7.0.2))
@@ -311,16 +311,16 @@ importers:
         version: typescript-native-bridge@6.0.3-bridge.15.tsgo.7.0.2
       vite:
         specifier: 'catalog:'
-        version: '@voidzero-dev/vite-plus-core@1.1.0(@types/node@26.6.4)(@volar/typescript@2.4.28(typescript-native-bridge@6.0.3-bridge.15.tsgo.7.0.2))(@vue/language-core@3.3.12)(jiti@2.7.0)(typescript-native-bridge@6.0.3-bridge.15.tsgo.7.0.2)(vue-tsc@3.3.12(typescript-native-bridge@6.0.3-bridge.15.tsgo.7.0.2))'
+        version: '@voidzero-dev/vite-plus-core@1.1.0(@types/node@26.6.4)(@volar/typescript@2.4.28(typescript-native-bridge@6.0.3-bridge.15.tsgo.7.0.2))(@vue/language-core@3.3.13)(jiti@2.7.0)(typescript-native-bridge@6.0.3-bridge.15.tsgo.7.0.2)(vue-tsc@3.3.13(typescript-native-bridge@6.0.3-bridge.15.tsgo.7.0.2))'
       vite-plus:
         specifier: 'catalog:'
-        version: 1.1.0(@types/node@26.6.4)(@vitest/ui@5.0.3)(@volar/typescript@2.4.28(typescript-native-bridge@6.0.3-bridge.15.tsgo.7.0.2))(@vue/language-core@3.3.12)(happy-dom@20.14.5)(jiti@2.7.0)(playwright@1.63.0)(typescript-native-bridge@6.0.3-bridge.15.tsgo.7.0.2)(vue-tsc@3.3.12(typescript-native-bridge@6.0.3-bridge.15.tsgo.7.0.2))
+        version: 1.1.0(@types/node@26.6.4)(@vitest/ui@5.0.3)(@volar/typescript@2.4.28(typescript-native-bridge@6.0.3-bridge.15.tsgo.7.0.2))(@vue/language-core@3.3.13)(happy-dom@20.14.5)(jiti@2.7.0)(playwright@1.63.0)(typescript-native-bridge@6.0.3-bridge.15.tsgo.7.0.2)(vue-tsc@3.3.13(typescript-native-bridge@6.0.3-bridge.15.tsgo.7.0.2))
       vue-eslint-parser:
         specifier: ^10.4.1
         version: 10.4.1(eslint@10.12.0(jiti@2.7.0)(supports-color@10.2.2))(supports-color@10.2.2)
       vue-tsc:
-        specifier: ^3.3.12
-        version: 3.3.12(typescript-native-bridge@6.0.3-bridge.15.tsgo.7.0.2)
+        specifier: ^3.3.13
+        version: 3.3.13(typescript-native-bridge@6.0.3-bridge.15.tsgo.7.0.2)
     optionalDependencies:
       '@laravel/multiplex':
         specifier: ^0.4.5
@@ -1595,8 +1595,8 @@ packages:
   '@vue/devtools-api@6.6.4':
     resolution: {integrity: sha512-sGhTPMuXqZ1rVOk32RylztWkfXTRhuS7vgAKv0zjqk8gbsHkJ7xfFf+jbySxt7tWObEJwyKaHMikV/WGDiQm8g==}
 
-  '@vue/language-core@3.3.12':
-    resolution: {integrity: sha512-k7uIKR0n4CBidk233y7cac9osnDQ5WRidTl6nsrNvpZ3nf8cx9iJxRVsRzVsoPRHbowT/iKgGMTS9RGov3jeIA==}
+  '@vue/language-core@3.3.13':
+    resolution: {integrity: sha512-axA0Xemn5LuUKuKWob0/kVq7xQ2mJJM6VqA9Exvt35nM9yRC31goWVve/G/Zb2ZCLsXC8FHYjjfXlnshknSCew==}
 
   '@vue/reactivity@3.5.43':
     resolution: {integrity: sha512-G/c9GyOZNI2jVaaS6OX1EF1SSFSv7H0ERqNTl4+DTFMlZmB5eVAB53aLQNam/7NL2NPtaDD7RdVrzf8uJzMuOA==}
@@ -3166,8 +3166,8 @@ packages:
       nuxt:
         optional: true
 
-  vue-tsc@3.3.12:
-    resolution: {integrity: sha512-kbpaz18O9jPVkXVHD1BEjpUXM6WhXSu+62L1sGGr6Wbzd8GbvkBQWjoj3KZ/C0aq2MZllce7UdtWzwCIYsBMGA==}
+  vue-tsc@3.3.13:
+    resolution: {integrity: sha512-jE4/bXdOMSHVxEGgQCqNllJy+9N3Gx6tfSAsg0yhFK/MAN6eXqISihupnDEKSCt12VVnjN2gI3AqLYcqoh5x/A==}
     hasBin: true
     peerDependencies:
       typescript: '>=5.0.0'
@@ -3499,11 +3499,11 @@ snapshots:
       es-toolkit: 1.52.0
       laravel-precognition: 2.1.0
 
-  '@inertiajs/vite@3.8.0(@voidzero-dev/vite-plus-core@1.1.0(@types/node@26.6.4)(@volar/typescript@2.4.28(typescript-native-bridge@6.0.3-bridge.15.tsgo.7.0.2))(@vue/language-core@3.3.12)(jiti@2.7.0)(typescript-native-bridge@6.0.3-bridge.15.tsgo.7.0.2)(vue-tsc@3.3.12(typescript-native-bridge@6.0.3-bridge.15.tsgo.7.0.2)))':
+  '@inertiajs/vite@3.8.0(@voidzero-dev/vite-plus-core@1.1.0(@types/node@26.6.4)(@volar/typescript@2.4.28(typescript-native-bridge@6.0.3-bridge.15.tsgo.7.0.2))(@vue/language-core@3.3.13)(jiti@2.7.0)(typescript-native-bridge@6.0.3-bridge.15.tsgo.7.0.2)(vue-tsc@3.3.13(typescript-native-bridge@6.0.3-bridge.15.tsgo.7.0.2)))':
     dependencies:
       '@inertiajs/core': 3.8.0
       tinyglobby: 0.2.17
-      vite: '@voidzero-dev/vite-plus-core@1.1.0(@types/node@26.6.4)(@volar/typescript@2.4.28(typescript-native-bridge@6.0.3-bridge.15.tsgo.7.0.2))(@vue/language-core@3.3.12)(jiti@2.7.0)(typescript-native-bridge@6.0.3-bridge.15.tsgo.7.0.2)(vue-tsc@3.3.12(typescript-native-bridge@6.0.3-bridge.15.tsgo.7.0.2))'
+      vite: '@voidzero-dev/vite-plus-core@1.1.0(@types/node@26.6.4)(@volar/typescript@2.4.28(typescript-native-bridge@6.0.3-bridge.15.tsgo.7.0.2))(@vue/language-core@3.3.13)(jiti@2.7.0)(typescript-native-bridge@6.0.3-bridge.15.tsgo.7.0.2)(vue-tsc@3.3.13(typescript-native-bridge@6.0.3-bridge.15.tsgo.7.0.2))'
     transitivePeerDependencies:
       - axios
 
@@ -3967,12 +3967,12 @@ snapshots:
       '@tailwindcss/oxide-win32-arm64-msvc': 4.3.3
       '@tailwindcss/oxide-win32-x64-msvc': 4.3.3
 
-  '@tailwindcss/vite@4.3.3(@voidzero-dev/vite-plus-core@1.1.0(@types/node@26.6.4)(@volar/typescript@2.4.28(typescript-native-bridge@6.0.3-bridge.15.tsgo.7.0.2))(@vue/language-core@3.3.12)(jiti@2.7.0)(typescript-native-bridge@6.0.3-bridge.15.tsgo.7.0.2)(vue-tsc@3.3.12(typescript-native-bridge@6.0.3-bridge.15.tsgo.7.0.2)))':
+  '@tailwindcss/vite@4.3.3(@voidzero-dev/vite-plus-core@1.1.0(@types/node@26.6.4)(@volar/typescript@2.4.28(typescript-native-bridge@6.0.3-bridge.15.tsgo.7.0.2))(@vue/language-core@3.3.13)(jiti@2.7.0)(typescript-native-bridge@6.0.3-bridge.15.tsgo.7.0.2)(vue-tsc@3.3.13(typescript-native-bridge@6.0.3-bridge.15.tsgo.7.0.2)))':
     dependencies:
       '@tailwindcss/node': 4.3.3
       '@tailwindcss/oxide': 4.3.3
       tailwindcss: 4.3.3
-      vite: '@voidzero-dev/vite-plus-core@1.1.0(@types/node@26.6.4)(@volar/typescript@2.4.28(typescript-native-bridge@6.0.3-bridge.15.tsgo.7.0.2))(@vue/language-core@3.3.12)(jiti@2.7.0)(typescript-native-bridge@6.0.3-bridge.15.tsgo.7.0.2)(vue-tsc@3.3.12(typescript-native-bridge@6.0.3-bridge.15.tsgo.7.0.2))'
+      vite: '@voidzero-dev/vite-plus-core@1.1.0(@types/node@26.6.4)(@volar/typescript@2.4.28(typescript-native-bridge@6.0.3-bridge.15.tsgo.7.0.2))(@vue/language-core@3.3.13)(jiti@2.7.0)(typescript-native-bridge@6.0.3-bridge.15.tsgo.7.0.2)(vue-tsc@3.3.13(typescript-native-bridge@6.0.3-bridge.15.tsgo.7.0.2))'
 
   '@tanstack/match-sorter-utils@9.2.6':
     dependencies:
@@ -4134,35 +4134,35 @@ snapshots:
   '@typescript-native-bridge/win32-x64@6.0.3-bridge.15.tsgo.7.0.2':
     optional: true
 
-  '@vitejs/plugin-vue@6.0.9(@voidzero-dev/vite-plus-core@1.1.0(@types/node@26.6.4)(@volar/typescript@2.4.28(typescript-native-bridge@6.0.3-bridge.15.tsgo.7.0.2))(@vue/language-core@3.3.12)(jiti@2.7.0)(typescript-native-bridge@6.0.3-bridge.15.tsgo.7.0.2)(vue-tsc@3.3.12(typescript-native-bridge@6.0.3-bridge.15.tsgo.7.0.2)))(vue@3.5.43(typescript-native-bridge@6.0.3-bridge.15.tsgo.7.0.2))':
+  '@vitejs/plugin-vue@6.0.9(@voidzero-dev/vite-plus-core@1.1.0(@types/node@26.6.4)(@volar/typescript@2.4.28(typescript-native-bridge@6.0.3-bridge.15.tsgo.7.0.2))(@vue/language-core@3.3.13)(jiti@2.7.0)(typescript-native-bridge@6.0.3-bridge.15.tsgo.7.0.2)(vue-tsc@3.3.13(typescript-native-bridge@6.0.3-bridge.15.tsgo.7.0.2)))(vue@3.5.43(typescript-native-bridge@6.0.3-bridge.15.tsgo.7.0.2))':
     dependencies:
       '@rolldown/pluginutils': 1.0.1
-      vite: '@voidzero-dev/vite-plus-core@1.1.0(@types/node@26.6.4)(@volar/typescript@2.4.28(typescript-native-bridge@6.0.3-bridge.15.tsgo.7.0.2))(@vue/language-core@3.3.12)(jiti@2.7.0)(typescript-native-bridge@6.0.3-bridge.15.tsgo.7.0.2)(vue-tsc@3.3.12(typescript-native-bridge@6.0.3-bridge.15.tsgo.7.0.2))'
+      vite: '@voidzero-dev/vite-plus-core@1.1.0(@types/node@26.6.4)(@volar/typescript@2.4.28(typescript-native-bridge@6.0.3-bridge.15.tsgo.7.0.2))(@vue/language-core@3.3.13)(jiti@2.7.0)(typescript-native-bridge@6.0.3-bridge.15.tsgo.7.0.2)(vue-tsc@3.3.13(typescript-native-bridge@6.0.3-bridge.15.tsgo.7.0.2))'
       vue: 3.5.43(typescript-native-bridge@6.0.3-bridge.15.tsgo.7.0.2)
 
-  '@vitest/browser-preview@5.0.3(@voidzero-dev/vite-plus-core@1.1.0(@types/node@26.6.4)(@volar/typescript@2.4.28(typescript-native-bridge@6.0.3-bridge.15.tsgo.7.0.2))(@vue/language-core@3.3.12)(jiti@2.7.0)(typescript-native-bridge@6.0.3-bridge.15.tsgo.7.0.2)(vue-tsc@3.3.12(typescript-native-bridge@6.0.3-bridge.15.tsgo.7.0.2)))(vitest@5.0.3)':
+  '@vitest/browser-preview@5.0.3(@voidzero-dev/vite-plus-core@1.1.0(@types/node@26.6.4)(@volar/typescript@2.4.28(typescript-native-bridge@6.0.3-bridge.15.tsgo.7.0.2))(@vue/language-core@3.3.13)(jiti@2.7.0)(typescript-native-bridge@6.0.3-bridge.15.tsgo.7.0.2)(vue-tsc@3.3.13(typescript-native-bridge@6.0.3-bridge.15.tsgo.7.0.2)))(vitest@5.0.3)':
     dependencies:
       '@testing-library/dom': 10.4.2
       '@testing-library/user-event': 14.6.7(@testing-library/dom@10.4.2)
-      '@vitest/browser': 5.0.3(@voidzero-dev/vite-plus-core@1.1.0(@types/node@26.6.4)(@volar/typescript@2.4.28(typescript-native-bridge@6.0.3-bridge.15.tsgo.7.0.2))(@vue/language-core@3.3.12)(jiti@2.7.0)(typescript-native-bridge@6.0.3-bridge.15.tsgo.7.0.2)(vue-tsc@3.3.12(typescript-native-bridge@6.0.3-bridge.15.tsgo.7.0.2)))(vitest@5.0.3)
-      vitest: 5.0.3(@types/node@26.6.4)(@vitest/browser-preview@5.0.3)(@vitest/ui@5.0.3)(@voidzero-dev/vite-plus-core@1.1.0(@types/node@26.6.4)(@volar/typescript@2.4.28(typescript-native-bridge@6.0.3-bridge.15.tsgo.7.0.2))(@vue/language-core@3.3.12)(jiti@2.7.0)(typescript-native-bridge@6.0.3-bridge.15.tsgo.7.0.2)(vue-tsc@3.3.12(typescript-native-bridge@6.0.3-bridge.15.tsgo.7.0.2)))(happy-dom@20.14.5)
+      '@vitest/browser': 5.0.3(@voidzero-dev/vite-plus-core@1.1.0(@types/node@26.6.4)(@volar/typescript@2.4.28(typescript-native-bridge@6.0.3-bridge.15.tsgo.7.0.2))(@vue/language-core@3.3.13)(jiti@2.7.0)(typescript-native-bridge@6.0.3-bridge.15.tsgo.7.0.2)(vue-tsc@3.3.13(typescript-native-bridge@6.0.3-bridge.15.tsgo.7.0.2)))(vitest@5.0.3)
+      vitest: 5.0.3(@types/node@26.6.4)(@vitest/browser-preview@5.0.3)(@vitest/ui@5.0.3)(@voidzero-dev/vite-plus-core@1.1.0(@types/node@26.6.4)(@volar/typescript@2.4.28(typescript-native-bridge@6.0.3-bridge.15.tsgo.7.0.2))(@vue/language-core@3.3.13)(jiti@2.7.0)(typescript-native-bridge@6.0.3-bridge.15.tsgo.7.0.2)(vue-tsc@3.3.13(typescript-native-bridge@6.0.3-bridge.15.tsgo.7.0.2)))(happy-dom@20.14.5)
     transitivePeerDependencies:
       - bufferutil
       - msw
       - utf-8-validate
       - vite
 
-  '@vitest/browser@5.0.3(@voidzero-dev/vite-plus-core@1.1.0(@types/node@26.6.4)(@volar/typescript@2.4.28(typescript-native-bridge@6.0.3-bridge.15.tsgo.7.0.2))(@vue/language-core@3.3.12)(jiti@2.7.0)(typescript-native-bridge@6.0.3-bridge.15.tsgo.7.0.2)(vue-tsc@3.3.12(typescript-native-bridge@6.0.3-bridge.15.tsgo.7.0.2)))(vitest@5.0.3)':
+  '@vitest/browser@5.0.3(@voidzero-dev/vite-plus-core@1.1.0(@types/node@26.6.4)(@volar/typescript@2.4.28(typescript-native-bridge@6.0.3-bridge.15.tsgo.7.0.2))(@vue/language-core@3.3.13)(jiti@2.7.0)(typescript-native-bridge@6.0.3-bridge.15.tsgo.7.0.2)(vue-tsc@3.3.13(typescript-native-bridge@6.0.3-bridge.15.tsgo.7.0.2)))(vitest@5.0.3)':
     dependencies:
       '@blazediff/core': 1.10.0
-      '@vitest/mocker': 5.0.3(@voidzero-dev/vite-plus-core@1.1.0(@types/node@26.6.4)(@volar/typescript@2.4.28(typescript-native-bridge@6.0.3-bridge.15.tsgo.7.0.2))(@vue/language-core@3.3.12)(jiti@2.7.0)(typescript-native-bridge@6.0.3-bridge.15.tsgo.7.0.2)(vue-tsc@3.3.12(typescript-native-bridge@6.0.3-bridge.15.tsgo.7.0.2)))
+      '@vitest/mocker': 5.0.3(@voidzero-dev/vite-plus-core@1.1.0(@types/node@26.6.4)(@volar/typescript@2.4.28(typescript-native-bridge@6.0.3-bridge.15.tsgo.7.0.2))(@vue/language-core@3.3.13)(jiti@2.7.0)(typescript-native-bridge@6.0.3-bridge.15.tsgo.7.0.2)(vue-tsc@3.3.13(typescript-native-bridge@6.0.3-bridge.15.tsgo.7.0.2)))
       '@vitest/ui': 5.0.3(vitest@5.0.3)
       '@vitest/utils': 5.0.3
       magic-string: 1.4.3
       pngjs: 7.0.0
       sirv: 3.0.2
       tinyrainbow: 3.2.0
-      vitest: 5.0.3(@types/node@26.6.4)(@vitest/browser-preview@5.0.3)(@vitest/ui@5.0.3)(@voidzero-dev/vite-plus-core@1.1.0(@types/node@26.6.4)(@volar/typescript@2.4.28(typescript-native-bridge@6.0.3-bridge.15.tsgo.7.0.2))(@vue/language-core@3.3.12)(jiti@2.7.0)(typescript-native-bridge@6.0.3-bridge.15.tsgo.7.0.2)(vue-tsc@3.3.12(typescript-native-bridge@6.0.3-bridge.15.tsgo.7.0.2)))(happy-dom@20.14.5)
+      vitest: 5.0.3(@types/node@26.6.4)(@vitest/browser-preview@5.0.3)(@vitest/ui@5.0.3)(@voidzero-dev/vite-plus-core@1.1.0(@types/node@26.6.4)(@volar/typescript@2.4.28(typescript-native-bridge@6.0.3-bridge.15.tsgo.7.0.2))(@vue/language-core@3.3.13)(jiti@2.7.0)(typescript-native-bridge@6.0.3-bridge.15.tsgo.7.0.2)(vue-tsc@3.3.13(typescript-native-bridge@6.0.3-bridge.15.tsgo.7.0.2)))(happy-dom@20.14.5)
       ws: 8.22.0
     transitivePeerDependencies:
       - bufferutil
@@ -4170,14 +4170,14 @@ snapshots:
       - utf-8-validate
       - vite
 
-  '@vitest/mocker@5.0.3(@voidzero-dev/vite-plus-core@1.1.0(@types/node@26.6.4)(@volar/typescript@2.4.28(typescript-native-bridge@6.0.3-bridge.15.tsgo.7.0.2))(@vue/language-core@3.3.12)(jiti@2.7.0)(typescript-native-bridge@6.0.3-bridge.15.tsgo.7.0.2)(vue-tsc@3.3.12(typescript-native-bridge@6.0.3-bridge.15.tsgo.7.0.2)))':
+  '@vitest/mocker@5.0.3(@voidzero-dev/vite-plus-core@1.1.0(@types/node@26.6.4)(@volar/typescript@2.4.28(typescript-native-bridge@6.0.3-bridge.15.tsgo.7.0.2))(@vue/language-core@3.3.13)(jiti@2.7.0)(typescript-native-bridge@6.0.3-bridge.15.tsgo.7.0.2)(vue-tsc@3.3.13(typescript-native-bridge@6.0.3-bridge.15.tsgo.7.0.2)))':
     dependencies:
       '@jridgewell/trace-mapping': 0.3.31
       '@vitest/spy': 5.0.3
       estree-walker: 3.0.3
       magic-string: 1.4.3
     optionalDependencies:
-      vite: '@voidzero-dev/vite-plus-core@1.1.0(@types/node@26.6.4)(@volar/typescript@2.4.28(typescript-native-bridge@6.0.3-bridge.15.tsgo.7.0.2))(@vue/language-core@3.3.12)(jiti@2.7.0)(typescript-native-bridge@6.0.3-bridge.15.tsgo.7.0.2)(vue-tsc@3.3.12(typescript-native-bridge@6.0.3-bridge.15.tsgo.7.0.2))'
+      vite: '@voidzero-dev/vite-plus-core@1.1.0(@types/node@26.6.4)(@volar/typescript@2.4.28(typescript-native-bridge@6.0.3-bridge.15.tsgo.7.0.2))(@vue/language-core@3.3.13)(jiti@2.7.0)(typescript-native-bridge@6.0.3-bridge.15.tsgo.7.0.2)(vue-tsc@3.3.13(typescript-native-bridge@6.0.3-bridge.15.tsgo.7.0.2))'
 
   '@vitest/pretty-format@5.0.3':
     dependencies:
@@ -4200,7 +4200,7 @@ snapshots:
       pathe: 2.0.3
       sirv: 3.0.2
       tinyrainbow: 3.2.0
-      vitest: 5.0.3(@types/node@26.6.4)(@vitest/browser-preview@5.0.3)(@vitest/ui@5.0.3)(@voidzero-dev/vite-plus-core@1.1.0(@types/node@26.6.4)(@volar/typescript@2.4.28(typescript-native-bridge@6.0.3-bridge.15.tsgo.7.0.2))(@vue/language-core@3.3.12)(jiti@2.7.0)(typescript-native-bridge@6.0.3-bridge.15.tsgo.7.0.2)(vue-tsc@3.3.12(typescript-native-bridge@6.0.3-bridge.15.tsgo.7.0.2)))(happy-dom@20.14.5)
+      vitest: 5.0.3(@types/node@26.6.4)(@vitest/browser-preview@5.0.3)(@vitest/ui@5.0.3)(@voidzero-dev/vite-plus-core@1.1.0(@types/node@26.6.4)(@volar/typescript@2.4.28(typescript-native-bridge@6.0.3-bridge.15.tsgo.7.0.2))(@vue/language-core@3.3.13)(jiti@2.7.0)(typescript-native-bridge@6.0.3-bridge.15.tsgo.7.0.2)(vue-tsc@3.3.13(typescript-native-bridge@6.0.3-bridge.15.tsgo.7.0.2)))(happy-dom@20.14.5)
 
   '@vitest/utils@5.0.3':
     dependencies:
@@ -4208,7 +4208,7 @@ snapshots:
       convert-source-map: 2.0.0
       tinyrainbow: 3.2.0
 
-  '@voidzero-dev/vite-plus-core@1.1.0(@types/node@26.6.4)(@volar/typescript@2.4.28(typescript-native-bridge@6.0.3-bridge.15.tsgo.7.0.2))(@vue/language-core@3.3.12)(jiti@2.7.0)(typescript-native-bridge@6.0.3-bridge.15.tsgo.7.0.2)(vue-tsc@3.3.12(typescript-native-bridge@6.0.3-bridge.15.tsgo.7.0.2))':
+  '@voidzero-dev/vite-plus-core@1.1.0(@types/node@26.6.4)(@volar/typescript@2.4.28(typescript-native-bridge@6.0.3-bridge.15.tsgo.7.0.2))(@vue/language-core@3.3.13)(jiti@2.7.0)(typescript-native-bridge@6.0.3-bridge.15.tsgo.7.0.2)(vue-tsc@3.3.13(typescript-native-bridge@6.0.3-bridge.15.tsgo.7.0.2))':
     dependencies:
       '@oxc-project/runtime': 0.153.0
       '@oxc-project/types': 0.153.0
@@ -4227,11 +4227,11 @@ snapshots:
       '@voidzero-dev/vite-plus-win32-arm64-msvc': 1.1.0
       '@voidzero-dev/vite-plus-win32-x64-msvc': 1.1.0
       '@volar/typescript': 2.4.28(typescript-native-bridge@6.0.3-bridge.15.tsgo.7.0.2)
-      '@vue/language-core': 3.3.12
+      '@vue/language-core': 3.3.13
       fsevents: 2.3.3
       jiti: 2.7.0
       typescript: typescript-native-bridge@6.0.3-bridge.15.tsgo.7.0.2
-      vue-tsc: 3.3.12(typescript-native-bridge@6.0.3-bridge.15.tsgo.7.0.2)
+      vue-tsc: 3.3.13(typescript-native-bridge@6.0.3-bridge.15.tsgo.7.0.2)
 
   '@voidzero-dev/vite-plus-darwin-arm64@1.1.0':
     optional: true
@@ -4303,7 +4303,7 @@ snapshots:
 
   '@vue/devtools-api@6.6.4': {}
 
-  '@vue/language-core@3.3.12':
+  '@vue/language-core@3.3.13':
     dependencies:
       '@volar/language-core': 2.4.28
       '@vue/compiler-dom': 3.5.43
@@ -4972,11 +4972,11 @@ snapshots:
     dependencies:
       es-toolkit: 1.52.0
 
-  laravel-vite-plugin@3.2.0(@voidzero-dev/vite-plus-core@1.1.0(@types/node@26.6.4)(@volar/typescript@2.4.28(typescript-native-bridge@6.0.3-bridge.15.tsgo.7.0.2))(@vue/language-core@3.3.12)(jiti@2.7.0)(typescript-native-bridge@6.0.3-bridge.15.tsgo.7.0.2)(vue-tsc@3.3.12(typescript-native-bridge@6.0.3-bridge.15.tsgo.7.0.2))):
+  laravel-vite-plugin@3.2.0(@voidzero-dev/vite-plus-core@1.1.0(@types/node@26.6.4)(@volar/typescript@2.4.28(typescript-native-bridge@6.0.3-bridge.15.tsgo.7.0.2))(@vue/language-core@3.3.13)(jiti@2.7.0)(typescript-native-bridge@6.0.3-bridge.15.tsgo.7.0.2)(vue-tsc@3.3.13(typescript-native-bridge@6.0.3-bridge.15.tsgo.7.0.2))):
     dependencies:
       picocolors: 1.1.1
       tinyglobby: 0.2.17
-      vite: '@voidzero-dev/vite-plus-core@1.1.0(@types/node@26.6.4)(@volar/typescript@2.4.28(typescript-native-bridge@6.0.3-bridge.15.tsgo.7.0.2))(@vue/language-core@3.3.12)(jiti@2.7.0)(typescript-native-bridge@6.0.3-bridge.15.tsgo.7.0.2)(vue-tsc@3.3.12(typescript-native-bridge@6.0.3-bridge.15.tsgo.7.0.2))'
+      vite: '@voidzero-dev/vite-plus-core@1.1.0(@types/node@26.6.4)(@volar/typescript@2.4.28(typescript-native-bridge@6.0.3-bridge.15.tsgo.7.0.2))(@vue/language-core@3.3.13)(jiti@2.7.0)(typescript-native-bridge@6.0.3-bridge.15.tsgo.7.0.2)(vue-tsc@3.3.13(typescript-native-bridge@6.0.3-bridge.15.tsgo.7.0.2))'
       vite-plugin-full-reload: 1.2.0
 
   lefthook-darwin-arm64@2.1.17:
@@ -5209,7 +5209,7 @@ snapshots:
       '@oxc-parser/binding-win32-x64-msvc': 0.148.0
     optional: true
 
-  oxfmt@0.72.0(vite-plus@1.1.0(@types/node@26.6.4)(@vitest/ui@5.0.3)(@volar/typescript@2.4.28(typescript-native-bridge@6.0.3-bridge.15.tsgo.7.0.2))(@vue/language-core@3.3.12)(happy-dom@20.14.5)(jiti@2.7.0)(playwright@1.63.0)(typescript-native-bridge@6.0.3-bridge.15.tsgo.7.0.2)(vue-tsc@3.3.12(typescript-native-bridge@6.0.3-bridge.15.tsgo.7.0.2))):
+  oxfmt@0.72.0(vite-plus@1.1.0(@types/node@26.6.4)(@vitest/ui@5.0.3)(@volar/typescript@2.4.28(typescript-native-bridge@6.0.3-bridge.15.tsgo.7.0.2))(@vue/language-core@3.3.13)(happy-dom@20.14.5)(jiti@2.7.0)(playwright@1.63.0)(typescript-native-bridge@6.0.3-bridge.15.tsgo.7.0.2)(vue-tsc@3.3.13(typescript-native-bridge@6.0.3-bridge.15.tsgo.7.0.2))):
     dependencies:
       tinypool: 2.2.0
     optionalDependencies:
@@ -5232,7 +5232,7 @@ snapshots:
       '@oxfmt/binding-win32-arm64-msvc': 0.72.0
       '@oxfmt/binding-win32-ia32-msvc': 0.72.0
       '@oxfmt/binding-win32-x64-msvc': 0.72.0
-      vite-plus: 1.1.0(@types/node@26.6.4)(@vitest/ui@5.0.3)(@volar/typescript@2.4.28(typescript-native-bridge@6.0.3-bridge.15.tsgo.7.0.2))(@vue/language-core@3.3.12)(happy-dom@20.14.5)(jiti@2.7.0)(playwright@1.63.0)(typescript-native-bridge@6.0.3-bridge.15.tsgo.7.0.2)(vue-tsc@3.3.12(typescript-native-bridge@6.0.3-bridge.15.tsgo.7.0.2))
+      vite-plus: 1.1.0(@types/node@26.6.4)(@vitest/ui@5.0.3)(@volar/typescript@2.4.28(typescript-native-bridge@6.0.3-bridge.15.tsgo.7.0.2))(@vue/language-core@3.3.13)(happy-dom@20.14.5)(jiti@2.7.0)(playwright@1.63.0)(typescript-native-bridge@6.0.3-bridge.15.tsgo.7.0.2)(vue-tsc@3.3.13(typescript-native-bridge@6.0.3-bridge.15.tsgo.7.0.2))
 
   oxlint-tsgolint@7.0.2003:
     optionalDependencies:
@@ -5243,7 +5243,7 @@ snapshots:
       '@oxlint-tsgolint/win32-arm64': 7.0.2003
       '@oxlint-tsgolint/win32-x64': 7.0.2003
 
-  oxlint@1.87.0(oxlint-tsgolint@7.0.2003)(vite-plus@1.1.0(@types/node@26.6.4)(@vitest/ui@5.0.3)(@volar/typescript@2.4.28(typescript-native-bridge@6.0.3-bridge.15.tsgo.7.0.2))(@vue/language-core@3.3.12)(happy-dom@20.14.5)(jiti@2.7.0)(playwright@1.63.0)(typescript-native-bridge@6.0.3-bridge.15.tsgo.7.0.2)(vue-tsc@3.3.12(typescript-native-bridge@6.0.3-bridge.15.tsgo.7.0.2))):
+  oxlint@1.87.0(oxlint-tsgolint@7.0.2003)(vite-plus@1.1.0(@types/node@26.6.4)(@vitest/ui@5.0.3)(@volar/typescript@2.4.28(typescript-native-bridge@6.0.3-bridge.15.tsgo.7.0.2))(@vue/language-core@3.3.13)(happy-dom@20.14.5)(jiti@2.7.0)(playwright@1.63.0)(typescript-native-bridge@6.0.3-bridge.15.tsgo.7.0.2)(vue-tsc@3.3.13(typescript-native-bridge@6.0.3-bridge.15.tsgo.7.0.2))):
     optionalDependencies:
       '@oxlint/binding-android-arm-eabi': 1.87.0
       '@oxlint/binding-android-arm64': 1.87.0
@@ -5265,7 +5265,7 @@ snapshots:
       '@oxlint/binding-win32-ia32-msvc': 1.87.0
       '@oxlint/binding-win32-x64-msvc': 1.87.0
       oxlint-tsgolint: 7.0.2003
-      vite-plus: 1.1.0(@types/node@26.6.4)(@vitest/ui@5.0.3)(@volar/typescript@2.4.28(typescript-native-bridge@6.0.3-bridge.15.tsgo.7.0.2))(@vue/language-core@3.3.12)(happy-dom@20.14.5)(jiti@2.7.0)(playwright@1.63.0)(typescript-native-bridge@6.0.3-bridge.15.tsgo.7.0.2)(vue-tsc@3.3.12(typescript-native-bridge@6.0.3-bridge.15.tsgo.7.0.2))
+      vite-plus: 1.1.0(@types/node@26.6.4)(@vitest/ui@5.0.3)(@volar/typescript@2.4.28(typescript-native-bridge@6.0.3-bridge.15.tsgo.7.0.2))(@vue/language-core@3.3.13)(happy-dom@20.14.5)(jiti@2.7.0)(playwright@1.63.0)(typescript-native-bridge@6.0.3-bridge.15.tsgo.7.0.2)(vue-tsc@3.3.13(typescript-native-bridge@6.0.3-bridge.15.tsgo.7.0.2))
 
   p-limit@3.1.0:
     dependencies:
@@ -5558,22 +5558,22 @@ snapshots:
       picocolors: 1.1.1
       picomatch: 2.3.2
 
-  vite-plus@1.1.0(@types/node@26.6.4)(@vitest/ui@5.0.3)(@volar/typescript@2.4.28(typescript-native-bridge@6.0.3-bridge.15.tsgo.7.0.2))(@vue/language-core@3.3.12)(happy-dom@20.14.5)(jiti@2.7.0)(playwright@1.63.0)(typescript-native-bridge@6.0.3-bridge.15.tsgo.7.0.2)(vue-tsc@3.3.12(typescript-native-bridge@6.0.3-bridge.15.tsgo.7.0.2)):
+  vite-plus@1.1.0(@types/node@26.6.4)(@vitest/ui@5.0.3)(@volar/typescript@2.4.28(typescript-native-bridge@6.0.3-bridge.15.tsgo.7.0.2))(@vue/language-core@3.3.13)(happy-dom@20.14.5)(jiti@2.7.0)(playwright@1.63.0)(typescript-native-bridge@6.0.3-bridge.15.tsgo.7.0.2)(vue-tsc@3.3.13(typescript-native-bridge@6.0.3-bridge.15.tsgo.7.0.2)):
     dependencies:
       '@oxc-project/types': 0.153.0
       '@oxlint/plugins': 1.79.0
-      '@vitest/browser': 5.0.3(@voidzero-dev/vite-plus-core@1.1.0(@types/node@26.6.4)(@volar/typescript@2.4.28(typescript-native-bridge@6.0.3-bridge.15.tsgo.7.0.2))(@vue/language-core@3.3.12)(jiti@2.7.0)(typescript-native-bridge@6.0.3-bridge.15.tsgo.7.0.2)(vue-tsc@3.3.12(typescript-native-bridge@6.0.3-bridge.15.tsgo.7.0.2)))(vitest@5.0.3)
-      '@vitest/browser-preview': 5.0.3(@voidzero-dev/vite-plus-core@1.1.0(@types/node@26.6.4)(@volar/typescript@2.4.28(typescript-native-bridge@6.0.3-bridge.15.tsgo.7.0.2))(@vue/language-core@3.3.12)(jiti@2.7.0)(typescript-native-bridge@6.0.3-bridge.15.tsgo.7.0.2)(vue-tsc@3.3.12(typescript-native-bridge@6.0.3-bridge.15.tsgo.7.0.2)))(vitest@5.0.3)
-      '@vitest/mocker': 5.0.3(@voidzero-dev/vite-plus-core@1.1.0(@types/node@26.6.4)(@volar/typescript@2.4.28(typescript-native-bridge@6.0.3-bridge.15.tsgo.7.0.2))(@vue/language-core@3.3.12)(jiti@2.7.0)(typescript-native-bridge@6.0.3-bridge.15.tsgo.7.0.2)(vue-tsc@3.3.12(typescript-native-bridge@6.0.3-bridge.15.tsgo.7.0.2)))
+      '@vitest/browser': 5.0.3(@voidzero-dev/vite-plus-core@1.1.0(@types/node@26.6.4)(@volar/typescript@2.4.28(typescript-native-bridge@6.0.3-bridge.15.tsgo.7.0.2))(@vue/language-core@3.3.13)(jiti@2.7.0)(typescript-native-bridge@6.0.3-bridge.15.tsgo.7.0.2)(vue-tsc@3.3.13(typescript-native-bridge@6.0.3-bridge.15.tsgo.7.0.2)))(vitest@5.0.3)
+      '@vitest/browser-preview': 5.0.3(@voidzero-dev/vite-plus-core@1.1.0(@types/node@26.6.4)(@volar/typescript@2.4.28(typescript-native-bridge@6.0.3-bridge.15.tsgo.7.0.2))(@vue/language-core@3.3.13)(jiti@2.7.0)(typescript-native-bridge@6.0.3-bridge.15.tsgo.7.0.2)(vue-tsc@3.3.13(typescript-native-bridge@6.0.3-bridge.15.tsgo.7.0.2)))(vitest@5.0.3)
+      '@vitest/mocker': 5.0.3(@voidzero-dev/vite-plus-core@1.1.0(@types/node@26.6.4)(@volar/typescript@2.4.28(typescript-native-bridge@6.0.3-bridge.15.tsgo.7.0.2))(@vue/language-core@3.3.13)(jiti@2.7.0)(typescript-native-bridge@6.0.3-bridge.15.tsgo.7.0.2)(vue-tsc@3.3.13(typescript-native-bridge@6.0.3-bridge.15.tsgo.7.0.2)))
       '@vitest/pretty-format': 5.0.3
       '@vitest/snapshot': 5.0.3
       '@vitest/spy': 5.0.3
       '@vitest/utils': 5.0.3
-      oxfmt: 0.72.0(vite-plus@1.1.0(@types/node@26.6.4)(@vitest/ui@5.0.3)(@volar/typescript@2.4.28(typescript-native-bridge@6.0.3-bridge.15.tsgo.7.0.2))(@vue/language-core@3.3.12)(happy-dom@20.14.5)(jiti@2.7.0)(playwright@1.63.0)(typescript-native-bridge@6.0.3-bridge.15.tsgo.7.0.2)(vue-tsc@3.3.12(typescript-native-bridge@6.0.3-bridge.15.tsgo.7.0.2)))
-      oxlint: 1.87.0(oxlint-tsgolint@7.0.2003)(vite-plus@1.1.0(@types/node@26.6.4)(@vitest/ui@5.0.3)(@volar/typescript@2.4.28(typescript-native-bridge@6.0.3-bridge.15.tsgo.7.0.2))(@vue/language-core@3.3.12)(happy-dom@20.14.5)(jiti@2.7.0)(playwright@1.63.0)(typescript-native-bridge@6.0.3-bridge.15.tsgo.7.0.2)(vue-tsc@3.3.12(typescript-native-bridge@6.0.3-bridge.15.tsgo.7.0.2)))
+      oxfmt: 0.72.0(vite-plus@1.1.0(@types/node@26.6.4)(@vitest/ui@5.0.3)(@volar/typescript@2.4.28(typescript-native-bridge@6.0.3-bridge.15.tsgo.7.0.2))(@vue/language-core@3.3.13)(happy-dom@20.14.5)(jiti@2.7.0)(playwright@1.63.0)(typescript-native-bridge@6.0.3-bridge.15.tsgo.7.0.2)(vue-tsc@3.3.13(typescript-native-bridge@6.0.3-bridge.15.tsgo.7.0.2)))
+      oxlint: 1.87.0(oxlint-tsgolint@7.0.2003)(vite-plus@1.1.0(@types/node@26.6.4)(@vitest/ui@5.0.3)(@volar/typescript@2.4.28(typescript-native-bridge@6.0.3-bridge.15.tsgo.7.0.2))(@vue/language-core@3.3.13)(happy-dom@20.14.5)(jiti@2.7.0)(playwright@1.63.0)(typescript-native-bridge@6.0.3-bridge.15.tsgo.7.0.2)(vue-tsc@3.3.13(typescript-native-bridge@6.0.3-bridge.15.tsgo.7.0.2)))
       oxlint-tsgolint: 7.0.2003
-      vite: '@voidzero-dev/vite-plus-core@1.1.0(@types/node@26.6.4)(@volar/typescript@2.4.28(typescript-native-bridge@6.0.3-bridge.15.tsgo.7.0.2))(@vue/language-core@3.3.12)(jiti@2.7.0)(typescript-native-bridge@6.0.3-bridge.15.tsgo.7.0.2)(vue-tsc@3.3.12(typescript-native-bridge@6.0.3-bridge.15.tsgo.7.0.2))'
-      vitest: 5.0.3(@types/node@26.6.4)(@vitest/browser-preview@5.0.3)(@vitest/ui@5.0.3)(@voidzero-dev/vite-plus-core@1.1.0(@types/node@26.6.4)(@volar/typescript@2.4.28(typescript-native-bridge@6.0.3-bridge.15.tsgo.7.0.2))(@vue/language-core@3.3.12)(jiti@2.7.0)(typescript-native-bridge@6.0.3-bridge.15.tsgo.7.0.2)(vue-tsc@3.3.12(typescript-native-bridge@6.0.3-bridge.15.tsgo.7.0.2)))(happy-dom@20.14.5)
+      vite: '@voidzero-dev/vite-plus-core@1.1.0(@types/node@26.6.4)(@volar/typescript@2.4.28(typescript-native-bridge@6.0.3-bridge.15.tsgo.7.0.2))(@vue/language-core@3.3.13)(jiti@2.7.0)(typescript-native-bridge@6.0.3-bridge.15.tsgo.7.0.2)(vue-tsc@3.3.13(typescript-native-bridge@6.0.3-bridge.15.tsgo.7.0.2))'
+      vitest: 5.0.3(@types/node@26.6.4)(@vitest/browser-preview@5.0.3)(@vitest/ui@5.0.3)(@voidzero-dev/vite-plus-core@1.1.0(@types/node@26.6.4)(@volar/typescript@2.4.28(typescript-native-bridge@6.0.3-bridge.15.tsgo.7.0.2))(@vue/language-core@3.3.13)(jiti@2.7.0)(typescript-native-bridge@6.0.3-bridge.15.tsgo.7.0.2)(vue-tsc@3.3.13(typescript-native-bridge@6.0.3-bridge.15.tsgo.7.0.2)))(happy-dom@20.14.5)
     optionalDependencies:
       '@voidzero-dev/vite-plus-darwin-arm64': 1.1.0
       '@voidzero-dev/vite-plus-darwin-x64': 1.1.0
@@ -5618,10 +5618,10 @@ snapshots:
       - vue-tsc
       - yaml
 
-  vitest@5.0.3(@types/node@26.6.4)(@vitest/browser-preview@5.0.3)(@vitest/ui@5.0.3)(@voidzero-dev/vite-plus-core@1.1.0(@types/node@26.6.4)(@volar/typescript@2.4.28(typescript-native-bridge@6.0.3-bridge.15.tsgo.7.0.2))(@vue/language-core@3.3.12)(jiti@2.7.0)(typescript-native-bridge@6.0.3-bridge.15.tsgo.7.0.2)(vue-tsc@3.3.12(typescript-native-bridge@6.0.3-bridge.15.tsgo.7.0.2)))(happy-dom@20.14.5):
+  vitest@5.0.3(@types/node@26.6.4)(@vitest/browser-preview@5.0.3)(@vitest/ui@5.0.3)(@voidzero-dev/vite-plus-core@1.1.0(@types/node@26.6.4)(@volar/typescript@2.4.28(typescript-native-bridge@6.0.3-bridge.15.tsgo.7.0.2))(@vue/language-core@3.3.13)(jiti@2.7.0)(typescript-native-bridge@6.0.3-bridge.15.tsgo.7.0.2)(vue-tsc@3.3.13(typescript-native-bridge@6.0.3-bridge.15.tsgo.7.0.2)))(happy-dom@20.14.5):
     dependencies:
       '@types/chai': 5.2.3
-      '@vitest/mocker': 5.0.3(@voidzero-dev/vite-plus-core@1.1.0(@types/node@26.6.4)(@volar/typescript@2.4.28(typescript-native-bridge@6.0.3-bridge.15.tsgo.7.0.2))(@vue/language-core@3.3.12)(jiti@2.7.0)(typescript-native-bridge@6.0.3-bridge.15.tsgo.7.0.2)(vue-tsc@3.3.12(typescript-native-bridge@6.0.3-bridge.15.tsgo.7.0.2)))
+      '@vitest/mocker': 5.0.3(@voidzero-dev/vite-plus-core@1.1.0(@types/node@26.6.4)(@volar/typescript@2.4.28(typescript-native-bridge@6.0.3-bridge.15.tsgo.7.0.2))(@vue/language-core@3.3.13)(jiti@2.7.0)(typescript-native-bridge@6.0.3-bridge.15.tsgo.7.0.2)(vue-tsc@3.3.13(typescript-native-bridge@6.0.3-bridge.15.tsgo.7.0.2)))
       chai: 6.3.0
       es-module-lexer: 2.3.2
       expect-type: 1.4.0
@@ -5632,11 +5632,11 @@ snapshots:
       tinybench: 6.1.4
       tinyexec: 1.3.1
       tinyglobby: 0.2.17
-      vite: '@voidzero-dev/vite-plus-core@1.1.0(@types/node@26.6.4)(@volar/typescript@2.4.28(typescript-native-bridge@6.0.3-bridge.15.tsgo.7.0.2))(@vue/language-core@3.3.12)(jiti@2.7.0)(typescript-native-bridge@6.0.3-bridge.15.tsgo.7.0.2)(vue-tsc@3.3.12(typescript-native-bridge@6.0.3-bridge.15.tsgo.7.0.2))'
+      vite: '@voidzero-dev/vite-plus-core@1.1.0(@types/node@26.6.4)(@volar/typescript@2.4.28(typescript-native-bridge@6.0.3-bridge.15.tsgo.7.0.2))(@vue/language-core@3.3.13)(jiti@2.7.0)(typescript-native-bridge@6.0.3-bridge.15.tsgo.7.0.2)(vue-tsc@3.3.13(typescript-native-bridge@6.0.3-bridge.15.tsgo.7.0.2))'
       why-is-node-running: 3.2.1
     optionalDependencies:
       '@types/node': 26.6.4
-      '@vitest/browser-preview': 5.0.3(@voidzero-dev/vite-plus-core@1.1.0(@types/node@26.6.4)(@volar/typescript@2.4.28(typescript-native-bridge@6.0.3-bridge.15.tsgo.7.0.2))(@vue/language-core@3.3.12)(jiti@2.7.0)(typescript-native-bridge@6.0.3-bridge.15.tsgo.7.0.2)(vue-tsc@3.3.12(typescript-native-bridge@6.0.3-bridge.15.tsgo.7.0.2)))(vitest@5.0.3)
+      '@vitest/browser-preview': 5.0.3(@voidzero-dev/vite-plus-core@1.1.0(@types/node@26.6.4)(@volar/typescript@2.4.28(typescript-native-bridge@6.0.3-bridge.15.tsgo.7.0.2))(@vue/language-core@3.3.13)(jiti@2.7.0)(typescript-native-bridge@6.0.3-bridge.15.tsgo.7.0.2)(vue-tsc@3.3.13(typescript-native-bridge@6.0.3-bridge.15.tsgo.7.0.2)))(vitest@5.0.3)
       '@vitest/ui': 5.0.3(vitest@5.0.3)
       happy-dom: 20.14.5
     transitivePeerDependencies:
@@ -5672,10 +5672,10 @@ snapshots:
 
   vue-sonner@2.0.9: {}
 
-  vue-tsc@3.3.12(typescript-native-bridge@6.0.3-bridge.15.tsgo.7.0.2):
+  vue-tsc@3.3.13(typescript-native-bridge@6.0.3-bridge.15.tsgo.7.0.2):
     dependencies:
       '@volar/typescript': 2.4.28(typescript-native-bridge@6.0.3-bridge.15.tsgo.7.0.2)
-      '@vue/language-core': 3.3.12
+      '@vue/language-core': 3.3.13
       typescript: typescript-native-bridge@6.0.3-bridge.15.tsgo.7.0.2
 
   vue-turnstile@1.0.11(vue@3.5.43(typescript-native-bridge@6.0.3-bridge.15.tsgo.7.0.2)):
