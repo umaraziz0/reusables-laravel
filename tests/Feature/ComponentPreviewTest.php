@@ -40,12 +40,13 @@ test('component preview pages require authentication', function (string $routeNa
 
     $response->assertRedirect(route('login', absolute: false));
 })->with([
-    'alert'             => 'components.alert',
-    'badges'            => 'components.badges',
-    'buttons'           => 'components.buttons',
-    'collapsible'       => 'components.collapsible',
-    'form input field'  => 'components.form.input-field',
-    'form select field' => 'components.form.select-field',
+    'alert'                    => 'components.alert',
+    'badges'                   => 'components.badges',
+    'buttons'                  => 'components.buttons',
+    'collapsible'              => 'components.collapsible',
+    'form input field'         => 'components.form.input-field',
+    'form select field'        => 'components.form.select-field',
+    'form search select field' => 'components.form.search-select-field',
 ]);
 
 test('component preview pages require superadmin role', function (string $routeName): void {
@@ -55,12 +56,13 @@ test('component preview pages require superadmin role', function (string $routeN
 
     $response->assertForbidden();
 })->with([
-    'alert'             => 'components.alert',
-    'badges'            => 'components.badges',
-    'buttons'           => 'components.buttons',
-    'collapsible'       => 'components.collapsible',
-    'form input field'  => 'components.form.input-field',
-    'form select field' => 'components.form.select-field',
+    'alert'                    => 'components.alert',
+    'badges'                   => 'components.badges',
+    'buttons'                  => 'components.buttons',
+    'collapsible'              => 'components.collapsible',
+    'form input field'         => 'components.form.input-field',
+    'form select field'        => 'components.form.select-field',
+    'form search select field' => 'components.form.search-select-field',
 ]);
 
 test('superadmin can view component preview pages', function (string $routeName): void {
@@ -71,10 +73,11 @@ test('superadmin can view component preview pages', function (string $routeName)
 
     $response->assertSuccessful();
 })->with([
-    'alert'             => 'components.alert',
-    'badges'            => 'components.badges',
-    'buttons'           => 'components.buttons',
-    'collapsible'       => 'components.collapsible',
-    'form input field'  => 'components.form.input-field',
-    'form select field' => 'components.form.select-field',
+    'alert'                    => 'components.alert',
+    'badges'                   => 'components.badges',
+    'buttons'                  => 'components.buttons',
+    'collapsible'              => 'components.collapsible',
+    'form input field'         => 'components.form.input-field',
+    'form select field'        => 'components.form.select-field',
+    'form search select field' => 'components.form.search-select-field',
 ]);
