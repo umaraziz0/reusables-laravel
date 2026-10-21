@@ -210,7 +210,7 @@ const { descriptionId, errorId, describedBy } = useFieldIds({
                 :aria-describedby="describedBy"
                 :aria-invalid="error ? 'true' : ariaInvalid"
                 :disabled="disabled"
-                class="text-foreground"
+                class="cursor-pointer text-foreground"
                 data-slot="phone-number-field-trigger"
               >
                 <span v-if="selectedCountry" aria-hidden="true">
