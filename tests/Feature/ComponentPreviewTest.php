@@ -46,6 +46,7 @@ test('component preview pages require authentication', function (string $routeNa
     'collapsible'              => 'components.collapsible',
     'form input field'         => 'components.form.input-field',
     'form input group field'   => 'components.form.input-group-field',
+    'form phone number field'  => 'components.form.phone-number-field',
     'form select field'        => 'components.form.select-field',
     'form search select field' => 'components.form.search-select-field',
 ]);
@@ -63,6 +64,7 @@ test('component preview pages require superadmin role', function (string $routeN
     'collapsible'              => 'components.collapsible',
     'form input field'         => 'components.form.input-field',
     'form input group field'   => 'components.form.input-group-field',
+    'form phone number field'  => 'components.form.phone-number-field',
     'form select field'        => 'components.form.select-field',
     'form search select field' => 'components.form.search-select-field',
 ]);
@@ -81,6 +83,7 @@ test('superadmin can view component preview pages', function (string $routeName)
     'collapsible'              => 'components.collapsible',
     'form input field'         => 'components.form.input-field',
     'form input group field'   => 'components.form.input-group-field',
+    'form phone number field'  => 'components.form.phone-number-field',
     'form select field'        => 'components.form.select-field',
     'form search select field' => 'components.form.search-select-field',
 ]);
