@@ -13,30 +13,30 @@ use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Log;
 use Psr\Log\LoggerInterface;
 
-arch()->preset()->php();
+arch('follows the php preset')->preset()->php();
 // arch()->preset()->laravel(); // prevents Controllers to have methods other than default
 // arch()->preset()->strict(); // cannot have protected methods
-arch()->preset()->security();
+arch('follows the security preset')->preset()->security();
 
-arch()
+arch('uses strict types and no debug calls')
     ->expect('App')
     ->toUseStrictTypes()
     ->not->toUse(['die', 'dd', 'dump']);
 
-arch()->expect(['env'])->not->toBeUsed(); // prevents direct env() calls except from configs
-arch()->expect(['config'])->not->toBeUsed();
+arch('forbids env() outside config files')->expect(['env'])->not->toBeUsed();
+arch('forbids the config() helper')->expect(['config'])->not->toBeUsed();
 
-arch()
+arch('routes operational logs through WriteLog')
     ->expect('App')
     ->not->toUse([Log::class, LogManager::class, LoggerInterface::class, 'logger', 'info'])
-    ->ignoring(WriteLog::class); // operational logs go through WriteLog
+    ->ignoring(WriteLog::class);
 
-arch()->expect(LogActivity::class)->toImplement(ShouldBeEncrypted::class);
+arch('encrypts the LogActivity job payload')->expect(LogActivity::class)->toImplement(ShouldBeEncrypted::class);
 
-arch()
+arch('actions only expose handle() except Fortify contracts and RedactSensitiveData')
     ->expect('App\Actions')
     ->not->toHavePublicMethodsBesides(['__construct', 'handle'])
-    ->ignoring([CreateNewUser::class, ResetUserPassword::class, RedactSensitiveData::class]); // Fortify contracts dictate method names; RedactSensitiveData is a static helper bundle
+    ->ignoring([CreateNewUser::class, ResetUserPassword::class, RedactSensitiveData::class]);
 
 it('forbids Services and Repositories layers', function (): void {
     expect(app_path('Services'))->not->toBeDirectory()
