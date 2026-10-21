@@ -66,8 +66,6 @@ const { descriptionId, errorId, describedBy } = useFieldIds({
       </span>
     </Label>
 
-    <!-- A block slot turns the whole group into a column, so pair start/end or
-    block-start/block-end, not both: inline addons would stack on their own rows. -->
     <InputGroup :class="groupClass" :data-disabled="disabled || undefined">
       <InputGroupInput
         :id="inputId"
