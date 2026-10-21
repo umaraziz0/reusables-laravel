@@ -3,7 +3,7 @@
   { "name": "Aland Islands", "dial_code": "+358", "code": "AX" },
   { "name": "Albania", "dial_code": "+355", "code": "AL" },
   { "name": "Algeria", "dial_code": "+213", "code": "DZ" },
-  { "name": "AmericanSamoa", "dial_code": "+1684", "code": "AS" },
+  { "name": "American Samoa", "dial_code": "+1684", "code": "AS" },
   { "name": "Andorra", "dial_code": "+376", "code": "AD" },
   { "name": "Angola", "dial_code": "+244", "code": "AO" },
   { "name": "Anguilla", "dial_code": "+1264", "code": "AI" },
@@ -101,7 +101,7 @@
   { "name": "Guernsey", "dial_code": "+44", "code": "GG" },
   { "name": "Guinea", "dial_code": "+224", "code": "GN" },
   { "name": "Guinea-Bissau", "dial_code": "+245", "code": "GW" },
-  { "name": "Guyana", "dial_code": "+595", "code": "GY" },
+  { "name": "Guyana", "dial_code": "+592", "code": "GY" },
   { "name": "Haiti", "dial_code": "+509", "code": "HT" },
   {
     "name": "Holy See (Vatican City State)",
