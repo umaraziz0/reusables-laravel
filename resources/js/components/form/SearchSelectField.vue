@@ -2,8 +2,8 @@
 import type { SelectFieldOption } from './SelectField.vue';
 
 import { Check, ChevronsUpDown } from '@lucide/vue';
+import { cn } from 'cn';
 import { ComboboxVirtualizer } from 'reka-ui';
-// --- Components --- //
 import { computed, type HTMLAttributes, ref } from 'vue';
 
 import {
@@ -18,7 +18,6 @@ import {
 } from '@/components/ui/combobox';
 import { Label } from '@/components/ui/label';
 import { useFieldIds } from '@/composables/useFieldIds';
-import { cn } from '@/lib/utils';
 
 import FieldFeedback from './FieldFeedback.vue';
 
