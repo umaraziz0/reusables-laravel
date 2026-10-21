@@ -1,6 +1,8 @@
 import { mount } from '@vue/test-utils';
 import { describe, expect, it } from 'vite-plus/test';
 
+import { InputGroupButton } from '@/components/ui/input-group';
+
 import InputGroupField from './InputGroupField.vue';
 
 describe('InputGroupField', () => {
@@ -117,6 +119,23 @@ describe('InputGroupField', () => {
       'block-start': 'Header',
       'block-end': 'Footer',
     });
+  });
+
+  it('keeps addon buttons from submitting the surrounding form', () => {
+    const wrapper = mount({
+      components: { InputGroupField, InputGroupButton },
+      template: `
+        <form>
+          <InputGroupField label="API key" name="api_key">
+            <template #end>
+              <InputGroupButton>Copy</InputGroupButton>
+            </template>
+          </InputGroupField>
+        </form>
+      `,
+    });
+
+    expect(wrapper.get('button').attributes('type')).toBe('button');
   });
 
   it('renders no addons when no slots are given', () => {
