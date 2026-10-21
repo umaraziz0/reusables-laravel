@@ -47,6 +47,11 @@ class ComponentPreviewController extends Controller
         return Inertia::render('components/Form/InputGroupField');
     }
 
+    public function formPhoneNumberField(): Response
+    {
+        return Inertia::render('components/Form/PhoneNumberField');
+    }
+
     public function formSelectField(): Response
     {
         return Inertia::render('components/Form/SelectField');
