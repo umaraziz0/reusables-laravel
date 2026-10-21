@@ -138,12 +138,18 @@ enableAutoUnmount(afterEach);
 
 /**
  * happy-dom has no layout, so every element measures 0px tall and the
- * virtualizer renders no rows. Give the viewport and rows real heights.
+ * virtualizer renders no rows. Give the viewport and rows real heights. The
+ * virtualizer reads the viewport's clientHeight and each row's offsetHeight.
  */
 beforeEach(() => {
   vi.spyOn(HTMLElement.prototype, 'offsetHeight', 'get').mockImplementation(
     function (this: HTMLElement) {
       return this.dataset.slot === 'combobox-viewport' ? 288 : 32;
+    },
+  );
+  vi.spyOn(HTMLElement.prototype, 'clientHeight', 'get').mockImplementation(
+    function (this: HTMLElement) {
+      return this.dataset.slot === 'combobox-viewport' ? 288 : 0;
     },
   );
 });
