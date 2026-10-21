@@ -7,11 +7,13 @@ import {
   ListChevronsUpDown,
   SquarePower,
   Tag,
+  TextCursorInput,
   TextSearch,
 } from '@lucide/vue';
 
 import {
   formInputField,
+  formInputGroupField,
   formSearchSelectField,
   formSelectField,
 } from '@/actions/App/Http/Controllers/ComponentPreviewController';
@@ -66,6 +68,11 @@ const componentNavItems: NavItem[] = [
         icon: FormInput,
       },
       {
+        title: 'Input Group Field',
+        href: formInputGroupField(),
+        icon: TextCursorInput,
+      },
+      {
         title: 'Select Field',
         href: formSelectField(),
         icon: ListChevronsUpDown,
@@ -82,6 +89,12 @@ const componentNavItems: NavItem[] = [
 // --- Hooks --- //
 
 const { isCurrentUrl } = useCurrentUrl();
+
+// --- Methods --- //
+
+function hasActiveSubItem(item: NavItem): boolean {
+  return item.subItems?.some((subItem) => isCurrentUrl(subItem.href)) ?? false;
+}
 </script>
 
 <template>
@@ -106,7 +119,11 @@ const { isCurrentUrl } = useCurrentUrl();
         <SidebarMenu>
           <SidebarMenuItem v-for="item in componentNavItems" :key="item.title">
             <!-- Menu Folder -->
-            <Collapsible v-if="item.isFolder" class="group/collapsible">
+            <Collapsible
+              v-if="item.isFolder"
+              :default-open="hasActiveSubItem(item)"
+              class="group/collapsible"
+            >
               <CollapsibleTrigger as-child>
                 <SidebarMenuButton class="cursor-pointer" :tooltip="item.title">
                   <component :is="item.icon" />
