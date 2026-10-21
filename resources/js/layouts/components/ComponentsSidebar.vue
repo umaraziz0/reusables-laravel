@@ -7,11 +7,13 @@ import {
   ListChevronsUpDown,
   SquarePower,
   Tag,
+  TextCursorInput,
   TextSearch,
 } from '@lucide/vue';
 
 import {
   formInputField,
+  formInputGroupField,
   formSearchSelectField,
   formSelectField,
 } from '@/actions/App/Http/Controllers/ComponentPreviewController';
@@ -64,6 +66,11 @@ const componentNavItems: NavItem[] = [
         title: 'Input Field',
         href: formInputField(),
         icon: FormInput,
+      },
+      {
+        title: 'Input Group Field',
+        href: formInputGroupField(),
+        icon: TextCursorInput,
       },
       {
         title: 'Select Field',
