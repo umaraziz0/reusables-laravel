@@ -105,10 +105,10 @@ function applyEmailSuggestion(): void {
 
 <template>
   <div :class="cn('grid gap-2', props.class)" data-slot="input-field">
-    <Label :for="inputId" :class="hideLabel ? 'sr-only' : undefined">
+    <Label :for="inputId" :class="cn('gap-1', hideLabel && 'sr-only')">
       {{ label }}
       <span v-if="required" aria-hidden="true" class="text-destructive">
-        {{ ' *' }}
+        *
       </span>
     </Label>
 

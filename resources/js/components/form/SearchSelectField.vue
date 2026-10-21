@@ -124,10 +124,10 @@ function labelFor(value: string | number): string | undefined {
 
 <template>
   <div :class="cn('grid gap-2', props.class)" data-slot="search-select-field">
-    <Label :for="triggerId" :class="hideLabel ? 'sr-only' : undefined">
+    <Label :for="triggerId" :class="cn('gap-1', hideLabel && 'sr-only')">
       {{ label }}
       <span v-if="required" aria-hidden="true" class="text-destructive">
-        {{ ' *' }}
+        *
       </span>
     </Label>
 

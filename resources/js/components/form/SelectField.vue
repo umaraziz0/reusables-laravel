@@ -68,10 +68,10 @@ const { descriptionId, errorId, describedBy } = useFieldIds({
 
 <template>
   <div :class="cn('grid gap-2', props.class)" data-slot="select-field">
-    <Label :for="selectId" :class="hideLabel ? 'sr-only' : undefined">
+    <Label :for="selectId" :class="cn('gap-1', hideLabel && 'sr-only')">
       {{ label }}
       <span v-if="required" aria-hidden="true" class="text-destructive">
-        {{ ' *' }}
+        *
       </span>
     </Label>
 
