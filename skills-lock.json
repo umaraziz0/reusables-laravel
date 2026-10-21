@@ -5,19 +5,19 @@
       "source": "dmmulroy/anti-slop",
       "sourceType": "github",
       "skillPath": "skills/install-anti-slop/SKILL.md",
-      "computedHash": "4031728fbe75bdcad6ee3208fd52b5d66e167b056fefee1fa9758e9a6cb9c0c8"
+      "computedHash": "1b9b5d3c0d9e0ef8dd7631f4d637e66b62a73e34dceaf4ae07c0d3de376fd7d7"
     },
     "pnpm": {
       "source": "antfu/skills",
       "sourceType": "github",
       "skillPath": "skills/pnpm/SKILL.md",
-      "computedHash": "2ec08c851c6f901d4ed72c21b826416ed074a487db65662b36249418afd728bf"
+      "computedHash": "d1bd6f4fd38ff1ba33b857223c58a832d1cd5b488163ba0d389db449be472603"
     },
     "shadcn-vue": {
       "source": "unovue/shadcn-vue",
       "sourceType": "github",
       "skillPath": "skills/shadcn-vue/SKILL.md",
-      "computedHash": "99c23e506f7fa3a1b26dede8e837d067549ba2fbc339ea9030d1563c1f4badf2"
+      "computedHash": "02e09dcd144b3d1f821153a7ef7cece8b2cde4390010e69e03855f1056cf8848"
     },
     "starter-kit-upgrade": {
       "source": "laravel/agent-skills",
@@ -30,19 +30,19 @@
       "source": "cursor/plugins",
       "sourceType": "github",
       "skillPath": "pstack/skills/typescript-best-practices/SKILL.md",
-      "computedHash": "b987c46f03f6c918110c2c198aa49fdd39e126f23ba75ae75fb8efe84625e397"
+      "computedHash": "2ef9e9307b23e38676b122330079a68315f87182e7fc308e263e3d2381090cb3"
     },
     "vue-best-practices": {
-      "source": "antfu/skills",
+      "source": "vuejs-ai/skills",
       "sourceType": "github",
       "skillPath": "skills/vue-best-practices/SKILL.md",
-      "computedHash": "d7d22c8cb343583c3904692c4d1d7b50382945e433e4f6e053f4aabb9846cbc3"
+      "computedHash": "70a50d6ee12edf24e0be9a79f59ea55a581961e8a38de2a20b96c7ae766ce3ef"
     },
     "vue-debug-guides": {
       "source": "hyf0/vue-skills",
       "sourceType": "github",
       "skillPath": "skills/vue-debug-guides/SKILL.md",
-      "computedHash": "fa7b31c32a6717ae47cd2ea208773e27536225ad053a564effe656bf927fe9ef"
+      "computedHash": "29e3785d80245a64ead02602062d859f6e6553b506614ac75a1ead7f1e1529da"
     }
   }
 }
