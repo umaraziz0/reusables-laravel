@@ -1,7 +1,7 @@
 {
   "$schema": "https://getcomposer.org/schema.json",
   "name": "umaraziz0/reusables-laravel",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "type": "project",
   "description": "A collection of reusable components, sections, services, methods, etc for Laravel / Vue projects.",
   "license": "MIT",
