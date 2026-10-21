@@ -2,6 +2,9 @@
 
 declare(strict_types=1);
 
+use App\Actions\Fortify\CreateNewUser;
+use App\Actions\Fortify\ResetUserPassword;
+use App\Actions\Logging\RedactSensitiveData;
 use App\Actions\Logging\WriteLog;
 use App\Jobs\LogActivity;
 use Illuminate\Contracts\Queue\ShouldBeEncrypted;
@@ -29,6 +32,11 @@ arch()
     ->ignoring(WriteLog::class); // operational logs go through WriteLog
 
 arch()->expect(LogActivity::class)->toImplement(ShouldBeEncrypted::class);
+
+arch()
+    ->expect('App\Actions')
+    ->not->toHavePublicMethodsBesides(['__construct', 'handle'])
+    ->ignoring([CreateNewUser::class, ResetUserPassword::class, RedactSensitiveData::class]); // Fortify contracts dictate method names; RedactSensitiveData is a static helper bundle
 
 it('forbids Services and Repositories layers', function (): void {
     expect(app_path('Services'))->not->toBeDirectory()
