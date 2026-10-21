@@ -158,6 +158,8 @@ function labelFor(value: string | number): string | undefined {
           v-model="searchTerm"
           :display-value="() => ''"
           :placeholder="searchPlaceholder"
+          :aria-label="label"
+          :aria-describedby="describedBy"
         />
 
         <!-- Reka's ComboboxEmpty counts mounted items, which a virtualized list
