@@ -6,6 +6,24 @@ use App\Http\Middleware\SecurityHeaders;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 
+function contentSecurityPolicy(bool $isViteRunningHot): ?string
+{
+    $middleware = new class($isViteRunningHot) extends SecurityHeaders
+    {
+        public function __construct(private readonly bool $isRunningHot) {}
+
+        protected function isViteRunningHot(): bool
+        {
+            return $this->isRunningHot;
+        }
+    };
+
+    return $middleware->handle(
+        Request::create('/'),
+        fn (Request $request): Response => new Response('ok'),
+    )->headers->get('Content-Security-Policy');
+}
+
 test('production csp allows inline styles for vue :style bindings', function (): void {
     $response = $this->get('/');
 
@@ -16,12 +34,20 @@ test('production csp allows inline styles for vue :style bindings', function ():
 });
 
 test('production csp does not leak dev-only sources', function (): void {
-    // Test env is not "local", so Vite dev sources and unsafe-eval must be absent.
-    $csp = $this->get('/')->headers->get('Content-Security-Policy');
+    // Without a Vite hot file, dev server sources and unsafe-eval must be absent.
+    $csp = contentSecurityPolicy(isViteRunningHot: false);
 
     expect($csp)->not->toContain("'unsafe-eval'")
         ->and($csp)->not->toContain('localhost:5173')
         ->and($csp)->toContain('upgrade-insecure-requests');
+});
+
+test('csp allows the vite dev server stylesheet while it runs outside local', function (): void {
+    // Browser tests run in the testing env against `vp dev` when a hot file exists.
+    $csp = contentSecurityPolicy(isViteRunningHot: true);
+
+    expect($csp)->toMatch('/(?:^|;)\\s*style-src\\b[^;]*http:\\/\\/localhost:5173/')
+        ->and($csp)->toMatch('/(?:^|;)\\s*script-src\\b[^;]*http:\\/\\/localhost:5173/');
 });
 
 test('csp is not applied to api paths', function (): void {
