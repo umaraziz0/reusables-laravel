@@ -1,4 +1,6 @@
 <script setup lang="ts">
+import type { SelectFieldOption } from '@/components/form/SelectField.vue';
+
 import { Head } from '@inertiajs/vue3';
 import { ref } from 'vue';
 
@@ -8,11 +10,7 @@ import {
 } from '@/actions/App/Http/Controllers/ComponentPreviewController';
 // --- Components --- //
 import SearchSelectField from '@/components/form/SearchSelectField.vue';
-import SelectField, {
-  type SelectFieldOption,
-} from '@/components/form/SelectField.vue';
 import Heading from '@/components/Heading.vue';
-import { Button } from '@/components/ui/button';
 
 // --- Props --- //
 
@@ -65,8 +63,6 @@ const hundredThousandOptions = generateOptions(100_000);
 const country = ref<string | number>();
 
 const largeListItem = ref<string | number>(4_200);
-
-const isComparisonMounted = ref(false);
 
 // --- Methods --- //
 
@@ -220,28 +216,6 @@ function generateOptions(count: number): SelectFieldOption[] {
         trigger-class="w-48"
         :options="countryOptions"
       />
-    </div>
-
-    <div class="space-y-3">
-      <h4
-        class="text-xs font-medium tracking-wide text-muted-foreground uppercase"
-      >
-        Comparison: Select Field, 10,000 options
-      </h4>
-
-      <!-- Reka's Select mounts every item even while closed, which blocks the
-      page for seconds, so this only mounts on request. -->
-      <SelectField
-        v-if="isComparisonMounted"
-        label="Item (not virtualized)"
-        name="item_unvirtualized"
-        placeholder="Choose an item…"
-        :options="tenThousandOptions"
-        description="Mounts every option. Compare how long it took to appear."
-      />
-      <Button v-else variant="outline" @click="isComparisonMounted = true">
-        Mount 10,000-option Select Field
-      </Button>
     </div>
   </div>
 </template>
