@@ -231,8 +231,8 @@ importers:
         specifier: ^3.5.44
         version: 3.5.44(typescript-native-bridge@6.0.3-bridge.15.tsgo.7.0.2)
       vue-input-otp:
-        specifier: ^0.3.2
-        version: 0.3.2(typescript-native-bridge@6.0.3-bridge.15.tsgo.7.0.2)(vue@3.5.44(typescript-native-bridge@6.0.3-bridge.15.tsgo.7.0.2))
+        specifier: ^0.4.0
+        version: 0.4.0(typescript-native-bridge@6.0.3-bridge.15.tsgo.7.0.2)(vue@3.5.44(typescript-native-bridge@6.0.3-bridge.15.tsgo.7.0.2))
       vue-sonner:
         specifier: ^2.0.9
         version: 2.0.9
@@ -2648,6 +2648,10 @@ packages:
     resolution: {integrity: sha512-LKWqWJRhstyYo9pGvgor/ivk2w94eSjE3RGVuzLGlr3NmD8bf7RcYGze1mNdEHRP6TRP6rMuDHk5t44hnTRyow==}
     engines: {node: '>=14.19.0'}
 
+  postcss@8.5.30:
+    resolution: {integrity: sha512-zkd+e9S1AQHhmaBKye9zlFHWjOwVgqXl1q3ECYy8561K7qxR2cREf/STLskulBFd78k6AOFeA+ff1TtEzk9bAA==}
+    engines: {node: ^10 || ^12 || >=14}
+
   postcss@8.5.31:
     resolution: {integrity: sha512-YUbWYCgErwnMAVkjUnYa+KlMBzGpHwiIt/DE7f0G33AuX2LH9UcTk6KgWxd3zRU+pN3u/C+Xl3EnMLM4Hea7Sg==}
     engines: {node: ^10 || ^12 || >=14}
@@ -3048,8 +3052,8 @@ packages:
     peerDependencies:
       eslint: ^8.57.0 || ^9.0.0 || ^10.0.0
 
-  vue-input-otp@0.3.2:
-    resolution: {integrity: sha512-QMl1842WB6uNAsK4+mZXIskb00TOfahH3AQt8rpRecbtQnOp+oHSUbL/Z3wekfy6pAl+hyN3e1rCUSkCMzbDLQ==}
+  vue-input-otp@0.4.0:
+    resolution: {integrity: sha512-LW+nsZmeXFVdfmPPtoGAXd3vd3T8UBjvwqs6ER4NB7TIoxTuj/reT61HNGe0NyvYDtAHZwjcTmOIX/99f4gpvA==}
     peerDependencies:
       vue: ^3.2.0
 
@@ -4113,7 +4117,7 @@ snapshots:
       '@oxc-project/runtime': 0.154.0
       '@oxc-project/types': 0.154.0
       lightningcss: 1.33.0
-      postcss: 8.5.31
+      postcss: 8.5.30
       yuku-parser: 0.19.0
     optionalDependencies:
       '@types/node': 26.6.5
@@ -5172,6 +5176,12 @@ snapshots:
 
   pngjs@7.0.0: {}
 
+  postcss@8.5.30:
+    dependencies:
+      nanoid: 3.3.20
+      picocolors: 1.1.1
+      source-map-js: 1.2.2
+
   postcss@8.5.31:
     dependencies:
       nanoid: 3.3.20
@@ -5519,7 +5529,7 @@ snapshots:
     transitivePeerDependencies:
       - supports-color
 
-  vue-input-otp@0.3.2(typescript-native-bridge@6.0.3-bridge.15.tsgo.7.0.2)(vue@3.5.44(typescript-native-bridge@6.0.3-bridge.15.tsgo.7.0.2)):
+  vue-input-otp@0.4.0(typescript-native-bridge@6.0.3-bridge.15.tsgo.7.0.2)(vue@3.5.44(typescript-native-bridge@6.0.3-bridge.15.tsgo.7.0.2)):
     dependencies:
       '@vueuse/core': 12.8.2(typescript-native-bridge@6.0.3-bridge.15.tsgo.7.0.2)
       reka-ui: 2.11.0(vue@3.5.44(typescript-native-bridge@6.0.3-bridge.15.tsgo.7.0.2))
