@@ -186,8 +186,8 @@ importers:
         specifier: ^3.9.1
         version: 3.9.1(vue@3.5.44(typescript-native-bridge@6.0.3-bridge.15.tsgo.7.0.2))
       '@laravel/passkeys':
-        specifier: ^0.2.0
-        version: 0.2.0(react@19.3.1)(vue@3.5.44(typescript-native-bridge@6.0.3-bridge.15.tsgo.7.0.2))
+        specifier: ^0.4.0
+        version: 0.4.0(react@19.3.1)(vue@3.5.44(typescript-native-bridge@6.0.3-bridge.15.tsgo.7.0.2))
       '@lucide/vue':
         specifier: ^1.60.0
         version: 1.60.0(vue@3.5.44(typescript-native-bridge@6.0.3-bridge.15.tsgo.7.0.2))
@@ -607,13 +607,13 @@ packages:
     os: [darwin, linux]
     hasBin: true
 
-  '@laravel/passkeys@0.2.0':
-    resolution: {integrity: sha512-K+owv26weKrYaoTJutqU40UsJZpwYkqB9jdlz5Bv/C54nxj2+Py9jbVwxASWg21fLsPhn3ngPKZE5RnfakCQKg==}
+  '@laravel/passkeys@0.4.0':
+    resolution: {integrity: sha512-59UHJHZPrIT8f5hFQJUR1EXhazWZTg3DcJefxSfA3aRj6xu40I/lYDveUY4oL2/h/crq9jjptSKykZDDold7aA==}
     engines: {node: '>=20.19.0'}
     peerDependencies:
       react: ^18.0.0 || ^19.0.0
       svelte: ^5.0.0
-      vue: ^3.0.0
+      vue: ^3.3.0
     peerDependenciesMeta:
       react:
         optional: true
@@ -3492,7 +3492,7 @@ snapshots:
       - utf-8-validate
     optional: true
 
-  '@laravel/passkeys@0.2.0(react@19.3.1)(vue@3.5.44(typescript-native-bridge@6.0.3-bridge.15.tsgo.7.0.2))':
+  '@laravel/passkeys@0.4.0(react@19.3.1)(vue@3.5.44(typescript-native-bridge@6.0.3-bridge.15.tsgo.7.0.2))':
     dependencies:
       '@simplewebauthn/browser': 13.3.0
     optionalDependencies:
