@@ -124,9 +124,6 @@ jobs:
       - name: Typecheck FE (vue-tsc)
         run: pnpm run types:check
 
-      - name: Test FE components (Vitest)
-        run: pnpm run test
-
   tests:
     if: github.actor != 'dependabot[bot]'
     runs-on: ubuntu-24.04
@@ -184,6 +181,9 @@ jobs:
 
       - name: Build Frontend Assets (browser tests)
         run: pnpm run build
+
+      - name: Test FE components (Vitest)
+        run: pnpm run test
 
       - name: Install Playwright Browsers
         run: pnpm exec playwright install --with-deps chromium
