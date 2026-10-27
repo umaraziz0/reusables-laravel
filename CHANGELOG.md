@@ -1,5 +1,20 @@
 # Changelog
 
+## [0.3.0](https://github.com/umaraziz0/reusables-laravel/compare/reusables-laravel-v0.2.0...reusables-laravel-v0.3.0) (2026-10-27)
+
+
+### Features
+
+* **components:** add `InputGroupField` ([8d25e3e](https://github.com/umaraziz0/reusables-laravel/commit/8d25e3ea17979623bc7e65276d46fc9b7871b219))
+* **components:** add shadcn-vue `InputGroup` ([6180590](https://github.com/umaraziz0/reusables-laravel/commit/6180590653b49a655b7a718691f2fbd62e879677))
+* **components:** create custom `InputGroupField` component ([415f11e](https://github.com/umaraziz0/reusables-laravel/commit/415f11eeb52f723929ee11178fc16009052bc931))
+
+
+### Bug Fixes
+
+* **components:** default `InputGroupButton` to type="button" ([cc2498d](https://github.com/umaraziz0/reusables-laravel/commit/cc2498d6ceeaa9d32fbf89db803976168393216e))
+* **layout:** fix `ComponentsSidebar` to default open when child item is active ([058180a](https://github.com/umaraziz0/reusables-laravel/commit/058180a22c787e3a701b48102e34348e5e68c5a5))
+
 ## [0.2.0](https://github.com/umaraziz0/reusables-laravel/compare/reusables-laravel-v0.1.0...reusables-laravel-v0.2.0) (2026-10-21)
 
 
