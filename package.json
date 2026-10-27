@@ -62,7 +62,7 @@
     "prettier-plugin-blade": "^3.3.3",
     "prettier-plugin-tailwindcss": "^0.8.1",
     "tailwindcss-debug-screens": "^3.0.1",
-    "typescript": "^6.0.0",
+    "typescript": "^7.0.2",
     "vite": "catalog:",
     "vite-plus": "catalog:",
     "vue-eslint-parser": "^10.4.1",
