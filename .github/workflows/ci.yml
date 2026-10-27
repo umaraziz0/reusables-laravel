@@ -37,7 +37,6 @@ jobs:
             --redact -v
 
   lint:
-    if: github.actor != 'dependabot[bot]'
     runs-on: ubuntu-24.04
     steps:
       # Setup
@@ -125,7 +124,6 @@ jobs:
         run: pnpm run types:check
 
   tests:
-    if: github.actor != 'dependabot[bot]'
     runs-on: ubuntu-24.04
     services:
       postgres:
