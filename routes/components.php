@@ -19,6 +19,8 @@ Route::middleware(['auth', 'role:superadmin'])
                 ->name('components.form.input-field');
             Route::get('input-group-field', [ComponentPreviewController::class, 'formInputGroupField'])
                 ->name('components.form.input-group-field');
+            Route::get('phone-number-field', [ComponentPreviewController::class, 'formPhoneNumberField'])
+                ->name('components.form.phone-number-field');
             Route::get('select-field', [ComponentPreviewController::class, 'formSelectField'])
                 ->name('components.form.select-field');
             Route::get('search-select-field', [ComponentPreviewController::class, 'formSearchSelectField'])
