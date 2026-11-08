@@ -335,8 +335,8 @@ importers:
         specifier: ^4.3.3
         version: 4.3.3
       '@tailwindcss/oxide-win32-x64-msvc':
-        specifier: ^4.3.3
-        version: 4.3.3
+        specifier: ^4.3.4
+        version: 4.3.4
       lightningcss-linux-x64-gnu:
         specifier: ^1.33.0
         version: 1.33.0
@@ -1242,6 +1242,12 @@ packages:
 
   '@tailwindcss/oxide-win32-x64-msvc@4.3.3':
     resolution: {integrity: sha512-yJ0pwIVc/nYeGoV02WtsN8KYyLQv7kyI2wDnkezyJlGGjkd4QLwDGAwl47YpPJeuI0M0ObaXGSPjvWDPeTPggw==}
+    engines: {node: '>= 20'}
+    cpu: [x64]
+    os: [win32]
+
+  '@tailwindcss/oxide-win32-x64-msvc@4.3.4':
+    resolution: {integrity: sha512-cge1wcedn1FrRSXL22lF5sNDYr8c9+VImk7zFYLPs12jkDmchSrZNfzWqOKub+5Hb/aYRdDEqERGGDKONBlOzQ==}
     engines: {node: '>= 20'}
     cpu: [x64]
     os: [win32]
@@ -2648,10 +2654,6 @@ packages:
     resolution: {integrity: sha512-LKWqWJRhstyYo9pGvgor/ivk2w94eSjE3RGVuzLGlr3NmD8bf7RcYGze1mNdEHRP6TRP6rMuDHk5t44hnTRyow==}
     engines: {node: '>=14.19.0'}
 
-  postcss@8.5.30:
-    resolution: {integrity: sha512-zkd+e9S1AQHhmaBKye9zlFHWjOwVgqXl1q3ECYy8561K7qxR2cREf/STLskulBFd78k6AOFeA+ff1TtEzk9bAA==}
-    engines: {node: ^10 || ^12 || >=14}
-
   postcss@8.5.31:
     resolution: {integrity: sha512-YUbWYCgErwnMAVkjUnYa+KlMBzGpHwiIt/DE7f0G33AuX2LH9UcTk6KgWxd3zRU+pN3u/C+Xl3EnMLM4Hea7Sg==}
     engines: {node: ^10 || ^12 || >=14}
@@ -3856,6 +3858,9 @@ snapshots:
   '@tailwindcss/oxide-win32-x64-msvc@4.3.3':
     optional: true
 
+  '@tailwindcss/oxide-win32-x64-msvc@4.3.4':
+    optional: true
+
   '@tailwindcss/oxide@4.3.3':
     optionalDependencies:
       '@tailwindcss/oxide-android-arm64': 4.3.3
@@ -4117,7 +4122,7 @@ snapshots:
       '@oxc-project/runtime': 0.154.0
       '@oxc-project/types': 0.154.0
       lightningcss: 1.33.0
-      postcss: 8.5.30
+      postcss: 8.5.31
       yuku-parser: 0.19.0
     optionalDependencies:
       '@types/node': 26.6.5
@@ -5175,12 +5180,6 @@ snapshots:
       playwright-core: 1.64.1
 
   pngjs@7.0.0: {}
-
-  postcss@8.5.30:
-    dependencies:
-      nanoid: 3.3.20
-      picocolors: 1.1.1
-      source-map-js: 1.2.2
 
   postcss@8.5.31:
     dependencies:
