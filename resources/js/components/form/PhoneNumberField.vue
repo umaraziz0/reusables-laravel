@@ -293,6 +293,7 @@ const { descriptionId, errorId, describedBy } = useFieldIds({
       :name="submittedDialCodeName"
       :value="selectedDialCode"
       :disabled="disabled"
+      :form="$attrs.form as string | undefined"
     />
 
     <FieldFeedback

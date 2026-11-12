@@ -267,6 +267,34 @@ describe('PhoneNumberField', () => {
     expect(submitted(wrapper).has('phone_dial_code')).toBe(false);
   });
 
+  it('submits the dial code to an external form named by the form attribute', async () => {
+    const wrapper = mount(
+      {
+        components: { PhoneNumberField },
+        setup: () => ({ countries: COUNTRIES }),
+        template: `
+          <div>
+            <form id="contact"></form>
+            <PhoneNumberField
+              label="Phone"
+              name="phone"
+              form="contact"
+              model-value="5550100"
+              dial-code="+1"
+              :countries="countries"
+            />
+          </div>
+        `,
+      },
+      { attachTo: document.body },
+    );
+
+    await flushPromises();
+
+    expect(submitted(wrapper).get('phone')).toBe('5550100');
+    expect(submitted(wrapper).get('phone_dial_code')).toBe('+1');
+  });
+
   it('disables the trigger, the number and the submitted dial code', async () => {
     const wrapper = await mountInForm('model-value="812" disabled');
 
