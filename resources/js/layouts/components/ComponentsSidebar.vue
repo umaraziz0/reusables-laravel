@@ -5,6 +5,7 @@ import {
   ChevronDown,
   FormInput,
   ListChevronsUpDown,
+  Phone,
   SquarePower,
   Tag,
   TextCursorInput,
@@ -14,6 +15,7 @@ import {
 import {
   formInputField,
   formInputGroupField,
+  formPhoneNumberField,
   formSearchSelectField,
   formSelectField,
 } from '@/actions/App/Http/Controllers/ComponentPreviewController';
@@ -71,6 +73,11 @@ const componentNavItems: NavItem[] = [
         title: 'Input Group Field',
         href: formInputGroupField(),
         icon: TextCursorInput,
+      },
+      {
+        title: 'Phone Number Field',
+        href: formPhoneNumberField(),
+        icon: Phone,
       },
       {
         title: 'Select Field',

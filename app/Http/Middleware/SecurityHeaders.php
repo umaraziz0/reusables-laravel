@@ -79,7 +79,8 @@ class SecurityHeaders
      */
     protected function buildContentSecurityPolicy(Request $request, string $nonce): string
     {
-        $isDevelopment = app()->environment(['local', 'development']);
+        $isDevelopment    = app()->environment(['local', 'development']);
+        $isViteRunningHot = $this->isViteRunningHot();
 
         // Start with base CSP configuration
         $csp = $this->baseCsp;
@@ -90,8 +91,9 @@ class SecurityHeaders
         // base style-src to be ignored, breaking them. 'unsafe-inline' stays in both dev and prod.
         $csp['script-src'][] = "'nonce-{$nonce}'";
 
-        // Add development-specific sources
-        if ($isDevelopment) {
+        // Allow the Vite dev server whenever assets come from it, whatever the environment,
+        // so browser tests run against `vp dev` get its stylesheet too.
+        if ($isViteRunningHot) {
             $vitePort = 5173; // Vite default port
 
             // Add Vite dev server to script-src
@@ -123,6 +125,14 @@ class SecurityHeaders
         }
 
         return implode('; ', $directives);
+    }
+
+    /**
+     * Determine if assets are served by the Vite dev server rather than the build.
+     */
+    protected function isViteRunningHot(): bool
+    {
+        return Vite::isRunningHot();
     }
 
     /**
