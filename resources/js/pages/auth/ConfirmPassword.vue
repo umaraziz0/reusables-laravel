@@ -1,11 +1,11 @@
 <script setup lang="ts">
+import { Form, Head } from '@inertiajs/vue3';
+
 import {
   index as confirmOptions,
   store as confirmStore,
 } from // @ts-ignore -- generated Wayfinder actions are not available until route generation runs.
 '@/actions/Laravel/Passkeys/Http/Controllers/PasskeyConfirmationController';
-import { Form, Head } from '@inertiajs/vue3';
-
 import InputError from '@/components/InputError.vue';
 import PasskeyVerify from '@/components/PasskeyVerify.vue';
 import PasswordInput from '@/components/PasswordInput.vue';
