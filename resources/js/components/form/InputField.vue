@@ -27,6 +27,7 @@ const props = defineProps<{
   error?: string;
   hideLabel?: boolean;
   required?: boolean;
+  disabled?: boolean;
   defaultValue?: string | number;
   class?: HTMLAttributes['class'];
   /** Styles the input itself. Set widths on `class`: Field forces its children to full width. */
@@ -98,7 +99,11 @@ function applyEmailSuggestion(): void {
 </script>
 
 <template>
-  <Field :class="props.class" :data-invalid="error ? true : undefined">
+  <Field
+    :class="props.class"
+    :data-invalid="error ? true : undefined"
+    :data-disabled="disabled ? true : undefined"
+  >
     <FieldLabel :for="inputId" :class="cn('gap-1', hideLabel && 'sr-only')">
       {{ label }}
       <span v-if="required" aria-hidden="true" class="text-destructive">
@@ -114,6 +119,7 @@ function applyEmailSuggestion(): void {
       :aria-describedby="describedBy"
       :aria-invalid="error ? 'true' : ariaInvalid"
       :required="required"
+      :disabled="disabled"
       :type="type"
       :default-value="defaultValue"
       v-bind="$attrs"
