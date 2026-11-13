@@ -5,6 +5,11 @@
 # Runs on main as well as on PRs so code scanning has a base-branch analysis
 # to compare PR results against, and weekly to catch newly published advisories.
 # The secrets job is PR-only.
+#
+# Code scanning upload: on by default for public repos. Private repos need
+# GitHub Code Security (Team/Enterprise plan); set the repository variable
+# CODE_SCANNING_UPLOAD=true there to enable it. Without it, findings are still
+# in the job log and run summary, and the jobs still fail on findings.
 
 name: Security
 
@@ -119,7 +124,8 @@ jobs:
           semgrep scan --config /tmp/base/.semgrep/rules $SEMGREP_FLAGS \
             --baseline-commit "$BASE_SHA" \
             --error \
-            --sarif-output=semgrep.sarif
+            --sarif-output=semgrep.sarif \
+            --text-output=semgrep.txt
 
       # main and scheduled runs report everything without failing, as the
       # code scanning baseline.
@@ -128,14 +134,32 @@ jobs:
         run: |
           # shellcheck disable=SC2086 # SEMGREP_FLAGS is a list of flags
           semgrep scan --config .semgrep/rules $SEMGREP_FLAGS \
-            --sarif-output=semgrep.sarif
+            --sarif-output=semgrep.sarif \
+            --text-output=semgrep.txt
+
+      - name: Write run summary
+        if: always() && hashFiles('semgrep.txt') != ''
+        run: |
+          {
+            echo '## Semgrep'
+            if [ -s semgrep.txt ]; then
+              echo '```'
+              cat semgrep.txt
+              echo '```'
+            else
+              echo 'No findings.'
+            fi
+          } >> "$GITHUB_STEP_SUMMARY"
 
       - name: Upload results to code scanning
-        if: always() && hashFiles('semgrep.sarif') != ''
+        if: always() && hashFiles('semgrep.sarif') != '' && (github.event.repository.private == false || vars.CODE_SCANNING_UPLOAD == 'true')
         uses: github/codeql-action/upload-sarif@33d7b85da1a04171e211befe2c739303b9a4c066 # v4.39.3
         with:
           sarif_file: semgrep.sarif
           category: semgrep
+          # The PR scan may add a local commit; report against the real one.
+          sha: ${{ github.sha }}
+          ref: ${{ github.ref }}
 
   osv-scanner:
     runs-on: ubuntu-24.04
@@ -190,11 +214,16 @@ jobs:
           osv-scanner scan source \
             --config "$OSV_SCANNER_CONFIG" \
             --lockfile composer.lock \
-            --lockfile pnpm-lock.yaml || true
+            --lockfile pnpm-lock.yaml \
+            --format markdown --output-file osv.md || true
+          {
+            echo '## OSV-Scanner'
+            if [ -s osv.md ]; then cat osv.md; else echo 'No issues found.'; fi
+          } | tee -a "$GITHUB_STEP_SUMMARY"
           exit "$status"
 
       - name: Upload results to code scanning
-        if: always() && hashFiles('osv.sarif') != ''
+        if: always() && hashFiles('osv.sarif') != '' && (github.event.repository.private == false || vars.CODE_SCANNING_UPLOAD == 'true')
         uses: github/codeql-action/upload-sarif@33d7b85da1a04171e211befe2c739303b9a4c066 # v4.39.3
         with:
           sarif_file: osv.sarif
