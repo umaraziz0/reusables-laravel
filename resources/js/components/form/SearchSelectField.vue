@@ -122,7 +122,11 @@ function labelFor(value: string | number): string | undefined {
 </script>
 
 <template>
-  <Field :class="props.class" :data-invalid="error ? true : undefined">
+  <Field
+    :class="props.class"
+    :data-invalid="error ? true : undefined"
+    :data-disabled="disabled ? true : undefined"
+  >
     <FieldLabel :for="triggerId" :class="cn('gap-1', hideLabel && 'sr-only')">
       {{ label }}
       <span v-if="required" aria-hidden="true" class="text-destructive">
