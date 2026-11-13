@@ -127,6 +127,12 @@ jobs:
             --sarif-output=semgrep.sarif \
             --text-output=semgrep.txt
 
+      # upload-sarif reports `git rev-parse HEAD`, so drop the throwaway
+      # .semgrepignore commit before uploading.
+      - name: Restore checkout (PR)
+        if: always() && github.event_name == 'pull_request'
+        run: git reset -q --hard "$GITHUB_SHA"
+
       # main and scheduled runs report everything without failing, as the
       # code scanning baseline.
       - name: Scan repository (main)
@@ -157,9 +163,6 @@ jobs:
         with:
           sarif_file: semgrep.sarif
           category: semgrep
-          # The PR scan may add a local commit; report against the real one.
-          sha: ${{ github.sha }}
-          ref: ${{ github.ref }}
 
   osv-scanner:
     runs-on: ubuntu-24.04
