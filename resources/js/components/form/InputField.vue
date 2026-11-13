@@ -7,14 +7,11 @@ import {
   type InputTypeHTMLAttribute,
 } from 'vue';
 
-import {
-  Field,
-  FieldDescription,
-  FieldError,
-  FieldLabel,
-} from '@/components/ui/field';
+import { Field, FieldLabel } from '@/components/ui/field';
 import { Input } from '@/components/ui/input';
 import { useFieldIds } from '@/composables/useFieldIds';
+
+import FieldFeedback from './FieldFeedback.vue';
 
 // --- Props --- //
 
@@ -123,21 +120,24 @@ function applyEmailSuggestion(): void {
       v-on="emailSpellingListeners"
     />
 
-    <FieldError v-if="error" :id="errorId">{{ error }}</FieldError>
-
-    <FieldDescription v-else-if="descriptionId" :id="descriptionId">
-      <span v-if="emailSuggestion" role="status">
-        Did you mean
-        <button
-          type="button"
-          class="font-medium text-foreground underline underline-offset-4 hover:text-primary"
-          @click="applyEmailSuggestion"
-        >
-          {{ emailSuggestion }}</button
-        >?
-      </span>
-
-      <template v-else>{{ description }}</template>
-    </FieldDescription>
+    <FieldFeedback
+      :description="description"
+      :description-id="descriptionId"
+      :error="error"
+      :error-id="errorId"
+    >
+      <template v-if="emailSuggestion" #default>
+        <span role="status">
+          Did you mean
+          <button
+            type="button"
+            class="font-medium text-foreground underline underline-offset-4 hover:text-primary"
+            @click="applyEmailSuggestion"
+          >
+            {{ emailSuggestion }}</button
+          >?
+        </span>
+      </template>
+    </FieldFeedback>
   </Field>
 </template>

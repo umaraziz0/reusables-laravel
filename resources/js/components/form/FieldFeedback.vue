@@ -1,33 +1,23 @@
 <script setup lang="ts">
-import { computed } from 'vue';
+import { FieldDescription, FieldError } from '@/components/ui/field';
 
 // --- Props --- //
 
-const props = defineProps<{
+defineProps<{
   description?: string;
   descriptionId?: string;
   error?: string;
   errorId?: string;
 }>();
-
-// --- Constants --- //
-
-const feedback = computed(() => props.error || props.description);
-
-const feedbackId = computed(() =>
-  props.error ? props.errorId : props.descriptionId,
-);
 </script>
 
 <template>
-  <p
-    v-if="feedback || $slots.default"
-    :id="feedbackId"
-    :class="
-      error ? 'text-sm text-destructive' : 'text-sm text-muted-foreground'
-    "
-    :role="error ? 'alert' : undefined"
+  <FieldError v-if="error" :id="errorId">{{ error }}</FieldError>
+
+  <FieldDescription
+    v-else-if="description || $slots.default"
+    :id="descriptionId"
   >
-    <slot>{{ feedback }}</slot>
-  </p>
+    <slot>{{ description }}</slot>
+  </FieldDescription>
 </template>
