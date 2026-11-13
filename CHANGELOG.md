@@ -1,5 +1,22 @@
 # Changelog
 
+## [0.4.0](https://github.com/umaraziz0/reusables-laravel/compare/reusables-laravel-v0.3.0...reusables-laravel-v0.4.0) (2026-11-13)
+
+
+### Features
+
+* **components:** add `PhoneNumberField` ([c662e17](https://github.com/umaraziz0/reusables-laravel/commit/c662e173f10af44388f01081817debd4b69a8745))
+* **components:** add `PhoneNumberField` preview page ([5c473ab](https://github.com/umaraziz0/reusables-laravel/commit/5c473abe2982731a71cbbb8e3a4d360bd9353f48))
+* **components:** create custom `PhoneNumberField` component ([091a5e8](https://github.com/umaraziz0/reusables-laravel/commit/091a5e86ef578cdc44e0963505817ec6e67ec878))
+
+
+### Bug Fixes
+
+* **components:** forward form attribute to PhoneNumberField dial code ([8046e69](https://github.com/umaraziz0/reusables-laravel/commit/8046e69f6f71206474b264b2634db1a9a3344264))
+* **components:** make dropdown trigger cursor pointer in `PhoneNumberField` ([586bdcd](https://github.com/umaraziz0/reusables-laravel/commit/586bdcdd8e75404633bc717bb6b56ea558167e84))
+* **data:** correct Guyana's dial code and American Samoa's name ([0438a4b](https://github.com/umaraziz0/reusables-laravel/commit/0438a4b1314e4368dffbbdcdba8d9372d2742dc4))
+* **security:** allow the Vite dev server in CSP whenever it is running ([77f4ea1](https://github.com/umaraziz0/reusables-laravel/commit/77f4ea1ebac288cf5c0e375ecadd3b61bbf17485))
+
 ## [0.3.0](https://github.com/umaraziz0/reusables-laravel/compare/reusables-laravel-v0.2.0...reusables-laravel-v0.3.0) (2026-10-27)
 
 
