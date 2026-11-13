@@ -7,11 +7,14 @@ import {
   type InputTypeHTMLAttribute,
 } from 'vue';
 
+import {
+  Field,
+  FieldDescription,
+  FieldError,
+  FieldLabel,
+} from '@/components/ui/field';
 import { Input } from '@/components/ui/input';
-import { Label } from '@/components/ui/label';
 import { useFieldIds } from '@/composables/useFieldIds';
-
-import FieldFeedback from './FieldFeedback.vue';
 
 // --- Props --- //
 
@@ -29,6 +32,7 @@ const props = defineProps<{
   required?: boolean;
   defaultValue?: string | number;
   class?: HTMLAttributes['class'];
+  /** Styles the input itself. Set widths on `class`: Field forces its children to full width. */
   inputClass?: HTMLAttributes['class'];
   ariaDescribedby?: string;
   ariaInvalid?: boolean | 'true' | 'false';
@@ -49,17 +53,11 @@ const emailSpellingListeners = computed(() =>
 
 const inputId = computed(() => props.id ?? props.name);
 
-const feedbackDescription = computed(() =>
-  emailSuggestion.value
-    ? `Did you mean ${emailSuggestion.value}?`
-    : props.description,
-);
-
 // --- Hooks --- //
 
 const { descriptionId, errorId, describedBy } = useFieldIds({
   id: inputId,
-  description: feedbackDescription,
+  description: () => emailSuggestion.value ?? props.description,
   error: () => props.error,
   ariaDescribedby: () => props.ariaDescribedby,
 });
@@ -103,13 +101,13 @@ function applyEmailSuggestion(): void {
 </script>
 
 <template>
-  <div :class="cn('grid gap-2', props.class)" data-slot="input-field">
-    <Label :for="inputId" :class="cn('gap-1', hideLabel && 'sr-only')">
+  <Field :class="props.class" :data-invalid="error ? true : undefined">
+    <FieldLabel :for="inputId" :class="cn('gap-1', hideLabel && 'sr-only')">
       {{ label }}
       <span v-if="required" aria-hidden="true" class="text-destructive">
         *
       </span>
-    </Label>
+    </FieldLabel>
 
     <Input
       :id="inputId"
@@ -125,24 +123,21 @@ function applyEmailSuggestion(): void {
       v-on="emailSpellingListeners"
     />
 
-    <FieldFeedback
-      :description="feedbackDescription"
-      :description-id="descriptionId"
-      :error="error"
-      :error-id="errorId"
-    >
-      <template v-if="emailSuggestion && !error" #default>
-        <span role="status">
-          Did you mean
-          <button
-            type="button"
-            class="font-medium text-foreground underline underline-offset-4 hover:text-primary"
-            @click="applyEmailSuggestion"
-          >
-            {{ emailSuggestion }}</button
-          >?
-        </span>
-      </template>
-    </FieldFeedback>
-  </div>
+    <FieldError v-if="error" :id="errorId">{{ error }}</FieldError>
+
+    <FieldDescription v-else-if="descriptionId" :id="descriptionId">
+      <span v-if="emailSuggestion" role="status">
+        Did you mean
+        <button
+          type="button"
+          class="font-medium text-foreground underline underline-offset-4 hover:text-primary"
+          @click="applyEmailSuggestion"
+        >
+          {{ emailSuggestion }}</button
+        >?
+      </span>
+
+      <template v-else>{{ description }}</template>
+    </FieldDescription>
+  </Field>
 </template>

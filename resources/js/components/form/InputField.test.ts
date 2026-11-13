@@ -114,6 +114,19 @@ describe('InputField', () => {
     );
   });
 
+  it('marks the field invalid when there is an error', () => {
+    const valid = mount(InputField, {
+      props: { label: 'Username', name: 'username' },
+    });
+
+    const invalid = mount(InputField, {
+      props: { label: 'Username', name: 'username', error: 'Too short.' },
+    });
+
+    expect(valid.attributes('data-invalid')).toBeUndefined();
+    expect(invalid.attributes('data-invalid')).toBe('true');
+  });
+
   it('omits aria-describedby when there is nothing to describe', () => {
     const wrapper = mount(InputField, {
       props: { label: 'Name', name: 'name' },
