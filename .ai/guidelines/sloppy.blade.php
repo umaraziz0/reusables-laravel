@@ -6,5 +6,5 @@ Before finishing, run `vendor/bin/sloppy diff main --fail-on=high` and fix the f
 
 Fix a failing test by fixing the code, or by correcting what the test asserts and saying why. The diff check reports weakened tests (skipped, deleted, or emptied assertions) as SL503.
 
-Rule descriptions (SL101–SL303): `docs/agents/sloppy-rules.md`.
+Rule descriptions: `docs/agents/sloppy-rules.md`.
 @endverbatim

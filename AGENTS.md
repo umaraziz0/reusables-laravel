@@ -2,12 +2,11 @@
 <laravel-boost-guidelines>
 === .ai/agent-skills rules ===
 
-## Task-triggered guidance - **Triaging or publishing work:** Use GitHub Issues via `gh`; first read
+## Task-triggered guidance
 
-`docs/agents/issue-tracker.md`. External PRs are not a triage surface. - **Applying triage labels:** First read
-`docs/agents/triage-labels.md`. Default labels: `needs-triage`, `needs-info`, `ready-for-agent`, `ready-for-human`,
-`wontfix`. - **Exploring domain behavior:** Read `GLOSSARY-MAP.md` when present, otherwise `GLOSSARY.md`; read relevant
-ADRs. If glossaries or ADRs are absent, continue silently. See `docs/agents/domain.md` for details.
+- **Triaging or publishing work:** Use GitHub Issues via `gh`; first read `docs/agents/issue-tracker.md`. External PRs are not a triage surface.
+- **Applying triage labels:** First read `docs/agents/triage-labels.md`. Default labels: `needs-triage`, `needs-info`, `ready-for-agent`, `ready-for-human`, `wontfix`.
+- **Exploring domain behavior:** Read `GLOSSARY-MAP.md` when present, otherwise `GLOSSARY.md`; read relevant ADRs. If glossaries or ADRs are absent, continue silently. See `docs/agents/domain.md` for details.
 
 === .ai/sloppy rules ===
 
@@ -17,7 +16,7 @@ Before finishing, run `vendor/bin/sloppy diff main --fail-on=high` and fix the f
 
 Fix a failing test by fixing the code, or by correcting what the test asserts and saying why. The diff check reports weakened tests (skipped, deleted, or emptied assertions) as SL503.
 
-Rule descriptions (SL101–SL303): `docs/agents/sloppy-rules.md`.
+Rule descriptions: `docs/agents/sloppy-rules.md`.
 
 === foundation rules ===
 
