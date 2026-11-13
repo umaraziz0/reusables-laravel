@@ -1,0 +1,234 @@
+rules:
+  - id: php-request-input-to-command-exec
+    message: >-
+      Request input reaches an OS command function. This is the core of a
+      webshell; if the call is intentional, pass a fixed command and
+      escape arguments with escapeshellarg().
+    severity: ERROR
+    languages: [php]
+    metadata:
+      category: security
+      cwe: 'CWE-78: OS Command Injection'
+    mode: taint
+    pattern-sources: &request-sources
+      - pattern-either:
+          - pattern: $_REQUEST
+          - pattern: $_GET
+          - pattern: $_POST
+          - pattern: $_COOKIE
+          - pattern: $_FILES
+          - pattern: $_SERVER
+          - pattern: getallheaders()
+          - pattern: file_get_contents('php://input')
+          - pattern: request(...)
+          - pattern: Request::$METHOD(...)
+          - pattern: $REQUEST->input(...)
+          - pattern: $REQUEST->query(...)
+          - pattern: $REQUEST->post(...)
+          - pattern: $REQUEST->get(...)
+          - pattern: $REQUEST->all(...)
+          - pattern: $REQUEST->json(...)
+          - pattern: $REQUEST->header(...)
+          - pattern: $REQUEST->cookie(...)
+          - pattern: $REQUEST->string(...)
+          - pattern: $REQUEST->getContent(...)
+    pattern-sinks:
+      - patterns:
+          - pattern-either:
+              - pattern: shell_exec($CMD, ...)
+              - pattern: passthru($CMD, ...)
+              - pattern: system($CMD, ...)
+              - pattern: exec($CMD, ...)
+              - pattern: popen($CMD, ...)
+              - pattern: proc_open($CMD, ...)
+              - pattern: pcntl_exec($CMD, ...)
+              - pattern: Process::run($CMD, ...)
+              - pattern: Process::start($CMD, ...)
+              - pattern: Process::fromShellCommandline($CMD, ...)
+          - focus-metavariable: $CMD
+
+  - id: php-request-input-to-code-exec
+    message: >-
+      Request input decides which code runs (eval, include, or a dynamic
+      function/class name). This lets a caller execute arbitrary PHP.
+    severity: ERROR
+    languages: [php]
+    metadata:
+      category: security
+      cwe: 'CWE-94: Code Injection'
+    mode: taint
+    pattern-sources: *request-sources
+    pattern-sinks: &code-sinks
+      - patterns:
+          - pattern-either:
+              - pattern: eval($CODE)
+              - pattern: assert($CODE, ...)
+              - pattern: create_function($ARGS, $CODE)
+              - pattern: include $CODE
+              - pattern: include_once $CODE
+              - pattern: require $CODE
+              - pattern: require_once $CODE
+              - pattern: call_user_func($CODE, ...)
+              - pattern: call_user_func_array($CODE, ...)
+              - patterns:
+                  - pattern-either:
+                      - pattern: $CODE(...)
+                      - pattern: new $CODE(...)
+                  - metavariable-regex:
+                      metavariable: $CODE
+                      regex: ^\$\w+$
+          - focus-metavariable: $CODE
+
+  - id: php-decoded-string-executed
+    message: >-
+      A decoded or reassembled string (base64, rot13, gzip, hex, reversed...)
+      is executed or called as a function. Legitimate code names the
+      function it calls; hiding the name is an obfuscation technique.
+    severity: ERROR
+    languages: [php]
+    metadata:
+      category: security
+      cwe: 'CWE-506: Embedded Malicious Code'
+    mode: taint
+    pattern-sources:
+      - pattern-either:
+          - pattern: base64_decode(...)
+          - pattern: str_rot13(...)
+          - pattern: gzinflate(...)
+          - pattern: gzuncompress(...)
+          - pattern: gzdecode(...)
+          - pattern: hex2bin(...)
+          - pattern: strrev(...)
+          - pattern: convert_uudecode(...)
+          - pattern: urldecode(...)
+          - pattern: rawurldecode(...)
+          - pattern: pack(...)
+          - pattern: chr(...)
+          - pattern: implode(...)
+          - pattern: join(...)
+    pattern-sinks: *code-sinks
+
+  - id: php-command-exec-probe
+    message: >-
+      Checking which command-execution functions are available is a classic
+      webshell fallback chain, rarely needed by application code.
+    severity: ERROR
+    languages: [php]
+    metadata:
+      category: security
+      cwe: 'CWE-506: Embedded Malicious Code'
+    pattern-either:
+      - pattern: function_exists("=~/^(shell_exec|passthru|system|popen|proc_open|pcntl_exec)$/")
+      - pattern: is_callable("=~/^(shell_exec|passthru|system|popen|proc_open|pcntl_exec)$/")
+
+  - id: php-eval
+    message: >-
+      eval()/create_function()/preg_replace /e have no place in this
+      application. Replace with explicit code.
+    severity: ERROR
+    languages: [php]
+    metadata:
+      category: security
+      cwe: 'CWE-95: Eval Injection'
+    pattern-either:
+      - pattern: eval(...)
+      - pattern: create_function(...)
+      - patterns:
+          - pattern: preg_replace($PATTERN, ...)
+          - metavariable-regex:
+              metavariable: $PATTERN
+              regex: ^['"](.).*\1[a-zA-Z]*e[a-zA-Z]*['"]$
+
+  - id: php-hardcoded-credential-check
+    message: >-
+      A credential is compared against a hardcoded value. This is how a
+      "master password" backdoor looks; compare against stored data instead.
+    severity: ERROR
+    languages: [php]
+    metadata:
+      category: security
+      cwe: 'CWE-798: Use of Hard-coded Credentials'
+    paths:
+      exclude:
+        - tests/
+    pattern-either:
+      - pattern: Hash::check($INPUT, '...')
+      - pattern: Hash::check($INPUT, "...")
+      - pattern: password_verify($INPUT, '...')
+      - pattern: password_verify($INPUT, "...")
+      - pattern: hash_equals('...', $INPUT)
+      - pattern: hash_equals("...", $INPUT)
+      - pattern: hash_equals($INPUT, '...')
+      - pattern: hash_equals($INPUT, "...")
+
+  - id: php-writes-php-file
+    message: >-
+      Code writes a .php file at runtime. A dropper uses this to plant a
+      webshell; generated PHP belongs in a build step, not app code.
+    severity: ERROR
+    languages: [php]
+    metadata:
+      category: security
+      cwe: 'CWE-506: Embedded Malicious Code'
+    paths:
+      exclude:
+        - tests/
+    patterns:
+      - pattern-either:
+          - pattern: file_put_contents($PATH, ...)
+          - pattern: fopen($PATH, ...)
+          - pattern: move_uploaded_file($SRC, $PATH)
+          - pattern: copy($SRC, $PATH)
+          - pattern: rename($SRC, $PATH)
+          - pattern: File::put($PATH, ...)
+          - pattern: Storage::put($PATH, ...)
+          - pattern: $FILE->move($DIR, $PATH)
+          - pattern: $FILE->storeAs($DIR, $PATH, ...)
+      - metavariable-regex:
+          metavariable: $PATH
+          regex: (?i)^.*\.(php\d?|phtml|phar)\b
+
+  - id: laravel-manual-login
+    message: >-
+      Application code logs a user in directly. Fortify owns authentication
+      here; a manual login outside it can be an authentication bypass.
+    severity: ERROR
+    languages: [php]
+    metadata:
+      category: security
+      cwe: 'CWE-288: Authentication Bypass Using an Alternate Path or Channel'
+    paths:
+      include:
+        - app/
+        - bootstrap/
+        - config/
+        - routes/
+    pattern-either:
+      - pattern: Auth::login(...)
+      - pattern: Auth::loginUsingId(...)
+      - pattern: Auth::onceUsingId(...)
+      - pattern: Auth::guard(...)->login(...)
+      - pattern: Auth::guard(...)->loginUsingId(...)
+      - pattern: auth()->login(...)
+      - pattern: auth()->loginUsingId(...)
+      - pattern: auth(...)->login(...)
+      - pattern: auth(...)->loginUsingId(...)
+
+  - id: laravel-gate-before-always-allows
+    message: >-
+      Gate::before() unconditionally returns true, which grants every
+      ability to every user.
+    severity: ERROR
+    languages: [php]
+    metadata:
+      category: security
+      cwe: 'CWE-863: Incorrect Authorization'
+    pattern-either:
+      - pattern: |
+          Gate::before(function (...) { return true; })
+      # Semgrep cannot parse arrow functions in patterns, so match their source text.
+      - patterns:
+          - pattern: Gate::before($CALLBACK)
+          - metavariable-regex:
+              metavariable: $CALLBACK
+              regex: (?s)^(static\s+)?fn\b[^=]*=>\s*true$

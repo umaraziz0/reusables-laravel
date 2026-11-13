@@ -1,0 +1,12 @@
+# OSV-Scanner configuration, read by the osv-scanner job in .github/workflows/security.yml.
+# Every ignore needs a reason and an expiry so it gets re-checked.
+
+[[IgnoredVulns]]
+id = "GHSA-3g3m-2fjr-6pw4"
+effectiveUntil = 2027-02-13
+reason = "glob 13 is a dev-only transitive dep (@vue/test-utils > js-beautify); the fix is glob 14, which needs an upstream release."
+
+[[IgnoredVulns]]
+id = "GHSA-g3hv-75wg-m249"
+effectiveUntil = 2027-02-13
+reason = "minimatch 10 is a dev-only transitive dep (eslint > @eslint/config-array); the fix is minimatch 11, which needs an upstream release."

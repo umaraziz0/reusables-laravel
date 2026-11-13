@@ -1,0 +1,9 @@
+# Semgrep scan exclusions. This file replaces Semgrep's built-in defaults,
+# which would otherwise skip tests/ too. Paths in .gitignore are already
+# skipped (vendor/, node_modules/, public/build/, generated Wayfinder files).
+
+# Generated or third-party code.
+_ide_helper.php
+_ide_helper_models.php
+.phpstorm.meta.php
+*.min.js

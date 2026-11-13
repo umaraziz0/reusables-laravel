@@ -1,0 +1,48 @@
+rules:
+  - id: npm-install-lifecycle-script
+    message: >-
+      package.json gains an install-time lifecycle script. It runs on every
+      `pnpm install`, on developer machines and CI, before any review of
+      what it does.
+    severity: ERROR
+    languages: [json]
+    metadata:
+      category: security
+      cwe: 'CWE-506: Embedded Malicious Code'
+    paths:
+      include:
+        - package.json
+    patterns:
+      - pattern-inside: |
+          "scripts": {...}
+      - pattern: |
+          "$HOOK": $COMMAND
+      - metavariable-regex:
+          metavariable: $HOOK
+          regex: ^"?(preinstall|install|postinstall|preprepare|prepare|postprepare|prepublish)"?$
+      # The pnpm guard is the one lifecycle script this project expects.
+      - metavariable-regex:
+          metavariable: $COMMAND
+          regex: ^(?!"?npx only-allow pnpm"?$)
+
+  - id: manifest-script-downloads-or-decodes
+    message: >-
+      A composer.json/package.json script downloads, decodes, or pipes into a
+      shell. Scripts run with the developer's and CI's privileges.
+    severity: ERROR
+    languages: [json]
+    metadata:
+      category: security
+      cwe: 'CWE-506: Embedded Malicious Code'
+    paths:
+      include:
+        - package.json
+        - composer.json
+    patterns:
+      - pattern-inside: |
+          "scripts": {...}
+      - pattern: |
+          "$SCRIPT"
+      - metavariable-regex:
+          metavariable: $SCRIPT
+          regex: (?i)^.*(\bcurl\b|\bwget\b|https?://|base64|\|\s*(ba|z)?sh\b|\beval\b|\bnode\s+-e\b|\bpython3?\s+-c\b|\bbash\s+-c\b)

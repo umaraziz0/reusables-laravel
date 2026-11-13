@@ -1,0 +1,44 @@
+rules:
+  - id: js-child-process
+    message: >-
+      Code imports child_process. Browser code never needs it, and in build
+      tooling (vite/vitest/eslint configs) it runs shell commands on every
+      developer machine and CI runner.
+    severity: ERROR
+    languages: [javascript, typescript]
+    metadata:
+      category: security
+      cwe: 'CWE-506: Embedded Malicious Code'
+    pattern-either:
+      - pattern: import "=~/^(node:)?child_process$/"
+      - pattern: require("=~/^(node:)?child_process$/")
+      - pattern: import("=~/^(node:)?child_process$/")
+
+  - id: js-eval
+    message: >-
+      eval()/new Function()/string timers execute strings as code. Replace
+      with explicit code.
+    severity: ERROR
+    languages: [javascript, typescript]
+    metadata:
+      category: security
+      cwe: 'CWE-95: Eval Injection'
+    pattern-either:
+      - pattern: eval(...)
+      - pattern: new Function(...)
+      - pattern: Function(...)
+      - pattern: setTimeout("...", ...)
+      - pattern: setInterval("...", ...)
+
+  - id: js-remote-code-import
+    message: >-
+      Code is loaded from a remote URL at runtime, bypassing the lockfile.
+      Install it as a dependency instead.
+    severity: ERROR
+    languages: [javascript, typescript]
+    metadata:
+      category: security
+      cwe: 'CWE-829: Inclusion of Functionality from Untrusted Control Sphere'
+    pattern-either:
+      - pattern: import("=~/^(https?:)?\/\//")
+      - pattern: import "=~/^(https?:)?\/\//"
