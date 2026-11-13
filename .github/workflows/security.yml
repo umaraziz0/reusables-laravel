@@ -1,0 +1,192 @@
+# Secret scanning (Betterleaks), static analysis for malicious code (Semgrep),
+# and vulnerable or malicious dependencies (OSV-Scanner). Findings are in the
+# job log and the run summary; a job fails when it finds something.
+#
+# Runs on main and weekly as well as on PRs, to catch issues from updated
+# Semgrep rules and newly published advisories. The secrets job is PR-only.
+
+name: Security
+
+on:
+  pull_request:
+  push:
+    branches:
+      - main
+  schedule:
+    - cron: '0 9 * * 0' # Sundays 16:00 Asia/Jakarta, alongside Dependabot
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  secrets:
+    # PR-only: the scan covers the PR's commit range (base..head).
+    if: github.event_name == 'pull_request' && github.actor != 'dependabot[bot]'
+    runs-on: ubuntu-24.04
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+          fetch-depth: 0
+
+      - name: Install Betterleaks
+        run: |
+          curl -fsSL -o betterleaks.tar.gz "https://github.com/betterleaks/betterleaks/releases/download/v1.4.0/betterleaks_1.4.0_linux_x64.tar.gz"
+          tar -xzf betterleaks.tar.gz
+          sudo mv betterleaks /usr/local/bin/
+          betterleaks version
+
+      - name: Scan for secrets
+        env:
+          BASE_SHA: ${{ github.event.pull_request.base.sha }}
+          HEAD_SHA: ${{ github.event.pull_request.head.sha }}
+        run: |
+          betterleaks git . \
+            --log-opts="${BASE_SHA}..${HEAD_SHA}" \
+            --redact -v
+
+  semgrep:
+    runs-on: ubuntu-24.04
+    container:
+      image: semgrep/semgrep:1.185.0@sha256:67518c174185a2043fdbed16c70631b79209499b3671178e7194379b48295a0d
+    # --no-git-ignore: a file force-added despite .gitignore is still scanned.
+    # --disable-nosem: inline `nosemgrep` comments cannot silence a finding;
+    # fix a false positive by changing the rule on main instead.
+    env:
+      SEMGREP_FLAGS: >-
+        --config p/php
+        --config p/javascript
+        --config p/typescript
+        --config p/github-actions
+        --no-git-ignore
+        --disable-nosem
+        --metrics=off
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+          fetch-depth: 0
+
+      - name: Trust workspace for git (container runs as a different user)
+        run: git config --global --add safe.directory "$GITHUB_WORKSPACE"
+
+      # A PR must not be able to weaken the checks it is judged by, so PRs are
+      # scanned with the base branch's rules and .semgrepignore files.
+      - name: Use base branch scan config (PR)
+        if: github.event_name == 'pull_request'
+        env:
+          BASE_SHA: ${{ github.event.pull_request.base.sha }}
+        run: |
+          mkdir -p /tmp/base
+          if git cat-file -e "$BASE_SHA:.semgrep/rules" 2>/dev/null; then
+            git archive "$BASE_SHA" .semgrep/rules | tar -x -C /tmp/base
+          else
+            echo "::warning::Base branch has no .semgrep/rules yet; using this PR's rules."
+            cp -R .semgrep /tmp/base/
+          fi
+
+          # --baseline-commit needs a clean tree, so restore the base
+          # .semgrepignore files in a throwaway commit.
+          changed=$(git diff --name-only "$BASE_SHA" HEAD -- ':(glob)**/.semgrepignore')
+          if [ -n "$changed" ]; then
+            echo "::warning::This PR changes .semgrepignore; scanning with the base branch's version."
+            for file in $changed; do
+              if git cat-file -e "$BASE_SHA:$file" 2>/dev/null; then
+                git checkout "$BASE_SHA" -- "$file"
+              else
+                git rm -q -- "$file"
+              fi
+            done
+            git -c user.name=ci -c user.email=ci@localhost commit -q --no-verify -m "ci: use base .semgrepignore"
+          fi
+
+      # PRs fail only on findings the PR introduces.
+      - name: Scan changes (PR)
+        if: github.event_name == 'pull_request'
+        env:
+          BASE_SHA: ${{ github.event.pull_request.base.sha }}
+        run: |
+          # shellcheck disable=SC2086 # SEMGREP_FLAGS is a list of flags
+          semgrep scan --config /tmp/base/.semgrep/rules $SEMGREP_FLAGS \
+            --baseline-commit "$BASE_SHA" \
+            --error \
+            --text-output=semgrep.txt
+
+      # main and scheduled runs scan everything.
+      - name: Scan repository (main)
+        if: github.event_name != 'pull_request'
+        run: |
+          # shellcheck disable=SC2086 # SEMGREP_FLAGS is a list of flags
+          semgrep scan --config .semgrep/rules $SEMGREP_FLAGS \
+            --error \
+            --text-output=semgrep.txt
+
+      - name: Write run summary
+        if: always() && hashFiles('semgrep.txt') != ''
+        run: |
+          {
+            echo '## Semgrep'
+            if [ -s semgrep.txt ]; then
+              echo '```'
+              cat semgrep.txt
+              echo '```'
+            else
+              echo 'No findings.'
+            fi
+          } >> "$GITHUB_STEP_SUMMARY"
+
+  osv-scanner:
+    runs-on: ubuntu-24.04
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+          fetch-depth: 0
+
+      # A PR must not be able to add its own ignores, so PRs use the base
+      # branch's osv-scanner.toml.
+      - name: Select OSV-Scanner config
+        env:
+          BASE_SHA: ${{ github.event.pull_request.base.sha }}
+        run: |
+          config="$RUNNER_TEMP/osv-scanner.toml"
+          if [ -n "$BASE_SHA" ] && git cat-file -e "$BASE_SHA:osv-scanner.toml" 2>/dev/null; then
+            git show "$BASE_SHA:osv-scanner.toml" > "$config"
+            if ! git diff --quiet "$BASE_SHA" HEAD -- osv-scanner.toml; then
+              echo "::warning::This PR changes osv-scanner.toml; scanning with the base branch's version."
+            fi
+          else
+            cp osv-scanner.toml "$config"
+          fi
+          echo "OSV_SCANNER_CONFIG=$config" >> "$GITHUB_ENV"
+
+      - name: Install OSV-Scanner
+        env:
+          OSV_SCANNER_VERSION: v2.7.1
+          OSV_SCANNER_SHA256: fb7dab19a8bd9bbe5c3189f09d4b7ee1820c9553a23bac202648a56efd2f6ee8
+        run: |
+          curl -fsSL -o osv-scanner "https://github.com/google/osv-scanner/releases/download/${OSV_SCANNER_VERSION}/osv-scanner_linux_amd64"
+          echo "${OSV_SCANNER_SHA256}  osv-scanner" | sha256sum --check
+          chmod +x osv-scanner
+          sudo mv osv-scanner /usr/local/bin/
+          osv-scanner --version
+
+      # Fails on any known vulnerability or malicious package (OSV MAL-*
+      # advisories) not ignored in the selected osv-scanner.toml.
+      - name: Scan lockfiles
+        run: |
+          status=0
+          osv-scanner scan source \
+            --config "$OSV_SCANNER_CONFIG" \
+            --lockfile composer.lock \
+            --lockfile pnpm-lock.yaml \
+            --format markdown --output-file osv.md || status=$?
+          {
+            echo '## OSV-Scanner'
+            if [ -s osv.md ]; then cat osv.md; else echo 'No issues found.'; fi
+          } | tee -a "$GITHUB_STEP_SUMMARY"
+          exit "$status"
