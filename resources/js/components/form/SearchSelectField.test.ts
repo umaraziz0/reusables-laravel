@@ -213,6 +213,7 @@ describe('SearchSelectField', () => {
     expect(trigger.attributes('aria-describedby')).toBe('country-error');
     expect(trigger.attributes('aria-invalid')).toBe('true');
     expect(wrapper.get('#country-error').text()).toBe('Choose a country.');
+    expect(wrapper.attributes('data-invalid')).toBe('true');
   });
 
   it('emits the chosen option through v-model and shows its label', async () => {
