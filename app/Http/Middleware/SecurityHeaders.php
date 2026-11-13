@@ -7,6 +7,7 @@ namespace App\Http\Middleware;
 use App\Enums\AdminTool;
 use Closure;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Config;
 use Illuminate\Support\Facades\View;
 use Illuminate\Support\Facades\Vite;
 use Symfony\Component\HttpFoundation\Response;
@@ -112,6 +113,11 @@ class SecurityHeaders
             $csp['connect-src'][] = "http://127.0.0.1:{$vitePort}";
         }
 
+        // The debug bar's Alpine components evaluate their x-data expressions, which needs eval.
+        if ($this->isDebugBarActive() && ! in_array("'unsafe-eval'", $csp['script-src'], true)) {
+            $csp['script-src'][] = "'unsafe-eval'";
+        }
+
         // Build CSP directive strings
         $directives = [];
 
@@ -133,6 +139,15 @@ class SecurityHeaders
     protected function isViteRunningHot(): bool
     {
         return Vite::isRunningHot();
+    }
+
+    /**
+     * Determine if New Debug Bar renders on this request, mirroring the package's own check.
+     */
+    protected function isDebugBarActive(): bool
+    {
+        return Config::boolean('newdebugbar.enabled', false)
+            && app()->environment(Config::array('newdebugbar.environments', []));
     }
 
     /**
