@@ -1,15 +1,9 @@
 # Secret scanning (Betterleaks), static analysis for malicious code (Semgrep),
-# and vulnerable or malicious dependencies (OSV-Scanner). Semgrep and OSV
-# results go to the repository's code scanning tab.
+# and vulnerable or malicious dependencies (OSV-Scanner). Findings are in the
+# job log and the run summary; a job fails when it finds something.
 #
-# Runs on main as well as on PRs so code scanning has a base-branch analysis
-# to compare PR results against, and weekly to catch newly published advisories.
-# The secrets job is PR-only.
-#
-# Code scanning upload: on by default for public repos. Private repos need
-# GitHub Code Security (Team/Enterprise plan); set the repository variable
-# CODE_SCANNING_UPLOAD=true there to enable it. Without it, findings are still
-# in the job log and run summary, and the jobs still fail on findings.
+# Runs on main and weekly as well as on PRs, to catch issues from updated
+# Semgrep rules and newly published advisories. The secrets job is PR-only.
 
 name: Security
 
@@ -53,18 +47,13 @@ jobs:
             --log-opts="${BASE_SHA}..${HEAD_SHA}" \
             --redact -v
 
-  # Runs on Dependabot PRs too: it is a required code scanning tool, so a PR
-  # without its results cannot merge.
   semgrep:
     runs-on: ubuntu-24.04
-    permissions:
-      contents: read
-      security-events: write
     container:
       image: semgrep/semgrep:1.185.0@sha256:67518c174185a2043fdbed16c70631b79209499b3671178e7194379b48295a0d
     # --no-git-ignore: a file force-added despite .gitignore is still scanned.
     # --disable-nosem: inline `nosemgrep` comments cannot silence a finding;
-    # change the rule on main or dismiss the alert in code scanning instead.
+    # fix a false positive by changing the rule on main instead.
     env:
       SEMGREP_FLAGS: >-
         --config p/php
@@ -124,23 +113,15 @@ jobs:
           semgrep scan --config /tmp/base/.semgrep/rules $SEMGREP_FLAGS \
             --baseline-commit "$BASE_SHA" \
             --error \
-            --sarif-output=semgrep.sarif \
             --text-output=semgrep.txt
 
-      # upload-sarif reports `git rev-parse HEAD`, so drop the throwaway
-      # .semgrepignore commit before uploading.
-      - name: Restore checkout (PR)
-        if: always() && github.event_name == 'pull_request'
-        run: git reset -q --hard "$GITHUB_SHA"
-
-      # main and scheduled runs report everything without failing, as the
-      # code scanning baseline.
+      # main and scheduled runs scan everything.
       - name: Scan repository (main)
         if: github.event_name != 'pull_request'
         run: |
           # shellcheck disable=SC2086 # SEMGREP_FLAGS is a list of flags
           semgrep scan --config .semgrep/rules $SEMGREP_FLAGS \
-            --sarif-output=semgrep.sarif \
+            --error \
             --text-output=semgrep.txt
 
       - name: Write run summary
@@ -157,18 +138,8 @@ jobs:
             fi
           } >> "$GITHUB_STEP_SUMMARY"
 
-      - name: Upload results to code scanning
-        if: always() && hashFiles('semgrep.sarif') != '' && (github.event.repository.private == false || vars.CODE_SCANNING_UPLOAD == 'true')
-        uses: github/codeql-action/upload-sarif@33d7b85da1a04171e211befe2c739303b9a4c066 # v4.39.3
-        with:
-          sarif_file: semgrep.sarif
-          category: semgrep
-
   osv-scanner:
     runs-on: ubuntu-24.04
-    permissions:
-      contents: read
-      security-events: write
     steps:
       - name: Checkout repository
         uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
@@ -213,21 +184,9 @@ jobs:
             --config "$OSV_SCANNER_CONFIG" \
             --lockfile composer.lock \
             --lockfile pnpm-lock.yaml \
-            --format sarif --output-file osv.sarif || status=$?
-          osv-scanner scan source \
-            --config "$OSV_SCANNER_CONFIG" \
-            --lockfile composer.lock \
-            --lockfile pnpm-lock.yaml \
-            --format markdown --output-file osv.md || true
+            --format markdown --output-file osv.md || status=$?
           {
             echo '## OSV-Scanner'
             if [ -s osv.md ]; then cat osv.md; else echo 'No issues found.'; fi
           } | tee -a "$GITHUB_STEP_SUMMARY"
           exit "$status"
-
-      - name: Upload results to code scanning
-        if: always() && hashFiles('osv.sarif') != '' && (github.event.repository.private == false || vars.CODE_SCANNING_UPLOAD == 'true')
-        uses: github/codeql-action/upload-sarif@33d7b85da1a04171e211befe2c739303b9a4c066 # v4.39.3
-        with:
-          sarif_file: osv.sarif
-          category: osv-scanner
