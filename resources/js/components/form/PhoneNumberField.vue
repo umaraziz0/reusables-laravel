@@ -14,13 +14,13 @@ import {
   ComboboxTrigger,
   ComboboxViewport,
 } from '@/components/ui/combobox';
+import { Field, FieldLabel } from '@/components/ui/field';
 import {
   InputGroup,
   InputGroupAddon,
   InputGroupButton,
   InputGroupInput,
 } from '@/components/ui/input-group';
-import { Label } from '@/components/ui/label';
 import { useFieldIds } from '@/composables/useFieldIds';
 import {
   COUNTRIES,
@@ -192,13 +192,17 @@ const { descriptionId, errorId, describedBy } = useFieldIds({
 </script>
 
 <template>
-  <div :class="cn('grid gap-2', props.class)" data-slot="phone-number-field">
-    <Label :for="inputId" :class="cn('gap-1', hideLabel && 'sr-only')">
+  <Field
+    :class="props.class"
+    :data-invalid="error ? true : undefined"
+    :data-disabled="disabled ? true : undefined"
+  >
+    <FieldLabel :for="inputId" :class="cn('gap-1', hideLabel && 'sr-only')">
       {{ label }}
       <span v-if="required" aria-hidden="true" class="text-destructive">
         *
       </span>
-    </Label>
+    </FieldLabel>
 
     <Combobox v-model="selectedCountryCode" :disabled="disabled">
       <ComboboxAnchor as-child :class="cn('w-full', groupClass)">
@@ -302,5 +306,5 @@ const { descriptionId, errorId, describedBy } = useFieldIds({
       :error="error"
       :error-id="errorId"
     />
-  </div>
+  </Field>
 </template>

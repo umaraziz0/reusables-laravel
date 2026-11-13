@@ -7,7 +7,7 @@ describe('FieldFeedback', () => {
   it('renders nothing without a description, error, or slot', () => {
     const wrapper = mount(FieldFeedback);
 
-    expect(wrapper.find('p').exists()).toBe(false);
+    expect(wrapper.find('[data-slot]').exists()).toBe(false);
   });
 
   it('renders the description with its id', () => {
@@ -18,7 +18,7 @@ describe('FieldFeedback', () => {
       },
     });
 
-    const feedback = wrapper.get('p');
+    const feedback = wrapper.get('[data-slot="field-description"]');
     expect(feedback.text()).toBe('Shown only once.');
     expect(feedback.attributes('id')).toBe('token-description');
     expect(feedback.attributes('role')).toBeUndefined();
@@ -34,7 +34,7 @@ describe('FieldFeedback', () => {
       },
     });
 
-    const feedback = wrapper.get('p');
+    const feedback = wrapper.get('[data-slot="field-error"]');
     expect(feedback.text()).toBe('Token is required.');
     expect(feedback.attributes('id')).toBe('token-error');
     expect(feedback.attributes('role')).toBe('alert');
@@ -46,7 +46,7 @@ describe('FieldFeedback', () => {
       slots: { default: '<strong>Rich text</strong>' },
     });
 
-    const feedback = wrapper.get('p');
+    const feedback = wrapper.get('[data-slot="field-description"]');
     expect(feedback.html()).toContain('<strong>Rich text</strong>');
     expect(feedback.text()).not.toContain('Plain text');
   });
@@ -56,6 +56,8 @@ describe('FieldFeedback', () => {
       slots: { default: 'Slot only' },
     });
 
-    expect(wrapper.get('p').text()).toBe('Slot only');
+    expect(wrapper.get('[data-slot="field-description"]').text()).toBe(
+      'Slot only',
+    );
   });
 });

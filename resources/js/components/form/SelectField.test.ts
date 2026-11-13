@@ -155,6 +155,7 @@ describe('SelectField', () => {
     expect(trigger.attributes('aria-describedby')).toBe('plan-error');
     expect(trigger.attributes('aria-invalid')).toBe('true');
     expect(wrapper.get('#plan-error').text()).toBe('Choose a plan.');
+    expect(wrapper.attributes('data-invalid')).toBe('true');
   });
 
   it('shows the placeholder until a value is chosen', () => {

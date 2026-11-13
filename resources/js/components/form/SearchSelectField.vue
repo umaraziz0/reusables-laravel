@@ -16,7 +16,7 @@ import {
   ComboboxTrigger,
   ComboboxViewport,
 } from '@/components/ui/combobox';
-import { Label } from '@/components/ui/label';
+import { Field, FieldLabel } from '@/components/ui/field';
 import { useFieldIds } from '@/composables/useFieldIds';
 
 import FieldFeedback from './FieldFeedback.vue';
@@ -122,13 +122,17 @@ function labelFor(value: string | number): string | undefined {
 </script>
 
 <template>
-  <div :class="cn('grid gap-2', props.class)" data-slot="search-select-field">
-    <Label :for="triggerId" :class="cn('gap-1', hideLabel && 'sr-only')">
+  <Field
+    :class="props.class"
+    :data-invalid="error ? true : undefined"
+    :data-disabled="disabled ? true : undefined"
+  >
+    <FieldLabel :for="triggerId" :class="cn('gap-1', hideLabel && 'sr-only')">
       {{ label }}
       <span v-if="required" aria-hidden="true" class="text-destructive">
         *
       </span>
-    </Label>
+    </FieldLabel>
 
     <Combobox
       v-model="model"
@@ -200,5 +204,5 @@ function labelFor(value: string | number): string | undefined {
       :error="error"
       :error-id="errorId"
     />
-  </div>
+  </Field>
 </template>

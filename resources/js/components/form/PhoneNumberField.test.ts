@@ -201,6 +201,7 @@ describe('PhoneNumberField', () => {
     expect(wrapper.get('#phone-error').text()).toBe(
       'Enter a valid phone number.',
     );
+    expect(wrapper.attributes('data-invalid')).toBe('true');
   });
 
   it('shows the primary country for a dial code several countries share', () => {

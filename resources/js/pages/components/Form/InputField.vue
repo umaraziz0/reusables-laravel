@@ -6,6 +6,12 @@ import { formInputField } from '@/actions/App/Http/Controllers/ComponentPreviewC
 // --- Components --- //
 import InputField from '@/components/form/InputField.vue';
 import Heading from '@/components/Heading.vue';
+import {
+  FieldDescription,
+  FieldGroup,
+  FieldLegend,
+  FieldSet,
+} from '@/components/ui/field';
 
 // --- Props --- //
 
@@ -141,7 +147,7 @@ const email = ref('');
       <InputField
         name="custom-width"
         placeholder="Custom width"
-        input-class="w-72"
+        class="max-w-72"
         label="Custom width"
       />
     </div>
@@ -175,6 +181,40 @@ const email = ref('');
         placeholder="jane@example.com"
         description="Try jane@gmial.com, then move focus away."
       />
+    </div>
+
+    <div class="space-y-3 md:col-span-2 2xl:col-span-3">
+      <h4
+        class="text-xs font-medium tracking-wide text-muted-foreground uppercase"
+      >
+        Field set
+      </h4>
+      <FieldSet class="max-w-xl">
+        <FieldLegend>Shipping address</FieldLegend>
+        <FieldDescription>Where should we deliver your order?</FieldDescription>
+        <FieldGroup>
+          <InputField
+            label="Street address"
+            name="street_address"
+            autocomplete="street-address"
+            required
+          />
+          <div class="grid grid-cols-1 gap-7 sm:grid-cols-2">
+            <InputField
+              label="City"
+              name="city"
+              autocomplete="address-level2"
+              required
+            />
+            <InputField
+              label="Postal code"
+              name="postal_code"
+              autocomplete="postal-code"
+              error="Enter a valid postal code."
+            />
+          </div>
+        </FieldGroup>
+      </FieldSet>
     </div>
   </div>
 </template>

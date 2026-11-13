@@ -2,7 +2,7 @@
 import { cn } from 'cn';
 import { computed, type HTMLAttributes } from 'vue';
 
-import { Label } from '@/components/ui/label';
+import { Field, FieldLabel } from '@/components/ui/field';
 import {
   Select,
   SelectContent,
@@ -46,6 +46,7 @@ const props = defineProps<{
   disabled?: boolean;
   defaultValue?: string | number;
   class?: HTMLAttributes['class'];
+  /** Styles the trigger itself. Set widths on `class`: Field forces its children to full width. */
   triggerClass?: HTMLAttributes['class'];
   ariaDescribedby?: string;
   ariaInvalid?: boolean | 'true' | 'false';
@@ -66,13 +67,17 @@ const { descriptionId, errorId, describedBy } = useFieldIds({
 </script>
 
 <template>
-  <div :class="cn('grid gap-2', props.class)" data-slot="select-field">
-    <Label :for="selectId" :class="cn('gap-1', hideLabel && 'sr-only')">
+  <Field
+    :class="props.class"
+    :data-invalid="error ? true : undefined"
+    :data-disabled="disabled ? true : undefined"
+  >
+    <FieldLabel :for="selectId" :class="cn('gap-1', hideLabel && 'sr-only')">
       {{ label }}
       <span v-if="required" aria-hidden="true" class="text-destructive">
         *
       </span>
-    </Label>
+    </FieldLabel>
 
     <Select
       v-model="model"
@@ -111,5 +116,5 @@ const { descriptionId, errorId, describedBy } = useFieldIds({
       :error="error"
       :error-id="errorId"
     />
-  </div>
+  </Field>
 </template>

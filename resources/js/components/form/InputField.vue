@@ -7,8 +7,8 @@ import {
   type InputTypeHTMLAttribute,
 } from 'vue';
 
+import { Field, FieldLabel } from '@/components/ui/field';
 import { Input } from '@/components/ui/input';
-import { Label } from '@/components/ui/label';
 import { useFieldIds } from '@/composables/useFieldIds';
 
 import FieldFeedback from './FieldFeedback.vue';
@@ -27,8 +27,10 @@ const props = defineProps<{
   error?: string;
   hideLabel?: boolean;
   required?: boolean;
+  disabled?: boolean;
   defaultValue?: string | number;
   class?: HTMLAttributes['class'];
+  /** Styles the input itself. Set widths on `class`: Field forces its children to full width. */
   inputClass?: HTMLAttributes['class'];
   ariaDescribedby?: string;
   ariaInvalid?: boolean | 'true' | 'false';
@@ -49,17 +51,11 @@ const emailSpellingListeners = computed(() =>
 
 const inputId = computed(() => props.id ?? props.name);
 
-const feedbackDescription = computed(() =>
-  emailSuggestion.value
-    ? `Did you mean ${emailSuggestion.value}?`
-    : props.description,
-);
-
 // --- Hooks --- //
 
 const { descriptionId, errorId, describedBy } = useFieldIds({
   id: inputId,
-  description: feedbackDescription,
+  description: () => emailSuggestion.value ?? props.description,
   error: () => props.error,
   ariaDescribedby: () => props.ariaDescribedby,
 });
@@ -103,13 +99,17 @@ function applyEmailSuggestion(): void {
 </script>
 
 <template>
-  <div :class="cn('grid gap-2', props.class)" data-slot="input-field">
-    <Label :for="inputId" :class="cn('gap-1', hideLabel && 'sr-only')">
+  <Field
+    :class="props.class"
+    :data-invalid="error ? true : undefined"
+    :data-disabled="disabled ? true : undefined"
+  >
+    <FieldLabel :for="inputId" :class="cn('gap-1', hideLabel && 'sr-only')">
       {{ label }}
       <span v-if="required" aria-hidden="true" class="text-destructive">
         *
       </span>
-    </Label>
+    </FieldLabel>
 
     <Input
       :id="inputId"
@@ -119,6 +119,7 @@ function applyEmailSuggestion(): void {
       :aria-describedby="describedBy"
       :aria-invalid="error ? 'true' : ariaInvalid"
       :required="required"
+      :disabled="disabled"
       :type="type"
       :default-value="defaultValue"
       v-bind="$attrs"
@@ -126,12 +127,12 @@ function applyEmailSuggestion(): void {
     />
 
     <FieldFeedback
-      :description="feedbackDescription"
+      :description="description"
       :description-id="descriptionId"
       :error="error"
       :error-id="errorId"
     >
-      <template v-if="emailSuggestion && !error" #default>
+      <template v-if="emailSuggestion" #default>
         <span role="status">
           Did you mean
           <button
@@ -144,5 +145,5 @@ function applyEmailSuggestion(): void {
         </span>
       </template>
     </FieldFeedback>
-  </div>
+  </Field>
 </template>

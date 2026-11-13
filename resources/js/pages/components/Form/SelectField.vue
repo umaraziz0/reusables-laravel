@@ -197,8 +197,8 @@ const plan = ref<string | number>();
       <SelectField
         label="Custom width"
         name="custom-width"
+        class="max-w-48"
         placeholder="Custom width"
-        trigger-class="w-48"
         :options="planOptions"
       />
     </div>
