@@ -84,6 +84,7 @@ describe('InputGroupField', () => {
     expect(wrapper.get('#username-error').text()).toBe(
       'Username must be at least 3 characters.',
     );
+    expect(wrapper.attributes('data-invalid')).toBe('true');
   });
 
   it('emits typed values through v-model', async () => {

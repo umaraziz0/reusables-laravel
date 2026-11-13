@@ -6,12 +6,12 @@ import {
   type InputTypeHTMLAttribute,
 } from 'vue';
 
+import { Field, FieldLabel } from '@/components/ui/field';
 import {
   InputGroup,
   InputGroupAddon,
   InputGroupInput,
 } from '@/components/ui/input-group';
-import { Label } from '@/components/ui/label';
 import { useFieldIds } from '@/composables/useFieldIds';
 
 import FieldFeedback from './FieldFeedback.vue';
@@ -36,6 +36,7 @@ const props = defineProps<{
   disabled?: boolean;
   defaultValue?: string | number;
   class?: HTMLAttributes['class'];
+  /** Styles the group itself. Set widths on `class`: Field forces its children to full width. */
   groupClass?: HTMLAttributes['class'];
   inputClass?: HTMLAttributes['class'];
   ariaDescribedby?: string;
@@ -58,13 +59,13 @@ const { descriptionId, errorId, describedBy } = useFieldIds({
 </script>
 
 <template>
-  <div :class="cn('grid gap-2', props.class)" data-slot="input-group-field">
-    <Label :for="inputId" :class="cn('gap-1', hideLabel && 'sr-only')">
+  <Field :class="props.class" :data-invalid="error ? true : undefined">
+    <FieldLabel :for="inputId" :class="cn('gap-1', hideLabel && 'sr-only')">
       {{ label }}
       <span v-if="required" aria-hidden="true" class="text-destructive">
         *
       </span>
-    </Label>
+    </FieldLabel>
 
     <InputGroup :class="groupClass" :data-disabled="disabled || undefined">
       <InputGroupInput
@@ -104,5 +105,5 @@ const { descriptionId, errorId, describedBy } = useFieldIds({
       :error="error"
       :error-id="errorId"
     />
-  </div>
+  </Field>
 </template>
