@@ -50,6 +50,20 @@ test('csp allows the vite dev server stylesheet while it runs outside local', fu
         ->and($csp)->toMatch('/(?:^|;)\\s*script-src\\b[^;]*http:\\/\\/localhost:5173/');
 });
 
+test('csp allows eval only while the debug bar is active', function (string $environment, bool $isEnabled, bool $allowsEval): void {
+    // The debug bar's Alpine components evaluate x-data expressions with eval.
+    $this->app->detectEnvironment(fn (): string => $environment);
+    config(['newdebugbar.enabled' => $isEnabled]);
+
+    $csp = contentSecurityPolicy(isViteRunningHot: false);
+
+    expect(str_contains((string) $csp, "'unsafe-eval'"))->toBe($allowsEval);
+})->with([
+    'enabled locally'     => ['local', true, true],
+    'disabled locally'    => ['local', false, false],
+    'enabled outside dev' => ['production', true, false],
+]);
+
 test('csp is not applied to api paths', function (): void {
     $response = $this->getJson('/api/nonexistent-endpoint');
 

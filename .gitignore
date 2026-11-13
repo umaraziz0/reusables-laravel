@@ -50,6 +50,7 @@ yarn-error.log
 
 **/caddy
 frankenphp
+frankenphp.backup
 frankenphp-worker.php
 
 .pnpm-store
