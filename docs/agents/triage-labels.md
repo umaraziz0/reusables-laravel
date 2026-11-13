@@ -1,5 +1,5 @@
-- Updated At: 2026-09-10 16:41:42
-- Reviewed By: cursor-grok-4.6-medium
+- Updated At: 2026-11-13 16:00:15
+- Reviewed By: anthropic/claude-opus-5-5-low
 
 # Triage Labels
 
@@ -15,4 +15,4 @@ The skills speak in terms of five canonical triage roles. This file maps those r
 
 When a skill mentions a role (e.g. "apply the AFK-ready triage label"), use the corresponding label string from this table.
 
-Edit the right-hand column to match whatever vocabulary you actually use.
+Edit the "Label in our tracker" column to match whatever vocabulary you actually use.

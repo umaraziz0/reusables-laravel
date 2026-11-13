@@ -1,5 +1,16 @@
-## Task-triggered guidance - **Triaging or publishing work:** Use GitHub Issues via `gh`; first read
-`docs/agents/issue-tracker.md`. External PRs are not a triage surface. - **Applying triage labels:** First read
-`docs/agents/triage-labels.md`. Default labels: `needs-triage`, `needs-info`, `ready-for-agent`, `ready-for-human`,
-`wontfix`. - **Exploring domain behavior:** Read `GLOSSARY-MAP.md` when present, otherwise `GLOSSARY.md`; read relevant
-ADRs. If glossaries or ADRs are absent, continue silently. See `docs/agents/domain.md` for details.
+{{-- Kept verbatim so Pint's laravel_blade rule (pre-commit) doesn't reflow the Markdown. --}}
+@verbatim
+## Agent skills
+
+### Issue tracker
+
+Issues live in GitHub Issues for `umaraziz0/reusables-laravel`, managed with the `gh` CLI. See `docs/agents/issue-tracker.md`.
+
+### Triage labels
+
+The five default labels, each named after its role: `needs-triage`, `needs-info`, `ready-for-agent`, `ready-for-human`, `wontfix`. See `docs/agents/triage-labels.md`.
+
+### Domain docs
+
+Single-context: one `GLOSSARY.md` and `docs/adr/` at the repo root. See `docs/agents/domain.md`.
+@endverbatim
