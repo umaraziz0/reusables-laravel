@@ -54,7 +54,7 @@ jobs:
         run: pnpm install --frozen-lockfile --ignore-scripts
 
       - name: Install Dependencies
-        run: composer install --no-interaction --prefer-dist --optimize-autoloader
+        run: composer install --no-interaction --no-scripts --prefer-dist --optimize-autoloader
 
       - name: Prepare Laravel (Wayfinder needs APP_KEY)
         run: |
