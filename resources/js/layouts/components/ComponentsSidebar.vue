@@ -7,6 +7,7 @@ import {
   LetterText,
   ListChevronsUpDown,
   Phone,
+  SquareCheckBig,
   SquarePower,
   Tag,
   TextCursorInput,
@@ -14,6 +15,7 @@ import {
 } from '@lucide/vue';
 
 import {
+  formCheckboxField,
   formInputField,
   formInputGroupField,
   formPhoneNumberField,
@@ -95,6 +97,11 @@ const componentNavItems: NavItem[] = [
         title: 'Textarea Field',
         href: formTextareaField(),
         icon: LetterText,
+      },
+      {
+        title: 'Checkbox Field',
+        href: formCheckboxField(),
+        icon: SquareCheckBig,
       },
     ],
   },
