@@ -1,5 +1,21 @@
 # Changelog
 
+## [0.6.0](https://github.com/umaraziz0/reusables-laravel/compare/reusables-laravel-v0.5.0...reusables-laravel-v0.6.0) (2026-11-14)
+
+
+### Features
+
+* **components:** add `CheckboxField` with boolean v-model ([2ad9b78](https://github.com/umaraziz0/reusables-laravel/commit/2ad9b780fa582c9532f9161482a7fc9e2976efd2))
+* **components:** add `CheckboxField` with boolean v-model ([1d90fb8](https://github.com/umaraziz0/reusables-laravel/commit/1d90fb8df94dcbea18e1b68f862cf3de1a671cbf))
+* **components:** add `RadioField` built on shadcn `RadioGroup` ([9d2c0f3](https://github.com/umaraziz0/reusables-laravel/commit/9d2c0f377738546562b143688a7adce1060ad691))
+* **components:** add `RadioField` built on shadcn `RadioGroup` ([1900a2d](https://github.com/umaraziz0/reusables-laravel/commit/1900a2dc37bf17ec30c57c42d40332d49ede5c0e))
+* **components:** add shadcn `radio-group` ([135b5b0](https://github.com/umaraziz0/reusables-laravel/commit/135b5b0d0f27b1a0245e831d31b0994a2a442684))
+
+
+### Bug Fixes
+
+* **components:** link `RadioField` option descriptions to their radios ([5fefb23](https://github.com/umaraziz0/reusables-laravel/commit/5fefb2309763e1f63ff38b6cae033a811939985f))
+
 ## [0.5.0](https://github.com/umaraziz0/reusables-laravel/compare/reusables-laravel-v0.4.0...reusables-laravel-v0.5.0) (2026-11-14)
 
 
