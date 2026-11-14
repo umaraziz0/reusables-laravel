@@ -3,6 +3,7 @@ import { Link } from '@inertiajs/vue3';
 import {
   AlertCircle,
   ChevronDown,
+  CircleDot,
   FormInput,
   LetterText,
   ListChevronsUpDown,
@@ -19,6 +20,7 @@ import {
   formInputField,
   formInputGroupField,
   formPhoneNumberField,
+  formRadioField,
   formSearchSelectField,
   formSelectField,
   formTextareaField,
@@ -102,6 +104,11 @@ const componentNavItems: NavItem[] = [
         title: 'Checkbox Field',
         href: formCheckboxField(),
         icon: SquareCheckBig,
+      },
+      {
+        title: 'Radio Field',
+        href: formRadioField(),
+        icon: CircleDot,
       },
     ],
   },
