@@ -16,7 +16,7 @@ rules:
 
   - id: js-eval
     message: >-
-      eval()/new Function()/string timers execute strings as code. Replace
+      eval()/new Function()/vm/string timers execute strings as code. Replace
       with explicit code.
     severity: ERROR
     languages: [javascript, typescript]
@@ -27,6 +27,11 @@ rules:
       - pattern: eval(...)
       - pattern: new Function(...)
       - pattern: Function(...)
+      - pattern: $VM.runInThisContext(...)
+      - pattern: $VM.runInNewContext(...)
+      - pattern: $VM.runInContext(...)
+      - pattern: $VM.compileFunction(...)
+      - pattern: new $VM.Script(...)
       - pattern: setTimeout("...", ...)
       - pattern: setInterval("...", ...)
 
