@@ -96,7 +96,7 @@ describe('RadioField', () => {
     expect(wrapper.get('legend').classes()).toContain('sr-only');
   });
 
-  it('shows an option description under its label', () => {
+  it('describes an option radio with the description under its label', () => {
     const wrapper = mount(RadioField, {
       props: {
         label: 'Delivery',
@@ -107,11 +107,18 @@ describe('RadioField', () => {
             label: 'Express',
             description: 'Next business day',
           },
+          { value: 'pickup', label: 'Pickup' },
         ],
       },
     });
 
-    expect(wrapper.get('[data-slot="field-description"]').text()).toBe(
+    expect(
+      wrapper.get('#delivery-express').attributes('aria-describedby'),
+    ).toBe('delivery-express-description');
+    expect(
+      wrapper.get('#delivery-pickup').attributes('aria-describedby'),
+    ).toBeUndefined();
+    expect(wrapper.get('#delivery-express-description').text()).toBe(
       'Next business day',
     );
   });

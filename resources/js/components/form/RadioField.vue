@@ -76,6 +76,10 @@ const { descriptionId, errorId, describedBy } = useFieldIds({
 function optionId(option: RadioFieldOption): string {
   return `${groupId.value}-${option.value}`;
 }
+
+function optionDescriptionId(option: RadioFieldOption): string | undefined {
+  return option.description ? `${optionId(option)}-description` : undefined;
+}
 </script>
 
 <template>
@@ -127,13 +131,16 @@ function optionId(option: RadioFieldOption): string {
             :value="option.value"
             :disabled="option.disabled"
             :aria-invalid="error ? 'true' : undefined"
+            :aria-describedby="optionDescriptionId(option)"
           />
 
           <FieldContent v-if="option.description">
             <FieldLabel :for="optionId(option)" class="font-normal">
               {{ option.label }}
             </FieldLabel>
-            <FieldDescription>{{ option.description }}</FieldDescription>
+            <FieldDescription :id="optionDescriptionId(option)">
+              {{ option.description }}
+            </FieldDescription>
           </FieldContent>
 
           <FieldLabel v-else :for="optionId(option)" class="font-normal">
