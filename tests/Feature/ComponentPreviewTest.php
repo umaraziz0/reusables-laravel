@@ -51,6 +51,7 @@ test('component preview pages require authentication', function (string $routeNa
     'form search select field' => 'components.form.search-select-field',
     'form textarea field'      => 'components.form.textarea-field',
     'form checkbox field'      => 'components.form.checkbox-field',
+    'form radio field'         => 'components.form.radio-field',
 ]);
 
 test('component preview pages require superadmin role', function (string $routeName): void {
@@ -71,6 +72,7 @@ test('component preview pages require superadmin role', function (string $routeN
     'form search select field' => 'components.form.search-select-field',
     'form textarea field'      => 'components.form.textarea-field',
     'form checkbox field'      => 'components.form.checkbox-field',
+    'form radio field'         => 'components.form.radio-field',
 ]);
 
 test('superadmin can view component preview pages', function (string $routeName): void {
@@ -92,4 +94,5 @@ test('superadmin can view component preview pages', function (string $routeName)
     'form search select field' => 'components.form.search-select-field',
     'form textarea field'      => 'components.form.textarea-field',
     'form checkbox field'      => 'components.form.checkbox-field',
+    'form radio field'         => 'components.form.radio-field',
 ]);

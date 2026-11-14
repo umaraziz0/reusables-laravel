@@ -71,4 +71,9 @@ class ComponentPreviewController extends Controller
     {
         return Inertia::render('components/Form/CheckboxField');
     }
+
+    public function formRadioField(): Response
+    {
+        return Inertia::render('components/Form/RadioField');
+    }
 }
