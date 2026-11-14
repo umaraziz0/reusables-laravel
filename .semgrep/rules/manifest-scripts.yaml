@@ -46,3 +46,33 @@ rules:
       - metavariable-regex:
           metavariable: $SCRIPT
           regex: (?i)^.*(\bcurl\b|\bwget\b|https?://|base64|\|\s*(ba|z)?sh\b|\beval\b|\bnode\s+-e\b|\bpython3?\s+-c\b|\bbash\s+-c\b)
+
+  - id: composer-event-script
+    message: >-
+      composer.json gains a Composer event script. It runs on every
+      `composer install`/`update`, on developer machines and CI, before any
+      review of what it does.
+    severity: ERROR
+    languages: [json]
+    metadata:
+      category: security
+      cwe: 'CWE-506: Embedded Malicious Code'
+    paths:
+      include:
+        - composer.json
+    patterns:
+      - pattern-inside: |
+          "scripts": {...}
+      - pattern-either:
+          - pattern: |
+              "$HOOK": [..., "$COMMAND", ...]
+          - pattern: |
+              "$HOOK": "$COMMAND"
+      - metavariable-regex:
+          metavariable: $HOOK
+          regex: ^"?(pre|post)-[a-z-]+"?$
+      # The Laravel skeleton's own event scripts are the ones this project
+      # expects.
+      - metavariable-regex:
+          metavariable: $COMMAND
+          regex: ^(?!"?(Illuminate\\\\Foundation\\\\ComposerScripts::(postAutoloadDump|prePackageUninstall)|@php artisan (package:discover --ansi|vendor:publish --tag=laravel-assets --ansi --force|ide-helper:generate|ide-helper:models -RW|sloppy:rules --format=markdown --output=docs/agents/sloppy-rules\.md -n|boost:update --ansi -n|key:generate --ansi|migrate --graceful --ansi)|@php -r \\"file_exists\('(\.env|database/database\.sqlite)'\) \|\| (copy\('\.env\.example', '\.env'\)|touch\('database/database\.sqlite'\));\\")"?$)
