@@ -4,6 +4,7 @@ import {
   AlertCircle,
   ChevronDown,
   FormInput,
+  LetterText,
   ListChevronsUpDown,
   Phone,
   SquarePower,
@@ -18,6 +19,7 @@ import {
   formPhoneNumberField,
   formSearchSelectField,
   formSelectField,
+  formTextareaField,
 } from '@/actions/App/Http/Controllers/ComponentPreviewController';
 // --- Types --- //
 import {
@@ -88,6 +90,11 @@ const componentNavItems: NavItem[] = [
         title: 'Search Select Field',
         href: formSearchSelectField(),
         icon: TextSearch,
+      },
+      {
+        title: 'Textarea Field',
+        href: formTextareaField(),
+        icon: LetterText,
       },
     ],
   },

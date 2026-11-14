@@ -61,4 +61,9 @@ class ComponentPreviewController extends Controller
     {
         return Inertia::render('components/Form/SearchSelectField');
     }
+
+    public function formTextareaField(): Response
+    {
+        return Inertia::render('components/Form/TextareaField');
+    }
 }
