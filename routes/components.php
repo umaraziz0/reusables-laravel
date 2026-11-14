@@ -27,5 +27,7 @@ Route::middleware(['auth', 'role:superadmin'])
                 ->name('components.form.search-select-field');
             Route::get('textarea-field', [ComponentPreviewController::class, 'formTextareaField'])
                 ->name('components.form.textarea-field');
+            Route::get('checkbox-field', [ComponentPreviewController::class, 'formCheckboxField'])
+                ->name('components.form.checkbox-field');
         });
     });
