@@ -49,6 +49,7 @@ test('component preview pages require authentication', function (string $routeNa
     'form phone number field'  => 'components.form.phone-number-field',
     'form select field'        => 'components.form.select-field',
     'form search select field' => 'components.form.search-select-field',
+    'form textarea field'      => 'components.form.textarea-field',
 ]);
 
 test('component preview pages require superadmin role', function (string $routeName): void {
@@ -67,6 +68,7 @@ test('component preview pages require superadmin role', function (string $routeN
     'form phone number field'  => 'components.form.phone-number-field',
     'form select field'        => 'components.form.select-field',
     'form search select field' => 'components.form.search-select-field',
+    'form textarea field'      => 'components.form.textarea-field',
 ]);
 
 test('superadmin can view component preview pages', function (string $routeName): void {
@@ -86,4 +88,5 @@ test('superadmin can view component preview pages', function (string $routeName)
     'form phone number field'  => 'components.form.phone-number-field',
     'form select field'        => 'components.form.select-field',
     'form search select field' => 'components.form.search-select-field',
+    'form textarea field'      => 'components.form.textarea-field',
 ]);
