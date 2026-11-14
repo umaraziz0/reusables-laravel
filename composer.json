@@ -81,7 +81,9 @@
       "@php artisan migrate --env=testing --force",
       "@php artisan storage:link",
       "pnpm install",
-      "pnpm exec lefthook install"
+      "pnpm exec lefthook install",
+      "@php artisan boost:update --ansi -n",
+      "pnpm dlx skills@1.8.1 experimental_install --frozen-lockfile -a claude-code cursor opencode codex pi"
     ],
     "dev": [
       "Composer\\Config::disableProcessTimeout",

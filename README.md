@@ -129,6 +129,7 @@ Failed queue jobs send `App\Mail\FailedJobNotification` (template: `resources/vi
 #### AI Agent Tooling
 
 - [Laravel Boost](https://github.com/laravel/boost) - MCP server & skill management
+- [skills](https://github.com/vercel-labs/skills) - installs the extra agent skills pinned in `skills-lock.json` (pnpm, shadcn-vue, Vue, TypeScript, …)
 
 <br />
 
@@ -151,6 +152,7 @@ This script automatically:
 - Creates the `storage` symlink
 - Installs Node dependencies via pnpm
 - Installs the Lefthook Git hooks
+- Installs the Laravel Boost guidelines & skills and the extra agent skills from `skills-lock.json`
 
 After setup, ensure **[Betterleaks](https://github.com/betterleaks/betterleaks)** is installed on your machine so the pre-commit secret scan can run (for example: `brew install betterleaks` on macOS).
 
@@ -181,6 +183,13 @@ If you prefer manual installation:
    php artisan migrate
    php artisan migrate --env=testing
    php artisan storage:link
+   ```
+
+4. **AI Agent Skills**
+
+   ```bash
+   php artisan boost:update -n
+   pnpm dlx skills@1.8.1 experimental_install --frozen-lockfile -a claude-code cursor opencode codex pi
    ```
 
 <br />
