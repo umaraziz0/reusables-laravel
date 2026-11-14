@@ -1,5 +1,22 @@
 # Changelog
 
+## [0.5.0](https://github.com/umaraziz0/reusables-laravel/compare/reusables-laravel-v0.4.0...reusables-laravel-v0.5.0) (2026-11-14)
+
+
+### Features
+
+* **components:** add `TextareaField` with optional character counter ([e5b541b](https://github.com/umaraziz0/reusables-laravel/commit/e5b541b9a9c6575b31c80c26a4e4038e6ce58fab))
+* **components:** add `TextareaField` with optional character counter ([7f0588e](https://github.com/umaraziz0/reusables-laravel/commit/7f0588e469d69c584aafc6f22d71c726e2f048c4))
+* **components:** add shadcn-vue `Field` ([80e3cc5](https://github.com/umaraziz0/reusables-laravel/commit/80e3cc527db502ce199ea452edf9c76c0f25e32a))
+
+
+### Bug Fixes
+
+* **components:** give `InputField` a `disabled` prop so Field dims the label ([63de974](https://github.com/umaraziz0/reusables-laravel/commit/63de974f9d7d844d31ae9182d78d2a112152879e))
+* **components:** mark form fields data-disabled so Field dims the label ([a90921c](https://github.com/umaraziz0/reusables-laravel/commit/a90921c3803559d9de665169f8076cb7632287ff))
+* **security:** allow eval in CSP while New Debug Bar is active ([9081c42](https://github.com/umaraziz0/reusables-laravel/commit/9081c42e11a31e780f0fa86b8aee43088b218d08))
+* **security:** allow eval in CSP while New Debug Bar is active ([cbcdf5a](https://github.com/umaraziz0/reusables-laravel/commit/cbcdf5a1c972314451869ce3d5d9ac57e0661d94))
+
 ## [0.4.0](https://github.com/umaraziz0/reusables-laravel/compare/reusables-laravel-v0.3.0...reusables-laravel-v0.4.0) (2026-11-13)
 
 
