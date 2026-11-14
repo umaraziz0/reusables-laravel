@@ -6,6 +6,7 @@ use App\Enums\Ability\UserAbility;
 use App\Models\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Laravel\Sanctum\Sanctum;
+use Tests\BrowserTestCase;
 use Tests\TestCase;
 
 pest()->tia()
@@ -27,9 +28,8 @@ pest()->extend(TestCase::class)
     ->use(RefreshDatabase::class)
     ->in('Feature');
 
-pest()->extend(TestCase::class)
+pest()->extend(BrowserTestCase::class)
     ->use(RefreshDatabase::class)
-    ->beforeEach(fn () => $this->withVite()) // the browser needs the built assets TestCase disables
     ->in('Browser');
 
 pest()->extend(TestCase::class)->in('Unit');
