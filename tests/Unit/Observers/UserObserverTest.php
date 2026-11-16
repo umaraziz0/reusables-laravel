@@ -101,6 +101,16 @@ test('deleted only flushes list when user has null uuid', function (): void {
     expect($listAction->handle())->toBeEmpty();
 });
 
+test('restoring a user flushes list cache', function (): void {
+    $user       = User::factory()->trashed()->create();
+    $listAction = new GetUsers();
+    $listAction->handle();
+
+    $user->restore();
+
+    expect($listAction->handle()->pluck('uuid')->all())->toBe([$user->uuid]);
+});
+
 test('creating event assigns uuid when creating user via factory', function (): void {
     $user = User::factory()->create();
 
