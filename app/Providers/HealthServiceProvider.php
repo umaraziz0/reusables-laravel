@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\Providers;
 
+use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\Config;
 use Illuminate\Support\ServiceProvider;
 use Override;
@@ -85,16 +86,25 @@ class HealthServiceProvider extends ServiceProvider
             HorizonCheck::new(),
 
             QueueCheck::new()
-                ->onQueue([
-                    'default',
-                    Config::string('queue.queues.emails'),
-                    Config::string('queue.queues.storage'),
-                    Config::string('queue.queues.logs_message'),
-                    Config::string('queue.queues.logs_activity'),
-                    Config::string('queue.queues.telescope'),
-                    Config::string('queue.queues.notifications'),
-                ])
+                ->onQueue($this->horizonQueues())
                 ->failWhenHealthJobTakesLongerThanMinutes(10),
         ]);
+    }
+
+    /**
+     * The queues Horizon's supervisors work. Checking any other queue would pile
+     * heartbeat jobs onto a queue no worker reads.
+     *
+     * @return list<string>
+     */
+    private function horizonQueues(): array
+    {
+        $queues = collect(Config::array('horizon.defaults'))
+            ->flatMap(fn (mixed $supervisor): array => is_array($supervisor) ? Arr::wrap($supervisor['queue'] ?? []) : [])
+            ->filter(fn (mixed $queue): bool => is_string($queue))
+            ->unique()
+            ->all();
+
+        return array_values($queues);
     }
 }
