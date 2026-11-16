@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "70a4d80744d9864c9eeac6178602011d",
+    "content-hash": "24dde01d2729a2857ffe3b14efbabcb5",
     "packages": [
         {
             "name": "aws/aws-crt-php",
@@ -1030,62 +1030,6 @@
             "published-time": "2026-10-01T07:01:28+00:00"
         },
         {
-            "name": "doctrine/sql-formatter",
-            "version": "1.5.4",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/doctrine/sql-formatter.git",
-                "reference": "9563949f5cd3bd12a17d12fb980528bc141c5806"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/doctrine/sql-formatter/zipball/9563949f5cd3bd12a17d12fb980528bc141c5806",
-                "reference": "9563949f5cd3bd12a17d12fb980528bc141c5806",
-                "shasum": ""
-            },
-            "require": {
-                "php": "^8.1"
-            },
-            "require-dev": {
-                "doctrine/coding-standard": "^14",
-                "ergebnis/phpunit-slow-test-detector": "^2.20",
-                "phpstan/phpstan": "^2.1.31",
-                "phpunit/phpunit": "^10.5.58"
-            },
-            "bin": [
-                "bin/sql-formatter"
-            ],
-            "type": "library",
-            "autoload": {
-                "psr-4": {
-                    "Doctrine\\SqlFormatter\\": "src"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Jeremy Dorn",
-                    "email": "jeremy@jeremydorn.com",
-                    "homepage": "https://jeremydorn.com/"
-                }
-            ],
-            "description": "a PHP SQL highlighting library",
-            "homepage": "https://github.com/doctrine/sql-formatter/",
-            "keywords": [
-                "highlight",
-                "sql"
-            ],
-            "support": {
-                "issues": "https://github.com/doctrine/sql-formatter/issues",
-                "source": "https://github.com/doctrine/sql-formatter/tree/1.5.4"
-            },
-            "time": "2026-02-08T16:21:46+00:00",
-            "published-time": "2026-02-08T16:22:50+00:00"
-        },
-        {
             "name": "dragonmantank/cron-expression",
             "version": "v3.6.1",
             "source": {
@@ -1149,76 +1093,6 @@
             ],
             "time": "2026-10-19T17:53:57+00:00",
             "published-time": "2026-10-19T17:54:31+00:00"
-        },
-        {
-            "name": "driftingly/rector-laravel",
-            "version": "2.7.3",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/driftingly/rector-laravel.git",
-                "reference": "699f25bda7efcbe98cf8ff9c9e687da76ce0d8c5"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/driftingly/rector-laravel/zipball/699f25bda7efcbe98cf8ff9c9e687da76ce0d8c5",
-                "reference": "699f25bda7efcbe98cf8ff9c9e687da76ce0d8c5",
-                "shasum": ""
-            },
-            "require": {
-                "php": ">=8.3",
-                "rector/rector": "^2.8",
-                "symplify/rule-doc-generator-contracts": "^11.2",
-                "webmozart/assert": "^1.11 || ^2.0"
-            },
-            "require-dev": {
-                "boundwize/structarmed": "^0.19",
-                "illuminate/support": "^13.0",
-                "nette/utils": "^4.0",
-                "nikic/php-parser": "^5.6",
-                "phpstan/extension-installer": "^1.3",
-                "phpstan/phpstan": "^2.2",
-                "phpstan/phpstan-deprecation-rules": "^2.0",
-                "phpstan/phpstan-strict-rules": "^2.0",
-                "phpstan/phpstan-webmozart-assert": "^2.0",
-                "phpunit/phpunit": "^10.5",
-                "symplify/rule-doc-generator": "^12.2",
-                "tightenco/duster": "^3.1",
-                "tracy/tracy": "^2.10"
-            },
-            "suggest": {
-                "illuminate/support": "Required by RelationTableStringToPivotClassRector, which uses Illuminate\\Support\\Str at runtime to resolve pivot models from table names (^8.0 || ^9.0 || ^10.0 || ^11.0 || ^12.0 || ^13.0)."
-            },
-            "type": "rector-extension",
-            "extra": {
-                "rector": {
-                    "includes": [
-                        "config/config.php"
-                    ]
-                }
-            },
-            "autoload": {
-                "psr-4": {
-                    "RectorLaravel\\": "src"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "description": "Rector upgrades rules for Laravel Framework",
-            "keywords": [
-                "dev",
-                "laravel",
-                "rector",
-                "refactoring",
-                "upgrade"
-            ],
-            "support": {
-                "issues": "https://github.com/driftingly/rector-laravel/issues",
-                "source": "https://github.com/driftingly/rector-laravel/tree/2.7.3"
-            },
-            "time": "2026-10-27T12:37:16+00:00",
-            "published-time": "2026-10-27T12:41:55+00:00"
         },
         {
             "name": "egulias/email-validator",
@@ -2860,96 +2734,6 @@
             "published-time": "2026-11-09T16:09:07+00:00"
         },
         {
-            "name": "laravel/pulse",
-            "version": "v1.10.0",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/laravel/pulse.git",
-                "reference": "98fef652633180732378dec905f695217f005612"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/laravel/pulse/zipball/98fef652633180732378dec905f695217f005612",
-                "reference": "98fef652633180732378dec905f695217f005612",
-                "shasum": ""
-            },
-            "require": {
-                "doctrine/sql-formatter": "^1.4.1",
-                "guzzlehttp/promises": "^1.0|^2.0|^3.0",
-                "illuminate/auth": "^10.48.4|^11.0.8|^12.0|^13.0",
-                "illuminate/cache": "^10.48.4|^11.0.8|^12.0|^13.0",
-                "illuminate/config": "^10.48.4|^11.0.8|^12.0|^13.0",
-                "illuminate/console": "^10.48.4|^11.0.8|^12.0|^13.0",
-                "illuminate/contracts": "^10.48.4|^11.0.8|^12.0|^13.0",
-                "illuminate/database": "^10.48.4|^11.0.8|^12.0|^13.0",
-                "illuminate/events": "^10.48.4|^11.0.8|^12.0|^13.0",
-                "illuminate/http": "^10.48.4|^11.0.8|^12.0|^13.0",
-                "illuminate/queue": "^10.48.4|^11.0.8|^12.0|^13.0",
-                "illuminate/redis": "^10.48.4|^11.0.8|^12.0|^13.0",
-                "illuminate/routing": "^10.48.4|^11.0.8|^12.0|^13.0",
-                "illuminate/support": "^10.48.4|^11.0.8|^12.0|^13.0",
-                "illuminate/view": "^10.48.4|^11.0.8|^12.0|^13.0",
-                "laravel/sentinel": "^1.0",
-                "league/uri": "^7.5.1",
-                "livewire/livewire": "^3.6.4|^4.0",
-                "nesbot/carbon": "^2.67|^3.0",
-                "php": "^8.1",
-                "symfony/console": "^6.0|^7.0|^8.0"
-            },
-            "conflict": {
-                "nunomaduro/collision": "<7.7.0"
-            },
-            "require-dev": {
-                "guzzlehttp/guzzle": "^7.7|^8.0",
-                "mockery/mockery": "^1.0",
-                "orchestra/testbench": "^8.36|^9.15|^10.8|^11.0",
-                "pestphp/pest": "^2.0|^3.0|^4.0",
-                "pestphp/pest-plugin-laravel": "^2.2|^3.0|^4.0",
-                "phpstan/phpstan": "^2.1.33",
-                "predis/predis": "^1.0|^2.0"
-            },
-            "type": "library",
-            "extra": {
-                "laravel": {
-                    "aliases": {
-                        "Pulse": "Laravel\\Pulse\\Facades\\Pulse"
-                    },
-                    "providers": [
-                        "Laravel\\Pulse\\PulseServiceProvider"
-                    ]
-                },
-                "branch-alias": {
-                    "dev-master": "1.x-dev"
-                }
-            },
-            "autoload": {
-                "psr-4": {
-                    "Laravel\\Pulse\\": "src/"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Taylor Otwell",
-                    "email": "taylor@laravel.com"
-                }
-            ],
-            "description": "Laravel Pulse is a real-time application performance monitoring tool and dashboard for your Laravel application.",
-            "homepage": "https://github.com/laravel/pulse",
-            "keywords": [
-                "laravel"
-            ],
-            "support": {
-                "issues": "https://github.com/laravel/pulse/issues",
-                "source": "https://github.com/laravel/pulse"
-            },
-            "time": "2026-11-10T16:09:00+00:00",
-            "published-time": "2026-11-10T16:09:26+00:00"
-        },
-        {
             "name": "laravel/sanctum",
             "version": "v4.4.0",
             "source": {
@@ -3132,75 +2916,6 @@
             },
             "time": "2026-10-14T21:20:29+00:00",
             "published-time": "2026-11-10T16:11:08+00:00"
-        },
-        {
-            "name": "laravel/telescope",
-            "version": "v5.28.0",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/laravel/telescope.git",
-                "reference": "a5e100fd5c89a3f6d8956df1857b5ddf39832c3e"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/laravel/telescope/zipball/a5e100fd5c89a3f6d8956df1857b5ddf39832c3e",
-                "reference": "a5e100fd5c89a3f6d8956df1857b5ddf39832c3e",
-                "shasum": ""
-            },
-            "require": {
-                "ext-json": "*",
-                "laravel/framework": "^8.37|^9.0|^10.0|^11.0|^12.0|^13.0",
-                "laravel/sentinel": "^1.0",
-                "php": "^8.0",
-                "symfony/console": "^5.3|^6.0|^7.0|^8.0",
-                "symfony/var-dumper": "^5.0|^6.0|^7.0|^8.0"
-            },
-            "require-dev": {
-                "ext-gd": "*",
-                "guzzlehttp/guzzle": "^7.15.2|^8.0",
-                "laravel/octane": "^1.4|^2.0",
-                "orchestra/testbench": "^6.48|^7.57|^8.38|^9.15|^10.8|^11.0",
-                "phpstan/phpstan": "^2.2.9"
-            },
-            "type": "library",
-            "extra": {
-                "laravel": {
-                    "providers": [
-                        "Laravel\\Telescope\\TelescopeServiceProvider"
-                    ]
-                }
-            },
-            "autoload": {
-                "psr-4": {
-                    "Laravel\\Telescope\\": "src/",
-                    "Laravel\\Telescope\\Database\\Factories\\": "database/factories/"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Taylor Otwell",
-                    "email": "taylor@laravel.com"
-                },
-                {
-                    "name": "Mohamed Said",
-                    "email": "mohamed@laravel.com"
-                }
-            ],
-            "description": "An elegant debug assistant for the Laravel framework.",
-            "keywords": [
-                "debugging",
-                "laravel",
-                "monitoring"
-            ],
-            "support": {
-                "source": "https://github.com/laravel/telescope/tree/v5.28.0"
-            },
-            "time": "2026-11-02T19:16:46+00:00",
-            "published-time": "2026-11-10T16:11:58+00:00"
         },
         {
             "name": "laravel/tinker",
@@ -4043,140 +3758,6 @@
             ],
             "time": "2026-11-04T12:45:07+00:00",
             "published-time": "2026-11-04T13:02:27+00:00"
-        },
-        {
-            "name": "livewire/livewire",
-            "version": "v4.4.8",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/livewire/livewire.git",
-                "reference": "8d7f8fc6138274a2f3384c9db354ca012215a259"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/livewire/livewire/zipball/8d7f8fc6138274a2f3384c9db354ca012215a259",
-                "reference": "8d7f8fc6138274a2f3384c9db354ca012215a259",
-                "shasum": ""
-            },
-            "require": {
-                "illuminate/database": "^10.0|^11.0|^12.0|^13.0",
-                "illuminate/routing": "^10.0|^11.0|^12.0|^13.0",
-                "illuminate/support": "^10.0|^11.0|^12.0|^13.0",
-                "illuminate/validation": "^10.0|^11.0|^12.0|^13.0",
-                "laravel/prompts": "^0.1.24|^0.2|^0.3",
-                "league/mime-type-detection": "^1.9",
-                "php": "^8.1",
-                "symfony/console": "^6.0|^7.0|^8.0",
-                "symfony/http-kernel": "^6.2|^7.0|^8.0"
-            },
-            "require-dev": {
-                "calebporzio/sushi": "^2.1",
-                "laravel/framework": "^10.15.0|^11.0|^12.0|^13.0",
-                "mockery/mockery": "^1.3.1",
-                "orchestra/testbench": "^8.21.0|^9.0|^10.0|^11.0",
-                "orchestra/testbench-dusk": "^8.24|^9.1|^10.0|^11.0",
-                "phpunit/phpunit": "^10.4|^11.5|^12.5",
-                "psy/psysh": "^0.11.22|^0.12"
-            },
-            "type": "library",
-            "extra": {
-                "laravel": {
-                    "aliases": {
-                        "Livewire": "Livewire\\Livewire"
-                    },
-                    "providers": [
-                        "Livewire\\LivewireServiceProvider"
-                    ]
-                }
-            },
-            "autoload": {
-                "files": [
-                    "src/helpers.php"
-                ],
-                "psr-4": {
-                    "Livewire\\": "src/"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Caleb Porzio",
-                    "email": "calebporzio@gmail.com"
-                }
-            ],
-            "description": "A front-end framework for Laravel.",
-            "support": {
-                "issues": "https://github.com/livewire/livewire/issues",
-                "source": "https://github.com/livewire/livewire/tree/v4.4.8"
-            },
-            "funding": [
-                {
-                    "url": "https://github.com/livewire",
-                    "type": "github"
-                }
-            ],
-            "time": "2026-10-21T12:53:46+00:00",
-            "published-time": "2026-10-21T14:02:22+00:00"
-        },
-        {
-            "name": "lorisleiva/cron-translator",
-            "version": "v0.5.2",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/lorisleiva/cron-translator.git",
-                "reference": "61335e4329c8838a5dd8b23a5b6c3a7cb6aac176"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/lorisleiva/cron-translator/zipball/61335e4329c8838a5dd8b23a5b6c3a7cb6aac176",
-                "reference": "61335e4329c8838a5dd8b23a5b6c3a7cb6aac176",
-                "shasum": ""
-            },
-            "require": {
-                "php": "^8.0"
-            },
-            "require-dev": {
-                "phpunit/phpunit": "^9.5"
-            },
-            "type": "library",
-            "autoload": {
-                "psr-4": {
-                    "Lorisleiva\\CronTranslator\\": "src"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Loris LEIVA",
-                    "email": "loris.leiva@gmail.com",
-                    "homepage": "https://lorisleiva.com"
-                }
-            ],
-            "description": "Makes CRON expressions human-readable",
-            "homepage": "https://github.com/lorisleiva/cron-translator",
-            "keywords": [
-                "cron",
-                "expression",
-                "human"
-            ],
-            "support": {
-                "issues": "https://github.com/lorisleiva/cron-translator/issues",
-                "source": "https://github.com/lorisleiva/cron-translator/tree/v0.5.2"
-            },
-            "funding": [
-                {
-                    "url": "https://github.com/lorisleiva",
-                    "type": "github"
-                }
-            ],
-            "time": "2026-07-18T13:25:58+00:00",
-            "published-time": "2026-07-18T13:26:40+00:00"
         },
         {
             "name": "monolog/monolog",
@@ -5509,71 +5090,6 @@
             "published-time": "2026-10-30T19:37:11+00:00"
         },
         {
-            "name": "phpstan/phpstan",
-            "version": "2.3.5",
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/phpstan/phpstan/zipball/645a1bd6bead15fc1b8474137467961d0fa30a79",
-                "reference": "645a1bd6bead15fc1b8474137467961d0fa30a79",
-                "shasum": ""
-            },
-            "require": {
-                "php": "^7.4|^8.0"
-            },
-            "conflict": {
-                "phpstan/phpstan-shim": "*"
-            },
-            "bin": [
-                "phpstan",
-                "phpstan.phar"
-            ],
-            "type": "library",
-            "autoload": {
-                "files": [
-                    "bootstrap.php"
-                ]
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Ondřej Mirtes"
-                },
-                {
-                    "name": "Markus Staab"
-                },
-                {
-                    "name": "Vincent Langlet"
-                }
-            ],
-            "description": "PHPStan - PHP Static Analysis Tool",
-            "keywords": [
-                "dev",
-                "static analysis"
-            ],
-            "support": {
-                "docs": "https://phpstan.org/user-guide/getting-started",
-                "forum": "https://github.com/phpstan/phpstan/discussions",
-                "issues": "https://github.com/phpstan/phpstan/issues",
-                "security": "https://github.com/phpstan/phpstan/security/policy",
-                "source": "https://github.com/phpstan/phpstan-src"
-            },
-            "funding": [
-                {
-                    "url": "https://github.com/ondrejmirtes",
-                    "type": "github"
-                },
-                {
-                    "url": "https://github.com/phpstan",
-                    "type": "github"
-                }
-            ],
-            "time": "2026-11-03T12:14:22+00:00",
-            "published-time": "2026-11-03T12:14:36+00:00"
-        },
-        {
             "name": "pragmarx/google2fa",
             "version": "v9.1.0",
             "source": {
@@ -6344,64 +5860,6 @@
             "published-time": "2026-11-14T23:35:39+00:00"
         },
         {
-            "name": "rector/rector",
-            "version": "2.8.5",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/rectorphp/rector.git",
-                "reference": "bf2982e3e2b8dfbcb43e5589fa301431cb1e479e"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/rectorphp/rector/zipball/bf2982e3e2b8dfbcb43e5589fa301431cb1e479e",
-                "reference": "bf2982e3e2b8dfbcb43e5589fa301431cb1e479e",
-                "shasum": ""
-            },
-            "require": {
-                "php": "^7.4|^8.0",
-                "phpstan/phpstan": "^2.3.5"
-            },
-            "conflict": {
-                "rector/rector-doctrine": "*",
-                "rector/rector-downgrade-php": "*",
-                "rector/rector-phpunit": "*",
-                "rector/rector-symfony": "*"
-            },
-            "bin": [
-                "bin/rector"
-            ],
-            "type": "library",
-            "autoload": {
-                "files": [
-                    "bootstrap.php"
-                ]
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "description": "Instant Upgrade and Automated Refactoring of any PHP code",
-            "homepage": "https://getrector.com/",
-            "keywords": [
-                "automation",
-                "dev",
-                "migration",
-                "refactoring"
-            ],
-            "support": {
-                "issues": "https://github.com/rectorphp/rector/issues",
-                "source": "https://github.com/rectorphp/rector/tree/2.8.5"
-            },
-            "funding": [
-                {
-                    "url": "https://github.com/tomasvotruba",
-                    "type": "github"
-                }
-            ],
-            "time": "2026-11-14T23:24:35+00:00",
-            "published-time": "2026-11-14T23:24:41+00:00"
-        },
-        {
             "name": "spatie/enum",
             "version": "3.13.0",
             "source": {
@@ -6818,85 +6276,6 @@
             ],
             "time": "2026-11-06T11:43:27+00:00",
             "published-time": "2026-11-06T11:43:46+00:00"
-        },
-        {
-            "name": "spatie/laravel-schedule-monitor",
-            "version": "4.3.3",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/spatie/laravel-schedule-monitor.git",
-                "reference": "507efefdd5a682203fdefdee6ff221c1478b6812"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/spatie/laravel-schedule-monitor/zipball/507efefdd5a682203fdefdee6ff221c1478b6812",
-                "reference": "507efefdd5a682203fdefdee6ff221c1478b6812",
-                "shasum": ""
-            },
-            "require": {
-                "illuminate/bus": "^11.0|^12.0|^13.0",
-                "lorisleiva/cron-translator": "^0.3.0|^0.4.0|^0.5",
-                "nesbot/carbon": "^2.63|^3.0",
-                "nunomaduro/termwind": "^2.0",
-                "php": "^8.2",
-                "spatie/laravel-package-tools": "^1.9"
-            },
-            "require-dev": {
-                "mockery/mockery": "^1.4",
-                "orchestra/testbench": "^9.6|^10.0|^11.0",
-                "pestphp/pest": "^2.34|^3.7|^4.4|^5.0",
-                "pestphp/pest-plugin-laravel": "^2.3|^3.1|^4.1|^5.0",
-                "spatie/pest-plugin-snapshots": "^1.1|^2.1",
-                "spatie/phpunit-snapshot-assertions": "^4.2|^5.1",
-                "spatie/test-time": "^1.2"
-            },
-            "type": "library",
-            "extra": {
-                "laravel": {
-                    "providers": [
-                        "Spatie\\ScheduleMonitor\\ScheduleMonitorServiceProvider"
-                    ]
-                },
-                "branch-alias": {
-                    "dev-ohdear-monitor": "4.0.x-dev"
-                }
-            },
-            "autoload": {
-                "psr-4": {
-                    "Spatie\\ScheduleMonitor\\": "src",
-                    "Spatie\\ScheduleMonitor\\Database\\Factories\\": "database/factories"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Freek Van der Herten",
-                    "email": "freek@spatie.be",
-                    "homepage": "https://spatie.be",
-                    "role": "Developer"
-                }
-            ],
-            "description": "Monitor scheduled tasks in a Laravel app",
-            "homepage": "https://github.com/spatie/laravel-schedule-monitor",
-            "keywords": [
-                "laravel-schedule-monitor",
-                "spatie"
-            ],
-            "support": {
-                "issues": "https://github.com/spatie/laravel-schedule-monitor/issues",
-                "source": "https://github.com/spatie/laravel-schedule-monitor/tree/4.3.3"
-            },
-            "funding": [
-                {
-                    "url": "https://github.com/spatie",
-                    "type": "github"
-                }
-            ],
-            "time": "2026-11-06T14:58:41+00:00",
-            "published-time": "2026-11-06T14:59:07+00:00"
         },
         {
             "name": "spatie/regex",
@@ -10496,67 +9875,6 @@
             "published-time": "2026-10-28T18:25:26+00:00"
         },
         {
-            "name": "symplify/rule-doc-generator-contracts",
-            "version": "11.2.0",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/symplify/rule-doc-generator-contracts.git",
-                "reference": "479cfcfd46047f80624aba931d9789e50475b5c6"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/symplify/rule-doc-generator-contracts/zipball/479cfcfd46047f80624aba931d9789e50475b5c6",
-                "reference": "479cfcfd46047f80624aba931d9789e50475b5c6",
-                "shasum": ""
-            },
-            "require": {
-                "php": ">=8.1"
-            },
-            "require-dev": {
-                "php-parallel-lint/php-parallel-lint": "^1.3",
-                "phpstan/extension-installer": "^1.2",
-                "rector/rector": "^0.15.10",
-                "symplify/easy-ci": "^11.1",
-                "symplify/easy-coding-standard": "^11.1",
-                "symplify/easy-testing": "^11.1",
-                "symplify/phpstan-extensions": "^11.1",
-                "symplify/phpstan-rules": "11.2.3.72",
-                "tomasvotruba/unused-public": "^0.0.34"
-            },
-            "type": "library",
-            "extra": {
-                "branch-alias": {
-                    "dev-main": "11.2-dev"
-                }
-            },
-            "autoload": {
-                "psr-4": {
-                    "Symplify\\RuleDocGenerator\\": "src"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "description": "Contracts for production code of RuleDocGenerator",
-            "support": {
-                "source": "https://github.com/symplify/rule-doc-generator-contracts/tree/11.2.0"
-            },
-            "funding": [
-                {
-                    "url": "https://www.paypal.me/rectorphp",
-                    "type": "custom"
-                },
-                {
-                    "url": "https://github.com/tomasvotruba",
-                    "type": "github"
-                }
-            ],
-            "abandoned": true,
-            "time": "2024-03-18T22:02:54+00:00",
-            "published-time": "2024-03-18T22:01:44+00:00"
-        },
-        {
             "name": "tijsverkoyen/css-to-inline-styles",
             "version": "v2.4.0",
             "source": {
@@ -12769,6 +12087,76 @@
             "published-time": "2024-04-13T16:58:48+00:00"
         },
         {
+            "name": "driftingly/rector-laravel",
+            "version": "2.7.3",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/driftingly/rector-laravel.git",
+                "reference": "699f25bda7efcbe98cf8ff9c9e687da76ce0d8c5"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/driftingly/rector-laravel/zipball/699f25bda7efcbe98cf8ff9c9e687da76ce0d8c5",
+                "reference": "699f25bda7efcbe98cf8ff9c9e687da76ce0d8c5",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=8.3",
+                "rector/rector": "^2.8",
+                "symplify/rule-doc-generator-contracts": "^11.2",
+                "webmozart/assert": "^1.11 || ^2.0"
+            },
+            "require-dev": {
+                "boundwize/structarmed": "^0.19",
+                "illuminate/support": "^13.0",
+                "nette/utils": "^4.0",
+                "nikic/php-parser": "^5.6",
+                "phpstan/extension-installer": "^1.3",
+                "phpstan/phpstan": "^2.2",
+                "phpstan/phpstan-deprecation-rules": "^2.0",
+                "phpstan/phpstan-strict-rules": "^2.0",
+                "phpstan/phpstan-webmozart-assert": "^2.0",
+                "phpunit/phpunit": "^10.5",
+                "symplify/rule-doc-generator": "^12.2",
+                "tightenco/duster": "^3.1",
+                "tracy/tracy": "^2.10"
+            },
+            "suggest": {
+                "illuminate/support": "Required by RelationTableStringToPivotClassRector, which uses Illuminate\\Support\\Str at runtime to resolve pivot models from table names (^8.0 || ^9.0 || ^10.0 || ^11.0 || ^12.0 || ^13.0)."
+            },
+            "type": "rector-extension",
+            "extra": {
+                "rector": {
+                    "includes": [
+                        "config/config.php"
+                    ]
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "RectorLaravel\\": "src"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "description": "Rector upgrades rules for Laravel Framework",
+            "keywords": [
+                "dev",
+                "laravel",
+                "rector",
+                "refactoring",
+                "upgrade"
+            ],
+            "support": {
+                "issues": "https://github.com/driftingly/rector-laravel/issues",
+                "source": "https://github.com/driftingly/rector-laravel/tree/2.7.3"
+            },
+            "time": "2026-10-27T12:37:16+00:00",
+            "published-time": "2026-10-27T12:41:55+00:00"
+        },
+        {
             "name": "entropy/entropy",
             "version": "0.4.37",
             "source": {
@@ -14069,6 +13457,75 @@
             "published-time": "2026-07-20T09:14:35+00:00"
         },
         {
+            "name": "laravel/telescope",
+            "version": "v5.28.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/laravel/telescope.git",
+                "reference": "a5e100fd5c89a3f6d8956df1857b5ddf39832c3e"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/laravel/telescope/zipball/a5e100fd5c89a3f6d8956df1857b5ddf39832c3e",
+                "reference": "a5e100fd5c89a3f6d8956df1857b5ddf39832c3e",
+                "shasum": ""
+            },
+            "require": {
+                "ext-json": "*",
+                "laravel/framework": "^8.37|^9.0|^10.0|^11.0|^12.0|^13.0",
+                "laravel/sentinel": "^1.0",
+                "php": "^8.0",
+                "symfony/console": "^5.3|^6.0|^7.0|^8.0",
+                "symfony/var-dumper": "^5.0|^6.0|^7.0|^8.0"
+            },
+            "require-dev": {
+                "ext-gd": "*",
+                "guzzlehttp/guzzle": "^7.15.2|^8.0",
+                "laravel/octane": "^1.4|^2.0",
+                "orchestra/testbench": "^6.48|^7.57|^8.38|^9.15|^10.8|^11.0",
+                "phpstan/phpstan": "^2.2.9"
+            },
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "Laravel\\Telescope\\TelescopeServiceProvider"
+                    ]
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Laravel\\Telescope\\": "src/",
+                    "Laravel\\Telescope\\Database\\Factories\\": "database/factories/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Taylor Otwell",
+                    "email": "taylor@laravel.com"
+                },
+                {
+                    "name": "Mohamed Said",
+                    "email": "mohamed@laravel.com"
+                }
+            ],
+            "description": "An elegant debug assistant for the Laravel framework.",
+            "keywords": [
+                "debugging",
+                "laravel",
+                "monitoring"
+            ],
+            "support": {
+                "source": "https://github.com/laravel/telescope/tree/v5.28.0"
+            },
+            "time": "2026-11-02T19:16:46+00:00",
+            "published-time": "2026-11-10T16:11:58+00:00"
+        },
+        {
             "name": "league/uri-components",
             "version": "7.10.0",
             "source": {
@@ -14153,6 +13610,83 @@
             ],
             "time": "2026-11-04T12:45:07+00:00",
             "published-time": "2026-11-04T13:02:25+00:00"
+        },
+        {
+            "name": "livewire/livewire",
+            "version": "v4.4.8",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/livewire/livewire.git",
+                "reference": "8d7f8fc6138274a2f3384c9db354ca012215a259"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/livewire/livewire/zipball/8d7f8fc6138274a2f3384c9db354ca012215a259",
+                "reference": "8d7f8fc6138274a2f3384c9db354ca012215a259",
+                "shasum": ""
+            },
+            "require": {
+                "illuminate/database": "^10.0|^11.0|^12.0|^13.0",
+                "illuminate/routing": "^10.0|^11.0|^12.0|^13.0",
+                "illuminate/support": "^10.0|^11.0|^12.0|^13.0",
+                "illuminate/validation": "^10.0|^11.0|^12.0|^13.0",
+                "laravel/prompts": "^0.1.24|^0.2|^0.3",
+                "league/mime-type-detection": "^1.9",
+                "php": "^8.1",
+                "symfony/console": "^6.0|^7.0|^8.0",
+                "symfony/http-kernel": "^6.2|^7.0|^8.0"
+            },
+            "require-dev": {
+                "calebporzio/sushi": "^2.1",
+                "laravel/framework": "^10.15.0|^11.0|^12.0|^13.0",
+                "mockery/mockery": "^1.3.1",
+                "orchestra/testbench": "^8.21.0|^9.0|^10.0|^11.0",
+                "orchestra/testbench-dusk": "^8.24|^9.1|^10.0|^11.0",
+                "phpunit/phpunit": "^10.4|^11.5|^12.5",
+                "psy/psysh": "^0.11.22|^0.12"
+            },
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "aliases": {
+                        "Livewire": "Livewire\\Livewire"
+                    },
+                    "providers": [
+                        "Livewire\\LivewireServiceProvider"
+                    ]
+                }
+            },
+            "autoload": {
+                "files": [
+                    "src/helpers.php"
+                ],
+                "psr-4": {
+                    "Livewire\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Caleb Porzio",
+                    "email": "calebporzio@gmail.com"
+                }
+            ],
+            "description": "A front-end framework for Laravel.",
+            "support": {
+                "issues": "https://github.com/livewire/livewire/issues",
+                "source": "https://github.com/livewire/livewire/tree/v4.4.8"
+            },
+            "funding": [
+                {
+                    "url": "https://github.com/livewire",
+                    "type": "github"
+                }
+            ],
+            "time": "2026-10-21T12:53:46+00:00",
+            "published-time": "2026-10-21T14:02:22+00:00"
         },
         {
             "name": "mockery/mockery",
@@ -15497,6 +15031,71 @@
             "published-time": "2022-02-21T01:04:30+00:00"
         },
         {
+            "name": "phpstan/phpstan",
+            "version": "2.3.5",
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/phpstan/phpstan/zipball/645a1bd6bead15fc1b8474137467961d0fa30a79",
+                "reference": "645a1bd6bead15fc1b8474137467961d0fa30a79",
+                "shasum": ""
+            },
+            "require": {
+                "php": "^7.4|^8.0"
+            },
+            "conflict": {
+                "phpstan/phpstan-shim": "*"
+            },
+            "bin": [
+                "phpstan",
+                "phpstan.phar"
+            ],
+            "type": "library",
+            "autoload": {
+                "files": [
+                    "bootstrap.php"
+                ]
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Ondřej Mirtes"
+                },
+                {
+                    "name": "Markus Staab"
+                },
+                {
+                    "name": "Vincent Langlet"
+                }
+            ],
+            "description": "PHPStan - PHP Static Analysis Tool",
+            "keywords": [
+                "dev",
+                "static analysis"
+            ],
+            "support": {
+                "docs": "https://phpstan.org/user-guide/getting-started",
+                "forum": "https://github.com/phpstan/phpstan/discussions",
+                "issues": "https://github.com/phpstan/phpstan/issues",
+                "security": "https://github.com/phpstan/phpstan/security/policy",
+                "source": "https://github.com/phpstan/phpstan-src"
+            },
+            "funding": [
+                {
+                    "url": "https://github.com/ondrejmirtes",
+                    "type": "github"
+                },
+                {
+                    "url": "https://github.com/phpstan",
+                    "type": "github"
+                }
+            ],
+            "time": "2026-11-03T12:14:22+00:00",
+            "published-time": "2026-11-03T12:14:36+00:00"
+        },
+        {
             "name": "phpstan/phpstan-mockery",
             "version": "2.0.0",
             "source": {
@@ -16025,6 +15624,64 @@
             ],
             "time": "2026-11-13T11:10:10+00:00",
             "published-time": "2026-11-13T11:11:23+00:00"
+        },
+        {
+            "name": "rector/rector",
+            "version": "2.8.5",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/rectorphp/rector.git",
+                "reference": "bf2982e3e2b8dfbcb43e5589fa301431cb1e479e"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/rectorphp/rector/zipball/bf2982e3e2b8dfbcb43e5589fa301431cb1e479e",
+                "reference": "bf2982e3e2b8dfbcb43e5589fa301431cb1e479e",
+                "shasum": ""
+            },
+            "require": {
+                "php": "^7.4|^8.0",
+                "phpstan/phpstan": "^2.3.5"
+            },
+            "conflict": {
+                "rector/rector-doctrine": "*",
+                "rector/rector-downgrade-php": "*",
+                "rector/rector-phpunit": "*",
+                "rector/rector-symfony": "*"
+            },
+            "bin": [
+                "bin/rector"
+            ],
+            "type": "library",
+            "autoload": {
+                "files": [
+                    "bootstrap.php"
+                ]
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "description": "Instant Upgrade and Automated Refactoring of any PHP code",
+            "homepage": "https://getrector.com/",
+            "keywords": [
+                "automation",
+                "dev",
+                "migration",
+                "refactoring"
+            ],
+            "support": {
+                "issues": "https://github.com/rectorphp/rector/issues",
+                "source": "https://github.com/rectorphp/rector/tree/2.8.5"
+            },
+            "funding": [
+                {
+                    "url": "https://github.com/tomasvotruba",
+                    "type": "github"
+                }
+            ],
+            "time": "2026-11-14T23:24:35+00:00",
+            "published-time": "2026-11-14T23:24:41+00:00"
         },
         {
             "name": "revolt/event-loop",
@@ -17705,6 +17362,67 @@
             ],
             "time": "2026-11-04T08:39:20+00:00",
             "published-time": "2026-11-04T11:31:03+00:00"
+        },
+        {
+            "name": "symplify/rule-doc-generator-contracts",
+            "version": "11.2.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/symplify/rule-doc-generator-contracts.git",
+                "reference": "479cfcfd46047f80624aba931d9789e50475b5c6"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/symplify/rule-doc-generator-contracts/zipball/479cfcfd46047f80624aba931d9789e50475b5c6",
+                "reference": "479cfcfd46047f80624aba931d9789e50475b5c6",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=8.1"
+            },
+            "require-dev": {
+                "php-parallel-lint/php-parallel-lint": "^1.3",
+                "phpstan/extension-installer": "^1.2",
+                "rector/rector": "^0.15.10",
+                "symplify/easy-ci": "^11.1",
+                "symplify/easy-coding-standard": "^11.1",
+                "symplify/easy-testing": "^11.1",
+                "symplify/phpstan-extensions": "^11.1",
+                "symplify/phpstan-rules": "11.2.3.72",
+                "tomasvotruba/unused-public": "^0.0.34"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-main": "11.2-dev"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Symplify\\RuleDocGenerator\\": "src"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "description": "Contracts for production code of RuleDocGenerator",
+            "support": {
+                "source": "https://github.com/symplify/rule-doc-generator-contracts/tree/11.2.0"
+            },
+            "funding": [
+                {
+                    "url": "https://www.paypal.me/rectorphp",
+                    "type": "custom"
+                },
+                {
+                    "url": "https://github.com/tomasvotruba",
+                    "type": "github"
+                }
+            ],
+            "abandoned": true,
+            "time": "2024-03-18T22:02:54+00:00",
+            "published-time": "2024-03-18T22:01:44+00:00"
         },
         {
             "name": "ta-tikoma/phpunit-architecture-test",

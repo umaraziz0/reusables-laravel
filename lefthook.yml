@@ -42,7 +42,7 @@ pre-commit:
           - name: Secret scan (betterleaks)
             tags:
               - security
-            run: betterleaks git --pre-commit --redact --staged --verbose
+            run: betterleaks git --pre-commit --redact --staged --verbose --config .betterleaks.toml
             fail_text: |
               Betterleaks reported secrets in staged changes (or betterleaks is not installed).
               Install: brew install betterleaks  — Docs: https://github.com/betterleaks/betterleaks

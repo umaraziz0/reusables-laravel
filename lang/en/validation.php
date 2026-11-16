@@ -196,7 +196,9 @@ return [
     |
     */
 
-    'attributes' => [],
+    'attributes' => [
+        'phone_number' => 'phone number',
+    ],
 
     'captcha' => 'The captcha verification failed. Please try again.',
 

@@ -28,7 +28,6 @@ it('stops sampling for excluded dashboard paths', function (string $uri): void {
 })->with([
     'horizon root'          => ['horizon'],
     'horizon nested'        => ['horizon/dashboard'],
-    'pulse'                 => ['pulse'],
     'activitylog-ui'        => ['activitylog-ui/logs'],
     'log-viewer'            => ['log-viewer'],
     'emails'                => ['emails/1'],

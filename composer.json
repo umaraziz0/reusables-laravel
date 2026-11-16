@@ -10,7 +10,6 @@
     "beyondcode/laravel-self-diagnosis": "^3.1",
     "dedoc/scramble": "^0.13.54",
     "doctrine/dbal": "^4.6.0",
-    "driftingly/rector-laravel": "^2.7.3",
     "hryagstn/laravel-scalpel": "^1.11",
     "inertiajs/inertia-laravel": "^3.7",
     "laravel/chisel": "^0.1.1",
@@ -19,9 +18,7 @@
     "laravel/horizon": "^5.51",
     "laravel/nightwatch": "^1.30.6",
     "laravel/octane": "^2.24",
-    "laravel/pulse": "^1.10.0",
     "laravel/sanctum": "^4.4.0",
-    "laravel/telescope": "^5.28",
     "laravel/tinker": "^3.1.0",
     "laravel/wayfinder": "^0.1.23",
     "laravolt/indonesia": "^0.46",
@@ -31,12 +28,12 @@
     "opcodesio/log-viewer": "^3.24.2",
     "spatie/laravel-activitylog": "^5.1.5",
     "spatie/laravel-health": "^1.41.0",
-    "spatie/laravel-permission": "^8.5",
-    "spatie/laravel-schedule-monitor": "^4.3.3"
+    "spatie/laravel-permission": "^8.5"
   },
   "require-dev": {
     "albertoarena/laravel-truss": "^1.16.0",
     "barryvdh/laravel-ide-helper": "^3.8",
+    "driftingly/rector-laravel": "^2.7.3",
     "fakerphp/faker": "^1.24.1",
     "heyosseus/sloppy": "^1.8.3",
     "laramint/laravel-brain": "^2.7.1",
@@ -45,6 +42,7 @@
     "laravel/pail": "^1.3.0",
     "laravel/pao": "^1.1.5",
     "laravel/pint": "^1.32.3",
+    "laravel/telescope": "^5.28",
     "mockery/mockery": "^1.6.15",
     "newdebugbar/newdebugbar": "dev-main",
     "nunomaduro/collision": "^8.9.6",
@@ -77,7 +75,7 @@
       "composer install",
       "@php -r \"file_exists('.env') || copy('.env.example', '.env');\"",
       "@php artisan key:generate",
-      "@php artisan migrate --force",
+      "@php artisan migrate --seed --force",
       "@php artisan migrate --env=testing --force",
       "@php artisan storage:link",
       "pnpm install",
@@ -137,7 +135,9 @@
   },
   "extra": {
     "laravel": {
-      "dont-discover": [],
+      "dont-discover": [
+        "laravel/telescope"
+      ],
       "installer": {
         "post-create-project": []
       }

@@ -42,8 +42,24 @@ jobs:
         env:
           BASE_SHA: ${{ github.event.pull_request.base.sha }}
           HEAD_SHA: ${{ github.event.pull_request.head.sha }}
+        # Config and ignore files come from the base commit, never the PR's working
+        # tree, so a PR cannot allowlist its own leak.
         run: |
+          trusted="$RUNNER_TEMP/betterleaks"
+          mkdir -p "$trusted"
+          git show "${BASE_SHA}:.betterleaks.toml" > "$trusted/config.toml" 2>/dev/null \
+            || printf '[extend]\nuseDefault = true\n' > "$trusted/config.toml"
+          for ignore_file in .betterleaksignore .gitleaksignore; do
+            git show "${BASE_SHA}:${ignore_file}" > "$trusted/${ignore_file}" 2>/dev/null || rm -f "$trusted/${ignore_file}"
+            # The scanner can also read ignore files from the scanned directory.
+            rm -f "$ignore_file"
+          done
+          if ! git diff --quiet "${BASE_SHA}" "${HEAD_SHA}" -- .betterleaks.toml .betterleaksignore .gitleaksignore; then
+            echo "::warning::This PR changes the Betterleaks config or ignore files. They apply only after merge."
+          fi
           betterleaks git . \
+            --config "$trusted/config.toml" \
+            --gitleaks-ignore-path "$trusted" \
             --log-opts="${BASE_SHA}..${HEAD_SHA}" \
             --redact -v
 

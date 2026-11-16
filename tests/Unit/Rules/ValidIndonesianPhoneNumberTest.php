@@ -77,3 +77,12 @@ test('fails when value is longer than the maximum length', function (): void {
         ->and($validator->errors()->first('phone_number'))
         ->toBe(__('validation.max.string', ['attribute' => 'phone number', 'max' => 12]));
 });
+
+test('names the field in the active locale', function (): void {
+    app()->setLocale('id');
+
+    $validator = validateIndonesianPhoneNumber('0812345678');
+
+    expect($validator->errors()->first('phone_number'))
+        ->toBe('Kolom nomor telepon tidak boleh diawali dengan angka 0.');
+});

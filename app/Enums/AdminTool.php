@@ -27,7 +27,6 @@ enum AdminTool: string
     case Horizon       = 'horizon';
     case LaravelBrain  = 'laravel-brain';
     case LogViewer     = 'log-viewer';
-    case Pulse         = 'pulse';
     case Telescope     = 'telescope';
     case WebTinker     = 'web-tinker';
 
@@ -79,7 +78,6 @@ enum AdminTool: string
             self::Horizon       => Config::string('horizon.path'),
             self::LaravelBrain  => '_laravel-brain',
             self::LogViewer     => Config::string('log-viewer.route_path'),
-            self::Pulse         => Config::string('pulse.path'),
             self::Telescope     => Config::string('telescope.path'),
             self::WebTinker     => Config::string('web-tinker.path'),
         };
@@ -96,7 +94,6 @@ enum AdminTool: string
             self::ActivityLogUi => 'viewActivityLogUi',
             self::Horizon       => 'viewHorizon',
             self::LogViewer     => 'viewLogViewer',
-            self::Pulse         => 'viewPulse',
             self::Telescope     => 'viewTelescope',
             self::ApiDocs,
             self::EmailPreviews,

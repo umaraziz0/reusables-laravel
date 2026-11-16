@@ -104,8 +104,6 @@ return [
         'vendor',
         'bootstrap/cache',
         // Backtick false positives (markdown / SQL identifiers), still hashed by baseline diff
-        'config/pulse.php',
-        'database/migrations/2026_02_23_043824_create_pulse_tables.php',
         'resources/views/mail/failed-job-notification.blade.php',
     ],
 

@@ -93,7 +93,6 @@ test('csp is not applied to admin tool paths', function (string $uri): void {
     'horizon'         => ['horizon/dashboard'],
     'laravel brain'   => ['_laravel-brain'],
     'log viewer'      => ['log-viewer'],
-    'pulse'           => ['pulse'],
     'telescope'       => ['telescope/requests'],
     'web tinker'      => ['tinker'],
 ]);

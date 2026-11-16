@@ -1,0 +1,39 @@
+name: Bug report
+description: Something is broken or behaves unexpectedly.
+labels:
+  - needs-triage
+body:
+  - type: textarea
+    id: summary
+    attributes:
+      label: What happened?
+      description: What you saw, and what you expected instead.
+    validations:
+      required: true
+  - type: textarea
+    id: steps
+    attributes:
+      label: Steps to reproduce
+      placeholder: |
+        1. Go to ...
+        2. Click ...
+        3. See ...
+    validations:
+      required: true
+  - type: dropdown
+    id: environment
+    attributes:
+      label: Environment
+      options:
+        - local
+        - dev
+        - staging
+        - production
+    validations:
+      required: true
+  - type: textarea
+    id: logs
+    attributes:
+      label: Logs, screenshots or error output
+      description: Redact secrets and personal data before pasting.
+      render: shell

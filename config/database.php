@@ -86,26 +86,6 @@ return [
             ]) : [],
         ],
 
-        'pulse_mysql' => [
-            'driver'         => 'mysql',
-            'url'            => env('PULSE_DB_URL'),
-            'host'           => env('PULSE_DB_HOST', '127.0.0.1'),
-            'port'           => env('PULSE_DB_PORT', '3306'),
-            'database'       => env('PULSE_DB_DATABASE', 'pulse'),
-            'username'       => env('PULSE_DB_USERNAME', 'root'),
-            'password'       => env('PULSE_DB_PASSWORD', ''),
-            'unix_socket'    => env('PULSE_DB_SOCKET', ''),
-            'charset'        => env('PULSE_DB_CHARSET', 'utf8mb4'),
-            'collation'      => env('PULSE_DB_COLLATION', 'utf8mb4_unicode_ci'),
-            'prefix'         => '',
-            'prefix_indexes' => true,
-            'strict'         => true,
-            'engine'         => null,
-            'options'        => extension_loaded('pdo_mysql') ? array_filter([
-                Mysql::ATTR_SSL_CA => env('MYSQL_ATTR_SSL_CA'),
-            ]) : [],
-        ],
-
         'health_mysql' => [
             'driver'         => 'mysql',
             'url'            => env('HEALTH_DB_URL'),
@@ -170,21 +150,6 @@ return [
             'username'       => env('TELESCOPE_DB_USERNAME', 'postgres'),
             'password'       => env('TELESCOPE_DB_PASSWORD', ''),
             'charset'        => env('TELESCOPE_DB_CHARSET', 'utf8'),
-            'prefix'         => '',
-            'prefix_indexes' => true,
-            'search_path'    => 'public',
-            'sslmode'        => 'prefer',
-        ],
-
-        'pulse_pgsql' => [
-            'driver'         => 'pgsql',
-            'url'            => env('PULSE_DB_URL'),
-            'host'           => env('PULSE_DB_HOST', '127.0.0.1'),
-            'port'           => env('PULSE_DB_PORT', '5432'),
-            'database'       => env('PULSE_DB_DATABASE', 'pulse'),
-            'username'       => env('PULSE_DB_USERNAME', 'postgres'),
-            'password'       => env('PULSE_DB_PASSWORD', ''),
-            'charset'        => env('PULSE_DB_CHARSET', 'utf8'),
             'prefix'         => '',
             'prefix_indexes' => true,
             'search_path'    => 'public',

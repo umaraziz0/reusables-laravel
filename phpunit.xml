@@ -45,7 +45,6 @@
         <env name="MAIL_MAILER" value="array"/>
         <env name="QUEUE_CONNECTION" value="sync"/>
         <env name="SESSION_DRIVER" value="array"/>
-        <env name="PULSE_ENABLED" value="true"/>
         <env name="TELESCOPE_ENABLED" value="true"/>
         <env name="NIGHTWATCH_ENABLED" value="false"/>
         <env name="INERTIA_SSR_ENABLED" value="false"/>

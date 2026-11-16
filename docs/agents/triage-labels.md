@@ -1,4 +1,4 @@
-- Updated At: 2026-11-13 16:00:15
+- Updated At: 2026-11-16 12:55:21
 - Reviewed By: anthropic/claude-opus-5-5-low
 
 # Triage Labels
@@ -14,5 +14,7 @@ The skills speak in terms of five canonical triage roles. This file maps those r
 | `wontfix`                  | `wontfix`            | Will not be actioned                     |
 
 When a skill mentions a role (e.g. "apply the AFK-ready triage label"), use the corresponding label string from this table.
+
+Create these labels on a new repo with `bash .github/scripts/setup-labels.sh`. If you rename one, update the script too.
 
 Edit the "Label in our tracker" column to match whatever vocabulary you actually use.

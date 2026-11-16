@@ -82,20 +82,19 @@ An opinionated starter kit & collection of reusable components etc for Laravel /
 - [Laravel Wayfinder](https://github.com/laravel/wayfinder) - BE to FE routing (replaces Ziggy in older Laravel versions)
 - [Laravel Sanctum](https://laravel.com/docs/13.x/sanctum#installation) - API authentication
 - [Laravolt Indonesia](https://github.com/laravolt/indonesia) - Indonesian regions (provinces, cities, districts, villages)
+- Translations - English (`lang/en`) and Indonesian (`lang/id`, `lang/id.json`); switch with `APP_LOCALE=id`. `tests/Unit/TranslationsTest.php` fails when the two drift apart
 - [Flysystem S3](https://laravel.com/docs/13.x/filesystem#s3-driver-configuration) - S3-compatible file storage driver
 
 #### Debugging & Monitoring
 
-- [Laravel Telescope](https://laravel.com/docs/13.x/telescope) - view insights into requests, exceptions, queries, etc
+- [Laravel Telescope](https://laravel.com/docs/13.x/telescope) - view insights into requests, exceptions, queries, etc (dev dependency, registered only when `APP_ENV=local`; use Nightwatch in production)
 - [Laravel Web Tinker](https://github.com/spatie/laravel-web-tinker) - access Laravel Tinker via a web endpoint
 - [Log Viewer](https://github.com/opcodesio/log-viewer) - web UI for Laravel logs
 - [Laravel Activity Log](https://spatie.be/docs/laravel-activitylog/v5/introduction) - user activity / action logging
 - [Laravel Activity Log UI](https://github.com/muhammadsadeeq/laravel-activitylog-ui) - user friendly interface for Activity Log
 - [Laravel Self Diagnosis](https://github.com/beyondcode/laravel-self-diagnosis) - environment checks
 - [Laravel Horizon](https://laravel.com/docs/13.x/horizon) - redis queue jobs monitoring
-- [Laravel Schedule Monitor](https://github.com/spatie/laravel-schedule-monitor) - monitors and logs schedule tasks
 - [Laravel Health](https://spatie.be/docs/laravel-health/v1/introduction) - monitors overall application health
-- [Laravel Pulse](https://pulse.laravel.com/) - lightweight, self-hosted application monitoring
 - [Laravel Nightwatch](https://github.com/laravel/nightwatch) - complete application monitoring & observability platform
 - [NewDebugBar](https://github.com/newdebugbar/newdebugbar) - in-browser debug bar (dev only)
 - [Laravel Error Solutions](https://github.com/spatie/laravel-error-solutions) - suggested fixes on the error page (dev only)
@@ -148,11 +147,13 @@ This script automatically:
 - Installs PHP dependencies via Composer
 - Copies `.env.example` to `.env` (if missing)
 - Generates application key
-- Runs app and testing database migrations
+- Runs app and testing database migrations, and seeds roles and demo users
 - Creates the `storage` symlink
 - Installs Node dependencies via pnpm
 - Installs the Lefthook Git hooks
 - Installs the Laravel Boost guidelines & skills and the extra agent skills from `skills-lock.json`
+
+In `local` (and in tests), the seeder creates two demo users with the password `password`: `superadmin@example.com` (the `superadmin` role, which can open `/components` and the admin tools) and `test@example.com` (no role). Other environments only get the roles. Re-seed any time with `php artisan db:seed`.
 
 After setup, ensure **[Betterleaks](https://github.com/betterleaks/betterleaks)** is installed on your machine so the pre-commit secret scan can run (for example: `brew install betterleaks` on macOS).
 
@@ -180,7 +181,7 @@ If you prefer manual installation:
 3. **Database & Storage**
 
    ```bash
-   php artisan migrate
+   php artisan migrate --seed
    php artisan migrate --env=testing
    php artisan storage:link
    ```
@@ -203,16 +204,18 @@ If you prefer manual installation:
 
 For new projects using this as base:
 
-5. Create blank repository in Github
-6. Remove old github repository origin (reusables-laravel)
-7. Add new github repository origin and push to this new repository
+5. Create a blank repository on GitHub
+6. Run `php artisan starter:init` and answer the prompts (or pass `--name=acme-portal --repository=owner/acme-portal --description="..."`). It:
+   - replaces the template's slug, database name and GitHub repository in `composer.json`, `.env*`, `herd.yml`, `phpunit.xml`, the CI workflows, `release-please-config.json`, the README and the agent guidelines
+   - resets the version to `0.1.0` in `package.json`, `composer.json` and `.release-please-manifest.json`, and empties `CHANGELOG.md`
+   - refuses to run twice unless you pass `--force`
+7. Point `origin` at the new repository (the command prints the `git remote set-url` line), review the diff and commit
 8. Create `staging` and `dev` branches locally
 9. Choose the release branch (`main` by default). If changing it to `dev`, update both `.github/workflows/release.yml` and the release instructions in this README, then checkout `dev` to make changes
-10. Set `version` to `0.1.0` on `package.json`, `composer.json`, and `.release-please-manifest.json`
-11. Set `package-name` to the new project's name on `release-please-config.json`
-12. Change Github default branch from `main` to `dev`
-13. Commit changes and push both the `dev` and `staging` branches
-14. Enable dependabot on Github repository
+10. Change Github default branch from `main` to `dev`
+11. Push both the `dev` and `staging` branches
+12. Enable dependabot on Github repository
+13. Create the triage labels: `bash .github/scripts/setup-labels.sh` (needs an authenticated `gh`)
 
 Before going live, work through [`docs/pre-production-checklist.md`](docs/pre-production-checklist.md).
 
@@ -348,7 +351,7 @@ See `app/Http/Middleware/SecurityHeaders.php` (CSP, frame options, HSTS in produ
 - Prod uses nonce-based **scripts** (no script `unsafe-inline` / `unsafe-eval`); `style-src` keeps `unsafe-inline` in both envs for Vue `:style` bindings.
 - External allow-list: Turnstile, Google/Bunny fonts.
 
-CSP is skipped (other headers still apply) for `api/*` and every admin tool in [`App\Enums\AdminTool`](app/Enums/AdminTool.php): API docs, email previews, health, Horizon, Telescope, Pulse, Activity Log UI, Log Viewer, Web Tinker, and Laravel Brain. Tool paths come from each package's config where one exists. Add a case to the enum to register a new admin tool; the enum also defines its access gate (local env or `superadmin`).
+CSP is skipped (other headers still apply) for `api/*` and every admin tool in [`App\Enums\AdminTool`](app/Enums/AdminTool.php): API docs, email previews, health, Horizon, Telescope, Activity Log UI, Log Viewer, Web Tinker, and Laravel Brain. Tool paths come from each package's config where one exists. Add a case to the enum to register a new admin tool; the enum also defines its access gate (local env or `superadmin`).
 
 Blade inline scripts: `<script nonce="{{ $cspNonce }}">`.
 
