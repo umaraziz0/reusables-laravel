@@ -114,8 +114,3 @@ post-merge:
       tags:
         - backend
       run: php artisan migrate
-
-    - name: Run self diagnostics
-      tags:
-        - backend
-      run: php artisan self-diagnosis
