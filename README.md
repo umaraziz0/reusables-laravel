@@ -134,9 +134,51 @@ Failed queue jobs send `App\Mail\FailedJobNotification` (template: `resources/vi
 
 ## Installation
 
+### Prerequisites
+
+1. PostgreSQL
+2. Redis (required for cache tags, queues, and Horizon; `.env.example` sets `CACHE_STORE=redis`)
+3. [Betterleaks](https://github.com/betterleaks/betterleaks) for the pre-commit secret scan (for example: `brew install betterleaks` on macOS)
+
+### Starting a New Project from This Template
+
+Run `starter:init` **before** `composer run setup`. Setup migrates and seeds the database named in `.env`, which until `starter:init` runs is the template's own (`reusables_laravel`).
+
+1. Create a blank repository on GitHub
+2. Clone the template and install the PHP dependencies:
+
+   ```bash
+   git clone https://github.com/umaraziz0/reusables-laravel.git acme-portal
+   cd acme-portal
+   composer install
+   ```
+
+3. Run `php artisan starter:init` and answer the prompts, or pass `--name=acme-portal --repository=owner/acme-portal --description="..."` (all three are needed with `--no-interaction`). It:
+   - replaces the template's slug, database name and GitHub repository in `composer.json`, `.env*`, `herd.yml`, `phpunit.xml`, the CI workflows, `release-please-config.json`, the README and the agent guidelines (the Composer package name is lowercased)
+   - replaces the `composer.json` description
+   - resets the version to `0.1.0` in `package.json` and `.release-please-manifest.json`, empties `CHANGELOG.md`, and refreshes the `composer.lock` hash
+   - refuses to run twice unless you pass `--force`
+4. Create the two databases it prints (e.g. `acme_portal` and `acme_portal_testing`)
+5. Run `composer run setup` (see [Express Setup](#express-setup))
+6. Point `origin` at the new repository, keeping the template as a remote for pulling later updates, then review the diff, commit and push:
+
+   ```bash
+   git remote rename origin template
+   git remote add origin git@github.com:owner/acme-portal.git
+   git commit -am "chore: initialize project from starter kit"
+   git push -u origin main
+   ```
+
+7. Create `staging` and `dev` branches locally
+8. Choose the release branch (`main` by default). If changing it to `dev`, update both `.github/workflows/release.yml` and the release instructions in this README, then checkout `dev` to make changes
+9. Change Github default branch from `main` to `dev`
+10. Push both the `dev` and `staging` branches
+11. Enable dependabot on Github repository
+12. Create the triage labels: `bash .github/scripts/setup-labels.sh` (needs an authenticated `gh`)
+
 ### Express Setup
 
-Clone the repository and run:
+For a project that is already initialized (or to work on the template itself), run:
 
 ```bash
 composer run setup
@@ -156,17 +198,13 @@ This script automatically:
 
 In `local` (and in tests), the seeder creates two demo users with the password `password`: `superadmin@example.com` (the `superadmin` role, which can open `/components` and the admin tools) and `test@example.com` (no role). Other environments only get the roles. Re-seed any time with `php artisan db:seed`.
 
-After setup, ensure **[Betterleaks](https://github.com/betterleaks/betterleaks)** is installed on your machine so the pre-commit secret scan can run (for example: `brew install betterleaks` on macOS).
-
 ### Manual Setup
 
 If you prefer manual installation:
 
-1. **Clone and Install Dependencies**
+1. **Install Dependencies**
 
    ```bash
-   git clone https://github.com/umaraziz0/reusables-laravel.git
-   cd reusables-laravel
    composer install
    pnpm install
    pnpm exec lefthook install
@@ -201,28 +239,6 @@ If you prefer manual installation:
    ```
 
 <br />
-
-### Installation Checklist
-
-1. Install & setup a PostgreSQL database
-2. Install & run Redis (required for cache tags, queues, and Horizon; `.env.example` sets `CACHE_STORE=redis`)
-3. Install the project using the above Express / Manual Setup
-4. Install [Betterleaks](https://github.com/betterleaks/betterleaks) for secret scanning
-
-For new projects using this as base:
-
-5. Create a blank repository on GitHub
-6. Run `php artisan starter:init` and answer the prompts (or pass `--name=acme-portal --repository=owner/acme-portal --description="..."`). It:
-   - replaces the template's slug, database name and GitHub repository in `composer.json`, `.env*`, `herd.yml`, `phpunit.xml`, the CI workflows, `release-please-config.json`, the README and the agent guidelines
-   - resets the version to `0.1.0` in `package.json` and `.release-please-manifest.json`, and empties `CHANGELOG.md`
-   - refuses to run twice unless you pass `--force`
-7. Point `origin` at the new repository (the command prints the `git remote set-url` line), review the diff and commit
-8. Create `staging` and `dev` branches locally
-9. Choose the release branch (`main` by default). If changing it to `dev`, update both `.github/workflows/release.yml` and the release instructions in this README, then checkout `dev` to make changes
-10. Change Github default branch from `main` to `dev`
-11. Push both the `dev` and `staging` branches
-12. Enable dependabot on Github repository
-13. Create the triage labels: `bash .github/scripts/setup-labels.sh` (needs an authenticated `gh`)
 
 Before going live, work through [`docs/pre-production-checklist.md`](docs/pre-production-checklist.md).
 

@@ -81,8 +81,9 @@ class InitializeProjectCommand extends Command
 
         $this->components->twoColumnDetail('<options=bold>Next steps</>');
         $this->components->bulletList([
-            "Point git at the new repository: git remote set-url origin git@github.com:{$repository}.git",
             "Create the databases: {$this->database($slug)} and {$this->database($slug)}_testing",
+            'Install and migrate: composer run setup',
+            "Point git at the new repository: git remote rename origin template && git remote add origin git@github.com:{$repository}.git",
             'Create the triage labels: bash .github/scripts/setup-labels.sh',
             'Review the diff, then commit: git commit -am "chore: initialize project from starter kit"',
         ]);
