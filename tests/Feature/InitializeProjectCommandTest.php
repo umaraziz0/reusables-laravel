@@ -58,6 +58,16 @@ test('it initializes the project from the given options', function (): void {
         ->assertSuccessful();
 });
 
+test('it accepts a mixed-case repository', function (): void {
+    $this->mock(InitializeProject::class, function (MockInterface $mock): void {
+        $mock->expects('handle')
+            ->with(base_path(), 'acme-portal', 'Acme/Portal', 'x')
+            ->andReturn([]);
+    });
+
+    starterInit(['--name' => 'acme-portal', '--repository' => 'Acme/Portal', '--description' => 'x'])->assertSuccessful();
+});
+
 test('it prompts for missing values', function (): void {
     $this->mock(InitializeProject::class, function (MockInterface $mock): void {
         $mock->expects('handle')
@@ -81,6 +91,7 @@ test('it rejects invalid options without touching any file', function (array $op
 })->with([
     'slug with uppercase'   => [['--name' => 'Acme Portal', '--repository' => 'acme/portal']],
     'repository not a path' => [['--name' => 'acme-portal', '--repository' => 'acme']],
+    'not a composer name'   => [['--name' => 'acme-portal', '--repository' => 'acme/portal.']],
 ]);
 
 test('it refuses to run on an already initialized project unless forced', function (): void {

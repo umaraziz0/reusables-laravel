@@ -93,3 +93,10 @@ test('running it again changes nothing', function (): void {
 
     expect(resolve(InitializeProject::class)->handle($this->projectPath, 'acme-portal', 'acme/portal'))->toBeEmpty();
 });
+
+test('it lowercases the composer package name but keeps the repository case elsewhere', function (): void {
+    resolve(InitializeProject::class)->handle($this->projectPath, 'acme-portal', 'Acme/Portal');
+
+    expect(File::json("{$this->projectPath}/composer.json")['name'])->toBe('acme/portal')
+        ->and(File::get("{$this->projectPath}/README.md"))->toContain('github.com/Acme/Portal');
+});

@@ -17,6 +17,12 @@ class InitializeProject
 
     public const string INITIAL_VERSION = '0.1.0';
 
+    /**
+     * Composer's package name rule. GitHub allows uppercase, so the repository is
+     * lowercased for composer.json and must still match this afterwards.
+     */
+    public const string COMPOSER_NAME_PATTERN = '{^[a-z0-9]([_.-]?[a-z0-9]+)*/[a-z0-9](([_.]|-{1,2})?[a-z0-9]+)*$}';
+
     private const string TEMPLATE_SLUG = 'reusables-laravel';
 
     private const string TEMPLATE_DATABASE = 'reusables_laravel';
@@ -53,11 +59,12 @@ class InitializeProject
         $title = Str::headline($slug);
 
         $renames = [
-            self::TEMPLATE_REPOSITORY     => $repository,
-            self::TEMPLATE_README_HEADING => "# {$title}",
-            self::TEMPLATE_SLUG           => $slug,
-            self::TEMPLATE_DATABASE       => Str::replace('-', '_', $slug),
-            self::TEMPLATE_TITLE          => $title,
+            '"name": "' . self::TEMPLATE_REPOSITORY . '"' => '"name": "' . Str::lower($repository) . '"',
+            self::TEMPLATE_REPOSITORY                     => $repository,
+            self::TEMPLATE_README_HEADING                 => "# {$title}",
+            self::TEMPLATE_SLUG                           => $slug,
+            self::TEMPLATE_DATABASE                       => Str::replace('-', '_', $slug),
+            self::TEMPLATE_TITLE                          => $title,
         ];
 
         $changedFiles = [];

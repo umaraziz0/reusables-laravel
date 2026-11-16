@@ -97,9 +97,15 @@ class InitializeProjectCommand extends Command
 
     private function validateRepository(string $repository): ?string
     {
-        return preg_match(self::REPOSITORY_PATTERN, $repository) === 1
-            ? null
-            : 'The repository must look like owner/name.';
+        if (preg_match(self::REPOSITORY_PATTERN, $repository) !== 1) {
+            return 'The repository must look like owner/name.';
+        }
+
+        if (preg_match(InitializeProject::COMPOSER_NAME_PATTERN, Str::lower($repository)) !== 1) {
+            return 'The repository, lowercased, must also be a valid Composer package name (letters, numbers and single . _ - separators).';
+        }
+
+        return null;
     }
 
     private function database(string $slug): string
