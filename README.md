@@ -206,17 +206,18 @@ If you prefer manual installation:
 
 For new projects using this as base:
 
-5. Create blank repository in Github
-6. Remove old github repository origin (reusables-laravel)
-7. Add new github repository origin and push to this new repository
+5. Create a blank repository on GitHub
+6. Run `php artisan starter:init` and answer the prompts (or pass `--name=acme-portal --repository=owner/acme-portal --description="..."`). It:
+   - replaces the template's slug, database name and GitHub repository in `composer.json`, `.env*`, `herd.yml`, `phpunit.xml`, the CI workflows, `release-please-config.json`, the README and the agent guidelines
+   - resets the version to `0.1.0` in `package.json`, `composer.json` and `.release-please-manifest.json`, and empties `CHANGELOG.md`
+   - refuses to run twice unless you pass `--force`
+7. Point `origin` at the new repository (the command prints the `git remote set-url` line), review the diff and commit
 8. Create `staging` and `dev` branches locally
 9. Choose the release branch (`main` by default). If changing it to `dev`, update both `.github/workflows/release.yml` and the release instructions in this README, then checkout `dev` to make changes
-10. Set `version` to `0.1.0` on `package.json`, `composer.json`, and `.release-please-manifest.json`
-11. Set `package-name` to the new project's name on `release-please-config.json`
-12. Change Github default branch from `main` to `dev`
-13. Commit changes and push both the `dev` and `staging` branches
-14. Enable dependabot on Github repository
-15. Create the triage labels: `bash .github/scripts/setup-labels.sh` (needs an authenticated `gh`)
+10. Change Github default branch from `main` to `dev`
+11. Push both the `dev` and `staging` branches
+12. Enable dependabot on Github repository
+13. Create the triage labels: `bash .github/scripts/setup-labels.sh` (needs an authenticated `gh`)
 
 Before going live, work through [`docs/pre-production-checklist.md`](docs/pre-production-checklist.md).
 
