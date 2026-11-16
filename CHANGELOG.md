@@ -1,5 +1,23 @@
 # Changelog
 
+## [0.9.0](https://github.com/umaraziz0/reusables-laravel/compare/reusables-laravel-v0.8.0...reusables-laravel-v0.9.0) (2026-11-16)
+
+
+### Features
+
+* **components:** add `Collapsible`, `Pagination` and `Table` to the components sidebar ([10e073d](https://github.com/umaraziz0/reusables-laravel/commit/10e073d93329fd2b1c7bff8c9cabfe4c3b1710f8))
+* **components:** add `Pagination` showcase page ([5b8600d](https://github.com/umaraziz0/reusables-laravel/commit/5b8600ddca135fd450297c85bcda2d961fc8f766))
+* **components:** add `Table` and `Pagination` showcase pages ([67d6186](https://github.com/umaraziz0/reusables-laravel/commit/67d6186793b94c1ba61acd5107d2529808d1cd54))
+* **components:** add `Table` showcase page with server-side pagination ([6ccfa2a](https://github.com/umaraziz0/reusables-laravel/commit/6ccfa2ab23b7818cc22502470d56a226536aa913))
+* **components:** add shadcn `Pagination` ([75cdf28](https://github.com/umaraziz0/reusables-laravel/commit/75cdf2838c7e88541df28a78276514f715ebc70a))
+* **components:** add shadcn `Table` ([1b68b9c](https://github.com/umaraziz0/reusables-laravel/commit/1b68b9cffa602d1f3226a52bbed272293fb72c41))
+* **components:** add shadcn `Table` and `Pagination` ([#111](https://github.com/umaraziz0/reusables-laravel/issues/111)) ([aecf738](https://github.com/umaraziz0/reusables-laravel/commit/aecf738a90f7ee160cd1a8c36fb3e0cf2a0c4fb4))
+
+
+### Bug Fixes
+
+* **components:** give `Table` and `Pagination` pages a single root element ([4c37d07](https://github.com/umaraziz0/reusables-laravel/commit/4c37d07ff0728848a14f223e86d2d9646988d80e))
+
 ## [0.8.0](https://github.com/umaraziz0/reusables-laravel/compare/reusables-laravel-v0.7.1...reusables-laravel-v0.8.0) (2026-11-16)
 
 
