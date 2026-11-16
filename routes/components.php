@@ -13,6 +13,8 @@ Route::middleware(['auth', 'role:superadmin'])
         Route::get('badges', [ComponentPreviewController::class, 'badges'])->name('components.badges');
         Route::get('buttons', [ComponentPreviewController::class, 'buttons'])->name('components.buttons');
         Route::get('collapsible', [ComponentPreviewController::class, 'collapsible'])->name('components.collapsible');
+        Route::get('pagination', [ComponentPreviewController::class, 'pagination'])->name('components.pagination');
+        Route::get('table', [ComponentPreviewController::class, 'table'])->name('components.table');
 
         Route::prefix('form')->group(function (): void {
             Route::get('input-field', [ComponentPreviewController::class, 'formInputField'])

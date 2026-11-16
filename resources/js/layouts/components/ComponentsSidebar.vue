@@ -3,13 +3,16 @@ import { Link } from '@inertiajs/vue3';
 import {
   AlertCircle,
   ChevronDown,
+  ChevronsUpDown,
   CircleDot,
+  Ellipsis,
   FormInput,
   LetterText,
   ListChevronsUpDown,
   Phone,
   SquareCheckBig,
   SquarePower,
+  Table,
   Tag,
   TextCursorInput,
   TextSearch,
@@ -45,7 +48,14 @@ import {
   SidebarMenuItem,
 } from '@/components/ui/sidebar';
 import { useCurrentUrl } from '@/composables/useCurrentUrl';
-import { alert, badges, buttons } from '@/routes/components';
+import {
+  alert,
+  badges,
+  buttons,
+  collapsible,
+  pagination,
+  table,
+} from '@/routes/components';
 import { type NavItem } from '@/types';
 
 // --- Constants --- //
@@ -65,6 +75,11 @@ const componentNavItems: NavItem[] = [
     title: 'Buttons',
     href: buttons(),
     icon: SquarePower,
+  },
+  {
+    title: 'Collapsible',
+    href: collapsible(),
+    icon: ChevronsUpDown,
   },
   {
     title: 'Form',
@@ -118,6 +133,16 @@ const componentNavItems: NavItem[] = [
         icon: ToggleRight,
       },
     ],
+  },
+  {
+    title: 'Pagination',
+    href: pagination(),
+    icon: Ellipsis,
+  },
+  {
+    title: 'Table',
+    href: table(),
+    icon: Table,
   },
 ];
 

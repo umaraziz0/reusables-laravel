@@ -35,6 +35,29 @@ class ComponentPreviewController extends Controller
         return Inertia::render('components/Collapsible');
     }
 
+    public function pagination(): Response
+    {
+        return Inertia::render('components/Pagination');
+    }
+
+    public function table(): Response
+    {
+        $statuses = ['paid', 'pending', 'unpaid'];
+        $methods  = ['Credit Card', 'PayPal', 'Bank Transfer'];
+
+        $invoices = collect(range(1, 47))->map(fn (int $number): array => [
+            'id'     => $number,
+            'number' => sprintf('INV-%03d', $number),
+            'status' => $statuses[$number % 3],
+            'method' => $methods[$number % 3],
+            'amount' => 50 + (($number * 17) % 450),
+        ]);
+
+        return Inertia::render('components/Table', [
+            'invoices' => $invoices->paginate(10),
+        ]);
+    }
+
     // --- Form Components --- //
 
     public function formInputField(): Response
