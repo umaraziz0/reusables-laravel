@@ -31,5 +31,7 @@ Route::middleware(['auth', 'role:superadmin'])
                 ->name('components.form.checkbox-field');
             Route::get('radio-field', [ComponentPreviewController::class, 'formRadioField'])
                 ->name('components.form.radio-field');
+            Route::get('switch-field', [ComponentPreviewController::class, 'formSwitchField'])
+                ->name('components.form.switch-field');
         });
     });
