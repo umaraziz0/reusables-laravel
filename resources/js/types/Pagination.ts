@@ -27,3 +27,12 @@ export type Pagination<T> = {
   links: PaginationLinks;
   meta: PaginationMeta;
 };
+
+/** Laravel's `LengthAwarePaginator` serialized directly, without an API resource. */
+export type LengthAwarePaginator<T> = PaginationMeta & {
+  data: T[];
+  first_page_url: string;
+  last_page_url: string;
+  next_page_url: string | null;
+  prev_page_url: string | null;
+};

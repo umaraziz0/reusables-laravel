@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 use App\Enums\Role;
 use App\Models\User;
+use Inertia\Testing\AssertableInertia as Assert;
 use Spatie\Permission\Models\Role as RoleModel;
 
 beforeEach(function (): void {
@@ -45,6 +46,7 @@ test('component preview pages require authentication', function (string $routeNa
     'buttons'                  => 'components.buttons',
     'collapsible'              => 'components.collapsible',
     'pagination'               => 'components.pagination',
+    'table'                    => 'components.table',
     'form input field'         => 'components.form.input-field',
     'form input group field'   => 'components.form.input-group-field',
     'form phone number field'  => 'components.form.phone-number-field',
@@ -68,6 +70,7 @@ test('component preview pages require superadmin role', function (string $routeN
     'buttons'                  => 'components.buttons',
     'collapsible'              => 'components.collapsible',
     'pagination'               => 'components.pagination',
+    'table'                    => 'components.table',
     'form input field'         => 'components.form.input-field',
     'form input group field'   => 'components.form.input-group-field',
     'form phone number field'  => 'components.form.phone-number-field',
@@ -92,6 +95,7 @@ test('superadmin can view component preview pages', function (string $routeName)
     'buttons'                  => 'components.buttons',
     'collapsible'              => 'components.collapsible',
     'pagination'               => 'components.pagination',
+    'table'                    => 'components.table',
     'form input field'         => 'components.form.input-field',
     'form input group field'   => 'components.form.input-group-field',
     'form phone number field'  => 'components.form.phone-number-field',
@@ -102,3 +106,19 @@ test('superadmin can view component preview pages', function (string $routeName)
     'form radio field'         => 'components.form.radio-field',
     'form switch field'        => 'components.form.switch-field',
 ]);
+
+test('table preview paginates hardcoded invoices', function (): void {
+    $user = User::factory()->create();
+    $user->assignRole(Role::SUPERADMIN->value);
+
+    $response = $this->actingAs($user)->get(route('components.table', ['page' => 2]));
+
+    $response->assertInertia(fn (Assert $page): Assert => $page
+        ->component('components/Table')
+        ->where('invoices.current_page', 2)
+        ->where('invoices.per_page', 10)
+        ->where('invoices.total', 47)
+        ->where('invoices.last_page', 5)
+        ->has('invoices.data', 10)
+        ->where('invoices.data.0.number', 'INV-011'));
+});
