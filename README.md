@@ -151,6 +151,7 @@ This script automatically:
 - Creates the `storage` symlink
 - Installs Node dependencies via pnpm
 - Installs the Lefthook Git hooks
+- Builds the frontend (`pnpm run build`), which Inertia pages and the browser tests need
 - Installs the Laravel Boost guidelines & skills and the extra agent skills from `skills-lock.json`
 
 In `local` (and in tests), the seeder creates two demo users with the password `password`: `superadmin@example.com` (the `superadmin` role, which can open `/components` and the admin tools) and `test@example.com` (no role). Other environments only get the roles. Re-seed any time with `php artisan db:seed`.
@@ -186,7 +187,13 @@ If you prefer manual installation:
    php artisan storage:link
    ```
 
-4. **AI Agent Skills**
+4. **Frontend Build**
+
+   ```bash
+   pnpm run build
+   ```
+
+5. **AI Agent Skills**
 
    ```bash
    php artisan boost:update -n

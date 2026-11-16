@@ -79,6 +79,7 @@
       "@php artisan storage:link",
       "pnpm install",
       "pnpm exec lefthook install",
+      "pnpm run build",
       "@php artisan boost:update --ansi -n",
       "pnpm dlx skills@1.8.1 experimental_install --frozen-lockfile -a claude-code cursor opencode codex pi"
     ],
