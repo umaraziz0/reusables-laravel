@@ -60,12 +60,18 @@ test('admin tool routes allow users with the superadmin role', function (string 
     $response->assertSuccessful();
 })->with('admin tool routes');
 
+test('telescope is not served outside local, even to a superadmin', function (): void {
+    $user = User::factory()->create();
+    $user->assignRole(Role::SUPERADMIN->value);
+
+    $this->actingAs($user)->get('/telescope')->assertNotFound();
+});
+
 dataset('admin tool routes', [
     'Pulse'           => 'pulse',
     'LogViewer'       => 'log-viewer.index',
     'Activity Log UI' => 'activitylog-ui.dashboard',
     'Horizon'         => 'horizon.index',
-    'Telescope'       => 'telescope',
     'Health'          => 'health',
     'Email previews'  => 'emails.failed-job',
 ]);

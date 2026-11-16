@@ -25,6 +25,7 @@ use Laravel\Nightwatch\Facades\Nightwatch;
 use Laravel\Nightwatch\Records\Query;
 use Laravel\Nightwatch\Records\QueuedJob;
 use Laravel\Telescope\Jobs\ProcessPendingUpdates;
+use Laravel\Telescope\TelescopeServiceProvider as TelescopePackageServiceProvider;
 use Override;
 
 class AppServiceProvider extends ServiceProvider
@@ -35,7 +36,7 @@ class AppServiceProvider extends ServiceProvider
     #[Override]
     public function register(): void
     {
-        //
+        $this->registerTelescope();
     }
 
     /**
@@ -52,6 +53,20 @@ class AppServiceProvider extends ServiceProvider
         $this->configureAuthorization();
         $this->configureNightwatchFilters();
         $this->registerFailedJobNotification();
+    }
+
+    /**
+     * Telescope is a dev dependency, so it is registered only locally (and only when
+     * installed). Package discovery is disabled for it in composer.json.
+     */
+    private function registerTelescope(): void
+    {
+        if (! $this->app->environment('local') || ! class_exists(TelescopePackageServiceProvider::class)) {
+            return;
+        }
+
+        $this->app->register(TelescopePackageServiceProvider::class);
+        $this->app->register(TelescopeServiceProvider::class);
     }
 
     private function configureDefaults(bool $isLocal, bool $isTesting): void

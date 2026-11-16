@@ -24,7 +24,3 @@ test('health check heartbeats run every minute so the schedule and queue checks 
     'health:schedule-check-heartbeat',
     'health:queue-check-heartbeat',
 ]);
-
-test('telescope entries are pruned daily', function (): void {
-    expect(scheduledCommandExpressions())->toHaveKey('telescope:prune --hours=48', '0 0 * * *');
-});

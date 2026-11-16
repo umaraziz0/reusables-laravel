@@ -87,7 +87,7 @@ An opinionated starter kit & collection of reusable components etc for Laravel /
 
 #### Debugging & Monitoring
 
-- [Laravel Telescope](https://laravel.com/docs/13.x/telescope) - view insights into requests, exceptions, queries, etc
+- [Laravel Telescope](https://laravel.com/docs/13.x/telescope) - view insights into requests, exceptions, queries, etc (dev dependency, registered only when `APP_ENV=local`; use Nightwatch in production)
 - [Laravel Web Tinker](https://github.com/spatie/laravel-web-tinker) - access Laravel Tinker via a web endpoint
 - [Log Viewer](https://github.com/opcodesio/log-viewer) - web UI for Laravel logs
 - [Laravel Activity Log](https://spatie.be/docs/laravel-activitylog/v5/introduction) - user activity / action logging
