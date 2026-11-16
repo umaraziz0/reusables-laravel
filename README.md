@@ -94,7 +94,6 @@ An opinionated starter kit & collection of reusable components etc for Laravel /
 - [Laravel Activity Log UI](https://github.com/muhammadsadeeq/laravel-activitylog-ui) - user friendly interface for Activity Log
 - [Laravel Self Diagnosis](https://github.com/beyondcode/laravel-self-diagnosis) - environment checks
 - [Laravel Horizon](https://laravel.com/docs/13.x/horizon) - redis queue jobs monitoring
-- [Laravel Schedule Monitor](https://github.com/spatie/laravel-schedule-monitor) - monitors and logs schedule tasks
 - [Laravel Health](https://spatie.be/docs/laravel-health/v1/introduction) - monitors overall application health
 - [Laravel Pulse](https://pulse.laravel.com/) - lightweight, self-hosted application monitoring
 - [Laravel Nightwatch](https://github.com/laravel/nightwatch) - complete application monitoring & observability platform
@@ -220,8 +219,6 @@ For new projects using this as base:
 13. Create the triage labels: `bash .github/scripts/setup-labels.sh` (needs an authenticated `gh`)
 
 Before going live, work through [`docs/pre-production-checklist.md`](docs/pre-production-checklist.md).
-
-On every deploy, run `php artisan schedule-monitor:sync` after migrating, so [Schedule Monitor](https://github.com/spatie/laravel-schedule-monitor) tracks the current schedule in `routes/console.php`.
 
 ## Development
 

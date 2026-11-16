@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "a102cfabba34b46acabdbb5930bb140c",
+    "content-hash": "3f5d5c4ceace8382a0d0bec2b3286a77",
     "packages": [
         {
             "name": "aws/aws-crt-php",
@@ -4053,63 +4053,6 @@
             "published-time": "2026-10-21T14:02:22+00:00"
         },
         {
-            "name": "lorisleiva/cron-translator",
-            "version": "v0.5.2",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/lorisleiva/cron-translator.git",
-                "reference": "61335e4329c8838a5dd8b23a5b6c3a7cb6aac176"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/lorisleiva/cron-translator/zipball/61335e4329c8838a5dd8b23a5b6c3a7cb6aac176",
-                "reference": "61335e4329c8838a5dd8b23a5b6c3a7cb6aac176",
-                "shasum": ""
-            },
-            "require": {
-                "php": "^8.0"
-            },
-            "require-dev": {
-                "phpunit/phpunit": "^9.5"
-            },
-            "type": "library",
-            "autoload": {
-                "psr-4": {
-                    "Lorisleiva\\CronTranslator\\": "src"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Loris LEIVA",
-                    "email": "loris.leiva@gmail.com",
-                    "homepage": "https://lorisleiva.com"
-                }
-            ],
-            "description": "Makes CRON expressions human-readable",
-            "homepage": "https://github.com/lorisleiva/cron-translator",
-            "keywords": [
-                "cron",
-                "expression",
-                "human"
-            ],
-            "support": {
-                "issues": "https://github.com/lorisleiva/cron-translator/issues",
-                "source": "https://github.com/lorisleiva/cron-translator/tree/v0.5.2"
-            },
-            "funding": [
-                {
-                    "url": "https://github.com/lorisleiva",
-                    "type": "github"
-                }
-            ],
-            "time": "2026-07-18T13:25:58+00:00",
-            "published-time": "2026-07-18T13:26:40+00:00"
-        },
-        {
             "name": "monolog/monolog",
             "version": "3.12.1",
             "source": {
@@ -6749,85 +6692,6 @@
             ],
             "time": "2026-11-06T11:43:27+00:00",
             "published-time": "2026-11-06T11:43:46+00:00"
-        },
-        {
-            "name": "spatie/laravel-schedule-monitor",
-            "version": "4.3.3",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/spatie/laravel-schedule-monitor.git",
-                "reference": "507efefdd5a682203fdefdee6ff221c1478b6812"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/spatie/laravel-schedule-monitor/zipball/507efefdd5a682203fdefdee6ff221c1478b6812",
-                "reference": "507efefdd5a682203fdefdee6ff221c1478b6812",
-                "shasum": ""
-            },
-            "require": {
-                "illuminate/bus": "^11.0|^12.0|^13.0",
-                "lorisleiva/cron-translator": "^0.3.0|^0.4.0|^0.5",
-                "nesbot/carbon": "^2.63|^3.0",
-                "nunomaduro/termwind": "^2.0",
-                "php": "^8.2",
-                "spatie/laravel-package-tools": "^1.9"
-            },
-            "require-dev": {
-                "mockery/mockery": "^1.4",
-                "orchestra/testbench": "^9.6|^10.0|^11.0",
-                "pestphp/pest": "^2.34|^3.7|^4.4|^5.0",
-                "pestphp/pest-plugin-laravel": "^2.3|^3.1|^4.1|^5.0",
-                "spatie/pest-plugin-snapshots": "^1.1|^2.1",
-                "spatie/phpunit-snapshot-assertions": "^4.2|^5.1",
-                "spatie/test-time": "^1.2"
-            },
-            "type": "library",
-            "extra": {
-                "laravel": {
-                    "providers": [
-                        "Spatie\\ScheduleMonitor\\ScheduleMonitorServiceProvider"
-                    ]
-                },
-                "branch-alias": {
-                    "dev-ohdear-monitor": "4.0.x-dev"
-                }
-            },
-            "autoload": {
-                "psr-4": {
-                    "Spatie\\ScheduleMonitor\\": "src",
-                    "Spatie\\ScheduleMonitor\\Database\\Factories\\": "database/factories"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Freek Van der Herten",
-                    "email": "freek@spatie.be",
-                    "homepage": "https://spatie.be",
-                    "role": "Developer"
-                }
-            ],
-            "description": "Monitor scheduled tasks in a Laravel app",
-            "homepage": "https://github.com/spatie/laravel-schedule-monitor",
-            "keywords": [
-                "laravel-schedule-monitor",
-                "spatie"
-            ],
-            "support": {
-                "issues": "https://github.com/spatie/laravel-schedule-monitor/issues",
-                "source": "https://github.com/spatie/laravel-schedule-monitor/tree/4.3.3"
-            },
-            "funding": [
-                {
-                    "url": "https://github.com/spatie",
-                    "type": "github"
-                }
-            ],
-            "time": "2026-11-06T14:58:41+00:00",
-            "published-time": "2026-11-06T14:59:07+00:00"
         },
         {
             "name": "spatie/regex",
