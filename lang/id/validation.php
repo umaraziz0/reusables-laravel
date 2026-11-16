@@ -190,6 +190,7 @@ return [
         'password'              => 'kata sandi',
         'password_confirmation' => 'konfirmasi kata sandi',
         'current_password'      => 'kata sandi saat ini',
+        'phone_number'          => 'nomor telepon',
     ],
 
     'captcha' => 'Verifikasi captcha gagal. Silakan coba lagi.',
