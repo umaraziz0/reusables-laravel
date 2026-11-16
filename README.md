@@ -148,11 +148,13 @@ This script automatically:
 - Installs PHP dependencies via Composer
 - Copies `.env.example` to `.env` (if missing)
 - Generates application key
-- Runs app and testing database migrations
+- Runs app and testing database migrations, and seeds roles and demo users
 - Creates the `storage` symlink
 - Installs Node dependencies via pnpm
 - Installs the Lefthook Git hooks
 - Installs the Laravel Boost guidelines & skills and the extra agent skills from `skills-lock.json`
+
+In `local` (and in tests), the seeder creates two demo users with the password `password`: `superadmin@example.com` (the `superadmin` role, which can open `/components` and the admin tools) and `test@example.com` (no role). Other environments only get the roles. Re-seed any time with `php artisan db:seed`.
 
 After setup, ensure **[Betterleaks](https://github.com/betterleaks/betterleaks)** is installed on your machine so the pre-commit secret scan can run (for example: `brew install betterleaks` on macOS).
 
@@ -180,7 +182,7 @@ If you prefer manual installation:
 3. **Database & Storage**
 
    ```bash
-   php artisan migrate
+   php artisan migrate --seed
    php artisan migrate --env=testing
    php artisan storage:link
    ```

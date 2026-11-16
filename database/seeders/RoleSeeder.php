@@ -11,18 +11,14 @@ use Spatie\Permission\Models\Role;
 class RoleSeeder extends Seeder
 {
     /**
-     * * To run: `php artisan db:seed --class=RoleSeeder`
+     * Create one role per `App\Enums\Role` case. Safe to re-run.
+     *
+     * To run: `php artisan db:seed --class=RoleSeeder`
      */
     public function run(): void
     {
-        Role::query()->updateOrCreate(['id' => 1], [
-            'name'       => RoleEnum::SUPERADMIN->value,
-            'guard_name' => 'web',
-        ]);
-
-        Role::query()->updateOrCreate(['id' => 2], [
-            'name'       => RoleEnum::ADMIN->value,
-            'guard_name' => 'web',
-        ]);
+        foreach (RoleEnum::cases() as $role) {
+            Role::findOrCreate($role->value, 'web');
+        }
     }
 }
