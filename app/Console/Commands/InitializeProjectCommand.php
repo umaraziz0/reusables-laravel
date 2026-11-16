@@ -9,6 +9,7 @@ use Illuminate\Console\Attributes\Description;
 use Illuminate\Console\Attributes\Signature;
 use Illuminate\Console\Command;
 use Illuminate\Support\Facades\File;
+use Illuminate\Support\Facades\Process;
 use Illuminate\Support\Str;
 
 use function Laravel\Prompts\text;
@@ -63,6 +64,8 @@ class InitializeProjectCommand extends Command
         $this->components->info("Initialized {$slug}. Changed files:");
         $this->components->bulletList($changedFiles);
 
+        $this->refreshComposerLockHash();
+
         $this->components->twoColumnDetail('<options=bold>Next steps</>');
         $this->components->bulletList([
             "Point git at the new repository: git remote set-url origin git@github.com:{$repository}.git",
@@ -72,6 +75,30 @@ class InitializeProjectCommand extends Command
         ]);
 
         return self::SUCCESS;
+    }
+
+    /**
+     * composer.lock's content hash covers composer.json's name, version and description,
+     * so Composer reports the lock as outdated until it is refreshed. Package versions stay as they are.
+     */
+    private function refreshComposerLockHash(): void
+    {
+        $command = ['composer', 'update', '--lock', '--no-install', '--no-scripts', '--no-interaction'];
+
+        $refreshed = false;
+
+        $this->components->task(
+            'Refreshing the composer.lock content hash',
+            function () use ($command, &$refreshed): bool {
+                $refreshed = Process::path(base_path())->timeout(300)->run($command)->successful();
+
+                return $refreshed;
+            },
+        );
+
+        if (! $refreshed) {
+            $this->components->warn('Could not refresh composer.lock. Run: ' . implode(' ', $command));
+        }
     }
 
     private function isTemplate(): bool

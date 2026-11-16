@@ -3,7 +3,9 @@
 declare(strict_types=1);
 
 use App\Actions\Starter\InitializeProject;
+use Illuminate\Process\PendingProcess;
 use Illuminate\Support\Facades\File;
+use Illuminate\Support\Facades\Process;
 use Illuminate\Testing\PendingCommand;
 use Mockery\MockInterface;
 
@@ -34,6 +36,7 @@ function useTemporaryProject(string $composerName): string
 }
 
 beforeEach(function (): void {
+    Process::fake();
     $this->projectPath = useTemporaryProject(InitializeProject::TEMPLATE_REPOSITORY);
 });
 
@@ -55,6 +58,29 @@ test('it initializes the project from the given options', function (): void {
     ])
         ->expectsOutputToContain('Initialized acme-portal')
         ->expectsOutputToContain('acme_portal_testing')
+        ->assertSuccessful();
+});
+
+test('it refreshes the composer.lock hash after renaming', function (): void {
+    $this->mock(InitializeProject::class, function (MockInterface $mock): void {
+        $mock->expects('handle')->andReturn(['composer.json']);
+    });
+
+    starterInit(['--name' => 'acme-portal', '--repository' => 'acme/portal', '--description' => 'x'])->assertSuccessful();
+
+    Process::assertRan(fn (PendingProcess $process): bool => $process->command === ['composer', 'update', '--lock', '--no-install', '--no-scripts', '--no-interaction']
+        && $process->path === base_path());
+});
+
+test('it tells the user how to refresh composer.lock when composer fails', function (): void {
+    Process::fake(['*' => Process::result(exitCode: 1)]);
+
+    $this->mock(InitializeProject::class, function (MockInterface $mock): void {
+        $mock->expects('handle')->andReturn(['composer.json']);
+    });
+
+    starterInit(['--name' => 'acme-portal', '--repository' => 'acme/portal', '--description' => 'x'])
+        ->expectsOutputToContain('Could not refresh composer.lock')
         ->assertSuccessful();
 });
 
