@@ -10,7 +10,6 @@
     "beyondcode/laravel-self-diagnosis": "^3.1",
     "dedoc/scramble": "^0.13.54",
     "doctrine/dbal": "^4.6.0",
-    "driftingly/rector-laravel": "^2.7.3",
     "hryagstn/laravel-scalpel": "^1.11",
     "inertiajs/inertia-laravel": "^3.7",
     "laravel/chisel": "^0.1.1",
@@ -35,6 +34,7 @@
   "require-dev": {
     "albertoarena/laravel-truss": "^1.16.0",
     "barryvdh/laravel-ide-helper": "^3.8",
+    "driftingly/rector-laravel": "^2.7.3",
     "fakerphp/faker": "^1.24.1",
     "heyosseus/sloppy": "^1.8.3",
     "laramint/laravel-brain": "^2.7.1",
