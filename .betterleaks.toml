@@ -10,4 +10,6 @@ paths = [
   '''(^|/)\.codex(/|$)''',
   '''(^|/)\.cursor(/|$)''',
   '''(^|/)\.opencode(/|$)''',
+  # Translation files: "Reset Password" → "..." reads as a generic password.
+  '''^lang/''',
 ]

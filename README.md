@@ -82,6 +82,7 @@ An opinionated starter kit & collection of reusable components etc for Laravel /
 - [Laravel Wayfinder](https://github.com/laravel/wayfinder) - BE to FE routing (replaces Ziggy in older Laravel versions)
 - [Laravel Sanctum](https://laravel.com/docs/13.x/sanctum#installation) - API authentication
 - [Laravolt Indonesia](https://github.com/laravolt/indonesia) - Indonesian regions (provinces, cities, districts, villages)
+- Translations - English (`lang/en`) and Indonesian (`lang/id`, `lang/id.json`); switch with `APP_LOCALE=id`. `tests/Unit/TranslationsTest.php` fails when the two drift apart
 - [Flysystem S3](https://laravel.com/docs/13.x/filesystem#s3-driver-configuration) - S3-compatible file storage driver
 
 #### Debugging & Monitoring
