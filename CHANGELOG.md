@@ -1,5 +1,15 @@
 # Changelog
 
+## [0.7.1](https://github.com/umaraziz0/reusables-laravel/compare/reusables-laravel-v0.7.0...reusables-laravel-v0.7.1) (2026-11-16)
+
+
+### Bug Fixes
+
+* **console:** require a description in starter:init ([f73c649](https://github.com/umaraziz0/reusables-laravel/commit/f73c6494a30eea6eb6d8739f9c69cba74bcfb98d))
+* **release:** stop bumping composer.json so releases keep composer.lock current ([28d9235](https://github.com/umaraziz0/reusables-laravel/commit/28d92352a60ac81b609eb05bece0b543d8ecc79c))
+* **setup:** build the frontend in composer run setup ([34a9903](https://github.com/umaraziz0/reusables-laravel/commit/34a99035979c3203987faef2700d1289181d2339))
+* template setup flow for new projects ([#105](https://github.com/umaraziz0/reusables-laravel/issues/105)) ([c5b9e00](https://github.com/umaraziz0/reusables-laravel/commit/c5b9e00ec2318e70ef14d69a593021a6b75d4330))
+
 ## [0.7.0](https://github.com/umaraziz0/reusables-laravel/compare/reusables-laravel-v0.6.0...reusables-laravel-v0.7.0) (2026-11-16)
 
 
