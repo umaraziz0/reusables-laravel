@@ -76,4 +76,9 @@ class ComponentPreviewController extends Controller
     {
         return Inertia::render('components/Form/RadioField');
     }
+
+    public function formSwitchField(): Response
+    {
+        return Inertia::render('components/Form/SwitchField');
+    }
 }

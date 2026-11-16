@@ -13,6 +13,7 @@ import {
   Tag,
   TextCursorInput,
   TextSearch,
+  ToggleRight,
 } from '@lucide/vue';
 
 import {
@@ -23,6 +24,7 @@ import {
   formRadioField,
   formSearchSelectField,
   formSelectField,
+  formSwitchField,
   formTextareaField,
 } from '@/actions/App/Http/Controllers/ComponentPreviewController';
 // --- Types --- //
@@ -109,6 +111,11 @@ const componentNavItems: NavItem[] = [
         title: 'Radio Field',
         href: formRadioField(),
         icon: CircleDot,
+      },
+      {
+        title: 'Switch Field',
+        href: formSwitchField(),
+        icon: ToggleRight,
       },
     ],
   },
