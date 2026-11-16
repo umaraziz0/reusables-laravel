@@ -153,7 +153,7 @@ Run `starter:init` **before** `composer run setup`. Setup migrates and seeds the
    composer install
    ```
 
-3. Run `php artisan starter:init` and answer the prompts, or pass `--name=acme-portal --repository=owner/acme-portal --description="..."` (all three are needed with `--no-interaction`). It:
+3. Run `php artisan starter:init` and answer the prompts, or pass `--name=acme-portal --repository=owner/acme-portal --description="..."` (`--name` and `--description` are required with `--no-interaction`; `--repository` defaults to `umaraziz0/<name>`). It:
    - replaces the template's slug, database name and GitHub repository in `composer.json`, `.env*`, `herd.yml`, `phpunit.xml`, the CI workflows, `release-please-config.json`, the README and the agent guidelines (the Composer package name is lowercased)
    - replaces the `composer.json` description
    - resets the version to `0.1.0` in `package.json` and `.release-please-manifest.json`, empties `CHANGELOG.md`, and refreshes the `composer.lock` hash
