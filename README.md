@@ -217,6 +217,8 @@ For new projects using this as base:
 
 Before going live, work through [`docs/pre-production-checklist.md`](docs/pre-production-checklist.md).
 
+On every deploy, run `php artisan schedule-monitor:sync` after migrating, so [Schedule Monitor](https://github.com/spatie/laravel-schedule-monitor) tracks the current schedule in `routes/console.php`.
+
 ## Development
 
 Start the development server:
