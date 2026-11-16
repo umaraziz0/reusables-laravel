@@ -85,8 +85,8 @@ test('it renames every reference to the template in the files it rewrites', func
 test('it resets the version and changelog', function (): void {
     resolve(InitializeProject::class)->handle($this->projectPath, 'acme-portal', 'acme/portal');
 
-    expect(File::json("{$this->projectPath}/composer.json")['version'])->toBe(InitializeProject::INITIAL_VERSION)
-        ->and(File::json("{$this->projectPath}/package.json")['version'])->toBe(InitializeProject::INITIAL_VERSION)
+    expect(File::json("{$this->projectPath}/package.json")['version'])->toBe(InitializeProject::INITIAL_VERSION)
+        ->and(File::json("{$this->projectPath}/composer.json"))->not->toHaveKey('version')
         ->and(File::json("{$this->projectPath}/.release-please-manifest.json"))->toBe(['.' => InitializeProject::INITIAL_VERSION])
         ->and(File::get("{$this->projectPath}/CHANGELOG.md"))->toBe("# Changelog\n");
 });

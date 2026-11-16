@@ -2,8 +2,7 @@
   "packages": {
     ".": {
       "release-type": "node",
-      "package-name": "reusables-laravel",
-      "extra-files": ["composer.json"]
+      "package-name": "reusables-laravel"
     }
   }
 }

@@ -207,7 +207,7 @@ For new projects using this as base:
 5. Create a blank repository on GitHub
 6. Run `php artisan starter:init` and answer the prompts (or pass `--name=acme-portal --repository=owner/acme-portal --description="..."`). It:
    - replaces the template's slug, database name and GitHub repository in `composer.json`, `.env*`, `herd.yml`, `phpunit.xml`, the CI workflows, `release-please-config.json`, the README and the agent guidelines
-   - resets the version to `0.1.0` in `package.json`, `composer.json` and `.release-please-manifest.json`, and empties `CHANGELOG.md`
+   - resets the version to `0.1.0` in `package.json` and `.release-please-manifest.json`, and empties `CHANGELOG.md`
    - refuses to run twice unless you pass `--force`
 7. Point `origin` at the new repository (the command prints the `git remote set-url` line), review the diff and commit
 8. Create `staging` and `dev` branches locally
@@ -372,7 +372,7 @@ CORS_SUPPORTS_CREDENTIALS=false
 [Release Please](https://github.com/googleapis/release-please) runs via [`.github/workflows/release.yml`](.github/workflows/release.yml). Version bumps follow [Conventional Commits](CONTRIBUTING.md#commit-message-conventions) (`feat` → minor, `fix`/`perf`/… → patch, `BREAKING CHANGE` / `!` → major).
 
 1. Merge conventional commits to the release branch (`main` by default).
-2. Release Please opens a **Release** PR (bumps `package.json` / `composer.json`, updates `CHANGELOG.md`).
+2. Release Please opens a **Release** PR (bumps `package.json`, updates `CHANGELOG.md`). `composer.json` has no `version` field on purpose: Composer hashes it into `composer.lock`, so bumping it would leave the lock outdated after every release.
 3. Merge that PR to tag and publish the GitHub release.
 
 No manual tagging needed.
