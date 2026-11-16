@@ -17,7 +17,7 @@ use function Laravel\Prompts\text;
 #[Signature('starter:init
     {--name= : Project slug in kebab-case, e.g. acme-portal}
     {--repository= : GitHub repository as owner/name}
-    {--description= : composer.json description}
+    {--description= : composer.json description (required: the template\'s does not describe your project)}
     {--force : Run even if the project was already initialized}')]
 #[Description('Rename this starter kit clone into a new project and reset its version and changelog')]
 class InitializeProjectCommand extends Command
@@ -32,6 +32,14 @@ class InitializeProjectCommand extends Command
             $this->components->error('This project is already initialized. Pass --force to run it again.');
 
             return self::FAILURE;
+        }
+
+        $missingOptions = array_filter(['name', 'description'], fn (string $option): bool => $this->stringOption($option) === null);
+
+        if (! $this->input->isInteractive() && $missingOptions !== []) {
+            $this->components->error('Pass ' . implode(' and ', array_map(fn (string $option): string => "--{$option}", $missingOptions)) . ' when running non-interactively.');
+
+            return self::INVALID;
         }
 
         $slug = $this->stringOption('name') ?? text(
@@ -49,7 +57,12 @@ class InitializeProjectCommand extends Command
             validate: fn (string $value): ?string => $this->validateRepository($value),
         );
 
-        $description = $this->stringOption('description') ?? (text(label: 'Description', hint: 'Leave empty to keep the current one.') ?: null);
+        $description = $this->stringOption('description') ?? text(
+            label: 'Description',
+            placeholder: 'Event ticketing platform for Acme',
+            required: true,
+            hint: 'Replaces the template description in composer.json.',
+        );
 
         $error = $this->validateSlug($slug) ?? $this->validateRepository($repository);
 
