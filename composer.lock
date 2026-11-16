@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "7b22c7fc879586e9f88846bf89d3e427",
+    "content-hash": "db1f1a2c48488e31292c7340335bfd13",
     "packages": [
         {
             "name": "aws/aws-crt-php",
@@ -6029,6 +6029,84 @@
             ],
             "time": "2026-11-13T09:33:51+00:00",
             "published-time": "2026-11-13T09:35:09+00:00"
+        },
+        {
+            "name": "spatie/laravel-collection-macros",
+            "version": "8.1.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/spatie/laravel-collection-macros.git",
+                "reference": "ba743041d78291fb3012f8f8afe5db44843b3a19"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/spatie/laravel-collection-macros/zipball/ba743041d78291fb3012f8f8afe5db44843b3a19",
+                "reference": "ba743041d78291fb3012f8f8afe5db44843b3a19",
+                "shasum": ""
+            },
+            "require": {
+                "illuminate/support": "^12.40.2|^13.0",
+                "php": "^8.2"
+            },
+            "require-dev": {
+                "amphp/parallel": "^2.3.2",
+                "amphp/parallel-functions": "^2.0",
+                "orchestra/testbench": "^10.0|^11.0",
+                "pestphp/pest": "^3.7|^4.1.5",
+                "spatie/laravel-ray": "^1.43.1",
+                "symfony/stopwatch": "^6.3|^7.0|^8.0"
+            },
+            "suggest": {
+                "amphp/parallel-functions": "Required when using the parallel*-macros."
+            },
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "Spatie\\CollectionMacros\\CollectionMacroServiceProvider"
+                    ]
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Spatie\\CollectionMacros\\": "src"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Freek Van der Herten",
+                    "email": "freek@spatie.be",
+                    "homepage": "https://github.com/freekmurze",
+                    "role": "Developer"
+                },
+                {
+                    "name": "Sebastian De Deyne",
+                    "email": "sebastian@spatie.be",
+                    "homepage": "https://github.com/sebastiandedeyne",
+                    "role": "Developer"
+                }
+            ],
+            "description": "A set of useful Laravel collection macros",
+            "homepage": "https://github.com/spatie/laravel-collection-macros",
+            "keywords": [
+                "laravel-collection-macros",
+                "spatie"
+            ],
+            "support": {
+                "source": "https://github.com/spatie/laravel-collection-macros/tree/8.1.0"
+            },
+            "funding": [
+                {
+                    "url": "https://github.com/spatie",
+                    "type": "github"
+                }
+            ],
+            "time": "2026-02-20T20:46:11+00:00",
+            "published-time": "2026-02-20T20:46:19+00:00"
         },
         {
             "name": "spatie/laravel-health",
