@@ -1,5 +1,13 @@
 # Changelog
 
+## [0.8.0](https://github.com/umaraziz0/reusables-laravel/compare/reusables-laravel-v0.7.1...reusables-laravel-v0.8.0) (2026-11-16)
+
+
+### Features
+
+* **user:** add soft deletes to users ([f742ac4](https://github.com/umaraziz0/reusables-laravel/commit/f742ac4b921d1f597065110cd1570560021f0db7))
+* **user:** add soft deletes to users ([#107](https://github.com/umaraziz0/reusables-laravel/issues/107)) ([fe5dc7a](https://github.com/umaraziz0/reusables-laravel/commit/fe5dc7a62768a7b6273f97a672589a31be3604f7))
+
 ## [0.7.1](https://github.com/umaraziz0/reusables-laravel/compare/reusables-laravel-v0.7.0...reusables-laravel-v0.7.1) (2026-11-16)
 
 
