@@ -38,9 +38,9 @@ const controlledPage = ref(3);
 </script>
 
 <template>
-  <Head title="Pagination" />
-
   <div class="space-y-12 px-4 py-6">
+    <Head title="Pagination" />
+
     <Heading
       title="Pagination"
       description="Navigation between pages of results"
