@@ -1,5 +1,27 @@
 # Changelog
 
+## [0.7.0](https://github.com/umaraziz0/reusables-laravel/compare/reusables-laravel-v0.6.0...reusables-laravel-v0.7.0) (2026-11-16)
+
+
+### Features
+
+* **components:** add `SwitchField` and move component browser tests to Vitest ([c5ba228](https://github.com/umaraziz0/reusables-laravel/commit/c5ba228e83dc2d757538344b94358d5179ba0b0e))
+* **components:** add shadcn `Switch` component ([ca0c3b6](https://github.com/umaraziz0/reusables-laravel/commit/ca0c3b6ad1f98038f3a281a9ffe54a9c288bbae8))
+* **components:** create `SwitchField` component ([62c58d0](https://github.com/umaraziz0/reusables-laravel/commit/62c58d09f51b2e066c0d733b48b8920b6a2e9c57))
+* **console:** add starter:init to turn a clone into a new project ([a19e9c4](https://github.com/umaraziz0/reusables-laravel/commit/a19e9c4446ffdf61549ec13a379c8a8869361a78))
+* **lang:** add Indonesian translations ([3e397dd](https://github.com/umaraziz0/reusables-laravel/commit/3e397ddf151e7bf0db35887285a5e3d0dd8af078))
+* **seeders:** seed roles and a local superadmin on setup ([5d6c12c](https://github.com/umaraziz0/reusables-laravel/commit/5d6c12c54d9f36babd41b4ba18321515d3f6a335))
+
+
+### Bug Fixes
+
+* **console:** lowercase the composer package name in starter:init ([633d66c](https://github.com/umaraziz0/reusables-laravel/commit/633d66cfb234122de0381e85f0c11d6d11a9008e))
+* **console:** refresh the composer.lock hash after starter:init ([53be541](https://github.com/umaraziz0/reusables-laravel/commit/53be5413e0e1a5a2d67034871f85bc638f4d36e9))
+* **health:** check only the queues Horizon works ([dcdb1df](https://github.com/umaraziz0/reusables-laravel/commit/dcdb1df237e85b94d548942638abbd298e6af9e3))
+* **lang:** move vendor translations so lang/ is loaded ([8e81379](https://github.com/umaraziz0/reusables-laravel/commit/8e81379827002faf2468fddd3f760870ecfc4780))
+* **rules:** translate the phone number field name ([d01bee0](https://github.com/umaraziz0/reusables-laravel/commit/d01bee03200e980ac5a8a3d23e0056d1eb1b97f3))
+* **schedule:** schedule health heartbeats and telescope pruning ([4c8a249](https://github.com/umaraziz0/reusables-laravel/commit/4c8a249b17255c0c4986fb55579743ffadd1436b))
+
 ## [0.6.0](https://github.com/umaraziz0/reusables-laravel/compare/reusables-laravel-v0.5.0...reusables-laravel-v0.6.0) (2026-11-14)
 
 
