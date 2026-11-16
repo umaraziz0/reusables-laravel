@@ -118,9 +118,9 @@ function goToPage(page: number): void {
 </script>
 
 <template>
-  <div class="space-y-12 px-4 py-6">
-    <Head title="Table" />
+  <Head title="Table" />
 
+  <div class="space-y-12 px-4 py-6">
     <Heading
       title="Table"
       description="A responsive table for displaying rows of data"
