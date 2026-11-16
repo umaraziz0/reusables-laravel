@@ -35,6 +35,11 @@ class ComponentPreviewController extends Controller
         return Inertia::render('components/Collapsible');
     }
 
+    public function pagination(): Response
+    {
+        return Inertia::render('components/Pagination');
+    }
+
     // --- Form Components --- //
 
     public function formInputField(): Response
