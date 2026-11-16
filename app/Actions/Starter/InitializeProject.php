@@ -82,7 +82,7 @@ class InitializeProject
             limit: 1,
         );
 
-        foreach (['composer.json', 'package.json', '.release-please-manifest.json'] as $file) {
+        foreach (['package.json', '.release-please-manifest.json'] as $file) {
             if ($this->rewrite($basePath, $file, $resetVersion)) {
                 $changedFiles[] = $file;
             }

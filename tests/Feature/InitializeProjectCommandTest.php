@@ -97,14 +97,14 @@ test('it accepts a mixed-case repository', function (): void {
 test('it prompts for missing values', function (): void {
     $this->mock(InitializeProject::class, function (MockInterface $mock): void {
         $mock->expects('handle')
-            ->with(base_path(), 'acme-portal', 'umaraziz0/acme-portal', null)
+            ->with(base_path(), 'acme-portal', 'umaraziz0/acme-portal', 'Client portal')
             ->andReturn([]);
     });
 
     starterInit()
         ->expectsQuestion('Project slug', 'acme-portal')
         ->expectsQuestion('GitHub repository', 'umaraziz0/acme-portal')
-        ->expectsQuestion('Description', '')
+        ->expectsQuestion('Description', 'Client portal')
         ->assertSuccessful();
 });
 
@@ -118,6 +118,19 @@ test('it rejects invalid options without touching any file', function (array $op
     'slug with uppercase'   => [['--name' => 'Acme Portal', '--repository' => 'acme/portal']],
     'repository not a path' => [['--name' => 'acme-portal', '--repository' => 'acme']],
     'not a composer name'   => [['--name' => 'acme-portal', '--repository' => 'acme/portal.']],
+]);
+
+test('it requires the options it would otherwise prompt for when run non-interactively', function (array $options, string $error): void {
+    $this->mock(InitializeProject::class, function (MockInterface $mock): void {
+        $mock->shouldNotReceive('handle');
+    });
+
+    starterInit([...$options, '--no-interaction' => true])
+        ->expectsOutputToContain($error)
+        ->assertExitCode(2);
+})->with([
+    'no description' => [['--name' => 'acme-portal', '--repository' => 'acme/portal'], 'Pass --description when running non-interactively.'],
+    'nothing'        => [[], 'Pass --name and --description when running non-interactively.'],
 ]);
 
 test('it refuses to run on an already initialized project unless forced', function (): void {

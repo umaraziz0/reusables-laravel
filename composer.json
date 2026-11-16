@@ -1,7 +1,6 @@
 {
   "$schema": "https://getcomposer.org/schema.json",
   "name": "umaraziz0/reusables-laravel",
-  "version": "0.7.0",
   "type": "project",
   "description": "A collection of reusable components, sections, services, methods, etc for Laravel / Vue projects.",
   "license": "MIT",
@@ -80,6 +79,7 @@
       "@php artisan storage:link",
       "pnpm install",
       "pnpm exec lefthook install",
+      "pnpm run build",
       "@php artisan boost:update --ansi -n",
       "pnpm dlx skills@1.8.1 experimental_install --frozen-lockfile -a claude-code cursor opencode codex pi"
     ],
