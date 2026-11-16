@@ -213,6 +213,7 @@ For new projects using this as base:
 12. Change Github default branch from `main` to `dev`
 13. Commit changes and push both the `dev` and `staging` branches
 14. Enable dependabot on Github repository
+15. Create the triage labels: `bash .github/scripts/setup-labels.sh` (needs an authenticated `gh`)
 
 Before going live, work through [`docs/pre-production-checklist.md`](docs/pre-production-checklist.md).
 
