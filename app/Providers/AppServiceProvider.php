@@ -117,8 +117,7 @@ class AppServiceProvider extends ServiceProvider
     {
         Nightwatch::rejectQueuedJobs(fn (QueuedJob $job): bool => $job->name === ProcessPendingUpdates::class);
 
-        Nightwatch::rejectQueries(fn (Query $query): bool => str_contains($query->sql, 'telescope_')
-            || str_contains($query->sql, 'pulse_'));
+        Nightwatch::rejectQueries(fn (Query $query): bool => str_contains($query->sql, 'telescope_'));
     }
 
     private function registerFailedJobNotification(): void

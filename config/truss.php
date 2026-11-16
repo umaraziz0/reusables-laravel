@@ -333,7 +333,6 @@ return [
         'ignore' => [
             // 'TRUSS-IDX-001' => ['audit_log.actor_id'],
             'TRUSS-IDX-003' => [
-                'pulse_*',
                 'users.users_search_trgm_idx',
             ],
         ],

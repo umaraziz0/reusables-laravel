@@ -18,7 +18,6 @@
     "laravel/horizon": "^5.51",
     "laravel/nightwatch": "^1.30.6",
     "laravel/octane": "^2.24",
-    "laravel/pulse": "^1.10.0",
     "laravel/sanctum": "^4.4.0",
     "laravel/tinker": "^3.1.0",
     "laravel/wayfinder": "^0.1.23",

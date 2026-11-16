@@ -57,10 +57,6 @@ class HealthServiceProvider extends ServiceProvider
                 ->connectionName($connection),
 
             DatabaseCheck::new()
-                ->name('Pulse Database')
-                ->connectionName('pulse_' . $connection),
-
-            DatabaseCheck::new()
                 ->name('Health Database')
                 ->connectionName('health_' . $connection),
 

@@ -38,7 +38,6 @@ return [
         Collection::class,
         LengthAwarePaginator::class,
         User::class,
-        // Needed by Laravel Pulse.
         Illuminate\Support\Collection::class,
         stdClass::class,
         CarbonImmutable::class,

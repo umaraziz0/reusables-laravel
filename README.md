@@ -95,7 +95,6 @@ An opinionated starter kit & collection of reusable components etc for Laravel /
 - [Laravel Self Diagnosis](https://github.com/beyondcode/laravel-self-diagnosis) - environment checks
 - [Laravel Horizon](https://laravel.com/docs/13.x/horizon) - redis queue jobs monitoring
 - [Laravel Health](https://spatie.be/docs/laravel-health/v1/introduction) - monitors overall application health
-- [Laravel Pulse](https://pulse.laravel.com/) - lightweight, self-hosted application monitoring
 - [Laravel Nightwatch](https://github.com/laravel/nightwatch) - complete application monitoring & observability platform
 - [NewDebugBar](https://github.com/newdebugbar/newdebugbar) - in-browser debug bar (dev only)
 - [Laravel Error Solutions](https://github.com/spatie/laravel-error-solutions) - suggested fixes on the error page (dev only)
@@ -352,7 +351,7 @@ See `app/Http/Middleware/SecurityHeaders.php` (CSP, frame options, HSTS in produ
 - Prod uses nonce-based **scripts** (no script `unsafe-inline` / `unsafe-eval`); `style-src` keeps `unsafe-inline` in both envs for Vue `:style` bindings.
 - External allow-list: Turnstile, Google/Bunny fonts.
 
-CSP is skipped (other headers still apply) for `api/*` and every admin tool in [`App\Enums\AdminTool`](app/Enums/AdminTool.php): API docs, email previews, health, Horizon, Telescope, Pulse, Activity Log UI, Log Viewer, Web Tinker, and Laravel Brain. Tool paths come from each package's config where one exists. Add a case to the enum to register a new admin tool; the enum also defines its access gate (local env or `superadmin`).
+CSP is skipped (other headers still apply) for `api/*` and every admin tool in [`App\Enums\AdminTool`](app/Enums/AdminTool.php): API docs, email previews, health, Horizon, Telescope, Activity Log UI, Log Viewer, Web Tinker, and Laravel Brain. Tool paths come from each package's config where one exists. Add a case to the enum to register a new admin tool; the enum also defines its access gate (local env or `superadmin`).
 
 Blade inline scripts: `<script nonce="{{ $cspNonce }}">`.
 
