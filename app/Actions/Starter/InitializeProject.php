@@ -23,19 +23,11 @@ class InitializeProject
      */
     public const string COMPOSER_NAME_PATTERN = '{^[a-z0-9]([_.-]?[a-z0-9]+)*/[a-z0-9](([_.]|-{1,2})?[a-z0-9]+)*$}';
 
-    private const string TEMPLATE_SLUG = 'reusables-laravel';
-
-    private const string TEMPLATE_DATABASE = 'reusables_laravel';
-
-    private const string TEMPLATE_TITLE = 'Reusables Laravel';
-
-    private const string TEMPLATE_README_HEADING = '# Laravel & Vue Reusables';
-
     /**
      * Files that mention the template's name, relative to the project root.
      * `.env` is included when it exists, since `composer run setup` copies it early.
      */
-    private const array RENAMED_FILES = [
+    public const array RENAMED_FILES = [
         '.ai/guidelines/agent-skills.blade.php',
         '.betterleaks.toml',
         '.env',
@@ -50,6 +42,14 @@ class InitializeProject
         'phpunit.xml',
         'release-please-config.json',
     ];
+
+    private const string TEMPLATE_SLUG = 'reusables-laravel';
+
+    private const string TEMPLATE_DATABASE = 'reusables_laravel';
+
+    private const string TEMPLATE_TITLE = 'Reusables Laravel';
+
+    private const string TEMPLATE_README_HEADING = '# Laravel & Vue Reusables';
 
     /**
      * @return list<string> the files that changed, relative to the project root

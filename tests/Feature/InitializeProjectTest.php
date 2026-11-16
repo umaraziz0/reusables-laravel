@@ -4,6 +4,8 @@ declare(strict_types=1);
 
 use App\Actions\Starter\InitializeProject;
 use Illuminate\Support\Facades\File;
+use Illuminate\Support\Facades\Process;
+use Illuminate\Support\Str;
 
 /**
  * Copies the template's real files into a temporary project so the action runs on them.
@@ -13,21 +15,10 @@ function temporaryProjectCopy(): string
     $projectPath = storage_path('framework/testing/initialize-project-' . uniqid());
 
     $files = [
-        '.ai/guidelines/agent-skills.blade.php',
-        '.betterleaks.toml',
-        '.env.example',
-        '.env.testing',
-        '.github/workflows/ci.yml',
-        '.github/workflows/tia-baseline.yml',
+        ...array_diff(InitializeProject::RENAMED_FILES, ['.env']),
         '.release-please-manifest.json',
-        'AGENTS.md',
         'CHANGELOG.md',
-        'README.md',
-        'composer.json',
-        'herd.yml',
         'package.json',
-        'phpunit.xml',
-        'release-please-config.json',
     ];
 
     foreach ($files as $file) {
@@ -40,13 +31,42 @@ function temporaryProjectCopy(): string
 
 beforeEach(function (): void {
     $this->projectPath = temporaryProjectCopy();
+
+    // These tests run the action on copies of the template's own files, which
+    // `starter:init` has already rewritten in a project made from this template.
+    if (File::json(base_path('composer.json'))['name'] !== InitializeProject::TEMPLATE_REPOSITORY) {
+        $this->markTestSkipped('starter:init already ran on this project.');
+    }
 });
 
 afterEach(function (): void {
     File::deleteDirectory($this->projectPath);
 });
 
-test('it renames every reference to the template', function (): void {
+test('every tracked file that names the template is one the action rewrites', function (): void {
+    $templateIdentifiers = ['reusables-laravel', 'reusables_laravel', 'Reusables Laravel', 'Laravel & Vue Reusables'];
+
+    $allowedFiles = [
+        ...InitializeProject::RENAMED_FILES,
+        'CHANGELOG.md',
+        'app/Actions/Starter/InitializeProject.php',
+        'tests/Feature/InitializeProjectTest.php',
+    ];
+
+    $trackedFiles = array_filter(explode("\0", Process::path(base_path())->run(['git', 'ls-files', '-z'])->throw()->output()));
+
+    $filesNamingTheTemplate = array_filter(
+        $trackedFiles,
+        fn (string $file): bool => File::isFile(base_path($file))
+            && Str::contains(File::get(base_path($file)), $templateIdentifiers),
+    );
+
+    $missedFiles = array_diff($filesNamingTheTemplate, $allowedFiles);
+
+    expect($missedFiles)->toBeEmpty('Add to InitializeProject::RENAMED_FILES: ' . implode(', ', $missedFiles));
+});
+
+test('it renames every reference to the template in the files it rewrites', function (): void {
     $changedFiles = resolve(InitializeProject::class)->handle($this->projectPath, 'acme-portal', 'acme/portal');
 
     foreach (File::allFiles($this->projectPath, hidden: true) as $file) {
