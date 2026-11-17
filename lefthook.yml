@@ -80,6 +80,12 @@ pre-commit:
             run: pnpm run lint:templates
             glob: '**/*.{js,mjs,ts,vue,css,yml,yaml,json}'
 
+    - name: Check FE (Vite Doctor)
+      tags:
+        - frontend
+      run: pnpm exec vite-doctor . --changed --max-warnings 0
+      glob: '**/*.{js,ts,vue}'
+
     - name: Typecheck FE
       tags:
         - frontend
