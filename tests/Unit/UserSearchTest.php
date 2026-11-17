@@ -106,6 +106,7 @@ describe('on non-PostgreSQL connections', function (): void {
             ['name' => 'Jane Searchable', 'email' => 'jane@example.com', 'country_code' => '+62', 'phone_number' => '81234567890'],
             ['name' => 'Other Person', 'email' => 'findme@example.com', 'country_code' => '+1', 'phone_number' => '81234567890'],
             ['name' => 'Discount Seeker', 'email' => '100%off@example.com', 'country_code' => null, 'phone_number' => null],
+            ['name' => 'Bulk Buyer', 'email' => '1000off@example.com', 'country_code' => null, 'phone_number' => null],
         ]);
     });
 
