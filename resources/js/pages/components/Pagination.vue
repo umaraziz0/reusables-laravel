@@ -56,7 +56,10 @@ const controlledPage = ref(3);
       >
         <PaginationContent v-slot="{ items }">
           <PaginationPrevious />
-          <template v-for="(item, index) in items" :key="index">
+          <template
+            v-for="(item, index) in items"
+            :key="item.type === 'page' ? item.value : `ellipsis-${index}`"
+          >
             <PaginationItem
               v-if="item.type === 'page'"
               :value="item.value"
@@ -84,7 +87,10 @@ const controlledPage = ref(3);
         <PaginationContent v-slot="{ items }" class="flex-wrap justify-center">
           <PaginationFirst />
           <PaginationPrevious />
-          <template v-for="(item, index) in items" :key="index">
+          <template
+            v-for="(item, index) in items"
+            :key="item.type === 'page' ? item.value : `ellipsis-${index}`"
+          >
             <PaginationItem
               v-if="item.type === 'page'"
               :value="item.value"
@@ -114,7 +120,10 @@ const controlledPage = ref(3);
       >
         <PaginationContent v-slot="{ items }" class="flex-wrap justify-center">
           <PaginationPrevious />
-          <template v-for="(item, index) in items" :key="index">
+          <template
+            v-for="(item, index) in items"
+            :key="item.type === 'page' ? item.value : `ellipsis-${index}`"
+          >
             <PaginationItem
               v-if="item.type === 'page'"
               :value="item.value"
@@ -134,7 +143,10 @@ const controlledPage = ref(3);
       <Pagination v-slot="{ page }" :total="30" :items-per-page="itemsPerPage">
         <PaginationContent v-slot="{ items }">
           <PaginationPrevious />
-          <template v-for="(item, index) in items" :key="index">
+          <template
+            v-for="(item, index) in items"
+            :key="item.type === 'page' ? item.value : `ellipsis-${index}`"
+          >
             <PaginationItem
               v-if="item.type === 'page'"
               :value="item.value"
@@ -158,7 +170,10 @@ const controlledPage = ref(3);
       >
         <PaginationContent v-slot="{ items }">
           <PaginationPrevious />
-          <template v-for="(item, index) in items" :key="index">
+          <template
+            v-for="(item, index) in items"
+            :key="item.type === 'page' ? item.value : `ellipsis-${index}`"
+          >
             <PaginationItem
               v-if="item.type === 'page'"
               :value="item.value"
@@ -187,7 +202,10 @@ const controlledPage = ref(3);
       >
         <PaginationContent v-slot="{ items }">
           <PaginationPrevious />
-          <template v-for="(item, index) in items" :key="index">
+          <template
+            v-for="(item, index) in items"
+            :key="item.type === 'page' ? item.value : `ellipsis-${index}`"
+          >
             <PaginationItem
               v-if="item.type === 'page'"
               :value="item.value"

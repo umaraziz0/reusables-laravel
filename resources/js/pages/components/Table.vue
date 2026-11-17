@@ -262,7 +262,10 @@ function goToPage(page: number): void {
         >
           <PaginationContent v-slot="{ items }">
             <PaginationPrevious />
-            <template v-for="(item, index) in items" :key="index">
+            <template
+              v-for="(item, index) in items"
+              :key="item.type === 'page' ? item.value : `ellipsis-${index}`"
+            >
               <PaginationItem
                 v-if="item.type === 'page'"
                 :value="item.value"

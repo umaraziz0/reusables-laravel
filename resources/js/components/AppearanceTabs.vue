@@ -17,6 +17,7 @@ const tabs = [
     <button
       v-for="{ value, Icon, label } in tabs"
       :key="value"
+      type="button"
       @click="updateAppearance(value)"
       :class="[
         'flex cursor-pointer items-center rounded-md px-3.5 py-1.5 transition-colors',

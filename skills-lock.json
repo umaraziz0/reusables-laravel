@@ -1,6 +1,12 @@
 {
   "version": 2,
   "skills": {
+    "doctor": {
+      "source": "onmax/vite-doctor",
+      "sourceType": "github",
+      "skillPath": "docs/skills/doctor/SKILL.md",
+      "computedHash": "52480730d3246e8a78af41cbebdf21c69e3f8138f9f20d0dc15c77e2348ce103"
+    },
     "install-anti-slop": {
       "source": "dmmulroy/anti-slop",
       "sourceType": "github",

@@ -166,6 +166,7 @@ watch(
                   <Spinner class="size-6" />
                 </div>
                 <div v-else class="relative z-10 overflow-hidden border p-5">
+                  <!-- doctor-disable-next-line vue/security/restrict-v-html -- Fortify renders this QR code SVG on the server; it holds no user input. -->
                   <div
                     v-html="qrCodeSvg"
                     class="flex aspect-square size-full items-center justify-center"
@@ -211,6 +212,7 @@ watch(
                     class="h-full w-full bg-background p-3 text-foreground"
                   />
                   <button
+                    type="button"
                     @click="copy(manualSetupKey || '')"
                     class="relative block h-auto border-l border-border px-3 hover:bg-muted"
                   >
