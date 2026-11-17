@@ -8,6 +8,10 @@ The frontend toolchain is Vite+, a global CLI called `vp` that wraps Vite, Rolld
 
 `vp <name>` runs a built-in command. `vp run <name>` runs a `package.json` script or a `vite.config.ts` task. Scripts cannot override built-ins, so `vp check` and `vp run check` differ here: the `check` script also runs ESLint on Vue templates. Check `package.json` and `vite.config.ts` first, and use `vp run <name>` when a script or task with that name exists.
 
+## Running scripts
+
+Run TypeScript and JavaScript files with `vpx <file>`, for example `vpx ./scripts/seed.ts --dry-run`. It handles enums, decorators, JSX, and tsconfig `paths`, so do not add `tsx` or `ts-node` to run scripts. `vpx --watch <file>` reruns the file when a file it uses changes. `vp node <file>` runs plain Node.js.
+
 ## Formatting
 
 - Format JS, TS, Vue and CSS with `vp fmt` (Oxfmt, configured in `vite.config.ts` under `fmt`). Do not run Prettier on these files.
@@ -15,7 +19,7 @@ The frontend toolchain is Vite+, a global CLI called `vp` that wraps Vite, Rolld
 
 ## Tool versions
 
-Run `vp toolchain` to show versions in the active Vite+ release, and `vp toolchain <tool>` for one tool. Run `vp why <package>` to show the dependency graph.
+Run `vp toolchain` to show versions in the active Vite+ release, and `vp toolchain <tool>` for one tool (add `--global` to ignore the local `vite-plus` package). Run `vp why <package>` to show the dependency graph.
 
 ## Review checklist
 

@@ -20,7 +20,7 @@ Single-context: one `GLOSSARY.md` and `docs/adr/` at the repo root. See `docs/ag
 
 # Sloppy
 
-Before finishing, run `vendor/bin/sloppy diff main --fail-on=high` and fix the findings your change introduced; inherited ones are out of scope. In Claude Code, Sloppy's own hooks (`sloppy agents install`) check each edit and the finish for you.
+Before finishing a change to PHP files, run `vendor/bin/sloppy diff main --fail-on=high` and fix the findings your change introduced; inherited ones are out of scope. In Claude Code, Sloppy's own hooks (`sloppy agents install`) check each edit and the finish for you.
 
 Fix a failing test by fixing the code, or by correcting what the test asserts and saying why. The diff check reports weakened tests (skipped, deleted, or emptied assertions) as SL503.
 
@@ -32,7 +32,7 @@ Rule descriptions: `docs/agents/sloppy-rules.md`.
 
 Vite Doctor checks the Vue code for framework bugs that Oxlint misses. `pnpm run check` runs it as `pnpm run check:doctor`, and the lefthook pre-commit hook runs it on changed lines.
 
-Before finishing a change to `resources/js`, run `pnpm exec vite-doctor . --changed --format agent` and fix the findings your change introduced. Use the `doctor` skill for the workflow.
+Before finishing a change to `resources/js`, run `pnpm exec vite-doctor . --changed --format agent` and fix the findings your change introduced. For commits already on a branch, use `--since <base-ref>` (for example `--since main`) in place of `--changed`. Use the `doctor` skill for the workflow.
 
 Suppress a finding only when it is a false positive, on the line above, with a reason: `<!-- doctor-disable-next-line <rule> -- <reason> -->` in a template, `// doctor-disable-next-line <rule> -- <reason>` in script code. Excluded paths live in `doctor.config.json`.
 
@@ -48,6 +48,10 @@ The frontend toolchain is Vite+, a global CLI called `vp` that wraps Vite, Rolld
 
 `vp <name>` runs a built-in command. `vp run <name>` runs a `package.json` script or a `vite.config.ts` task. Scripts cannot override built-ins, so `vp check` and `vp run check` differ here: the `check` script also runs ESLint on Vue templates. Check `package.json` and `vite.config.ts` first, and use `vp run <name>` when a script or task with that name exists.
 
+## Running scripts
+
+Run TypeScript and JavaScript files with `vpx <file>`, for example `vpx ./scripts/seed.ts --dry-run`. It handles enums, decorators, JSX, and tsconfig `paths`, so do not add `tsx` or `ts-node` to run scripts. `vpx --watch <file>` reruns the file when a file it uses changes. `vp node <file>` runs plain Node.js.
+
 ## Formatting
 
 - Format JS, TS, Vue and CSS with `vp fmt` (Oxfmt, configured in `vite.config.ts` under `fmt`). Do not run Prettier on these files.
@@ -55,7 +59,7 @@ The frontend toolchain is Vite+, a global CLI called `vp` that wraps Vite, Rolld
 
 ## Tool versions
 
-Run `vp toolchain` to show versions in the active Vite+ release, and `vp toolchain <tool>` for one tool. Run `vp why <package>` to show the dependency graph.
+Run `vp toolchain` to show versions in the active Vite+ release, and `vp toolchain <tool>` for one tool (add `--global` to ignore the local `vite-plus` package). Run `vp why <package>` to show the dependency graph.
 
 ## Review checklist
 
