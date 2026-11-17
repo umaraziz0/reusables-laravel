@@ -1,33 +1,18 @@
-<!-- Optional. Ticket, plan, or other relevant links. Delete this line when there are none. -->
-[Ticket](url) | [Plan](url)
-
-## Why the change
-
-<!-- Exactly one sentence: the problem this PR solves, and what becomes possible after it ships. -->
-
-## Special things to note
-
-<!-- 1–3 reviewer warnings, migrations, compatibility constraints, deliberate omissions, or surprising decisions. -->
-
-- None.
-
-## Change outline
+## Summary
 
 <!--
-Use the smallest set of views that explains the implementation.
-Prefer diff blocks for a change to an existing shape.
-Show the complete target shape when most of it is new.
-Omit any view that does not apply, and order the ones you keep so the story is easy to follow.
-One short line above each block is enough.
+Pick the smallest view that makes the key point clear. Put each visual next to the short text it supports.
+Keep only the calls, files, props, states, and boundaries the reviewer needs. Skip preambles.
 
 Views, only when they help:
 
-- SQL tables, important columns and relationships, and endpoint request/response contracts
-- Key data structures or types
-- Pseudocode for the changed behavior
-- A shallow file tree of changed responsibilities
-- Component trees, including important hooks, state, and package boundaries
-- Call trees, call stacks, control flow, or data flow
+- Pseudocode for logic or an algorithm
+- Call tree for runtime control flow
+- Component tree, including important hooks, state, and module boundaries
+- Shallow file tree for file responsibility or a broad refactor
+- Mermaid for component interaction, control flow, or data flow
+- `diff` block when the point is what changes and the surrounding shape already exists
+- Full block when most of it is new or the target shape should be copyable
 
 Example of a focused change:
 
@@ -39,3 +24,24 @@ Example of a focused change:
      launchAgent
 ```
 -->
+
+## Evidence
+
+<!--
+Concrete proof the change works, as a before and after.
+Screenshots are best for visual changes. Otherwise show test results or console output:
+the exact test that now fails and passes, as pseudocode.
+-->
+
+- **Before:**
+  **After:**
+
+## Merge Danger
+
+**Door:** <!-- one-way or two-way. One-way = destructive or hard to reverse. -->
+
+<!-- Optional: description of why. -->
+
+**Blast Radius:** <!-- one word -->
+
+<!-- Optional: potential ramifications of merging (consumer breakage, layout shift, mobile responsiveness, etc.). -->
