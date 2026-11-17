@@ -172,18 +172,19 @@ class User extends Authenticatable implements MustVerifyEmail, PasskeyUser
             return;
         }
 
-        $query->where(function (Builder $query) use ($driver, $pattern): void {
-            $combinedPhoneComparison = match ($driver) {
-                'sqlite' => "COALESCE(country_code, '') || COALESCE(phone_number, '') LIKE ?",
-                default  => "CONCAT(COALESCE(country_code, ''), COALESCE(phone_number, '')) LIKE ?",
-            };
+        // SQLite has no default LIKE escape character, so the backslashes above must be declared
+        $likeComparison = $driver === 'sqlite' ? "LIKE ? ESCAPE '\\'" : 'LIKE ?';
 
-            $query->where(function (Builder $query) use ($pattern, $combinedPhoneComparison): void {
-                $query->where('name', 'LIKE', $pattern)
-                    ->orWhere('email', 'LIKE', $pattern)
-                    ->orWhere('phone_number', 'LIKE', $pattern)
-                    ->orWhereRaw($combinedPhoneComparison, [$pattern]);
-            });
+        $combinedPhone = match ($driver) {
+            'sqlite' => "COALESCE(country_code, '') || COALESCE(phone_number, '')",
+            default  => "CONCAT(COALESCE(country_code, ''), COALESCE(phone_number, ''))",
+        };
+
+        $query->where(function (Builder $query) use ($pattern, $likeComparison, $combinedPhone): void {
+            $query->whereRaw("name {$likeComparison}", [$pattern])
+                ->orWhereRaw("email {$likeComparison}", [$pattern])
+                ->orWhereRaw("phone_number {$likeComparison}", [$pattern])
+                ->orWhereRaw("{$combinedPhone} {$likeComparison}", [$pattern]);
         });
     }
 
