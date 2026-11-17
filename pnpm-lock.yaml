@@ -313,7 +313,7 @@ importers:
         specifier: 'catalog:'
         version: '@voidzero-dev/vite-plus-core@1.6.0(@types/node@26.6.6)(@volar/typescript@2.4.30(typescript-native-bridge@6.0.3-bridge.15.tsgo.7.0.2))(@vue/language-core@3.3.14)(jiti@2.7.0)(typescript-native-bridge@6.0.3-bridge.15.tsgo.7.0.2)(vue-tsc@3.3.14(typescript-native-bridge@6.0.3-bridge.15.tsgo.7.0.2))(yaml@2.9.1)'
       vite-doctor:
-        specifier: 0.1.3
+        specifier: ^0.1.3
         version: 0.1.3(@voidzero-dev/vite-plus-core@1.6.0(@types/node@26.6.6)(@volar/typescript@2.4.30(typescript-native-bridge@6.0.3-bridge.15.tsgo.7.0.2))(@vue/language-core@3.3.14)(jiti@2.7.0)(typescript-native-bridge@6.0.3-bridge.15.tsgo.7.0.2)(vue-tsc@3.3.14(typescript-native-bridge@6.0.3-bridge.15.tsgo.7.0.2))(yaml@2.9.1))(jiti@2.7.0)(supports-color@10.2.2)
       vite-plus:
         specifier: 'catalog:'
