@@ -3,6 +3,11 @@ import type { FlashToast } from '@/types/ui';
 import type { createHeadManager, Page, Router } from '@inertiajs/core';
 import type { Directive } from 'vue';
 
+declare global {
+  /** Whether component preview pages are bundled; set by vite.config.ts. */
+  const __COMPONENT_PREVIEWS__: boolean;
+}
+
 // Extend ImportMeta interface for Vite...
 declare module 'vite/client' {
   interface ImportMetaEnv {
