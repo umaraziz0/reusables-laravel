@@ -37,7 +37,7 @@ const sizes = ['default', 'xs', 'sm', 'lg', 'icon'] as const;
   <Head title="Buttons" />
 
   <Heading
-    title="Button Variants"
+    title="Buttons"
     description="All available button variants and sizes"
   />
 

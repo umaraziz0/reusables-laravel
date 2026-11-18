@@ -78,11 +78,7 @@ const e164 = computed(() => `${dialCode.value}${phone.value}`);
     class="grid grid-cols-1 gap-6 md:grid-cols-2 md:items-start 2xl:grid-cols-3"
   >
     <div class="space-y-3">
-      <h4
-        class="text-xs font-medium tracking-wide text-muted-foreground uppercase"
-      >
-        Default
-      </h4>
+      <h3 class="text-sm font-medium text-muted-foreground">Default</h3>
 
       <PhoneNumberField
         v-model="phone"
@@ -95,11 +91,9 @@ const e164 = computed(() => `${dialCode.value}${phone.value}`);
     </div>
 
     <div class="space-y-3">
-      <h4
-        class="text-xs font-medium tracking-wide text-muted-foreground uppercase"
-      >
+      <h3 class="text-sm font-medium text-muted-foreground">
         Shared dial code
-      </h4>
+      </h3>
 
       <PhoneNumberField
         v-model="usPhone"
@@ -112,11 +106,9 @@ const e164 = computed(() => `${dialCode.value}${phone.value}`);
     </div>
 
     <div class="space-y-3">
-      <h4
-        class="text-xs font-medium tracking-wide text-muted-foreground uppercase"
-      >
+      <h3 class="text-sm font-medium text-muted-foreground">
         Restricted countries
-      </h4>
+      </h3>
 
       <PhoneNumberField
         label="ASEAN phone"
@@ -127,11 +119,7 @@ const e164 = computed(() => `${dialCode.value}${phone.value}`);
     </div>
 
     <div class="space-y-3">
-      <h4
-        class="text-xs font-medium tracking-wide text-muted-foreground uppercase"
-      >
-        Error
-      </h4>
+      <h3 class="text-sm font-medium text-muted-foreground">Error</h3>
 
       <PhoneNumberField
         label="Mobile number"
@@ -143,11 +131,7 @@ const e164 = computed(() => `${dialCode.value}${phone.value}`);
     </div>
 
     <div class="space-y-3">
-      <h4
-        class="text-xs font-medium tracking-wide text-muted-foreground uppercase"
-      >
-        Disabled
-      </h4>
+      <h3 class="text-sm font-medium text-muted-foreground">Disabled</h3>
 
       <PhoneNumberField
         label="Office number"
@@ -159,11 +143,7 @@ const e164 = computed(() => `${dialCode.value}${phone.value}`);
     </div>
 
     <div class="space-y-3">
-      <h4
-        class="text-xs font-medium tracking-wide text-muted-foreground uppercase"
-      >
-        Required
-      </h4>
+      <h3 class="text-sm font-medium text-muted-foreground">Required</h3>
 
       <PhoneNumberField
         label="Emergency contact"

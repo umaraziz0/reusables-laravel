@@ -22,10 +22,13 @@ withDefaults(
     <div class="flex min-w-0 items-center gap-2">
       <SidebarTrigger class="-ml-1 shrink-0" />
       <template v-if="breadcrumbs && breadcrumbs.length > 0">
-        <Breadcrumbs :breadcrumbs="breadcrumbs" />
+        <Breadcrumbs
+          :breadcrumbs="breadcrumbs"
+          class="min-w-0 [&_[data-slot=breadcrumb-item]:last-child]:min-w-0 [&_[data-slot=breadcrumb-list]]:flex-nowrap [&_[data-slot=breadcrumb-page]]:truncate"
+        />
       </template>
     </div>
 
-    <AppearanceTabs class="shrink-0" />
+    <AppearanceTabs class="shrink-0 max-sm:[&_span]:sr-only" />
   </header>
 </template>

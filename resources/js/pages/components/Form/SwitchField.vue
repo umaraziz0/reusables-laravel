@@ -53,11 +53,7 @@ const isDarkMode = ref(false);
     class="grid grid-cols-1 gap-6 md:grid-cols-2 md:items-start 2xl:grid-cols-3"
   >
     <div class="space-y-3">
-      <h4
-        class="text-xs font-medium tracking-wide text-muted-foreground uppercase"
-      >
-        Default
-      </h4>
+      <h3 class="text-sm font-medium text-muted-foreground">Default</h3>
 
       <SwitchField
         v-model="isDarkMode"
@@ -68,11 +64,7 @@ const isDarkMode = ref(false);
     </div>
 
     <div class="space-y-3">
-      <h4
-        class="text-xs font-medium tracking-wide text-muted-foreground uppercase"
-      >
-        Description
-      </h4>
+      <h3 class="text-sm font-medium text-muted-foreground">Description</h3>
 
       <SwitchField
         label="Marketing emails"
@@ -82,11 +74,7 @@ const isDarkMode = ref(false);
     </div>
 
     <div class="space-y-3">
-      <h4
-        class="text-xs font-medium tracking-wide text-muted-foreground uppercase"
-      >
-        Default value
-      </h4>
+      <h3 class="text-sm font-medium text-muted-foreground">Default value</h3>
 
       <SwitchField
         label="Remember this device"
@@ -96,11 +84,7 @@ const isDarkMode = ref(false);
     </div>
 
     <div class="space-y-3">
-      <h4
-        class="text-xs font-medium tracking-wide text-muted-foreground uppercase"
-      >
-        Error
-      </h4>
+      <h3 class="text-sm font-medium text-muted-foreground">Error</h3>
 
       <SwitchField
         label="Public profile"
@@ -111,11 +95,7 @@ const isDarkMode = ref(false);
     </div>
 
     <div class="space-y-3">
-      <h4
-        class="text-xs font-medium tracking-wide text-muted-foreground uppercase"
-      >
-        Required
-      </h4>
+      <h3 class="text-sm font-medium text-muted-foreground">Required</h3>
 
       <SwitchField
         label="Share usage data"
@@ -126,11 +106,7 @@ const isDarkMode = ref(false);
     </div>
 
     <div class="space-y-3">
-      <h4
-        class="text-xs font-medium tracking-wide text-muted-foreground uppercase"
-      >
-        Disabled
-      </h4>
+      <h3 class="text-sm font-medium text-muted-foreground">Disabled</h3>
 
       <SwitchField
         label="Two-factor login"
@@ -142,21 +118,13 @@ const isDarkMode = ref(false);
     </div>
 
     <div class="space-y-3">
-      <h4
-        class="text-xs font-medium tracking-wide text-muted-foreground uppercase"
-      >
-        Hidden label
-      </h4>
+      <h3 class="text-sm font-medium text-muted-foreground">Hidden label</h3>
 
       <SwitchField label="Enable row" name="enable_row" hide-label />
     </div>
 
     <div class="space-y-3">
-      <h4
-        class="text-xs font-medium tracking-wide text-muted-foreground uppercase"
-      >
-        Custom value
-      </h4>
+      <h3 class="text-sm font-medium text-muted-foreground">Custom value</h3>
 
       <SwitchField
         label="Opt in to beta features"
@@ -167,11 +135,7 @@ const isDarkMode = ref(false);
     </div>
 
     <div class="space-y-3 md:col-span-2 2xl:col-span-3">
-      <h4
-        class="text-xs font-medium tracking-wide text-muted-foreground uppercase"
-      >
-        Settings list
-      </h4>
+      <h3 class="text-sm font-medium text-muted-foreground">Settings list</h3>
       <FieldSet class="max-w-xl">
         <FieldLegend>Notifications</FieldLegend>
         <FieldDescription>Choose what we email you about.</FieldDescription>

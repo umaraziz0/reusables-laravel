@@ -26,7 +26,7 @@ const variants = ['default', 'secondary', 'destructive', 'outline'] as const;
 <template>
   <Head title="Badges" />
 
-  <Heading title="Badge Variants" description="All available badge variants" />
+  <Heading title="Badges" description="All available badge variants" />
 
   <section class="space-y-4">
     <h3 class="text-sm font-medium text-muted-foreground">Variants</h3>
