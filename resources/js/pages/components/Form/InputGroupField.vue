@@ -8,22 +8,26 @@ import { formInputGroupField } from '@/actions/App/Http/Controllers/ComponentPre
 import InputGroupField from '@/components/form/InputGroupField.vue';
 import Heading from '@/components/Heading.vue';
 import { InputGroupButton, InputGroupText } from '@/components/ui/input-group';
+import ComponentsLayout from '@/layouts/components/ComponentsLayout.vue';
 
 // --- Props --- //
 
 defineOptions({
-  layout: {
-    breadcrumbs: [
-      {
-        title: 'Form',
-        href: formInputGroupField(),
-      },
-      {
-        title: 'Input Group Field',
-        href: formInputGroupField(),
-      },
-    ],
-  },
+  layout: [
+    ComponentsLayout,
+    {
+      breadcrumbs: [
+        {
+          title: 'Form',
+          href: formInputGroupField(),
+        },
+        {
+          title: 'Input Group Field',
+          href: formInputGroupField(),
+        },
+      ],
+    },
+  ],
 });
 
 // --- Constants --- //

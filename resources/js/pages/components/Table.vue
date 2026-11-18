@@ -24,6 +24,7 @@ import {
   TableHeader,
   TableRow,
 } from '@/components/ui/table';
+import ComponentsLayout from '@/layouts/components/ComponentsLayout.vue';
 import { table } from '@/routes/components';
 
 type InvoiceStatus = 'paid' | 'pending' | 'unpaid';
@@ -37,14 +38,17 @@ type Invoice = {
 };
 
 defineOptions({
-  layout: {
-    breadcrumbs: [
-      {
-        title: 'Table',
-        href: table().url,
-      },
-    ],
-  },
+  layout: [
+    ComponentsLayout,
+    {
+      breadcrumbs: [
+        {
+          title: 'Table',
+          href: table().url,
+        },
+      ],
+    },
+  ],
 });
 
 const props = defineProps<{

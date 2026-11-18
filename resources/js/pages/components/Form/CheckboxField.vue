@@ -15,22 +15,26 @@ import {
   FieldLegend,
   FieldSet,
 } from '@/components/ui/field';
+import ComponentsLayout from '@/layouts/components/ComponentsLayout.vue';
 
 // --- Props --- //
 
 defineOptions({
-  layout: {
-    breadcrumbs: [
-      {
-        title: 'Form',
-        href: formInputField(),
-      },
-      {
-        title: 'Checkbox Field',
-        href: formCheckboxField(),
-      },
-    ],
-  },
+  layout: [
+    ComponentsLayout,
+    {
+      breadcrumbs: [
+        {
+          title: 'Form',
+          href: formInputField(),
+        },
+        {
+          title: 'Checkbox Field',
+          href: formCheckboxField(),
+        },
+      ],
+    },
+  ],
 });
 
 const isSubscribed = ref(false);

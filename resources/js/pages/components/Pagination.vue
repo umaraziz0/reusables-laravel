@@ -13,17 +13,21 @@ import {
   PaginationNext,
   PaginationPrevious,
 } from '@/components/ui/pagination';
+import ComponentsLayout from '@/layouts/components/ComponentsLayout.vue';
 import { pagination } from '@/routes/components';
 
 defineOptions({
-  layout: {
-    breadcrumbs: [
-      {
-        title: 'Pagination',
-        href: pagination().url,
-      },
-    ],
-  },
+  layout: [
+    ComponentsLayout,
+    {
+      breadcrumbs: [
+        {
+          title: 'Pagination',
+          href: pagination().url,
+        },
+      ],
+    },
+  ],
 });
 
 // --- Constants --- //

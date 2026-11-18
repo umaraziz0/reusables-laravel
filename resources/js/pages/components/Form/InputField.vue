@@ -12,22 +12,26 @@ import {
   FieldLegend,
   FieldSet,
 } from '@/components/ui/field';
+import ComponentsLayout from '@/layouts/components/ComponentsLayout.vue';
 
 // --- Props --- //
 
 defineOptions({
-  layout: {
-    breadcrumbs: [
-      {
-        title: 'Form',
-        href: formInputField(),
-      },
-      {
-        title: 'Input Field',
-        href: formInputField(),
-      },
-    ],
-  },
+  layout: [
+    ComponentsLayout,
+    {
+      breadcrumbs: [
+        {
+          title: 'Form',
+          href: formInputField(),
+        },
+        {
+          title: 'Input Field',
+          href: formInputField(),
+        },
+      ],
+    },
+  ],
 });
 
 const value = ref('');

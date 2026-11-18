@@ -11,22 +11,26 @@ import {
 // --- Components --- //
 import SearchSelectField from '@/components/form/SearchSelectField.vue';
 import Heading from '@/components/Heading.vue';
+import ComponentsLayout from '@/layouts/components/ComponentsLayout.vue';
 
 // --- Props --- //
 
 defineOptions({
-  layout: {
-    breadcrumbs: [
-      {
-        title: 'Form',
-        href: formInputField(),
-      },
-      {
-        title: 'Search Select Field',
-        href: formSearchSelectField(),
-      },
-    ],
-  },
+  layout: [
+    ComponentsLayout,
+    {
+      breadcrumbs: [
+        {
+          title: 'Form',
+          href: formInputField(),
+        },
+        {
+          title: 'Search Select Field',
+          href: formSearchSelectField(),
+        },
+      ],
+    },
+  ],
 });
 
 // --- Constants --- //

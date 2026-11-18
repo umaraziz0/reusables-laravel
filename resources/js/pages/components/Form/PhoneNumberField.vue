@@ -9,23 +9,27 @@ import {
 // --- Components --- //
 import PhoneNumberField from '@/components/form/PhoneNumberField.vue';
 import Heading from '@/components/Heading.vue';
+import ComponentsLayout from '@/layouts/components/ComponentsLayout.vue';
 import { COUNTRIES } from '@/lib/countries';
 
 // --- Props --- //
 
 defineOptions({
-  layout: {
-    breadcrumbs: [
-      {
-        title: 'Form',
-        href: formInputField(),
-      },
-      {
-        title: 'Phone Number Field',
-        href: formPhoneNumberField(),
-      },
-    ],
-  },
+  layout: [
+    ComponentsLayout,
+    {
+      breadcrumbs: [
+        {
+          title: 'Form',
+          href: formInputField(),
+        },
+        {
+          title: 'Phone Number Field',
+          href: formPhoneNumberField(),
+        },
+      ],
+    },
+  ],
 });
 
 // --- Constants --- //

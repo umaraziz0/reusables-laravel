@@ -3,17 +3,21 @@ import { Head } from '@inertiajs/vue3';
 
 import Heading from '@/components/Heading.vue';
 import { Badge } from '@/components/ui/badge';
+import ComponentsLayout from '@/layouts/components/ComponentsLayout.vue';
 import { badges } from '@/routes/components';
 
 defineOptions({
-  layout: {
-    breadcrumbs: [
-      {
-        title: 'Badges',
-        href: badges().url,
-      },
-    ],
-  },
+  layout: [
+    ComponentsLayout,
+    {
+      breadcrumbs: [
+        {
+          title: 'Badges',
+          href: badges().url,
+        },
+      ],
+    },
+  ],
 });
 
 const variants = ['default', 'secondary', 'destructive', 'outline'] as const;
