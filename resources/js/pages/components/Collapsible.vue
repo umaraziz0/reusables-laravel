@@ -40,9 +40,11 @@ defineOptions({
         Default (closed)
       </h3>
       <Collapsible
-        class="w-full max-w-md rounded-lg border border-border bg-card"
+        class="w-full max-w-md overflow-hidden rounded-lg border border-border bg-card"
       >
-        <CollapsibleTrigger>
+        <CollapsibleTrigger
+          class="flex w-full items-center justify-between px-4 py-3 text-left text-sm font-medium hover:bg-accent hover:text-accent-foreground [&[data-state=open]>svg]:rotate-180"
+        >
           <span>What is a collapsible?</span>
           <ChevronDown class="size-4 shrink-0 transition-transform" />
         </CollapsibleTrigger>
@@ -62,9 +64,11 @@ defineOptions({
       <h3 class="text-sm font-medium text-muted-foreground">Default open</h3>
       <Collapsible
         default-open
-        class="w-full max-w-md rounded-lg border border-border bg-card"
+        class="w-full max-w-md overflow-hidden rounded-lg border border-border bg-card"
       >
-        <CollapsibleTrigger>
+        <CollapsibleTrigger
+          class="flex w-full items-center justify-between px-4 py-3 text-left text-sm font-medium hover:bg-accent hover:text-accent-foreground [&[data-state=open]>svg]:rotate-180"
+        >
           <span>Click to collapse</span>
           <ChevronDown class="size-4 shrink-0 transition-transform" />
         </CollapsibleTrigger>
@@ -102,9 +106,11 @@ defineOptions({
             },
           ]"
           :key="i"
-          class="rounded-lg border border-border bg-card"
+          class="overflow-hidden rounded-lg border border-border bg-card"
         >
-          <CollapsibleTrigger>
+          <CollapsibleTrigger
+            class="flex w-full items-center justify-between px-4 py-3 text-left text-sm font-medium hover:bg-accent hover:text-accent-foreground [&[data-state=open]>svg]:rotate-180"
+          >
             <span>{{ item.question }}</span>
             <ChevronDown class="size-4 shrink-0 transition-transform" />
           </CollapsibleTrigger>
