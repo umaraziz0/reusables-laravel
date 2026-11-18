@@ -1,6 +1,7 @@
 # Secret scanning (Betterleaks), static analysis for malicious code (Semgrep),
 # and vulnerable or malicious dependencies (OSV-Scanner). Findings are in the
-# job log and the run summary; a job fails when it finds something.
+# job log and the run summary; a job fails when it finds something. On PRs,
+# Semgrep and OSV-Scanner fail only on findings the PR introduces.
 #
 # Runs on main and weekly as well as on PRs, to catch issues from updated
 # Semgrep rules and newly published advisories. The secrets job is PR-only.
@@ -191,18 +192,79 @@ jobs:
           sudo mv osv-scanner /usr/local/bin/
           osv-scanner --version
 
-      # Fails on any known vulnerability or malicious package (OSV MAL-*
-      # advisories) not ignored in the selected osv-scanner.toml.
+      # Reports every known vulnerability or malicious package (OSV MAL-*
+      # advisories) not ignored in the selected osv-scanner.toml. main and
+      # scheduled runs fail on any finding; PRs are judged by the next step.
+      # osv-scanner exits 1 for findings; any other non-zero exit is an error.
       - name: Scan lockfiles
         run: |
           status=0
-          osv-scanner scan source \
-            --config "$OSV_SCANNER_CONFIG" \
-            --lockfile composer.lock \
-            --lockfile pnpm-lock.yaml \
-            --format markdown --output-file osv.md || status=$?
+          for format in markdown json; do
+            osv-scanner scan source \
+              --config "$OSV_SCANNER_CONFIG" \
+              --lockfile composer.lock \
+              --lockfile pnpm-lock.yaml \
+              --format "$format" --output-file "osv.${format}" || status=$?
+            if [ "$status" -gt 1 ]; then
+              exit "$status"
+            fi
+          done
           {
             echo '## OSV-Scanner'
-            if [ -s osv.md ]; then cat osv.md; else echo 'No issues found.'; fi
+            if [ -s osv.markdown ]; then cat osv.markdown; else echo 'No issues found.'; fi
           } | tee -a "$GITHUB_STEP_SUMMARY"
-          exit "$status"
+          if [ "$GITHUB_EVENT_NAME" != 'pull_request' ]; then
+            exit "$status"
+          fi
+
+      # PRs fail only on advisories the PR introduces: a package/advisory pair
+      # absent from the base branch's lockfiles, scanned with the same config.
+      # A malicious package (MAL-*) fails the PR even if the base has it.
+      - name: Fail on findings this PR introduces (PR)
+        if: github.event_name == 'pull_request'
+        env:
+          BASE_SHA: ${{ github.event.pull_request.base.sha }}
+        run: |
+          base_dir="$RUNNER_TEMP/osv-base"
+          mkdir -p "$base_dir"
+          lockfile_args=()
+          for lockfile in composer.lock pnpm-lock.yaml; do
+            if git show "$BASE_SHA:$lockfile" > "$base_dir/$lockfile" 2>/dev/null; then
+              lockfile_args+=(--lockfile "$base_dir/$lockfile")
+            fi
+          done
+
+          echo '{"results":[]}' > osv-base.json
+          if [ "${#lockfile_args[@]}" -gt 0 ]; then
+            status=0
+            osv-scanner scan source \
+              --config "$OSV_SCANNER_CONFIG" \
+              "${lockfile_args[@]}" \
+              --format json --output-file osv-base.json || status=$?
+            if [ "$status" -gt 1 ]; then
+              exit "$status"
+            fi
+          fi
+
+          introduced=$(jq -rn --slurpfile base osv-base.json --slurpfile head osv.json '
+            def findings: [.results[]? | .packages[]? | .package as $package | .vulnerabilities[]? | {
+              key: "\($package.ecosystem)|\($package.name)|\(.id)",
+              line: "- \($package.ecosystem) `\($package.name)@\($package.version)`: \(.id)",
+              malicious: (.id | startswith("MAL-"))
+            }];
+            ($base[0] | findings | map(.key)) as $known
+            | $head[0] | findings
+            | map(select(.malicious or (.key as $key | $known | index([$key]) | not)))
+            | unique_by(.line) | .[].line')
+
+          {
+            echo '### Fails this PR (introduced here, or malicious)'
+            if [ -n "$introduced" ]; then echo "$introduced"; else echo 'None.'; fi
+          } | tee -a "$GITHUB_STEP_SUMMARY"
+
+          if [ -n "$introduced" ]; then
+            exit 1
+          fi
+          if [ -s osv.markdown ]; then
+            echo "::warning::OSV-Scanner found advisories that already affect the base branch; they do not fail this PR."
+          fi

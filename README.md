@@ -26,7 +26,7 @@ An opinionated starter kit & collection of reusable components etc for Laravel /
 
 #### Main
 
-- [Node.js](https://nodejs.org/) v24 or later
+- [Node.js](https://nodejs.org/) v26 or later
 - [pnpm](https://pnpm.io/) v12 - package manager
 - [TypeScript](https://www.typescriptlang.org/) v6
 - [Vue](https://vuejs.org/) v3
