@@ -124,52 +124,107 @@ function goToPage(page: number): void {
 <template>
   <Head title="Table" />
 
-  <div class="space-y-12 px-4 py-6">
-    <Heading
-      title="Table"
-      description="A responsive table for displaying rows of data"
-    />
+  <Heading
+    title="Table"
+    description="A responsive table for displaying rows of data"
+  />
 
-    <section class="space-y-4">
-      <h3 class="text-sm font-medium text-muted-foreground">Basic</h3>
-      <Table>
-        <TableCaption>A list of your recent invoices.</TableCaption>
-        <TableHeader>
-          <TableRow>
-            <TableHead class="w-[100px]">Invoice</TableHead>
-            <TableHead>Status</TableHead>
-            <TableHead>Method</TableHead>
-            <TableHead class="text-right">Amount</TableHead>
-          </TableRow>
-        </TableHeader>
-        <TableBody>
-          <TableRow v-for="invoice in sampleInvoices" :key="invoice.id">
-            <TableCell class="font-medium">{{ invoice.number }}</TableCell>
-            <TableCell class="capitalize">{{ invoice.status }}</TableCell>
-            <TableCell>{{ invoice.method }}</TableCell>
-            <TableCell class="text-right">
-              {{ formatAmount(invoice.amount) }}
-            </TableCell>
-          </TableRow>
-        </TableBody>
-      </Table>
-    </section>
+  <section class="space-y-4">
+    <h3 class="text-sm font-medium text-muted-foreground">Basic</h3>
+    <Table>
+      <TableCaption>A list of your recent invoices.</TableCaption>
+      <TableHeader>
+        <TableRow>
+          <TableHead class="w-[100px]">Invoice</TableHead>
+          <TableHead>Status</TableHead>
+          <TableHead>Method</TableHead>
+          <TableHead class="text-right">Amount</TableHead>
+        </TableRow>
+      </TableHeader>
+      <TableBody>
+        <TableRow v-for="invoice in sampleInvoices" :key="invoice.id">
+          <TableCell class="font-medium">{{ invoice.number }}</TableCell>
+          <TableCell class="capitalize">{{ invoice.status }}</TableCell>
+          <TableCell>{{ invoice.method }}</TableCell>
+          <TableCell class="text-right">
+            {{ formatAmount(invoice.amount) }}
+          </TableCell>
+        </TableRow>
+      </TableBody>
+    </Table>
+  </section>
 
-    <section class="space-y-4">
-      <h3 class="text-sm font-medium text-muted-foreground">
-        With footer and badges
-      </h3>
-      <Table>
-        <TableHeader>
-          <TableRow>
-            <TableHead class="w-[100px]">Invoice</TableHead>
-            <TableHead>Status</TableHead>
-            <TableHead>Method</TableHead>
-            <TableHead class="text-right">Amount</TableHead>
-          </TableRow>
-        </TableHeader>
-        <TableBody>
-          <TableRow v-for="invoice in sampleInvoices" :key="invoice.id">
+  <section class="space-y-4">
+    <h3 class="text-sm font-medium text-muted-foreground">
+      With footer and badges
+    </h3>
+    <Table>
+      <TableHeader>
+        <TableRow>
+          <TableHead class="w-[100px]">Invoice</TableHead>
+          <TableHead>Status</TableHead>
+          <TableHead>Method</TableHead>
+          <TableHead class="text-right">Amount</TableHead>
+        </TableRow>
+      </TableHeader>
+      <TableBody>
+        <TableRow v-for="invoice in sampleInvoices" :key="invoice.id">
+          <TableCell class="font-medium">{{ invoice.number }}</TableCell>
+          <TableCell>
+            <Badge :variant="statusVariants[invoice.status]" class="capitalize">
+              {{ invoice.status }}
+            </Badge>
+          </TableCell>
+          <TableCell>{{ invoice.method }}</TableCell>
+          <TableCell class="text-right">
+            {{ formatAmount(invoice.amount) }}
+          </TableCell>
+        </TableRow>
+      </TableBody>
+      <TableFooter>
+        <TableRow>
+          <TableCell :colspan="3">Total</TableCell>
+          <TableCell class="text-right">
+            {{ formatAmount(sampleTotal) }}
+          </TableCell>
+        </TableRow>
+      </TableFooter>
+    </Table>
+  </section>
+
+  <section class="space-y-4">
+    <h3 class="text-sm font-medium text-muted-foreground">Empty</h3>
+    <Table>
+      <TableHeader>
+        <TableRow>
+          <TableHead>Invoice</TableHead>
+          <TableHead>Status</TableHead>
+          <TableHead>Method</TableHead>
+          <TableHead class="text-right">Amount</TableHead>
+        </TableRow>
+      </TableHeader>
+      <TableBody>
+        <TableEmpty :colspan="4">No results.</TableEmpty>
+      </TableBody>
+    </Table>
+  </section>
+
+  <section class="space-y-4">
+    <h3 class="text-sm font-medium text-muted-foreground">
+      Server-side pagination
+    </h3>
+    <Table>
+      <TableHeader>
+        <TableRow>
+          <TableHead class="w-[100px]">Invoice</TableHead>
+          <TableHead>Status</TableHead>
+          <TableHead>Method</TableHead>
+          <TableHead class="text-right">Amount</TableHead>
+        </TableRow>
+      </TableHeader>
+      <TableBody>
+        <template v-if="props.invoices.data.length > 0">
+          <TableRow v-for="invoice in props.invoices.data" :key="invoice.id">
             <TableCell class="font-medium">{{ invoice.number }}</TableCell>
             <TableCell>
               <Badge
@@ -184,105 +239,45 @@ function goToPage(page: number): void {
               {{ formatAmount(invoice.amount) }}
             </TableCell>
           </TableRow>
-        </TableBody>
-        <TableFooter>
-          <TableRow>
-            <TableCell :colspan="3">Total</TableCell>
-            <TableCell class="text-right">
-              {{ formatAmount(sampleTotal) }}
-            </TableCell>
-          </TableRow>
-        </TableFooter>
-      </Table>
-    </section>
+        </template>
+        <TableEmpty v-else :colspan="4">No results.</TableEmpty>
+      </TableBody>
+    </Table>
 
-    <section class="space-y-4">
-      <h3 class="text-sm font-medium text-muted-foreground">Empty</h3>
-      <Table>
-        <TableHeader>
-          <TableRow>
-            <TableHead>Invoice</TableHead>
-            <TableHead>Status</TableHead>
-            <TableHead>Method</TableHead>
-            <TableHead class="text-right">Amount</TableHead>
-          </TableRow>
-        </TableHeader>
-        <TableBody>
-          <TableEmpty :colspan="4">No results.</TableEmpty>
-        </TableBody>
-      </Table>
-    </section>
-
-    <section class="space-y-4">
-      <h3 class="text-sm font-medium text-muted-foreground">
-        Server-side pagination
-      </h3>
-      <Table>
-        <TableHeader>
-          <TableRow>
-            <TableHead class="w-[100px]">Invoice</TableHead>
-            <TableHead>Status</TableHead>
-            <TableHead>Method</TableHead>
-            <TableHead class="text-right">Amount</TableHead>
-          </TableRow>
-        </TableHeader>
-        <TableBody>
-          <template v-if="props.invoices.data.length > 0">
-            <TableRow v-for="invoice in props.invoices.data" :key="invoice.id">
-              <TableCell class="font-medium">{{ invoice.number }}</TableCell>
-              <TableCell>
-                <Badge
-                  :variant="statusVariants[invoice.status]"
-                  class="capitalize"
-                >
-                  {{ invoice.status }}
-                </Badge>
-              </TableCell>
-              <TableCell>{{ invoice.method }}</TableCell>
-              <TableCell class="text-right">
-                {{ formatAmount(invoice.amount) }}
-              </TableCell>
-            </TableRow>
-          </template>
-          <TableEmpty v-else :colspan="4">No results.</TableEmpty>
-        </TableBody>
-      </Table>
-
-      <div class="flex flex-col items-center justify-between gap-4 sm:flex-row">
-        <p class="text-sm whitespace-nowrap text-muted-foreground">
-          <template v-if="props.invoices.from">
-            Showing {{ props.invoices.from }}–{{ props.invoices.to }} of
-            {{ props.invoices.total }}
-          </template>
-          <template v-else>No invoices on this page</template>
-        </p>
-        <Pagination
-          v-slot="{ page }"
-          :page="props.invoices.current_page"
-          :total="props.invoices.total"
-          :items-per-page="props.invoices.per_page"
-          class="mx-0 w-auto"
-          @update:page="goToPage"
-        >
-          <PaginationContent v-slot="{ items }">
-            <PaginationPrevious />
-            <template
-              v-for="(item, index) in items"
-              :key="item.type === 'page' ? item.value : `ellipsis-${index}`"
+    <div class="flex flex-col items-center justify-between gap-4 sm:flex-row">
+      <p class="text-sm whitespace-nowrap text-muted-foreground">
+        <template v-if="props.invoices.from">
+          Showing {{ props.invoices.from }}–{{ props.invoices.to }} of
+          {{ props.invoices.total }}
+        </template>
+        <template v-else>No invoices on this page</template>
+      </p>
+      <Pagination
+        v-slot="{ page }"
+        :page="props.invoices.current_page"
+        :total="props.invoices.total"
+        :items-per-page="props.invoices.per_page"
+        class="mx-0 w-auto"
+        @update:page="goToPage"
+      >
+        <PaginationContent v-slot="{ items }">
+          <PaginationPrevious />
+          <template
+            v-for="(item, index) in items"
+            :key="item.type === 'page' ? item.value : `ellipsis-${index}`"
+          >
+            <PaginationItem
+              v-if="item.type === 'page'"
+              :value="item.value"
+              :is-active="item.value === page"
             >
-              <PaginationItem
-                v-if="item.type === 'page'"
-                :value="item.value"
-                :is-active="item.value === page"
-              >
-                {{ item.value }}
-              </PaginationItem>
-              <PaginationEllipsis v-else :index="index" />
-            </template>
-            <PaginationNext />
-          </PaginationContent>
-        </Pagination>
-      </div>
-    </section>
-  </div>
+              {{ item.value }}
+            </PaginationItem>
+            <PaginationEllipsis v-else :index="index" />
+          </template>
+          <PaginationNext />
+        </PaginationContent>
+      </Pagination>
+    </div>
+  </section>
 </template>
