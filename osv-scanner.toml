@@ -10,3 +10,8 @@ reason = "glob 13 is a dev-only transitive dep (@vue/test-utils > js-beautify); 
 id = "GHSA-g3hv-75wg-m249"
 effectiveUntil = 2027-02-13
 reason = "minimatch 10 is a dev-only transitive dep (eslint > @eslint/config-array); the fix is minimatch 11, which needs an upstream release."
+
+[[IgnoredVulns]]
+id = "GHSA-fc5q-39xc-vjpf"
+effectiveUntil = 2027-02-18
+reason = "picomatch <=4.0.7 is a build/dev-only transitive dep (laravel-vite-plugin > vite-plugin-full-reload; vite-plus, vue-tsc, tinyglobby) matching only repo-defined globs; no patched release exists yet."
