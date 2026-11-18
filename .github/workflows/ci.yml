@@ -84,9 +84,6 @@ jobs:
           chmod 600 .env
           php artisan key:generate --no-interaction
 
-      - name: Review PHP changes (Sloppy)
-        run: php artisan sloppy:ci --no-interaction
-
       - name: Scan for compromise (Scalpel)
         run: php artisan scalpel:scan --only=structural,obfuscated,htaccess,userini,env --format=github --fail-on=HIGH --no-interaction
 
@@ -98,6 +95,10 @@ jobs:
 
       - name: Typecheck FE (vue-tsc)
         run: pnpm run types:check
+
+      # Last, so a deliberate SL503 (deleted/weakened test) failure doesn't skip the checks above.
+      - name: Review PHP changes (Sloppy)
+        run: php artisan sloppy:ci --no-interaction
 
   frontend-tests:
     runs-on: ubuntu-26.04
