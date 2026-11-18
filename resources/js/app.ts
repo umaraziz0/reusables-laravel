@@ -1,6 +1,7 @@
 import type { DefineComponent } from 'vue';
 
 import { createInertiaApp } from '@inertiajs/vue3';
+import { QueryClient, VueQueryPlugin } from '@tanstack/vue-query';
 
 import { initializeTheme } from '@/composables/useAppearance';
 import AppLayout from '@/layouts/AppLayout.vue';
@@ -46,6 +47,8 @@ void createInertiaApp({
     color: '#4B5563',
   },
   withApp: (app) => {
+    app.use(VueQueryPlugin, { queryClient: new QueryClient() });
+
     app.directive('focus', {
       mounted: (el: HTMLElement, shouldFocus) => {
         if (shouldFocus.value !== false) {
