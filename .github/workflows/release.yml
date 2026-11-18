@@ -12,7 +12,7 @@ permissions:
 
 jobs:
   release-please:
-    runs-on: ubuntu-24.04
+    runs-on: ubuntu-26.04
     steps:
       - name: Create release app token
         id: app-token

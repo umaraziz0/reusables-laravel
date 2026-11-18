@@ -11,7 +11,7 @@ permissions:
 
 jobs:
   tia-baseline:
-    runs-on: ubuntu-24.04
+    runs-on: ubuntu-26.04
     services:
       postgres:
         image: postgres:18
@@ -67,8 +67,27 @@ jobs:
       - name: Build Frontend Assets (browser tests)
         run: pnpm run build
 
+      # Same as ci.yml backend-tests: the runner image ships Chrome's system
+      # libraries, so skip `--with-deps` (slow apt font downloads) and install
+      # only the headless shell. Runs on main, so PRs can restore this cache.
+      # ImageOS (e.g. ubuntu26) keys the cache per runner image: Playwright
+      # downloads OS-specific builds. It is a shell variable, not in `env`.
+      - name: Get Playwright version
+        id: playwright-version
+        run: |
+          echo "version=$(pnpm exec playwright --version | awk '{print $2}')" >> "$GITHUB_OUTPUT"
+          echo "image=$ImageOS" >> "$GITHUB_OUTPUT"
+
+      - name: Cache Playwright Browsers
+        id: playwright-cache
+        uses: actions/cache@55cc8345863c7cc4c66a329aec7e433d2d1c52a9 # v6.1.0
+        with:
+          path: ~/.cache/ms-playwright
+          key: ${{ runner.os }}-${{ steps.playwright-version.outputs.image }}-playwright-${{ steps.playwright-version.outputs.version }}
+
       - name: Install Playwright Browsers
-        run: pnpm exec playwright install --with-deps chromium
+        if: steps.playwright-cache.outputs.cache-hit != 'true'
+        run: pnpm exec playwright install --only-shell chromium
 
       - name: Create Testing Database
         run: |
