@@ -55,11 +55,7 @@ const status = ref('');
     class="grid grid-cols-1 gap-6 md:grid-cols-2 md:items-start 2xl:grid-cols-3"
   >
     <div class="space-y-3">
-      <h4
-        class="text-xs font-medium tracking-wide text-muted-foreground uppercase"
-      >
-        Default
-      </h4>
+      <h3 class="text-sm font-medium text-muted-foreground">Default</h3>
 
       <TextareaField
         v-model="value"
@@ -71,11 +67,7 @@ const status = ref('');
     </div>
 
     <div class="space-y-3">
-      <h4
-        class="text-xs font-medium tracking-wide text-muted-foreground uppercase"
-      >
-        Description
-      </h4>
+      <h3 class="text-sm font-medium text-muted-foreground">Description</h3>
 
       <TextareaField
         label="Bio"
@@ -86,11 +78,7 @@ const status = ref('');
     </div>
 
     <div class="space-y-3">
-      <h4
-        class="text-xs font-medium tracking-wide text-muted-foreground uppercase"
-      >
-        Error
-      </h4>
+      <h3 class="text-sm font-medium text-muted-foreground">Error</h3>
 
       <TextareaField
         label="Reason for refund"
@@ -102,11 +90,7 @@ const status = ref('');
     </div>
 
     <div class="space-y-3">
-      <h4
-        class="text-xs font-medium tracking-wide text-muted-foreground uppercase"
-      >
-        Disabled
-      </h4>
+      <h3 class="text-sm font-medium text-muted-foreground">Disabled</h3>
       <TextareaField
         label="Internal notes"
         name="internal_notes"
@@ -116,11 +100,7 @@ const status = ref('');
     </div>
 
     <div class="space-y-3">
-      <h4
-        class="text-xs font-medium tracking-wide text-muted-foreground uppercase"
-      >
-        Read-only
-      </h4>
+      <h3 class="text-sm font-medium text-muted-foreground">Read-only</h3>
       <TextareaField
         label="Original request"
         name="original_request"
@@ -130,11 +110,7 @@ const status = ref('');
     </div>
 
     <div class="space-y-3">
-      <h4
-        class="text-xs font-medium tracking-wide text-muted-foreground uppercase"
-      >
-        Hidden label
-      </h4>
+      <h3 class="text-sm font-medium text-muted-foreground">Hidden label</h3>
       <TextareaField
         label="Comment"
         name="comment"
@@ -144,11 +120,7 @@ const status = ref('');
     </div>
 
     <div class="space-y-3">
-      <h4
-        class="text-xs font-medium tracking-wide text-muted-foreground uppercase"
-      >
-        Custom width
-      </h4>
+      <h3 class="text-sm font-medium text-muted-foreground">Custom width</h3>
       <TextareaField
         name="custom-width"
         placeholder="Custom width"
@@ -158,11 +130,7 @@ const status = ref('');
     </div>
 
     <div class="space-y-3">
-      <h4
-        class="text-xs font-medium tracking-wide text-muted-foreground uppercase"
-      >
-        Required
-      </h4>
+      <h3 class="text-sm font-medium text-muted-foreground">Required</h3>
       <TextareaField
         label="Cover letter"
         name="cover_letter"
@@ -172,11 +140,7 @@ const status = ref('');
     </div>
 
     <div class="space-y-3">
-      <h4
-        class="text-xs font-medium tracking-wide text-muted-foreground uppercase"
-      >
-        Rows
-      </h4>
+      <h3 class="text-sm font-medium text-muted-foreground">Rows</h3>
       <TextareaField
         label="Release notes"
         name="release_notes"
@@ -187,11 +151,9 @@ const status = ref('');
     </div>
 
     <div class="space-y-3">
-      <h4
-        class="text-xs font-medium tracking-wide text-muted-foreground uppercase"
-      >
+      <h3 class="text-sm font-medium text-muted-foreground">
         Character counter
-      </h4>
+      </h3>
       <TextareaField
         v-model="status"
         label="Status update"
@@ -203,11 +165,7 @@ const status = ref('');
     </div>
 
     <div class="space-y-3 md:col-span-2 2xl:col-span-3">
-      <h4
-        class="text-xs font-medium tracking-wide text-muted-foreground uppercase"
-      >
-        Field set
-      </h4>
+      <h3 class="text-sm font-medium text-muted-foreground">Field set</h3>
       <FieldSet class="max-w-xl">
         <FieldLegend>Feedback</FieldLegend>
         <FieldDescription>Tell us how we're doing.</FieldDescription>

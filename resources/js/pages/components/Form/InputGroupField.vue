@@ -68,11 +68,7 @@ async function copyApiKey(): Promise<void> {
     class="grid grid-cols-1 gap-6 md:grid-cols-2 md:items-start 2xl:grid-cols-3"
   >
     <div class="space-y-3">
-      <h4
-        class="text-xs font-medium tracking-wide text-muted-foreground uppercase"
-      >
-        Leading icon
-      </h4>
+      <h3 class="text-sm font-medium text-muted-foreground">Leading icon</h3>
 
       <InputGroupField
         v-model="search"
@@ -89,11 +85,9 @@ async function copyApiKey(): Promise<void> {
     </div>
 
     <div class="space-y-3">
-      <h4
-        class="text-xs font-medium tracking-wide text-muted-foreground uppercase"
-      >
+      <h3 class="text-sm font-medium text-muted-foreground">
         Leading and trailing text
-      </h4>
+      </h3>
 
       <InputGroupField
         label="Website"
@@ -111,11 +105,7 @@ async function copyApiKey(): Promise<void> {
     </div>
 
     <div class="space-y-3">
-      <h4
-        class="text-xs font-medium tracking-wide text-muted-foreground uppercase"
-      >
-        Trailing button
-      </h4>
+      <h3 class="text-sm font-medium text-muted-foreground">Trailing button</h3>
 
       <InputGroupField
         label="API key"
@@ -137,11 +127,7 @@ async function copyApiKey(): Promise<void> {
     </div>
 
     <div class="space-y-3">
-      <h4
-        class="text-xs font-medium tracking-wide text-muted-foreground uppercase"
-      >
-        Keyboard hint
-      </h4>
+      <h3 class="text-sm font-medium text-muted-foreground">Keyboard hint</h3>
 
       <InputGroupField
         label="Command"
@@ -160,11 +146,7 @@ async function copyApiKey(): Promise<void> {
     </div>
 
     <div class="space-y-3">
-      <h4
-        class="text-xs font-medium tracking-wide text-muted-foreground uppercase"
-      >
-        Block end
-      </h4>
+      <h3 class="text-sm font-medium text-muted-foreground">Block end</h3>
 
       <InputGroupField
         v-model="bio"
@@ -182,11 +164,7 @@ async function copyApiKey(): Promise<void> {
     </div>
 
     <div class="space-y-3">
-      <h4
-        class="text-xs font-medium tracking-wide text-muted-foreground uppercase"
-      >
-        Error
-      </h4>
+      <h3 class="text-sm font-medium text-muted-foreground">Error</h3>
 
       <InputGroupField
         label="Username"
@@ -203,11 +181,7 @@ async function copyApiKey(): Promise<void> {
     </div>
 
     <div class="space-y-3">
-      <h4
-        class="text-xs font-medium tracking-wide text-muted-foreground uppercase"
-      >
-        Disabled
-      </h4>
+      <h3 class="text-sm font-medium text-muted-foreground">Disabled</h3>
 
       <InputGroupField
         label="Account ID"
@@ -222,11 +196,7 @@ async function copyApiKey(): Promise<void> {
     </div>
 
     <div class="space-y-3">
-      <h4
-        class="text-xs font-medium tracking-wide text-muted-foreground uppercase"
-      >
-        Required
-      </h4>
+      <h3 class="text-sm font-medium text-muted-foreground">Required</h3>
 
       <InputGroupField
         label="Email"

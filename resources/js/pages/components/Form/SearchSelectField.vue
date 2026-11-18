@@ -91,11 +91,7 @@ function generateOptions(count: number): SelectFieldOption[] {
     class="grid grid-cols-1 gap-6 md:grid-cols-2 md:items-start 2xl:grid-cols-3"
   >
     <div class="space-y-3">
-      <h4
-        class="text-xs font-medium tracking-wide text-muted-foreground uppercase"
-      >
-        Default
-      </h4>
+      <h3 class="text-sm font-medium text-muted-foreground">Default</h3>
 
       <SearchSelectField
         v-model="country"
@@ -110,11 +106,7 @@ function generateOptions(count: number): SelectFieldOption[] {
     </div>
 
     <div class="space-y-3">
-      <h4
-        class="text-xs font-medium tracking-wide text-muted-foreground uppercase"
-      >
-        10,000 options
-      </h4>
+      <h3 class="text-sm font-medium text-muted-foreground">10,000 options</h3>
 
       <SearchSelectField
         v-model="largeListItem"
@@ -127,11 +119,7 @@ function generateOptions(count: number): SelectFieldOption[] {
     </div>
 
     <div class="space-y-3">
-      <h4
-        class="text-xs font-medium tracking-wide text-muted-foreground uppercase"
-      >
-        100,000 options
-      </h4>
+      <h3 class="text-sm font-medium text-muted-foreground">100,000 options</h3>
 
       <SearchSelectField
         label="Large item"
@@ -142,11 +130,7 @@ function generateOptions(count: number): SelectFieldOption[] {
     </div>
 
     <div class="space-y-3">
-      <h4
-        class="text-xs font-medium tracking-wide text-muted-foreground uppercase"
-      >
-        Error
-      </h4>
+      <h3 class="text-sm font-medium text-muted-foreground">Error</h3>
 
       <SearchSelectField
         label="Billing country"
@@ -159,11 +143,7 @@ function generateOptions(count: number): SelectFieldOption[] {
     </div>
 
     <div class="space-y-3">
-      <h4
-        class="text-xs font-medium tracking-wide text-muted-foreground uppercase"
-      >
-        Disabled
-      </h4>
+      <h3 class="text-sm font-medium text-muted-foreground">Disabled</h3>
 
       <SearchSelectField
         label="Region"
@@ -175,11 +155,7 @@ function generateOptions(count: number): SelectFieldOption[] {
     </div>
 
     <div class="space-y-3">
-      <h4
-        class="text-xs font-medium tracking-wide text-muted-foreground uppercase"
-      >
-        Required
-      </h4>
+      <h3 class="text-sm font-medium text-muted-foreground">Required</h3>
 
       <SearchSelectField
         label="Shipping country"
@@ -191,11 +167,7 @@ function generateOptions(count: number): SelectFieldOption[] {
     </div>
 
     <div class="space-y-3">
-      <h4
-        class="text-xs font-medium tracking-wide text-muted-foreground uppercase"
-      >
-        Hidden label
-      </h4>
+      <h3 class="text-sm font-medium text-muted-foreground">Hidden label</h3>
 
       <SearchSelectField
         label="Filter by country"
@@ -207,11 +179,7 @@ function generateOptions(count: number): SelectFieldOption[] {
     </div>
 
     <div class="space-y-3">
-      <h4
-        class="text-xs font-medium tracking-wide text-muted-foreground uppercase"
-      >
-        Custom width
-      </h4>
+      <h3 class="text-sm font-medium text-muted-foreground">Custom width</h3>
 
       <SearchSelectField
         label="Custom width"

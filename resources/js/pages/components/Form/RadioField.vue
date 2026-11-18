@@ -80,11 +80,7 @@ const selectedPlan = ref<string | number>();
     class="grid grid-cols-1 gap-6 md:grid-cols-2 md:items-start 2xl:grid-cols-3"
   >
     <div class="space-y-3">
-      <h4
-        class="text-xs font-medium tracking-wide text-muted-foreground uppercase"
-      >
-        Default
-      </h4>
+      <h3 class="text-sm font-medium text-muted-foreground">Default</h3>
 
       <RadioField
         v-model="selectedPlan"
@@ -96,11 +92,7 @@ const selectedPlan = ref<string | number>();
     </div>
 
     <div class="space-y-3">
-      <h4
-        class="text-xs font-medium tracking-wide text-muted-foreground uppercase"
-      >
-        Description
-      </h4>
+      <h3 class="text-sm font-medium text-muted-foreground">Description</h3>
 
       <RadioField
         label="Billing cycle"
@@ -112,11 +104,9 @@ const selectedPlan = ref<string | number>();
     </div>
 
     <div class="space-y-3">
-      <h4
-        class="text-xs font-medium tracking-wide text-muted-foreground uppercase"
-      >
+      <h3 class="text-sm font-medium text-muted-foreground">
         Option descriptions
-      </h4>
+      </h3>
 
       <RadioField
         label="Delivery"
@@ -127,11 +117,7 @@ const selectedPlan = ref<string | number>();
     </div>
 
     <div class="space-y-3">
-      <h4
-        class="text-xs font-medium tracking-wide text-muted-foreground uppercase"
-      >
-        Horizontal
-      </h4>
+      <h3 class="text-sm font-medium text-muted-foreground">Horizontal</h3>
 
       <RadioField
         label="Size"
@@ -143,11 +129,7 @@ const selectedPlan = ref<string | number>();
     </div>
 
     <div class="space-y-3">
-      <h4
-        class="text-xs font-medium tracking-wide text-muted-foreground uppercase"
-      >
-        Error
-      </h4>
+      <h3 class="text-sm font-medium text-muted-foreground">Error</h3>
 
       <RadioField
         label="Billing plan"
@@ -160,11 +142,7 @@ const selectedPlan = ref<string | number>();
     </div>
 
     <div class="space-y-3">
-      <h4
-        class="text-xs font-medium tracking-wide text-muted-foreground uppercase"
-      >
-        Disabled
-      </h4>
+      <h3 class="text-sm font-medium text-muted-foreground">Disabled</h3>
 
       <RadioField
         label="Region"
@@ -177,11 +155,7 @@ const selectedPlan = ref<string | number>();
     </div>
 
     <div class="space-y-3">
-      <h4
-        class="text-xs font-medium tracking-wide text-muted-foreground uppercase"
-      >
-        Hidden label
-      </h4>
+      <h3 class="text-sm font-medium text-muted-foreground">Hidden label</h3>
 
       <RadioField
         label="Sort order"

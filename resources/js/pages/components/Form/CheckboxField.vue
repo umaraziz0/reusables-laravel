@@ -52,11 +52,7 @@ const isSubscribed = ref(false);
     class="grid grid-cols-1 gap-6 md:grid-cols-2 md:items-start 2xl:grid-cols-3"
   >
     <div class="space-y-3">
-      <h4
-        class="text-xs font-medium tracking-wide text-muted-foreground uppercase"
-      >
-        Default
-      </h4>
+      <h3 class="text-sm font-medium text-muted-foreground">Default</h3>
 
       <CheckboxField
         v-model="isSubscribed"
@@ -67,11 +63,7 @@ const isSubscribed = ref(false);
     </div>
 
     <div class="space-y-3">
-      <h4
-        class="text-xs font-medium tracking-wide text-muted-foreground uppercase"
-      >
-        Description
-      </h4>
+      <h3 class="text-sm font-medium text-muted-foreground">Description</h3>
 
       <CheckboxField
         label="Product updates"
@@ -81,11 +73,7 @@ const isSubscribed = ref(false);
     </div>
 
     <div class="space-y-3">
-      <h4
-        class="text-xs font-medium tracking-wide text-muted-foreground uppercase"
-      >
-        Default value
-      </h4>
+      <h3 class="text-sm font-medium text-muted-foreground">Default value</h3>
 
       <CheckboxField
         label="Remember this device"
@@ -95,11 +83,7 @@ const isSubscribed = ref(false);
     </div>
 
     <div class="space-y-3">
-      <h4
-        class="text-xs font-medium tracking-wide text-muted-foreground uppercase"
-      >
-        Error
-      </h4>
+      <h3 class="text-sm font-medium text-muted-foreground">Error</h3>
 
       <CheckboxField
         label="I accept the terms"
@@ -111,11 +95,7 @@ const isSubscribed = ref(false);
     </div>
 
     <div class="space-y-3">
-      <h4
-        class="text-xs font-medium tracking-wide text-muted-foreground uppercase"
-      >
-        Required
-      </h4>
+      <h3 class="text-sm font-medium text-muted-foreground">Required</h3>
 
       <CheckboxField
         label="I confirm the details are correct"
@@ -125,11 +105,7 @@ const isSubscribed = ref(false);
     </div>
 
     <div class="space-y-3">
-      <h4
-        class="text-xs font-medium tracking-wide text-muted-foreground uppercase"
-      >
-        Disabled
-      </h4>
+      <h3 class="text-sm font-medium text-muted-foreground">Disabled</h3>
 
       <CheckboxField
         label="Two-factor login"
@@ -141,21 +117,13 @@ const isSubscribed = ref(false);
     </div>
 
     <div class="space-y-3">
-      <h4
-        class="text-xs font-medium tracking-wide text-muted-foreground uppercase"
-      >
-        Hidden label
-      </h4>
+      <h3 class="text-sm font-medium text-muted-foreground">Hidden label</h3>
 
       <CheckboxField label="Select row" name="select_row" hide-label />
     </div>
 
     <div class="space-y-3">
-      <h4
-        class="text-xs font-medium tracking-wide text-muted-foreground uppercase"
-      >
-        Custom value
-      </h4>
+      <h3 class="text-sm font-medium text-muted-foreground">Custom value</h3>
 
       <CheckboxField
         label="Opt in to beta features"
@@ -166,11 +134,7 @@ const isSubscribed = ref(false);
     </div>
 
     <div class="space-y-3 md:col-span-2 2xl:col-span-3">
-      <h4
-        class="text-xs font-medium tracking-wide text-muted-foreground uppercase"
-      >
-        Field set
-      </h4>
+      <h3 class="text-sm font-medium text-muted-foreground">Field set</h3>
       <FieldSet class="max-w-xl">
         <FieldLegend>Notifications</FieldLegend>
         <FieldDescription>Choose what we email you about.</FieldDescription>

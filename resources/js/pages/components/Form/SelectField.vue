@@ -92,11 +92,7 @@ const plan = ref<string | number>();
     class="grid grid-cols-1 gap-6 md:grid-cols-2 md:items-start 2xl:grid-cols-3"
   >
     <div class="space-y-3">
-      <h4
-        class="text-xs font-medium tracking-wide text-muted-foreground uppercase"
-      >
-        Default
-      </h4>
+      <h3 class="text-sm font-medium text-muted-foreground">Default</h3>
 
       <SelectField
         v-model="plan"
@@ -109,11 +105,7 @@ const plan = ref<string | number>();
     </div>
 
     <div class="space-y-3">
-      <h4
-        class="text-xs font-medium tracking-wide text-muted-foreground uppercase"
-      >
-        Description
-      </h4>
+      <h3 class="text-sm font-medium text-muted-foreground">Description</h3>
 
       <SelectField
         label="Billing cycle"
@@ -128,11 +120,7 @@ const plan = ref<string | number>();
     </div>
 
     <div class="space-y-3">
-      <h4
-        class="text-xs font-medium tracking-wide text-muted-foreground uppercase"
-      >
-        Error
-      </h4>
+      <h3 class="text-sm font-medium text-muted-foreground">Error</h3>
 
       <SelectField
         label="Team plan"
@@ -145,11 +133,7 @@ const plan = ref<string | number>();
     </div>
 
     <div class="space-y-3">
-      <h4
-        class="text-xs font-medium tracking-wide text-muted-foreground uppercase"
-      >
-        Disabled
-      </h4>
+      <h3 class="text-sm font-medium text-muted-foreground">Disabled</h3>
       <SelectField
         label="Region"
         name="region"
@@ -160,11 +144,7 @@ const plan = ref<string | number>();
     </div>
 
     <div class="space-y-3">
-      <h4
-        class="text-xs font-medium tracking-wide text-muted-foreground uppercase"
-      >
-        Disabled option
-      </h4>
+      <h3 class="text-sm font-medium text-muted-foreground">Disabled option</h3>
       <SelectField
         label="Role"
         name="role"
@@ -175,11 +155,7 @@ const plan = ref<string | number>();
     </div>
 
     <div class="space-y-3">
-      <h4
-        class="text-xs font-medium tracking-wide text-muted-foreground uppercase"
-      >
-        Hidden label
-      </h4>
+      <h3 class="text-sm font-medium text-muted-foreground">Hidden label</h3>
       <SelectField
         label="Sort by"
         name="sort"
@@ -193,11 +169,7 @@ const plan = ref<string | number>();
     </div>
 
     <div class="space-y-3">
-      <h4
-        class="text-xs font-medium tracking-wide text-muted-foreground uppercase"
-      >
-        Custom width
-      </h4>
+      <h3 class="text-sm font-medium text-muted-foreground">Custom width</h3>
       <SelectField
         label="Custom width"
         name="custom-width"
@@ -208,11 +180,7 @@ const plan = ref<string | number>();
     </div>
 
     <div class="space-y-3">
-      <h4
-        class="text-xs font-medium tracking-wide text-muted-foreground uppercase"
-      >
-        Required
-      </h4>
+      <h3 class="text-sm font-medium text-muted-foreground">Required</h3>
       <SelectField
         label="Account plan"
         name="account_plan"
@@ -223,11 +191,7 @@ const plan = ref<string | number>();
     </div>
 
     <div class="space-y-3">
-      <h4
-        class="text-xs font-medium tracking-wide text-muted-foreground uppercase"
-      >
-        Grouped
-      </h4>
+      <h3 class="text-sm font-medium text-muted-foreground">Grouped</h3>
       <SelectField label="Timezone" name="timezone" placeholder="Timezone…">
         <SelectGroup>
           <SelectLabel>Europe</SelectLabel>
@@ -244,11 +208,7 @@ const plan = ref<string | number>();
     </div>
 
     <div class="space-y-3">
-      <h4
-        class="text-xs font-medium tracking-wide text-muted-foreground uppercase"
-      >
-        Long list
-      </h4>
+      <h3 class="text-sm font-medium text-muted-foreground">Long list</h3>
       <SelectField
         label="Country"
         name="country"
