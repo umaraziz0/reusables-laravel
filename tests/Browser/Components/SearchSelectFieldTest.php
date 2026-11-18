@@ -15,7 +15,8 @@ test('search select field opens a large list at the selected item and selects a 
     $page = visit(route('components.form.search-select-field', absolute: false))
         ->click('#item')
         ->assertVisible('[role="option"][data-state="checked"]')
-        ->assertSeeIn('[role="option"][data-state="checked"]', 'Item 004201');
+        ->assertSeeIn('[role="option"][data-state="checked"]', 'Item 004201')
+        ->assertAttribute('[role="option"][data-state="checked"]', 'aria-setsize', '10000');
 
     expect($page->script('document.querySelectorAll("[role=option]").length'))->toBeLessThan(100);
 
