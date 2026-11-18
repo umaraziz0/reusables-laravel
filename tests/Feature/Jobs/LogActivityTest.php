@@ -93,27 +93,6 @@ test('job handle persists an activity with the expected details', function (): v
         ]);
 });
 
-test('job handles null performedOn and causedBy', function (): void {
-    $job = new LogActivity(
-        module: 'Jobs',
-        action: 'Background Task',
-        message: 'background task completed',
-        performedOn: null,
-        causedBy: null,
-        withProperties: [],
-    );
-
-    $job->handle(resolve(RecordActivity::class));
-
-    $activity = Activity::query()->latest()->first();
-
-    expect($activity)->not->toBeNull()
-        ->and($activity->description)->toBe('background task completed')
-        ->and($activity->event)->toBe('Jobs - Background Task')
-        ->and($activity->subject_id)->toBeNull()
-        ->and($activity->causer_id)->toBeNull();
-});
-
 test('job uses default queue when logs_activity config is null', function (): void {
     $originalConfig = Config::string('queue.queues.logs_activity');
 

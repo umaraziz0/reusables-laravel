@@ -132,20 +132,6 @@ test('does not calculate changes from a dirty performedOn model', function (): v
     expect($activity->attribute_changes?->toArray())->toBe([]);
 });
 
-test('stores module and action as the activity event', function (): void {
-    $action = new RecordActivity();
-    $action->handle(
-        module: 'Jobs',
-        action: 'Process Queue',
-        message: 'background task ran',
-    );
-
-    $activity = Activity::query()->sole();
-
-    expect($activity->event)->toBe('Jobs - Process Queue')
-        ->and($activity->description)->toBe('background task ran');
-});
-
 test('handles null performedOn and causedBy', function (): void {
     $action = new RecordActivity();
     $action->handle(

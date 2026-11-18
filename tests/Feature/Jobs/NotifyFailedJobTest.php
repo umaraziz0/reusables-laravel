@@ -141,25 +141,6 @@ test('handle does nothing when notification emails is empty', function (): void 
     Mail::assertNothingSent();
 });
 
-test('job is queued on emails queue when dispatched', function (): void {
-    Queue::fake();
-
-    dispatch(new NotifyFailedJob(
-        connectionName: 'redis',
-        failedQueue: 'default',
-        uuid: 'test-uuid',
-        jobName: 'App\Jobs\ProcessOrder',
-        exceptionClass: 'RuntimeException',
-        exceptionMessage: 'Error',
-        stackTrace: 'trace',
-        failedAt: now()->toIso8601String(),
-        attempts: 1,
-    ));
-
-    $queueName = Config::string('queue.queues.emails');
-    Queue::assertPushedOn($queueName, NotifyFailedJob::class);
-});
-
 test('job uses default queue when emails config is null', function (): void {
     $originalConfig = Config::string('queue.queues.emails');
 

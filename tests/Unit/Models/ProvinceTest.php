@@ -8,18 +8,6 @@ use Illuminate\Foundation\Testing\RefreshDatabase;
 
 pest()->use(RefreshDatabase::class);
 
-test('cities relation keys cities by province code', function (): void {
-    $province = Province::query()->create([
-        'code' => '11',
-        'name' => 'ACEH',
-    ]);
-
-    $relation = $province->cities();
-
-    expect($relation->getForeignKeyName())->toBe('province_code')
-        ->and($relation->getLocalKeyName())->toBe('code');
-});
-
 test('cities relation returns cities linked by province code', function (): void {
     $province = Province::query()->create([
         'code' => '11',

@@ -112,19 +112,7 @@ describe('InputField', () => {
     expect(wrapper.get('#username-error').text()).toBe(
       'Username must be at least 3 characters.',
     );
-  });
-
-  it('marks the field invalid when there is an error', () => {
-    const valid = mount(InputField, {
-      props: { label: 'Username', name: 'username' },
-    });
-
-    const invalid = mount(InputField, {
-      props: { label: 'Username', name: 'username', error: 'Too short.' },
-    });
-
-    expect(valid.attributes('data-invalid')).toBeUndefined();
-    expect(invalid.attributes('data-invalid')).toBe('true');
+    expect(wrapper.attributes('data-invalid')).toBe('true');
   });
 
   it('omits aria-describedby when there is nothing to describe', () => {
@@ -133,6 +121,7 @@ describe('InputField', () => {
     });
 
     expect(wrapper.get('input').attributes('aria-describedby')).toBeUndefined();
+    expect(wrapper.attributes('data-invalid')).toBeUndefined();
   });
 
   it('emits typed values through v-model', async () => {

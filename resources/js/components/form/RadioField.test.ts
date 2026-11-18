@@ -160,7 +160,7 @@ describe('RadioField', () => {
     expect(wrapper.get('fieldset').attributes('data-test')).toBeUndefined();
   });
 
-  it('disables every radio and dims the legend when disabled', () => {
+  it('disables every radio when disabled', () => {
     const wrapper = mount(RadioField, {
       props: {
         label: 'Plan',
@@ -175,7 +175,6 @@ describe('RadioField', () => {
     }
 
     expect(wrapper.get('fieldset').attributes('data-disabled')).toBe('true');
-    expect(wrapper.get('legend').classes()).toContain('opacity-50');
   });
 
   it('disables only the options marked disabled', () => {

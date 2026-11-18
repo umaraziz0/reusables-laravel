@@ -7,7 +7,12 @@ beforeEach(function (): void {
 });
 
 test('api routes are rate limited per authenticated user', function (): void {
-    for ($request = 0; $request < 60; $request++) {
+    $this->getJson(route('api.users.index'))
+        ->assertSuccessful()
+        ->assertHeader('X-RateLimit-Limit', '60')
+        ->assertHeader('X-RateLimit-Remaining', '59');
+
+    for ($request = 1; $request < 60; $request++) {
         $this->getJson(route('api.users.index'))
             ->assertSuccessful();
     }
@@ -22,11 +27,4 @@ test('api routes are rate limited per authenticated user', function (): void {
 
     $this->getJson(route('api.users.index'))
         ->assertSuccessful();
-});
-
-test('api routes include rate limit headers', function (): void {
-    $response = $this->getJson(route('api.users.index'));
-
-    $response->assertSuccessful();
-    $response->assertHeader('X-RateLimit-Limit', '60');
 });
