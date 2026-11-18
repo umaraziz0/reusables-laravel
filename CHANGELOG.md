@@ -1,5 +1,20 @@
 # Changelog
 
+## [0.10.0](https://github.com/umaraziz0/reusables-laravel/compare/reusables-laravel-v0.9.0...reusables-laravel-v0.10.0) (2026-11-18)
+
+
+### Features
+
+* **frontend:** add Vite Doctor to frontend checks ([#117](https://github.com/umaraziz0/reusables-laravel/issues/117)) ([99efdce](https://github.com/umaraziz0/reusables-laravel/commit/99efdce93114fa72fbb45aaa39690f7a2019a0d9))
+
+
+### Bug Fixes
+
+* **boost:** keep the `inertia-vue` guideline as Markdown ([62b994f](https://github.com/umaraziz0/reusables-laravel/commit/62b994f2c0ac727bc4d536f247ce91717094c8a9))
+* **components:** fix the Vue findings `vite-doctor` reports ([b3a59d8](https://github.com/umaraziz0/reusables-laravel/commit/b3a59d88a60ce76b8d8a7ad0b2ee98c8e7e9d214))
+* **users:** escape LIKE wildcards in user search on SQLite ([8785d31](https://github.com/umaraziz0/reusables-laravel/commit/8785d318ebed0f0bcdafb9b6c361eba952052978))
+* **users:** escape LIKE wildcards in user search on SQLite ([6e253a4](https://github.com/umaraziz0/reusables-laravel/commit/6e253a41ae6c8498d28c3d59b085494e066d2fba))
+
 ## [0.9.0](https://github.com/umaraziz0/reusables-laravel/compare/reusables-laravel-v0.8.0...reusables-laravel-v0.9.0) (2026-11-16)
 
 
