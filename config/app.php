@@ -45,6 +45,19 @@ return [
 
     /*
     |--------------------------------------------------------------------------
+    | Component Previews
+    |--------------------------------------------------------------------------
+    |
+    | The /components preview pages are on everywhere except production.
+    | When off, the routes return 404 and the frontend build leaves the
+    | pages out (vite.config.ts applies the same APP_ENV check).
+    |
+    */
+
+    'component_previews' => env('APP_ENV', 'production') !== 'production',
+
+    /*
+    |--------------------------------------------------------------------------
     | Application URL
     |--------------------------------------------------------------------------
     |
