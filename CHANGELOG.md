@@ -1,5 +1,24 @@
 # Changelog
 
+## [0.11.0](https://github.com/umaraziz0/reusables-laravel/compare/reusables-laravel-v0.10.0...reusables-laravel-v0.11.0) (2026-11-18)
+
+
+### Features
+
+* **components:** exclude component previews in production ([d0dbf4e](https://github.com/umaraziz0/reusables-laravel/commit/d0dbf4e3f290f5e1335febb2976cb0f5e9a1dce3))
+* **components:** leave preview pages out of the production build ([f6c6149](https://github.com/umaraziz0/reusables-laravel/commit/f6c61494f92f6b3079af25c1e7ecb5ab92620743)), closes [#125](https://github.com/umaraziz0/reusables-laravel/issues/125)
+* **components:** return 404 for component previews in production ([5956568](https://github.com/umaraziz0/reusables-laravel/commit/595656851ec6826c6860b4d566b47e4cb51500de))
+
+
+### Bug Fixes
+
+* **components:** drop the extra wrapper on three preview pages ([329137a](https://github.com/umaraziz0/reusables-laravel/commit/329137a74034193133e1a6c92b6ca904401485d1))
+* **components:** keep the preview header on one line on mobile ([1fcb7a5](https://github.com/umaraziz0/reusables-laravel/commit/1fcb7a5a9ee2800f9e4934c899bed902cb3e0c3b))
+* **components:** make preview pages consistent and fix the mobile header ([5dcb0c6](https://github.com/umaraziz0/reusables-laravel/commit/5dcb0c69049e93a0d77df23f796d988dcb71a510))
+* **components:** match preview titles to their sidebar names ([1cb878b](https://github.com/umaraziz0/reusables-laravel/commit/1cb878b621c58694a1b3abc837bbe4f0693aa462))
+* **components:** restore collapsible trigger styling in the preview ([fdcdd40](https://github.com/umaraziz0/reusables-laravel/commit/fdcdd402eb8391a5ac45662e8cea80a0bea3ca87))
+* **components:** use the shared h3 section label on form previews ([cc40c9f](https://github.com/umaraziz0/reusables-laravel/commit/cc40c9ff05a4d3426b6725f89c590e7215040037))
+
 ## [0.10.0](https://github.com/umaraziz0/reusables-laravel/compare/reusables-laravel-v0.9.0...reusables-laravel-v0.10.0) (2026-11-18)
 
 
