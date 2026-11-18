@@ -3,9 +3,10 @@
 declare(strict_types=1);
 
 use App\Http\Controllers\ComponentPreviewController;
+use App\Http\Middleware\EnsureComponentPreviewsEnabled;
 use Illuminate\Support\Facades\Route;
 
-Route::middleware(['auth', 'role:superadmin'])
+Route::middleware([EnsureComponentPreviewsEnabled::class, 'auth', 'role:superadmin'])
     ->prefix('components')
     ->group(function (): void {
         Route::get('/', [ComponentPreviewController::class, 'index'])->name('components.index');

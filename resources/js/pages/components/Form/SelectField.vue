@@ -17,22 +17,26 @@ import {
   SelectLabel,
   SelectSeparator,
 } from '@/components/ui/select';
+import ComponentsLayout from '@/layouts/components/ComponentsLayout.vue';
 
 // --- Props --- //
 
 defineOptions({
-  layout: {
-    breadcrumbs: [
-      {
-        title: 'Form',
-        href: formInputField(),
-      },
-      {
-        title: 'Select Field',
-        href: formSelectField(),
-      },
-    ],
-  },
+  layout: [
+    ComponentsLayout,
+    {
+      breadcrumbs: [
+        {
+          title: 'Form',
+          href: formInputField(),
+        },
+        {
+          title: 'Select Field',
+          href: formSelectField(),
+        },
+      ],
+    },
+  ],
 });
 
 // --- Constants --- //

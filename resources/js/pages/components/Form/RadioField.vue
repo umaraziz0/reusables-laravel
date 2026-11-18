@@ -11,22 +11,26 @@ import RadioField, {
   type RadioFieldOption,
 } from '@/components/form/RadioField.vue';
 import Heading from '@/components/Heading.vue';
+import ComponentsLayout from '@/layouts/components/ComponentsLayout.vue';
 
 // --- Props --- //
 
 defineOptions({
-  layout: {
-    breadcrumbs: [
-      {
-        title: 'Form',
-        href: formInputField(),
-      },
-      {
-        title: 'Radio Field',
-        href: formRadioField(),
-      },
-    ],
-  },
+  layout: [
+    ComponentsLayout,
+    {
+      breadcrumbs: [
+        {
+          title: 'Form',
+          href: formInputField(),
+        },
+        {
+          title: 'Radio Field',
+          href: formRadioField(),
+        },
+      ],
+    },
+  ],
 });
 
 const planOptions: RadioFieldOption[] = [

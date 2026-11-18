@@ -16,22 +16,26 @@ import {
   FieldSeparator,
   FieldSet,
 } from '@/components/ui/field';
+import ComponentsLayout from '@/layouts/components/ComponentsLayout.vue';
 
 // --- Props --- //
 
 defineOptions({
-  layout: {
-    breadcrumbs: [
-      {
-        title: 'Form',
-        href: formInputField(),
-      },
-      {
-        title: 'Switch Field',
-        href: formSwitchField(),
-      },
-    ],
-  },
+  layout: [
+    ComponentsLayout,
+    {
+      breadcrumbs: [
+        {
+          title: 'Form',
+          href: formInputField(),
+        },
+        {
+          title: 'Switch Field',
+          href: formSwitchField(),
+        },
+      ],
+    },
+  ],
 });
 
 const isDarkMode = ref(false);

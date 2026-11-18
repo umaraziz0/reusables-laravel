@@ -4,17 +4,21 @@ import { ChevronRight, Mail } from '@lucide/vue';
 
 import Heading from '@/components/Heading.vue';
 import { Button } from '@/components/ui/button';
+import ComponentsLayout from '@/layouts/components/ComponentsLayout.vue';
 import { buttons } from '@/routes/components';
 
 defineOptions({
-  layout: {
-    breadcrumbs: [
-      {
-        title: 'Buttons',
-        href: buttons().url,
-      },
-    ],
-  },
+  layout: [
+    ComponentsLayout,
+    {
+      breadcrumbs: [
+        {
+          title: 'Buttons',
+          href: buttons().url,
+        },
+      ],
+    },
+  ],
 });
 
 const variants = [

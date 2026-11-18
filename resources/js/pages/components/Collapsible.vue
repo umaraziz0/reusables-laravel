@@ -8,17 +8,21 @@ import {
   CollapsibleContent,
   CollapsibleTrigger,
 } from '@/components/ui/collapsible';
+import ComponentsLayout from '@/layouts/components/ComponentsLayout.vue';
 import { collapsible } from '@/routes/components';
 
 defineOptions({
-  layout: {
-    breadcrumbs: [
-      {
-        title: 'Collapsible',
-        href: collapsible().url,
-      },
-    ],
-  },
+  layout: [
+    ComponentsLayout,
+    {
+      breadcrumbs: [
+        {
+          title: 'Collapsible',
+          href: collapsible().url,
+        },
+      ],
+    },
+  ],
 });
 </script>
 

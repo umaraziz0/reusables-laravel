@@ -122,3 +122,12 @@ test('table preview paginates hardcoded invoices', function (): void {
         ->has('invoices.data', 10)
         ->where('invoices.data.0.number', 'INV-011'));
 });
+
+test('component previews return not found when disabled', function (): void {
+    config(['app.component_previews' => false]);
+    $superadmin = User::factory()->create();
+    $superadmin->assignRole(Role::SUPERADMIN->value);
+
+    $this->get(route('components.buttons'))->assertNotFound();
+    $this->actingAs($superadmin)->get(route('components.buttons'))->assertNotFound();
+});

@@ -4,17 +4,21 @@ import { AlertCircle, Info } from '@lucide/vue';
 
 import Heading from '@/components/Heading.vue';
 import { Alert, AlertDescription, AlertTitle } from '@/components/ui/alert';
+import ComponentsLayout from '@/layouts/components/ComponentsLayout.vue';
 import { alert } from '@/routes/components';
 
 defineOptions({
-  layout: {
-    breadcrumbs: [
-      {
-        title: 'Alert',
-        href: alert().url,
-      },
-    ],
-  },
+  layout: [
+    ComponentsLayout,
+    {
+      breadcrumbs: [
+        {
+          title: 'Alert',
+          href: alert().url,
+        },
+      ],
+    },
+  ],
 });
 </script>
 

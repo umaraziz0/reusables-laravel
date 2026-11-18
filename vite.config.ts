@@ -4,7 +4,7 @@ import tailwindcss from '@tailwindcss/vite';
 import vue from '@vitejs/plugin-vue';
 import laravel from 'laravel-vite-plugin';
 import { bunny } from 'laravel-vite-plugin/fonts';
-import { defineConfig, lazyPlugins } from 'vite-plus';
+import { defineConfig, lazyPlugins, loadEnv } from 'vite-plus';
 
 // Vitest starts Vite in serve mode, which laravel-vite-plugin refuses to do
 // when CI is set. Component tests don't serve assets, so skip that check.
@@ -12,7 +12,19 @@ if (process.env.VITEST) {
   process.env.LARAVEL_BYPASS_ENV_CHECK = '1';
 }
 
+const env = loadEnv('', process.cwd(), '');
+
+/**
+ * Mirrors `app.component_previews` in config/app.php: component preview pages
+ * are bundled everywhere except production.
+ */
+const isComponentPreviewsEnabled =
+  (env.APP_ENV ?? 'production') !== 'production';
+
 export default defineConfig({
+  define: {
+    __COMPONENT_PREVIEWS__: JSON.stringify(isComponentPreviewsEnabled),
+  },
   plugins: lazyPlugins(() => [
     laravel({
       input: ['resources/css/app.css', 'resources/js/app.ts'],
