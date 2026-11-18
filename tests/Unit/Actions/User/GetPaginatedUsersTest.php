@@ -5,7 +5,8 @@ declare(strict_types=1);
 use App\Actions\User\GetPaginatedUsers;
 use App\Models\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
-use Illuminate\Support\Facades\Cache;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Str;
 
 pest()->use(RefreshDatabase::class);
 
@@ -54,29 +55,29 @@ test('orders users by id ascending', function (): void {
     ]);
 });
 
-test('caches the result under a page and per page specific key', function (): void {
+test('returns a cached page on subsequent calls without querying the database again', function (): void {
     User::factory()->count(3)->create();
 
     $action = new GetPaginatedUsers();
     $action->handle(page: 1, perPage: 10);
 
-    $cacheKey = User::CACHE_TAG_LIST . ':paginated:page:1:per_page:10';
+    DB::table('users')->insert([
+        'uuid'     => (string) Str::uuid(),
+        'name'     => 'Bypasses Cache Invalidation',
+        'email'    => 'bypass@example.com',
+        'password' => 'secret-password',
+    ]);
 
-    $cached = Cache::tags(User::CACHE_TAG_LIST)->get($cacheKey);
-
-    expect($cached)->not->toBeNull();
+    expect($action->handle(page: 1, perPage: 10)->total())->toBe(3);
 });
 
-test('different page and per page combinations are cached separately', function (): void {
-    User::factory()->count(20)->create();
+test('does not serve one cached page for another page or page size', function (): void {
+    $users = User::factory()->count(6)->create();
 
     $action = new GetPaginatedUsers();
-    $action->handle(page: 1, perPage: 10);
-    $action->handle(page: 2, perPage: 10);
+    $action->handle(page: 1, perPage: 2);
 
-    $firstPageCacheKey  = User::CACHE_TAG_LIST . ':paginated:page:1:per_page:10';
-    $secondPageCacheKey = User::CACHE_TAG_LIST . ':paginated:page:2:per_page:10';
-
-    expect(Cache::tags(User::CACHE_TAG_LIST)->get($firstPageCacheKey))->not->toBeNull()
-        ->and(Cache::tags(User::CACHE_TAG_LIST)->get($secondPageCacheKey))->not->toBeNull();
+    expect(collect($action->handle(page: 2, perPage: 2)->items())->pluck('uuid')->all())
+        ->toBe($users->slice(2, 2)->pluck('uuid')->values()->all())
+        ->and($action->handle(page: 1, perPage: 3)->items())->toHaveCount(3);
 });

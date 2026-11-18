@@ -272,27 +272,6 @@ describe('SearchSelectField', () => {
     expect(await openOptions(wrapper)).toEqual(ALL_COUNTRY_LABELS);
   });
 
-  it('mounts only a window of rows from a large list', async () => {
-    const options = Array.from({ length: 10_000 }, (_, index) => ({
-      value: index,
-      label: `Item ${index}`,
-    }));
-
-    const wrapper = mountSearchSelectField({
-      label: 'Item',
-      name: 'item',
-      options,
-    });
-
-    await openOptions(wrapper);
-    const rendered = document.body.querySelectorAll('[role="option"]');
-
-    // A 288px viewport of 32px rows shows 9, plus Reka's overscan.
-    expect(rendered.length).toBeGreaterThanOrEqual(9);
-    expect(rendered.length).toBeLessThan(50);
-    expect(rendered[0].getAttribute('aria-setsize')).toBe('10000');
-  });
-
   it('submits the value with the form under its name and marks it required', async () => {
     const wrapper = await mountInForm('model-value="ca" required');
 

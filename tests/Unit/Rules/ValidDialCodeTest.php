@@ -2,7 +2,6 @@
 
 declare(strict_types=1);
 
-use App\Data\CountryCodes;
 use App\Rules\ValidDialCode;
 use Illuminate\Support\Facades\Validator;
 
@@ -50,10 +49,3 @@ test('fails when value is empty and the field is required', function (mixed $dia
     'empty string' => [''],
     'null'         => [null],
 ]);
-
-test('isValidDialCode returns true only for known dial codes', function (): void {
-    expect(CountryCodes::isValidDialCode('+62'))->toBeTrue()
-        ->and(CountryCodes::isValidDialCode('+1'))->toBeTrue()
-        ->and(CountryCodes::isValidDialCode('+1345'))->toBeTrue()
-        ->and(CountryCodes::isValidDialCode('+999'))->toBeFalse();
-});

@@ -3,26 +3,19 @@
 declare(strict_types=1);
 
 use App\Actions\Logging\LogSecurity;
-use App\Actions\Logging\WriteLog;
+use Illuminate\Support\Facades\Log;
 
 test('logs warning with security context', function (): void {
-    $writeLogMock = Mockery::mock(WriteLog::class);
-    $writeLogMock->shouldReceive('handle')
-        ->once()
-        ->with(
-            'warning',
-            'API',
-            'Login',
-            'failed login',
-            Mockery::on(fn (array $ctx): bool => ($ctx['security_data'] ?? null) === ['ip' => '127.0.0.1']),
-            null,
-        );
+    $log = Log::spy();
 
-    $action = new LogSecurity($writeLogMock);
-    $action->handle(
+    resolve(LogSecurity::class)->handle(
         module: 'API',
         action: 'Login',
         message: 'failed login',
         data: ['ip' => '127.0.0.1'],
     );
+
+    $log->shouldHaveReceived('log')
+        ->once()
+        ->with('warning', 'API - Login - failed login', Mockery::on(fn (array $ctx): bool => ($ctx['security_data'] ?? null) === ['ip' => '127.0.0.1']));
 });

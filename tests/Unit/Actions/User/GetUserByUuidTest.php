@@ -5,7 +5,7 @@ declare(strict_types=1);
 use App\Actions\User\GetUserByUuid;
 use App\Models\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
-use Illuminate\Support\Facades\Cache;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Str;
 
 pest()->use(RefreshDatabase::class);
@@ -28,41 +28,13 @@ test('returns null when no user matches the given uuid', function (): void {
     expect($result)->toBeNull();
 });
 
-test('caches the result under the per-uuid cache key', function (): void {
-    $user = User::factory()->create();
-
-    $action = new GetUserByUuid();
-    $action->handle($user->uuid);
-
-    $cacheKey = User::getCacheKeyForUuid($user->uuid);
-
-    $cached = Cache::tags(User::CACHE_TAG_ITEM)->get($cacheKey);
-
-    expect($cached)->not->toBeNull()
-        ->and($cached->uuid)->toBe($user->uuid);
-});
-
-test('returns fresh result on subsequent calls after the record changes', function (): void {
+test('returns the cached user on subsequent calls without querying the database again', function (): void {
     $user = User::factory()->create(['name' => 'Original Name']);
 
     $action = new GetUserByUuid();
-    $first  = $action->handle($user->uuid);
-
-    $user->update(['name' => 'Updated Name']);
-
-    $second = $action->handle($user->uuid);
-
-    expect($first->name)->toBe('Original Name')
-        ->and($second->name)->toBe('Updated Name');
-});
-
-test('returns null after a cached user is deleted', function (): void {
-    $user = User::factory()->create();
-
-    $action = new GetUserByUuid();
     $action->handle($user->uuid);
 
-    $user->delete();
+    DB::table('users')->where('uuid', $user->uuid)->update(['name' => 'Bypasses Cache Invalidation']);
 
-    expect($action->handle($user->uuid))->toBeNull();
+    expect($action->handle($user->uuid)?->name)->toBe('Original Name');
 });

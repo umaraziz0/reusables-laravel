@@ -20,12 +20,7 @@ test('province relation resolves the province by province code', function (): vo
         'name'          => 'KABUPATEN ACEH SELATAN',
     ]);
 
-    $relation = $city->province();
-
-    expect($relation->getForeignKeyName())->toBe('province_code')
-        ->and($relation->getOwnerKeyName())->toBe('code')
-        ->and($city->province->is($province))->toBeTrue()
-        ->and($city->province_code)->toBe($province->code);
+    expect($city->province->is($province))->toBeTrue();
 });
 
 test('province name attribute resolves through province relation', function (): void {

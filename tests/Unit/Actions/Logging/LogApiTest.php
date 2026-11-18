@@ -3,26 +3,12 @@
 declare(strict_types=1);
 
 use App\Actions\Logging\LogApi;
-use App\Actions\Logging\WriteLog;
+use Illuminate\Support\Facades\Log;
 
 test('logs info with endpoint and request response data', function (): void {
-    $writeLogMock = Mockery::mock(WriteLog::class);
-    $writeLogMock->shouldReceive('handle')
-        ->once()
-        ->with(
-            'info',
-            'API',
-            'List Users',
-            'users listed',
-            Mockery::on(fn (array $ctx): bool => ($ctx['request_data'] ?? null) === ['page' => 1]
-                && ($ctx['response_data'] ?? null) === ['total' => 10]
-                && ($ctx['status_code'] ?? null) === 200
-            ),
-            null,
-        );
+    $log = Log::spy();
 
-    $action = new LogApi($writeLogMock);
-    $action->handle(
+    resolve(LogApi::class)->handle(
         module: 'API',
         action: 'List Users',
         message: 'users listed',
@@ -30,4 +16,11 @@ test('logs info with endpoint and request response data', function (): void {
         responseData: ['total' => 10],
         statusCode: 200,
     );
+
+    $log->shouldHaveReceived('log')
+        ->once()
+        ->with('info', 'API - List Users - users listed', Mockery::on(fn (array $ctx): bool => ($ctx['request_data'] ?? null) === ['page' => 1]
+            && ($ctx['response_data'] ?? null) === ['total' => 10]
+            && ($ctx['status_code'] ?? null) === 200
+        ));
 });

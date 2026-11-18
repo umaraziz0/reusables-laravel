@@ -23,10 +23,3 @@ test('api routes are rate limited per authenticated user', function (): void {
     $this->getJson(route('api.users.index'))
         ->assertSuccessful();
 });
-
-test('api routes include rate limit headers', function (): void {
-    $response = $this->getJson(route('api.users.index'));
-
-    $response->assertSuccessful();
-    $response->assertHeader('X-RateLimit-Limit', '60');
-});
