@@ -49,7 +49,6 @@ return Application::configure(basePath: dirname(__DIR__))
             AddLinkHeadersForPreloadedAssets::class,
         ]);
 
-        // Hidden component previews 404 for guests too, before auth redirects them.
         $middleware->prependToPriorityList(
             before: AuthenticatesRequests::class,
             prepend: EnsureComponentPreviewsEnabled::class,
