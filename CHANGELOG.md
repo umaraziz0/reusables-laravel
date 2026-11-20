@@ -1,5 +1,14 @@
 # Changelog
 
+## [0.11.1](https://github.com/umaraziz0/reusables-laravel/compare/reusables-laravel-v0.11.0...reusables-laravel-v0.11.1) (2026-11-18)
+
+
+### Bug Fixes
+
+* **vue-query:** register `QueryClient` - fixes devtools error ([335460a](https://github.com/umaraziz0/reusables-laravel/commit/335460a649ebfcc78b3d0ff097f462c598372ad6))
+* **vue-query:** register `QueryClient` - fixes devtools error ([5902c11](https://github.com/umaraziz0/reusables-laravel/commit/5902c11aaf9b2b1b17fbece476696217b488d48c))
+* **vue-query:** register QueryClient so dev pages render ([#137](https://github.com/umaraziz0/reusables-laravel/issues/137)) ([335460a](https://github.com/umaraziz0/reusables-laravel/commit/335460a649ebfcc78b3d0ff097f462c598372ad6))
+
 ## [0.11.0](https://github.com/umaraziz0/reusables-laravel/compare/reusables-laravel-v0.10.0...reusables-laravel-v0.11.0) (2026-11-18)
 
 
