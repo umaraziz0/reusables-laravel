@@ -1,7 +1,7 @@
 import type { InputTypeHTMLAttribute } from 'vue';
 
 import { flushPromises, mount } from '@vue/test-utils';
-import { describe, expect, it, vi } from 'vite-plus/test';
+import { beforeAll, describe, expect, it, vi } from 'vite-plus/test';
 
 import InputField from './InputField.vue';
 
@@ -135,6 +135,14 @@ describe('InputField', () => {
   });
 
   describe('email suggestion', () => {
+    /**
+     * Loads the spell checker the field imports lazily, so the negative tests
+     * below only wait for its cached import, not a cold module load.
+     */
+    beforeAll(async () => {
+      await import('@zootools/email-spell-checker');
+    });
+
     it('suggests a correction when a misspelled email loses focus', async () => {
       const wrapper = mountEmailField();
 
@@ -201,7 +209,6 @@ describe('InputField', () => {
       const wrapper = mountEmailField();
 
       await blurWithValue(wrapper, CORRECTED_EMAIL);
-      await import('@zootools/email-spell-checker');
       await flushPromises();
 
       expect(wrapper.find('[role="status"]').exists()).toBe(false);
@@ -211,7 +218,6 @@ describe('InputField', () => {
       const wrapper = mountEmailField({ type: 'text' });
 
       await blurWithValue(wrapper, MISSPELLED_EMAIL);
-      await import('@zootools/email-spell-checker');
       await flushPromises();
 
       expect(wrapper.find('[role="status"]').exists()).toBe(false);

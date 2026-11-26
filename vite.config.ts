@@ -1,5 +1,6 @@
 import cloudflare from '@cloudflare/oxlint-config/vite-plus';
 import inertia from '@inertiajs/vite';
+import landminesRecommended from '@interfere/landmines/configs/recommended.json' with { type: 'json' };
 import { wayfinder } from '@laravel/vite-plugin-wayfinder';
 import tailwindcss from '@tailwindcss/vite';
 import vue from '@vitejs/plugin-vue';
@@ -26,6 +27,18 @@ const isComponentPreviewsEnabled =
  * Turns off the preset's React and JSX rules. This app has no JSX, and the
  * React compiler rules misread Vue composables as React hooks.
  */
+/**
+ * Enables landmines' `recommended` rules (its correctness and suspicious
+ * categories). The JSON import widens severities to `string`, so the rule
+ * names are read from it and set to `error` here.
+ */
+const landminesRules = Object.fromEntries(
+  Object.keys(landminesRecommended.rules).map((rule) => [
+    rule,
+    'error' as const,
+  ]),
+);
+
 const disabledReactRules = Object.fromEntries(
   Object.keys(cloudflare.rules ?? {})
     .filter((rule) => /^(react|jsx-a11y)\//.test(rule))
@@ -115,6 +128,10 @@ export default defineConfig({
         name: 'no-secrets',
         specifier: 'eslint-plugin-no-secrets',
       },
+      {
+        name: 'landmines',
+        specifier: '@interfere/landmines',
+      },
     ],
     categories: {
       correctness: 'error',
@@ -147,6 +164,7 @@ export default defineConfig({
       'security/detect-bidi-characters': 'warn',
       'no-unsanitized/property': 'error',
       'no-unsanitized/method': 'error',
+      ...landminesRules,
       ...disabledReactRules,
       // Hex values here are code points, which read better ungrouped.
       'unicorn/numeric-separators-style': [

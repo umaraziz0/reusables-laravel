@@ -137,6 +137,7 @@ enableAutoUnmount(afterEach);
  * happy-dom has no layout, so every element measures 0px tall and the
  * virtualizer renders no rows. Give the viewport and rows real heights.
  */
+/* oxlint-disable landmines/no-test-doubles -- happy-dom has no layout engine, so these getters stand in for the browser, not for code under test. */
 beforeEach(() => {
   vi.spyOn(HTMLElement.prototype, 'offsetHeight', 'get').mockImplementation(
     function (this: HTMLElement) {
@@ -149,6 +150,7 @@ beforeEach(() => {
     },
   );
 });
+/* oxlint-enable landmines/no-test-doubles */
 
 afterEach(() => {
   vi.restoreAllMocks();

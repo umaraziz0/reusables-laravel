@@ -8,6 +8,7 @@ import ComponentsSidebar from './ComponentsSidebar.vue';
 
 const page = vi.hoisted(() => ({ url: '/' }));
 
+// oxlint-disable-next-line landmines/no-test-doubles -- The real usePage and Link need a booted Inertia app; the sidebar logic under test stays real.
 vi.mock('@inertiajs/vue3', async (importOriginal) => ({
   // oxlint-disable-next-line typescript/consistent-type-imports -- Vitest's importOriginal needs the module type; a namespace import trips import/no-namespace.
   ...(await importOriginal<typeof import('@inertiajs/vue3')>()),
