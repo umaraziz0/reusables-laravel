@@ -1,5 +1,13 @@
 # Changelog
 
+## [0.13.0](https://github.com/umaraziz0/reusables-laravel/compare/reusables-laravel-v0.12.0...reusables-laravel-v0.13.0) (2026-11-26)
+
+
+### Features
+
+* **http:** trust proxies from TRUSTED_PROXIES ([a1ecdbe](https://github.com/umaraziz0/reusables-laravel/commit/a1ecdbe2538d46c8993a7971967241a7510ea481))
+* **http:** trust proxies from TRUSTED_PROXIES ([#153](https://github.com/umaraziz0/reusables-laravel/issues/153)) ([1b35f73](https://github.com/umaraziz0/reusables-laravel/commit/1b35f73594b67ed40523130e78abbdfcd50dea78))
+
 ## [0.12.0](https://github.com/umaraziz0/reusables-laravel/compare/reusables-laravel-v0.11.1...reusables-laravel-v0.12.0) (2026-11-26)
 
 
