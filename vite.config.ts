@@ -145,7 +145,6 @@ export default defineConfig({
         'error',
         { hexadecimal: { onlyIfContainsSeparator: true } },
       ],
-      // Temporarily off while adopting @cloudflare/oxlint-config.
     },
     overrides: [
       {
