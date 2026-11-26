@@ -49,8 +49,7 @@ test('fails for disallowed file types', function (string $filename, string $mime
 ]);
 
 test('fails for a real avif image because avif is not an allowed type', function (): void {
-    $path = tempnam(sys_get_temp_dir(), 'avif');
-    file_put_contents($path, base64_decode('AAAAIGZ0eXBhdmlmAAAAAGF2aWZtaWYxbWlhZk1BMUIAAAD5bWV0YQAAAAAAAAAvaGRscgAAAAAAAAAAcGljdAAAAAAAAAAAAAAAAFBpY3R1cmVIYW5kbGVyAAAAAA5waXRtAAAAAAABAAAAHmlsb2MAAAAARAAAAQABAAAAAQAAASEAAAAlAAAAKGlpbmYAAAAAAAEAAAAaaW5mZQIAAAAAAQAAYXYwMUNvbG9yAAAAAGppcHJwAAAAS2lwY28AAAAUaXNwZQAAAAAAAABAAAAAQAAAABBwaXhpAAAAAAMICAgAAAAMYXYxQ4EADAAAAAATY29scm5jbHgAAgACAAIAAAAAF2lwbWEAAAAAAAAAAQABBAECgwQAAAAtbWRhdAoLAgAABVV//Gr5gEAyFhAAugIIIEEBAAAIAJXR4n6sTwStpHA=', true));
+    $path = __DIR__ . '/Fixtures/photo-64x64.avif';
 
     $file = new UploadedFile($path, 'photo.avif', 'image/avif', null, true);
 
