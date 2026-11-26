@@ -1,6 +1,8 @@
 <script setup lang="ts">
+import type { HTMLAttributes } from 'vue';
+
 import { cn } from 'cn';
-import { computed, type HTMLAttributes } from 'vue';
+import { computed } from 'vue';
 
 import {
   Field,
@@ -38,7 +40,7 @@ const props = defineProps<{
    * Rendered as radios unless the default slot supplies its own. With no
    * option chosen the form submits an empty string, which Laravel reads as null.
    */
-  options?: RadioFieldOption[];
+  options?: Array<RadioFieldOption>;
   /** Defaults to the name. Each option's radio gets `${id}-${value}`. */
   id?: string;
   description?: string;

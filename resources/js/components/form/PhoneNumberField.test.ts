@@ -1,9 +1,7 @@
-import {
-  enableAutoUnmount,
-  flushPromises,
-  mount,
-  type VueWrapper,
-} from '@vue/test-utils';
+import type { Country } from '@/lib/countries';
+import type { VueWrapper } from '@vue/test-utils';
+
+import { enableAutoUnmount, flushPromises, mount } from '@vue/test-utils';
 import {
   afterEach,
   beforeEach,
@@ -13,8 +11,6 @@ import {
   vi,
 } from 'vite-plus/test';
 
-import { type Country } from '@/lib/countries';
-
 import PhoneNumberField from './PhoneNumberField.vue';
 
 interface PhoneFieldProps {
@@ -22,14 +18,14 @@ interface PhoneFieldProps {
   name?: string;
   dialCode?: string;
   defaultDialCode?: string;
-  countries?: Country[];
+  countries?: Array<Country>;
   description?: string;
   error?: string;
   emptyText?: string;
   ariaDescribedby?: string;
 }
 
-const COUNTRIES: Country[] = [
+const COUNTRIES: Array<Country> = [
   { name: 'Canada', code: 'CA', dialCode: '+1', flag: '🇨🇦' },
   { name: 'Guernsey', code: 'GG', dialCode: '+44', flag: '🇬🇬' },
   { name: 'Indonesia', code: 'ID', dialCode: '+62', flag: '🇮🇩' },
@@ -90,13 +86,13 @@ function trigger(wrapper: VueWrapper) {
 /**
  * Returns the country names of the rendered options in the open list.
  */
-function renderedNames(): string[] {
+function renderedNames(): Array<string> {
   return [...document.body.querySelectorAll('[role="option"]')].map(
     (option) => option.querySelector('.truncate')?.textContent?.trim() ?? '',
   );
 }
 
-async function openOptions(wrapper: VueWrapper): Promise<string[]> {
+async function openOptions(wrapper: VueWrapper): Promise<Array<string>> {
   await trigger(wrapper).trigger('click');
   await flushPromises();
 
@@ -106,7 +102,7 @@ async function openOptions(wrapper: VueWrapper): Promise<string[]> {
 /**
  * Types into the search input of the open list and returns the names left.
  */
-async function search(term: string): Promise<string[]> {
+async function search(term: string): Promise<Array<string>> {
   const input = document.body.querySelector<HTMLInputElement>(
     'input[role="combobox"]',
   );

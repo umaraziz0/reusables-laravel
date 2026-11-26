@@ -1,4 +1,6 @@
 <script setup lang="ts">
+import type { SelectFieldOption } from '@/components/form/SelectField.vue';
+
 import { Head } from '@inertiajs/vue3';
 import { ref } from 'vue';
 
@@ -7,9 +9,7 @@ import {
   formSelectField,
 } from '@/actions/App/Http/Controllers/ComponentPreviewController';
 // --- Components --- //
-import SelectField, {
-  type SelectFieldOption,
-} from '@/components/form/SelectField.vue';
+import SelectField from '@/components/form/SelectField.vue';
 import Heading from '@/components/Heading.vue';
 import {
   SelectGroup,
@@ -45,13 +45,13 @@ const planOptions = [
   { value: 'free', label: 'Free' },
   { value: 'pro', label: 'Pro' },
   { value: 'team', label: 'Team' },
-] satisfies SelectFieldOption[];
+] satisfies Array<SelectFieldOption>;
 
 const roleOptions = [
   { value: 'viewer', label: 'Viewer' },
   { value: 'editor', label: 'Editor' },
   { value: 'owner', label: 'Owner', disabled: true },
-] satisfies SelectFieldOption[];
+] satisfies Array<SelectFieldOption>;
 
 const countryOptions = [
   'Australia',

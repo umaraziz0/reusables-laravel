@@ -1,8 +1,11 @@
 <script setup lang="ts">
+import type { Country } from '@/lib/countries';
+import type { HTMLAttributes } from 'vue';
+
 import { Check, ChevronDown } from '@lucide/vue';
 import { cn } from 'cn';
 import { ComboboxVirtualizer } from 'reka-ui';
-import { computed, type HTMLAttributes, ref } from 'vue';
+import { computed, ref } from 'vue';
 
 import {
   Combobox,
@@ -22,11 +25,7 @@ import {
   InputGroupInput,
 } from '@/components/ui/input-group';
 import { useFieldIds } from '@/composables/useFieldIds';
-import {
-  COUNTRIES,
-  type Country,
-  PRIMARY_COUNTRY_BY_DIAL_CODE,
-} from '@/lib/countries';
+import { COUNTRIES, PRIMARY_COUNTRY_BY_DIAL_CODE } from '@/lib/countries';
 
 import FieldFeedback from './FieldFeedback.vue';
 
@@ -62,7 +61,7 @@ const props = withDefaults(
     disabled?: boolean;
     defaultValue?: string;
     defaultDialCode?: string;
-    countries?: readonly Country[];
+    countries?: ReadonlyArray<Country>;
     /**
      * Fixed row height in pixels. The virtualizer positions rows absolutely,
      * so every option must render at this height.

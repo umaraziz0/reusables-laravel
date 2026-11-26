@@ -22,7 +22,7 @@ type Props = {
 
 const props = defineProps<Props>();
 
-/* oxlint-disable anti-slop/no-conditional-empty-object-spread -- The SDK accepts an optional routes configuration. */
+/* oxlint-disable quality/no-conditional-empty-object-spread -- The SDK accepts an optional routes configuration. */
 const { verify, isLoading, error, isSupported } = usePasskeyVerify({
   ...(props.routes
     ? {
@@ -36,7 +36,7 @@ const { verify, isLoading, error, isSupported } = usePasskeyVerify({
     router.visit(response.redirect ?? '/dashboard');
   },
 });
-/* oxlint-enable anti-slop/no-conditional-empty-object-spread */
+/* oxlint-enable quality/no-conditional-empty-object-spread */
 </script>
 
 <template>

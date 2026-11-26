@@ -57,7 +57,7 @@ const props = defineProps<{
 
 // --- Constants --- //
 
-const sampleInvoices: Invoice[] = [
+const sampleInvoices: Array<Invoice> = [
   {
     id: 1,
     number: 'INV-001',

@@ -12,7 +12,7 @@ export type NavItem = {
   icon?: LucideIcon;
   isActive?: boolean;
   isFolder?: boolean;
-  subItems?: NavItem[];
+  subItems?: Array<NavItem>;
 };
 
 export type BreadcrumbItemType = BreadcrumbItem;

@@ -1,4 +1,6 @@
 <script setup lang="ts">
+import type { NavItem } from '@/types';
+
 import { Link } from '@inertiajs/vue3';
 import { BookOpen, Folder, LayoutGrid } from '@lucide/vue';
 
@@ -15,11 +17,10 @@ import {
   SidebarMenuItem,
 } from '@/components/ui/sidebar';
 import { dashboard } from '@/routes';
-import { type NavItem } from '@/types';
 
 import AppLogo from './AppLogo.vue';
 
-const mainNavItems: NavItem[] = [
+const mainNavItems: Array<NavItem> = [
   {
     title: 'Dashboard',
     href: dashboard(),
@@ -27,7 +28,7 @@ const mainNavItems: NavItem[] = [
   },
 ];
 
-const footerNavItems: NavItem[] = [
+const footerNavItems: Array<NavItem> = [
   {
     title: 'Github Repo',
     href: 'https://github.com/laravel/vue-starter-kit',

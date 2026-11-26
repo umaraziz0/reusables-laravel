@@ -1,3 +1,4 @@
+import cloudflare from '@cloudflare/oxlint-config/vite-plus';
 import inertia from '@inertiajs/vite';
 import { wayfinder } from '@laravel/vite-plugin-wayfinder';
 import tailwindcss from '@tailwindcss/vite';
@@ -20,6 +21,16 @@ const env = loadEnv('', process.cwd(), '');
  */
 const isComponentPreviewsEnabled =
   (env.APP_ENV ?? 'production') !== 'production';
+
+/**
+ * Turns off the preset's React and JSX rules. This app has no JSX, and the
+ * React compiler rules misread Vue composables as React hooks.
+ */
+const disabledReactRules = Object.fromEntries(
+  Object.keys(cloudflare.rules ?? {})
+    .filter((rule) => /^(react|jsx-a11y)\//.test(rule))
+    .map((rule) => [rule, 'off' as const]),
+);
 
 export default defineConfig({
   define: {
@@ -65,7 +76,10 @@ export default defineConfig({
     },
   },
   lint: {
+    extends: [cloudflare],
+    env: cloudflare.env,
     ignorePatterns: [
+      ...cloudflare.ignorePatterns,
       'vendor/**',
       'node_modules/**',
       'public/**',
@@ -76,7 +90,6 @@ export default defineConfig({
       'resources/js/routes/**',
       'resources/js/wayfinder/**',
       'reports/**',
-      'tools/oxlint/anti-slop/**',
       '.agents/**',
       '.claude/**',
       '.codex/**',
@@ -101,10 +114,6 @@ export default defineConfig({
       {
         name: 'no-secrets',
         specifier: 'eslint-plugin-no-secrets',
-      },
-      {
-        name: 'anti-slop',
-        specifier: './tools/oxlint/anti-slop/index.ts',
       },
     ],
     categories: {
@@ -138,30 +147,20 @@ export default defineConfig({
       'security/detect-bidi-characters': 'warn',
       'no-unsanitized/property': 'error',
       'no-unsanitized/method': 'error',
-      'oxc/no-accumulating-spread': 'error',
-      'anti-slop/no-array-filter-map': 'error',
-      'anti-slop/no-reduce-accumulator-copy': 'error',
-      'anti-slop/no-chained-type-assertions': 'error',
-      'anti-slop/no-conditional-empty-object-spread': 'error',
-      'anti-slop/no-known-value-widening': 'error',
-      'anti-slop/no-module-mocking': 'error',
-      'anti-slop/no-object-parameters': 'error',
-      'anti-slop/no-reflect-apply': 'error',
-      'anti-slop/no-reflect-get': 'error',
-      'anti-slop/no-runtime-typeof': 'error',
-      'anti-slop/no-shape-in-symbol-names': 'error',
-      'anti-slop/no-unknown-parameters': 'error',
-      'anti-slop/no-unknown-returns': 'error',
-      'anti-slop/no-unknown-type-aliases': 'error',
-      'anti-slop/no-unsafe-dictionary-type': 'error',
-      'anti-slop/no-widen-then-assert': 'error',
-      'anti-slop/require-readable-spacing': 'error',
-      'anti-slop/require-safety-comment-for-type-assertion': 'error',
+      ...disabledReactRules,
+      // Hex values here are code points, which read better ungrouped.
+      'unicorn/numeric-separators-style': [
+        'error',
+        { hexadecimal: { onlyIfContainsSeparator: true } },
+      ],
     },
     overrides: [
       {
         files: ['resources/js/**/*.vue'],
         rules: {
+          // Vue compiler macros (defineProps, defineModel, ...) are not
+          // globals; typeCheck already reports undefined names.
+          'no-undef': 'off',
           'shadcn/no-restyle': 'off',
           'shadcn/no-raw-colors': 'off',
           'shadcn/no-arbitrary-values': 'off',
@@ -173,7 +172,7 @@ export default defineConfig({
       {
         files: ['resources/js/types/global.d.ts'],
         rules: {
-          'anti-slop/no-unsafe-dictionary-type': 'off',
+          'quality/no-unsafe-dictionary-type': 'off',
         },
       },
       {
@@ -217,7 +216,6 @@ export default defineConfig({
       'resources/js/components/ui/**',
       'resources/js/routes/**',
       'resources/js/wayfinder/**',
-      'tools/oxlint/anti-slop/**',
       'resources/views/mail/**',
     ],
     sortTailwindcss: {

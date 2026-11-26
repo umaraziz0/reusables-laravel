@@ -11,7 +11,7 @@ import PasskeyRegister from '@/components/PasskeyRegister.vue';
 
 export type Props = {
   canManagePasskeys?: boolean;
-  passkeys?: Passkey[];
+  passkeys?: Array<Passkey>;
 };
 
 withDefaults(defineProps<Props>(), {

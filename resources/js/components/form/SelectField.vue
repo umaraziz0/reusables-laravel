@@ -1,6 +1,8 @@
 <script setup lang="ts">
+import type { HTMLAttributes } from 'vue';
+
 import { cn } from 'cn';
-import { computed, type HTMLAttributes } from 'vue';
+import { computed } from 'vue';
 
 import { Field, FieldLabel } from '@/components/ui/field';
 import {
@@ -36,7 +38,7 @@ const props = defineProps<{
    * an empty string for clearing, so leave the model undefined for "no
    * selection" and use the placeholder instead.
    */
-  options?: SelectFieldOption[];
+  options?: Array<SelectFieldOption>;
   id?: string;
   description?: string;
   error?: string;

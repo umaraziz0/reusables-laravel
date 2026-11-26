@@ -1,4 +1,6 @@
 <script setup lang="ts">
+import type { NavItem } from '@/types';
+
 import { Link } from '@inertiajs/vue3';
 
 import {
@@ -9,10 +11,9 @@ import {
   SidebarMenuItem,
 } from '@/components/ui/sidebar';
 import { useCurrentUrl } from '@/composables/useCurrentUrl';
-import { type NavItem } from '@/types';
 
 defineProps<{
-  items: NavItem[];
+  items: Array<NavItem>;
 }>();
 
 const { isCurrentUrl } = useCurrentUrl();

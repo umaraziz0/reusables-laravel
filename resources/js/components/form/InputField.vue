@@ -1,11 +1,8 @@
 <script setup lang="ts">
+import type { HTMLAttributes, InputTypeHTMLAttribute } from 'vue';
+
 import { cn } from 'cn';
-import {
-  computed,
-  ref,
-  type HTMLAttributes,
-  type InputTypeHTMLAttribute,
-} from 'vue';
+import { computed, ref } from 'vue';
 
 import { Field, FieldLabel } from '@/components/ui/field';
 import { Input } from '@/components/ui/input';
@@ -66,6 +63,7 @@ const { descriptionId, errorId, describedBy } = useFieldIds({
  * Lazy-loads the spell checker so only email inputs pay for it.
  */
 async function checkEmailSpelling(event: FocusEvent): Promise<void> {
+  // oxlint-disable-next-line @nkzw/no-instanceof -- Narrows a same-document DOM event target; uncontrolled inputs have no model value to read instead.
   if (!(event.target instanceof HTMLInputElement)) {
     return;
   }

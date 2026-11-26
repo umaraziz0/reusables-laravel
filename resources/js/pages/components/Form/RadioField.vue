@@ -1,4 +1,6 @@
 <script setup lang="ts">
+import type { RadioFieldOption } from '@/components/form/RadioField.vue';
+
 import { Head } from '@inertiajs/vue3';
 import { ref } from 'vue';
 
@@ -7,9 +9,7 @@ import {
   formRadioField,
 } from '@/actions/App/Http/Controllers/ComponentPreviewController';
 // --- Components --- //
-import RadioField, {
-  type RadioFieldOption,
-} from '@/components/form/RadioField.vue';
+import RadioField from '@/components/form/RadioField.vue';
 import Heading from '@/components/Heading.vue';
 import ComponentsLayout from '@/layouts/components/ComponentsLayout.vue';
 
@@ -33,34 +33,34 @@ defineOptions({
   ],
 });
 
-const planOptions: RadioFieldOption[] = [
+const planOptions: Array<RadioFieldOption> = [
   { value: 'free', label: 'Free' },
   { value: 'pro', label: 'Pro' },
   { value: 'enterprise', label: 'Enterprise', disabled: true },
 ];
 
-const billingCycleOptions: RadioFieldOption[] = [
+const billingCycleOptions: Array<RadioFieldOption> = [
   { value: 'monthly', label: 'Monthly' },
   { value: 'yearly', label: 'Yearly' },
 ];
 
-const deliveryOptions: RadioFieldOption[] = [
+const deliveryOptions: Array<RadioFieldOption> = [
   { value: 'standard', label: 'Standard', description: '3–5 business days' },
   { value: 'express', label: 'Express', description: 'Next business day' },
 ];
 
-const sizeOptions: RadioFieldOption[] = [
+const sizeOptions: Array<RadioFieldOption> = [
   { value: 's', label: 'S' },
   { value: 'm', label: 'M' },
   { value: 'l', label: 'L' },
 ];
 
-const regionOptions: RadioFieldOption[] = [
+const regionOptions: Array<RadioFieldOption> = [
   { value: 'eu', label: 'Europe' },
   { value: 'us', label: 'United States' },
 ];
 
-const sortOrderOptions: RadioFieldOption[] = [
+const sortOrderOptions: Array<RadioFieldOption> = [
   { value: 'asc', label: 'Ascending' },
   { value: 'desc', label: 'Descending' },
 ];

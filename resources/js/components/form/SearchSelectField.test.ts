@@ -1,9 +1,6 @@
-import {
-  enableAutoUnmount,
-  flushPromises,
-  mount,
-  type VueWrapper,
-} from '@vue/test-utils';
+import type { VueWrapper } from '@vue/test-utils';
+
+import { enableAutoUnmount, flushPromises, mount } from '@vue/test-utils';
 import {
   afterEach,
   beforeEach,
@@ -18,7 +15,7 @@ import SearchSelectField from './SearchSelectField.vue';
 interface CountryFieldProps {
   label?: string;
   name?: string;
-  options?: { value: string | number; label: string }[];
+  options?: Array<{ value: string | number; label: string }>;
   placeholder?: string;
   description?: string;
   error?: string;
@@ -83,7 +80,7 @@ async function mountInForm(fieldAttributes: string): Promise<VueWrapper> {
 /**
  * Returns the labels of the rendered options in the open list.
  */
-function renderedLabels(): string[] {
+function renderedLabels(): Array<string> {
   return [...document.body.querySelectorAll('[role="option"]')].map(
     (option) => option.textContent?.trim() ?? '',
   );
@@ -92,7 +89,7 @@ function renderedLabels(): string[] {
 /**
  * Opens the list and returns the labels of the rendered options.
  */
-async function openOptions(wrapper: VueWrapper): Promise<string[]> {
+async function openOptions(wrapper: VueWrapper): Promise<Array<string>> {
   await wrapper.get('button').trigger('click');
   await flushPromises();
 
@@ -102,7 +99,7 @@ async function openOptions(wrapper: VueWrapper): Promise<string[]> {
 /**
  * Types into the search input of the open list and returns the labels left.
  */
-async function search(term: string): Promise<string[]> {
+async function search(term: string): Promise<Array<string>> {
   const input = document.body.querySelector<HTMLInputElement>(
     'input[role="combobox"]',
   );

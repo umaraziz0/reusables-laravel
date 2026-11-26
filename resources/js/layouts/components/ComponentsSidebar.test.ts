@@ -9,6 +9,7 @@ import ComponentsSidebar from './ComponentsSidebar.vue';
 const page = vi.hoisted(() => ({ url: '/' }));
 
 vi.mock('@inertiajs/vue3', async (importOriginal) => ({
+  // oxlint-disable-next-line typescript/consistent-type-imports -- Vitest's importOriginal needs the module type; a namespace import trips import/no-namespace.
   ...(await importOriginal<typeof import('@inertiajs/vue3')>()),
   usePage: () => reactive(page),
   /** Renders a plain anchor so the test needs no Inertia router. */

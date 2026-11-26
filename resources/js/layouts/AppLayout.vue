@@ -6,7 +6,7 @@ import { VueQueryDevtools } from '@tanstack/vue-query-devtools';
 import AppLayout from '@/layouts/app/AppSidebarLayout.vue';
 
 const { breadcrumbs = [] } = defineProps<{
-  breadcrumbs?: BreadcrumbItem[];
+  breadcrumbs?: Array<BreadcrumbItem>;
 }>();
 </script>
 

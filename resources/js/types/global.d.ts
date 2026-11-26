@@ -6,18 +6,10 @@ import type { Directive } from 'vue';
 declare global {
   /** Whether component preview pages are bundled; set by vite.config.ts. */
   const __COMPONENT_PREVIEWS__: boolean;
-}
 
-// Extend ImportMeta interface for Vite...
-declare module 'vite/client' {
+  /** Vite declares ImportMetaEnv globally, so app variables extend it here. */
   interface ImportMetaEnv {
     readonly VITE_APP_NAME: string;
-    [key: string]: string | boolean | undefined;
-  }
-
-  interface ImportMeta {
-    readonly env: ImportMetaEnv;
-    readonly glob: <T>(pattern: string) => Record<string, () => Promise<T>>;
   }
 }
 
