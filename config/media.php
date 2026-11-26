@@ -18,7 +18,7 @@ return [
         'max_filesize' => 1024,
         'max_width'    => 4096,
         'max_height'   => 4096,
-        'mimes'        => ['jpg', 'jpeg', 'png', 'webp'],
+        'mimes'        => ['jpg', 'jpeg', 'png', 'webp', 'avif'],
     ],
 
     /*

@@ -48,16 +48,14 @@ test('fails for disallowed file types', function (string $filename, string $mime
     'gif' => ['anim.gif', 'image/gif'],
 ]);
 
-test('fails for a real avif image because avif is not an allowed type', function (): void {
-    $path = __DIR__ . '/Fixtures/photo-64x64.avif';
+test('applies type and dimension checks to a real avif image', function (): void {
+    $file = new UploadedFile(__DIR__ . '/Fixtures/photo-64x64.avif', 'photo.avif', 'image/avif', null, true);
 
-    $file = new UploadedFile($path, 'photo.avif', 'image/avif', null, true);
+    expect(validateImage($file)->passes())->toBeTrue();
 
-    $validator = validateImage($file);
+    Config::set('media.image.max_width', 63);
 
-    expect(getimagesize($path))->toMatchArray([0 => 64, 1 => 64])
-        ->and($validator->fails())->toBeTrue()
-        ->and($validator->errors()->first('image'))->toContain('must be a file of type');
+    expect(validateImage($file)->fails())->toBeTrue();
 });
 
 test('fails for non-file values', function (mixed $value): void {
