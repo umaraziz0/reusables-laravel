@@ -147,7 +147,6 @@ export default defineConfig({
       ],
       // Temporarily off while adopting @cloudflare/oxlint-config.
       '@nkzw/no-instanceof': 'off',
-      'typescript/ban-ts-comment': 'off',
       'typescript/no-explicit-any': 'off',
       'typescript/no-unsafe-assignment': 'off',
       'typescript/no-unsafe-member-access': 'off',
