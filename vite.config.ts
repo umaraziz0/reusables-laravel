@@ -146,10 +146,6 @@ export default defineConfig({
         { hexadecimal: { onlyIfContainsSeparator: true } },
       ],
       // Temporarily off while adopting @cloudflare/oxlint-config.
-      'typescript/no-unsafe-assignment': 'off',
-      'typescript/no-unsafe-member-access': 'off',
-      'typescript/no-unsafe-return': 'off',
-      'typescript/no-unsafe-type-assertion': 'off',
     },
     overrides: [
       {
