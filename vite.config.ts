@@ -22,6 +22,16 @@ const env = loadEnv('', process.cwd(), '');
 const isComponentPreviewsEnabled =
   (env.APP_ENV ?? 'production') !== 'production';
 
+/**
+ * Turns off the preset's React and JSX rules. This app has no JSX, and the
+ * React compiler rules misread Vue composables as React hooks.
+ */
+const disabledReactRules = Object.fromEntries(
+  Object.keys(cloudflare.rules ?? {})
+    .filter((rule) => /^(react|jsx-a11y)\//.test(rule))
+    .map((rule) => [rule, 'off' as const]),
+);
+
 export default defineConfig({
   define: {
     __COMPONENT_PREVIEWS__: JSON.stringify(isComponentPreviewsEnabled),
@@ -137,9 +147,7 @@ export default defineConfig({
       'security/detect-bidi-characters': 'warn',
       'no-unsanitized/property': 'error',
       'no-unsanitized/method': 'error',
-      // The preset's React rules misread Vue composables as React hooks.
-      'react/immutability': 'off',
-      'react-hooks/rules-of-hooks': 'off',
+      ...disabledReactRules,
       // Hex values here are code points, which read better ungrouped.
       'unicorn/numeric-separators-style': [
         'error',
