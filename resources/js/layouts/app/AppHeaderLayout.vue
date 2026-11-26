@@ -7,7 +7,7 @@ import AppShell from '@/components/AppShell.vue';
 import { Toaster } from '@/components/ui/sonner';
 
 type Props = {
-  breadcrumbs?: BreadcrumbItem[];
+  breadcrumbs?: Array<BreadcrumbItem>;
 };
 
 withDefaults(defineProps<Props>(), {

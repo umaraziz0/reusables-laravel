@@ -5,7 +5,7 @@ import { computed } from 'vue';
 import { Alert, AlertDescription, AlertTitle } from '@/components/ui/alert';
 
 interface Props {
-  errors: string[];
+  errors: Array<string>;
   title?: string;
 }
 

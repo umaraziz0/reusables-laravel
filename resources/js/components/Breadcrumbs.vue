@@ -13,7 +13,7 @@ import {
 } from '@/components/ui/breadcrumb';
 
 defineProps<{
-  breadcrumbs: BreadcrumbItemType[];
+  breadcrumbs: Array<BreadcrumbItemType>;
 }>();
 </script>
 

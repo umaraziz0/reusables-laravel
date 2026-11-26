@@ -11,7 +11,7 @@ import { edit as editProfile } from '@/routes/profile';
 import { edit as editSecurity } from '@/routes/security';
 import { type NavItem } from '@/types';
 
-const sidebarNavItems: NavItem[] = [
+const sidebarNavItems: Array<NavItem> = [
   {
     title: 'Profile',
     href: editProfile(),

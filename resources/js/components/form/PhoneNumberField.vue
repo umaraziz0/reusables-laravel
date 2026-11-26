@@ -62,7 +62,7 @@ const props = withDefaults(
     disabled?: boolean;
     defaultValue?: string;
     defaultDialCode?: string;
-    countries?: readonly Country[];
+    countries?: ReadonlyArray<Country>;
     /**
      * Fixed row height in pixels. The virtualizer positions rows absolutely,
      * so every option must render at this height.

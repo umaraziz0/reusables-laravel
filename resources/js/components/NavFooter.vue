@@ -10,7 +10,7 @@ import { toUrl } from '@/lib/utils';
 import { type NavItem } from '@/types';
 
 interface Props {
-  items: NavItem[];
+  items: Array<NavItem>;
   class?: string;
 }
 

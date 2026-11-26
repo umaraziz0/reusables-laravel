@@ -60,7 +60,7 @@ import { type NavItem } from '@/types';
 
 // --- Constants --- //
 
-const componentNavItems: NavItem[] = [
+const componentNavItems: Array<NavItem> = [
   {
     title: 'Alert',
     href: alert(),

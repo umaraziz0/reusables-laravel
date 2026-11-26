@@ -31,7 +31,7 @@ const props = withDefaults(
   defineProps<{
     name: string;
     label: string;
-    options: SelectFieldOption[];
+    options: Array<SelectFieldOption>;
     id?: string;
     description?: string;
     error?: string;

@@ -39,12 +39,14 @@ export const PRIMARY_COUNTRY_BY_DIAL_CODE = new Map([
  * Shared with the backend's `App\Data\CountryCodes`, which reads the same
  * JSON file.
  */
-export const COUNTRIES: readonly Country[] = countryCodes.map((country) => ({
-  name: country.name,
-  code: country.code,
-  dialCode: country.dial_code,
-  flag: flagFor(country.code),
-}));
+export const COUNTRIES: ReadonlyArray<Country> = countryCodes.map(
+  (country) => ({
+    name: country.name,
+    code: country.code,
+    dialCode: country.dial_code,
+    flag: flagFor(country.code),
+  }),
+);
 
 // --- Methods --- //
 

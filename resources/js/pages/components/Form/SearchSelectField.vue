@@ -70,7 +70,7 @@ const largeListItem = ref<string | number>(4_200);
 
 // --- Methods --- //
 
-function generateOptions(count: number): SelectFieldOption[] {
+function generateOptions(count: number): Array<SelectFieldOption> {
   return Array.from({ length: count }, (_, index) => ({
     value: index,
     label: `Item ${String(index + 1).padStart(6, '0')}`,

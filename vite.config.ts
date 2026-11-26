@@ -143,7 +143,6 @@ export default defineConfig({
       // Temporarily off while adopting @cloudflare/oxlint-config.
       '@nkzw/no-instanceof': 'off',
       'import/consistent-type-specifier-style': 'off',
-      'typescript/array-type': 'off',
       'typescript/ban-ts-comment': 'off',
       'typescript/consistent-type-imports': 'off',
       'typescript/no-explicit-any': 'off',

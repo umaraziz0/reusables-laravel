@@ -36,7 +36,7 @@ const props = defineProps<{
    * an empty string for clearing, so leave the model undefined for "no
    * selection" and use the placeholder instead.
    */
-  options?: SelectFieldOption[];
+  options?: Array<SelectFieldOption>;
   id?: string;
   description?: string;
   error?: string;

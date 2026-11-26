@@ -7,7 +7,7 @@ import { SidebarTrigger } from '@/components/ui/sidebar';
 
 withDefaults(
   defineProps<{
-    breadcrumbs?: BreadcrumbItemType[];
+    breadcrumbs?: Array<BreadcrumbItemType>;
   }>(),
   {
     breadcrumbs: () => [],

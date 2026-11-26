@@ -19,7 +19,7 @@ import { type NavItem } from '@/types';
 
 import AppLogo from './AppLogo.vue';
 
-const mainNavItems: NavItem[] = [
+const mainNavItems: Array<NavItem> = [
   {
     title: 'Dashboard',
     href: dashboard(),
@@ -27,7 +27,7 @@ const mainNavItems: NavItem[] = [
   },
 ];
 
-const footerNavItems: NavItem[] = [
+const footerNavItems: Array<NavItem> = [
   {
     title: 'Github Repo',
     href: 'https://github.com/laravel/vue-starter-kit',

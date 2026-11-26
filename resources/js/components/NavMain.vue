@@ -12,7 +12,7 @@ import { useCurrentUrl } from '@/composables/useCurrentUrl';
 import { type NavItem } from '@/types';
 
 defineProps<{
-  items: NavItem[];
+  items: Array<NavItem>;
 }>();
 
 const { isCurrentUrl } = useCurrentUrl();

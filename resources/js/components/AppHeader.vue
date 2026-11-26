@@ -41,7 +41,7 @@ import { toUrl } from '@/lib/utils';
 import { dashboard } from '@/routes';
 
 interface Props {
-  breadcrumbs?: BreadcrumbItem[];
+  breadcrumbs?: Array<BreadcrumbItem>;
 }
 
 const props = withDefaults(defineProps<Props>(), {
@@ -57,7 +57,7 @@ const { isCurrentUrl, whenCurrentUrl } = useCurrentUrl();
 const activeItemStyles =
   'text-neutral-900 dark:bg-neutral-800 dark:text-neutral-100';
 
-const mainNavItems: NavItem[] = [
+const mainNavItems: Array<NavItem> = [
   {
     title: 'Dashboard',
     href: dashboard(),
@@ -65,7 +65,7 @@ const mainNavItems: NavItem[] = [
   },
 ];
 
-const rightNavItems: NavItem[] = [
+const rightNavItems: Array<NavItem> = [
   {
     title: 'Repository',
     href: 'https://github.com/laravel/vue-starter-kit',

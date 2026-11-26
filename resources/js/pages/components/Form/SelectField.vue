@@ -45,13 +45,13 @@ const planOptions = [
   { value: 'free', label: 'Free' },
   { value: 'pro', label: 'Pro' },
   { value: 'team', label: 'Team' },
-] satisfies SelectFieldOption[];
+] satisfies Array<SelectFieldOption>;
 
 const roleOptions = [
   { value: 'viewer', label: 'Viewer' },
   { value: 'editor', label: 'Editor' },
   { value: 'owner', label: 'Owner', disabled: true },
-] satisfies SelectFieldOption[];
+] satisfies Array<SelectFieldOption>;
 
 const countryOptions = [
   'Australia',

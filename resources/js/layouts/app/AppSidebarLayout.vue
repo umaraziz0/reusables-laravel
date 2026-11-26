@@ -8,7 +8,7 @@ import AppSidebarHeader from '@/components/AppSidebarHeader.vue';
 import { Toaster } from '@/components/ui/sonner';
 
 type Props = {
-  breadcrumbs?: BreadcrumbItem[];
+  breadcrumbs?: Array<BreadcrumbItem>;
 };
 
 withDefaults(defineProps<Props>(), {

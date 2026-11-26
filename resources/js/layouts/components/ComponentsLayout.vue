@@ -8,7 +8,7 @@ import ComponentsSidebar from '@/layouts/components/ComponentsSidebar.vue';
 import ComponentsSidebarHeader from '@/layouts/components/ComponentsSidebarHeader.vue';
 
 const { breadcrumbs = [] } = defineProps<{
-  breadcrumbs?: BreadcrumbItem[];
+  breadcrumbs?: Array<BreadcrumbItem>;
 }>();
 </script>
 

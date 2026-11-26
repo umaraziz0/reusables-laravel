@@ -17,8 +17,8 @@ type SetupKeyResponse = {
 export type UseTwoFactorAuthReturn = {
   qrCodeSvg: Ref<string | null>;
   manualSetupKey: Ref<string | null>;
-  recoveryCodesList: Ref<string[]>;
-  errors: Ref<string[]>;
+  recoveryCodesList: Ref<Array<string>>;
+  errors: Ref<Array<string>>;
   hasSetupData: ComputedRef<boolean>;
   clearSetupData: () => void;
   clearErrors: () => void;
@@ -29,13 +29,13 @@ export type UseTwoFactorAuthReturn = {
   fetchRecoveryCodes: () => Promise<void>;
 };
 
-const errors = ref<string[]>([]);
+const errors = ref<Array<string>>([]);
 
 const manualSetupKey = ref<string | null>(null);
 
 const qrCodeSvg = ref<string | null>(null);
 
-const recoveryCodesList = ref<string[]>([]);
+const recoveryCodesList = ref<Array<string>>([]);
 
 const hasSetupData = computed<boolean>(
   () => qrCodeSvg.value !== null && manualSetupKey.value !== null,
@@ -44,7 +44,7 @@ const hasSetupData = computed<boolean>(
 export const useTwoFactorAuth = (): UseTwoFactorAuthReturn => {
   const qrHttp = useHttp<Record<string, never>, QrCodeResponse>();
   const setupKeyHttp = useHttp<Record<string, never>, SetupKeyResponse>();
-  const recoveryHttp = useHttp<Record<string, never>, string[]>();
+  const recoveryHttp = useHttp<Record<string, never>, Array<string>>();
 
   const fetchQrCode = async (): Promise<void> => {
     try {

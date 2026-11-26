@@ -15,7 +15,7 @@ export type PaginationMeta = {
   current_page: number;
   from: number | null;
   last_page: number;
-  links: PaginationLink[];
+  links: Array<PaginationLink>;
   path: string;
   per_page: number;
   to: number | null;
@@ -23,14 +23,14 @@ export type PaginationMeta = {
 };
 
 export type Pagination<T> = {
-  data: T[];
+  data: Array<T>;
   links: PaginationLinks;
   meta: PaginationMeta;
 };
 
 /** Laravel's `LengthAwarePaginator` serialized directly, without an API resource. */
 export type LengthAwarePaginator<T> = PaginationMeta & {
-  data: T[];
+  data: Array<T>;
   first_page_url: string;
   last_page_url: string;
   next_page_url: string | null;

@@ -15,7 +15,7 @@ export type ApiSuccessResponse<T> = ApiResponse<T> & {
 };
 
 export type PaginatedApiSuccessResponse<T> = Omit<
-  ApiSuccessResponse<T[]>,
+  ApiSuccessResponse<Array<T>>,
   'data'
 > &
   Pagination<T>;
@@ -27,7 +27,7 @@ export type ApiErrorResponse<T> = ApiResponse<T> & {
 };
 
 export type ValidationErrorResponse = ApiErrorResponse<null> & {
-  errors: Record<string, string[]>;
+  errors: Record<string, Array<string>>;
 };
 
 export type TooManyRequestsResponse = ApiErrorResponse<null>;
