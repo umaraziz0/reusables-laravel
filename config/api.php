@@ -15,8 +15,8 @@ return [
     |
     | Example: 203.0.113.10,10.0.0.0/8
     |
-    | When behind a load balancer, configure trusted proxies in bootstrap/app.php
-    | so $request->ip() reflects the real client IP.
+    | When behind a proxy such as Cloudflare, set TRUSTED_PROXIES (see
+    | config/trustedproxy.php) so $request->ip() reflects the real client IP.
     |
     */
 

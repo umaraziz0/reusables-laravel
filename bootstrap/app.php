@@ -39,6 +39,13 @@ return Application::configure(basePath: dirname(__DIR__))
         health: '/up',
     )
     ->withMiddleware(function (Middleware $middleware): void {
+        /*
+         * Proxies come from config/trustedproxy.php. Only these two headers are
+         * trusted: Cloudflare passes client-sent X-Forwarded-Host through, which
+         * would let a client choose the host in generated URLs.
+         */
+        $middleware->trustProxies(headers: Request::HEADER_X_FORWARDED_FOR | Request::HEADER_X_FORWARDED_PROTO);
+
         $middleware->encryptCookies(except: ['appearance', 'sidebar_state']);
 
         $middleware->web(append: [
