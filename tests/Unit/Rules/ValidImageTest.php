@@ -48,6 +48,19 @@ test('fails for disallowed file types', function (string $filename, string $mime
     'gif' => ['anim.gif', 'image/gif'],
 ]);
 
+test('fails for a real avif image because avif is not an allowed type', function (): void {
+    $path = tempnam(sys_get_temp_dir(), 'avif');
+    file_put_contents($path, base64_decode('AAAAIGZ0eXBhdmlmAAAAAGF2aWZtaWYxbWlhZk1BMUIAAAD5bWV0YQAAAAAAAAAvaGRscgAAAAAAAAAAcGljdAAAAAAAAAAAAAAAAFBpY3R1cmVIYW5kbGVyAAAAAA5waXRtAAAAAAABAAAAHmlsb2MAAAAARAAAAQABAAAAAQAAASEAAAAlAAAAKGlpbmYAAAAAAAEAAAAaaW5mZQIAAAAAAQAAYXYwMUNvbG9yAAAAAGppcHJwAAAAS2lwY28AAAAUaXNwZQAAAAAAAABAAAAAQAAAABBwaXhpAAAAAAMICAgAAAAMYXYxQ4EADAAAAAATY29scm5jbHgAAgACAAIAAAAAF2lwbWEAAAAAAAAAAQABBAECgwQAAAAtbWRhdAoLAgAABVV//Gr5gEAyFhAAugIIIEEBAAAIAJXR4n6sTwStpHA=', true));
+
+    $file = new UploadedFile($path, 'photo.avif', 'image/avif', null, true);
+
+    $validator = validateImage($file);
+
+    expect(getimagesize($path))->toMatchArray([0 => 64, 1 => 64])
+        ->and($validator->fails())->toBeTrue()
+        ->and($validator->errors()->first('image'))->toContain('must be a file of type');
+});
+
 test('fails for non-file values', function (mixed $value): void {
     $validator = validateImage($value);
 
