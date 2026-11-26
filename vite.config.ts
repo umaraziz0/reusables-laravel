@@ -140,6 +140,11 @@ export default defineConfig({
       // The preset's React rules misread Vue composables as React hooks.
       'react/immutability': 'off',
       'react-hooks/rules-of-hooks': 'off',
+      // Hex values here are code points, which read better ungrouped.
+      'unicorn/numeric-separators-style': [
+        'error',
+        { hexadecimal: { onlyIfContainsSeparator: true } },
+      ],
       // Temporarily off while adopting @cloudflare/oxlint-config.
       '@nkzw/no-instanceof': 'off',
       'typescript/ban-ts-comment': 'off',
@@ -148,7 +153,6 @@ export default defineConfig({
       'typescript/no-unsafe-member-access': 'off',
       'typescript/no-unsafe-return': 'off',
       'typescript/no-unsafe-type-assertion': 'off',
-      'unicorn/numeric-separators-style': 'off',
     },
     overrides: [
       {

@@ -66,7 +66,7 @@ const hundredThousandOptions = generateOptions(100_000);
 
 const country = ref<string | number>();
 
-const largeListItem = ref<string | number>(4_200);
+const largeListItem = ref<string | number>(4200);
 
 // --- Methods --- //
 
