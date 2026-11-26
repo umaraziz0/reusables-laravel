@@ -9,7 +9,8 @@ use Illuminate\Contracts\Validation\ValidationRule;
 use Illuminate\Support\Facades\Config;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Translation\PotentiallyTranslatedString;
-use Illuminate\Validation\Rules\File;
+use Illuminate\Validation\Rule;
+use Illuminate\Validation\Rules\ImageFile;
 use Override;
 
 class ValidImage implements ValidationRule
@@ -24,12 +25,19 @@ class ValidImage implements ValidationRule
     {
         $mimes        = Config::array('media.image.mimes');
         $maxKilobytes = Config::integer('media.image.max_filesize');
+        $maxWidth     = Config::integer('media.image.max_width');
+        $maxHeight    = Config::integer('media.image.max_height');
+
+        $dimensions = Rule::dimensions()
+            ->maxWidth($maxWidth)
+            ->maxHeight($maxHeight);
 
         $validator = Validator::make(
             [$attribute => $value],
-            // File::types not File::image() — Laravel image rule omits avif
             [$attribute => [
-                File::types($mimes)->max($maxKilobytes),
+                ImageFile::types($mimes)
+                    ->max($maxKilobytes)
+                    ->dimensions($dimensions),
             ]],
         );
 

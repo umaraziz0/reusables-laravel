@@ -24,7 +24,6 @@ test('passes for allowed image types under the size limit', function (string $fi
     'jpeg' => ['photo.jpeg'],
     'png'  => ['photo.png'],
     'webp' => ['photo.webp'],
-    'avif' => ['photo.avif'],
 ]);
 
 test('fails when the file exceeds the max size', function (): void {
@@ -49,6 +48,16 @@ test('fails for disallowed file types', function (string $filename, string $mime
     'gif' => ['anim.gif', 'image/gif'],
 ]);
 
+test('applies type and dimension checks to a real avif image', function (): void {
+    $file = new UploadedFile(__DIR__ . '/Fixtures/photo-64x64.avif', 'photo.avif', 'image/avif', null, true);
+
+    expect(validateImage($file)->passes())->toBeTrue();
+
+    Config::set('media.image.max_width', 63);
+
+    expect(validateImage($file)->fails())->toBeTrue();
+});
+
 test('fails for non-file values', function (mixed $value): void {
     $validator = validateImage($value);
 
@@ -57,6 +66,41 @@ test('fails for non-file values', function (mixed $value): void {
 })->with([
     'string' => ['not-a-file'],
 ]);
+
+test('fails when the image exceeds the max dimensions while under the size limit', function (int $width, int $height): void {
+    $file = UploadedFile::fake()->image('photo.jpg', $width, $height);
+
+    $validator = validateImage($file);
+
+    expect($file->getSize())->toBeLessThan(1024 * 1024)
+        ->and($validator->fails())->toBeTrue()
+        ->and($validator->errors()->has('image'))->toBeTrue();
+})->with([
+    'too wide' => [4097, 10],
+    'too tall' => [10, 4097],
+]);
+
+test('passes when the image is exactly at the max width and height', function (string $filename, int $width, int $height): void {
+    $file = UploadedFile::fake()->image($filename, $width, $height);
+
+    expect(validateImage($file)->passes())->toBeTrue();
+})->with([
+    'max width'  => ['wide.png', 4096, 10],
+    'max height' => ['tall.png', 10, 4096],
+]);
+
+test('reads max_width and max_height from media config', function (): void {
+    Config::set('media.image.max_width', 100);
+    Config::set('media.image.max_height', 50);
+
+    $fits    = UploadedFile::fake()->image('fits.png', 100, 50);
+    $tooWide = UploadedFile::fake()->image('wide.png', 101, 50);
+    $tooTall = UploadedFile::fake()->image('tall.png', 100, 51);
+
+    expect(validateImage($fits)->passes())->toBeTrue()
+        ->and(validateImage($tooWide)->fails())->toBeTrue()
+        ->and(validateImage($tooTall)->fails())->toBeTrue();
+});
 
 test('reads max_filesize from media config', function (): void {
     Config::set('media.image.max_filesize', 50);
