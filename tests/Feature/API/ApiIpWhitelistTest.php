@@ -108,3 +108,21 @@ test('denies private user api routes from non-whitelisted ips', function (): voi
             'is_allowed_ips_set' => true,
         ]));
 });
+
+test('allows a whitelisted client forwarded by a trusted proxy', function (): void {
+    config(['trustedproxy.proxies' => ['162.158.0.0/15']]);
+
+    $this->withServerVariables(['REMOTE_ADDR' => '162.158.10.20'])
+        ->withHeaders(['X-Forwarded-For' => '203.0.113.10'])
+        ->getJson('/api/private-test')
+        ->assertSuccessful();
+});
+
+test('denies a non-whitelisted client forwarded by a trusted proxy', function (): void {
+    config(['trustedproxy.proxies' => ['162.158.0.0/15']]);
+
+    $this->withServerVariables(['REMOTE_ADDR' => '162.158.10.20'])
+        ->withHeaders(['X-Forwarded-For' => '198.51.100.50'])
+        ->getJson('/api/private-test')
+        ->assertForbidden();
+});
