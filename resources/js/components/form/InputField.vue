@@ -92,6 +92,7 @@ function clearEmailSuggestion(): void {
 
 function applyEmailSuggestion(): void {
   model.value = emailSuggestion.value;
+
   clearEmailSuggestion();
 }
 </script>

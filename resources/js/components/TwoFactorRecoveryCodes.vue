@@ -30,6 +30,7 @@ const toggleRecoveryCodesVisibility = async () => {
 
   if (isRecoveryCodesVisible.value) {
     await nextTick();
+
     recoveryCodeSectionRef.value?.scrollIntoView({ behavior: 'smooth' });
   }
 };

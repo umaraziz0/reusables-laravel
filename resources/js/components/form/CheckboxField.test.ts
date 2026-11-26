@@ -35,6 +35,7 @@ describe('CheckboxField', () => {
     expect(wrapper.get('[role="checkbox"]').attributes('id')).toBe(
       'newsletter',
     );
+
     expect(wrapper.get('label').attributes('for')).toBe('newsletter');
   });
 
@@ -49,6 +50,7 @@ describe('CheckboxField', () => {
     expect(wrapper.get('[role="checkbox"]').attributes('aria-checked')).toBe(
       'true',
     );
+
     expect(wrapper.emitted('update:modelValue')).toEqual([[true]]);
   });
 
@@ -70,6 +72,7 @@ describe('CheckboxField', () => {
     expect(wrapper.get('[role="checkbox"]').attributes('id')).toBe(
       'signup-news',
     );
+
     expect(wrapper.get('label').attributes('for')).toBe('signup-news');
   });
 
@@ -87,10 +90,13 @@ describe('CheckboxField', () => {
     expect(
       form.querySelector('[role="checkbox"]')?.getAttribute('aria-required'),
     ).toBe('true');
+
     expect(
       form.querySelector<HTMLInputElement>('input[type="checkbox"]')?.required,
     ).toBe(true);
+
     expect(form.checkValidity()).toBe(false);
+
     expect(form.querySelector('label span')?.getAttribute('aria-hidden')).toBe(
       'true',
     );
@@ -105,6 +111,7 @@ describe('CheckboxField', () => {
     expect(wrapper.get('[role="checkbox"]').attributes('data-test')).toBe(
       'newsletter-checkbox',
     );
+
     expect(wrapper.attributes('data-test')).toBeUndefined();
   });
 
@@ -116,6 +123,7 @@ describe('CheckboxField', () => {
     expect(wrapper.get('[role="checkbox"]').attributes()).toHaveProperty(
       'disabled',
     );
+
     expect(wrapper.attributes('data-disabled')).toBe('true');
   });
 
@@ -132,6 +140,7 @@ describe('CheckboxField', () => {
     expect(
       wrapper.get('[role="checkbox"]').attributes('aria-describedby'),
     ).toBe('newsletter-hint newsletter-description');
+
     expect(wrapper.get('#newsletter-description').text()).toBe(
       'At most one email per month.',
     );
@@ -148,11 +157,14 @@ describe('CheckboxField', () => {
     });
 
     const checkbox = wrapper.get('[role="checkbox"]');
+
     expect(checkbox.attributes('aria-describedby')).toBe('terms-error');
     expect(checkbox.attributes('aria-invalid')).toBe('true');
+
     expect(wrapper.get('#terms-error').text()).toBe(
       'You must accept the terms.',
     );
+
     expect(wrapper.attributes('data-invalid')).toBe('true');
   });
 
@@ -164,6 +176,7 @@ describe('CheckboxField', () => {
     expect(
       wrapper.get('[role="checkbox"]').attributes('aria-describedby'),
     ).toBeUndefined();
+
     expect(wrapper.attributes('data-invalid')).toBeUndefined();
   });
 

@@ -48,7 +48,7 @@ An opinionated starter kit & collection of reusable components etc for Laravel /
 
 #### Linting & Formatting
 
-- [Vite+](https://viteplus.dev/guide) - unified frontend formatter and linter, using the [@cloudflare/oxlint-config](https://github.com/cloudflare/oxlint-config) preset plus security checks
+- [Vite+](https://viteplus.dev/guide) - unified frontend formatter and linter, using the [@cloudflare/oxlint-config](https://github.com/cloudflare/oxlint-config) preset, [landmines](https://github.com/interfere-inc/landmines) test-honesty rules, and security checks
 - [ESLint](https://eslint.org/) - Vue template linting with [security](https://github.com/eslint-community/eslint-plugin-security), [no-secrets](https://github.com/nickdeis/eslint-plugin-no-secrets) and [no-unsanitized](https://github.com/mozilla/eslint-plugin-no-unsanitized) plugins
 
 #### Data Fetching
@@ -330,7 +330,7 @@ The lint job validates code quality and formatting:
 
 **Frontend Checks:**
 
-- **Vite+**: Runs unified frontend formatting, lint (Cloudflare Oxlint preset), and security checks (`pnpm run check`)
+- **Vite+**: Runs unified frontend formatting, lint (Cloudflare Oxlint preset, landmines), and security checks (`pnpm run check`)
 - **Wayfinder**: Regenerates frontend routes and actions (`php artisan wayfinder:generate --with-form`)
 - **vue-tsc**: Type-checks the frontend (`pnpm run types:check`)
 

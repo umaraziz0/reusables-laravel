@@ -1,7 +1,7 @@
 import type { InputTypeHTMLAttribute } from 'vue';
 
 import { flushPromises, mount } from '@vue/test-utils';
-import { describe, expect, it, vi } from 'vite-plus/test';
+import { beforeAll, describe, expect, it, vi } from 'vite-plus/test';
 
 import InputField from './InputField.vue';
 
@@ -27,7 +27,9 @@ async function blurWithValue(
   value: string,
 ): Promise<void> {
   const input = wrapper.get('input');
+
   await input.setValue(value);
+
   await input.trigger('blur');
 }
 
@@ -91,6 +93,7 @@ describe('InputField', () => {
     expect(wrapper.get('input').attributes('aria-describedby')).toBe(
       'token-hint api_token-description',
     );
+
     expect(wrapper.get('#api_token-description').text()).toBe(
       'Shown only once.',
     );
@@ -107,11 +110,14 @@ describe('InputField', () => {
     });
 
     const input = wrapper.get('input');
+
     expect(input.attributes('aria-describedby')).toBe('username-error');
     expect(input.attributes('aria-invalid')).toBe('true');
+
     expect(wrapper.get('#username-error').text()).toBe(
       'Username must be at least 3 characters.',
     );
+
     expect(wrapper.attributes('data-invalid')).toBe('true');
   });
 
@@ -135,6 +141,14 @@ describe('InputField', () => {
   });
 
   describe('email suggestion', () => {
+    /**
+     * Loads the spell checker the field imports lazily, so the negative tests
+     * below only wait for its cached import, not a cold module load.
+     */
+    beforeAll(async () => {
+      await import('@zootools/email-spell-checker');
+    });
+
     it('suggests a correction when a misspelled email loses focus', async () => {
       const wrapper = mountEmailField();
 
@@ -145,6 +159,7 @@ describe('InputField', () => {
           `Did you mean ${CORRECTED_EMAIL}?`,
         );
       });
+
       expect(wrapper.get('input').attributes('aria-describedby')).toBe(
         'email-description',
       );
@@ -152,7 +167,9 @@ describe('InputField', () => {
 
     it('emits the suggestion through v-model when clicked', async () => {
       const wrapper = mountEmailField({ modelValue: '' });
+
       await blurWithValue(wrapper, MISSPELLED_EMAIL);
+
       await vi.waitFor(() => wrapper.get('[role="status"] button'));
 
       await wrapper.get('[role="status"] button').trigger('click');
@@ -160,12 +177,15 @@ describe('InputField', () => {
       expect(wrapper.emitted('update:modelValue')?.at(-1)).toEqual([
         CORRECTED_EMAIL,
       ]);
+
       expect(wrapper.find('[role="status"]').exists()).toBe(false);
     });
 
     it('applies the suggestion without v-model bound', async () => {
       const wrapper = mountEmailField();
+
       await blurWithValue(wrapper, MISSPELLED_EMAIL);
+
       await vi.waitFor(() => wrapper.get('[role="status"] button'));
 
       await wrapper.get('[role="status"] button').trigger('click');
@@ -175,12 +195,15 @@ describe('InputField', () => {
 
     it('restores the description once the user types again', async () => {
       const wrapper = mountEmailField({ description: 'We never share it.' });
+
       await blurWithValue(wrapper, MISSPELLED_EMAIL);
+
       await vi.waitFor(() => wrapper.get('[role="status"]'));
 
       await wrapper.get('input').setValue('jane@');
 
       expect(wrapper.find('[role="status"]').exists()).toBe(false);
+
       expect(wrapper.get('#email-description').text()).toBe(
         'We never share it.',
       );
@@ -194,6 +217,7 @@ describe('InputField', () => {
       await vi.waitFor(() => {
         expect(wrapper.get('[role="alert"]').text()).toBe('Email is taken.');
       });
+
       expect(wrapper.find('[role="status"]').exists()).toBe(false);
     });
 
@@ -201,7 +225,7 @@ describe('InputField', () => {
       const wrapper = mountEmailField();
 
       await blurWithValue(wrapper, CORRECTED_EMAIL);
-      await import('@zootools/email-spell-checker');
+
       await flushPromises();
 
       expect(wrapper.find('[role="status"]').exists()).toBe(false);
@@ -211,7 +235,7 @@ describe('InputField', () => {
       const wrapper = mountEmailField({ type: 'text' });
 
       await blurWithValue(wrapper, MISSPELLED_EMAIL);
-      await import('@zootools/email-spell-checker');
+
       await flushPromises();
 
       expect(wrapper.find('[role="status"]').exists()).toBe(false);

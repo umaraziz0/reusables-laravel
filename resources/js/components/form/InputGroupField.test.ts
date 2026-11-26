@@ -65,6 +65,7 @@ describe('InputGroupField', () => {
     expect(wrapper.get('input').attributes('aria-describedby')).toBe(
       'key-hint api_key-description',
     );
+
     expect(wrapper.get('#api_key-description').text()).toBe('Shown only once.');
   });
 
@@ -79,11 +80,14 @@ describe('InputGroupField', () => {
     });
 
     const input = wrapper.get('input');
+
     expect(input.attributes('aria-describedby')).toBe('username-error');
     expect(input.attributes('aria-invalid')).toBe('true');
+
     expect(wrapper.get('#username-error').text()).toBe(
       'Username must be at least 3 characters.',
     );
+
     expect(wrapper.attributes('data-invalid')).toBe('true');
   });
 
@@ -155,6 +159,7 @@ describe('InputGroupField', () => {
     });
 
     expect(wrapper.get('input').attributes()).toHaveProperty('disabled');
+
     expect(
       wrapper.get('[data-slot="input-group"]').attributes('data-disabled'),
     ).toBe('true');

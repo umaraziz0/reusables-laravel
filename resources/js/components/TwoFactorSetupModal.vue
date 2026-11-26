@@ -86,6 +86,7 @@ const handleModalNextStep = () => {
   }
 
   clearSetupData();
+
   isOpen.value = false;
 };
 
@@ -95,6 +96,7 @@ const resetModalState = () => {
   }
 
   showVerificationStep.value = false;
+
   code.value = '';
 };
 

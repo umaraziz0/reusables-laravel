@@ -91,6 +91,7 @@ function renderedLabels(): Array<string> {
  */
 async function openOptions(wrapper: VueWrapper): Promise<Array<string>> {
   await wrapper.get('button').trigger('click');
+
   await flushPromises();
 
   return renderedLabels();
@@ -109,7 +110,9 @@ async function search(term: string): Promise<Array<string>> {
   }
 
   input.value = term;
+
   input.dispatchEvent(new Event('input', { bubbles: true }));
+
   await flushPromises();
 
   return renderedLabels();
@@ -128,6 +131,7 @@ async function choose(label: string): Promise<void> {
   }
 
   option.click();
+
   await flushPromises();
 }
 
@@ -138,18 +142,22 @@ enableAutoUnmount(afterEach);
  * virtualizer renders no rows. Give the viewport and rows real heights. The
  * virtualizer reads the viewport's clientHeight and each row's offsetHeight.
  */
+/* oxlint-disable landmines/no-test-doubles -- happy-dom has no layout engine, so these getters stand in for the browser, not for code under test. */
 beforeEach(() => {
   vi.spyOn(HTMLElement.prototype, 'offsetHeight', 'get').mockImplementation(
     function (this: HTMLElement) {
       return this.dataset.slot === 'combobox-viewport' ? 288 : 32;
     },
   );
+
   vi.spyOn(HTMLElement.prototype, 'clientHeight', 'get').mockImplementation(
     function (this: HTMLElement) {
       return this.dataset.slot === 'combobox-viewport' ? 288 : 0;
     },
   );
 });
+
+/* oxlint-enable landmines/no-test-doubles */
 
 afterEach(() => {
   vi.restoreAllMocks();
@@ -162,6 +170,7 @@ describe('SearchSelectField', () => {
     });
 
     const trigger = wrapper.get('button');
+
     expect(trigger.attributes('id')).toBe('country');
     expect(trigger.attributes('aria-label')).toBeUndefined();
     expect(trigger.text()).toBe('Choose a country…');
@@ -183,6 +192,7 @@ describe('SearchSelectField', () => {
     expect(wrapper.get('button').attributes('data-testid')).toBe(
       'country-select',
     );
+
     expect(wrapper.attributes('data-testid')).toBeUndefined();
   });
 
@@ -195,6 +205,7 @@ describe('SearchSelectField', () => {
     expect(wrapper.get('button').attributes('aria-describedby')).toBe(
       'country-hint country-description',
     );
+
     expect(wrapper.get('#country-description').text()).toBe(
       'Where you pay tax.',
     );
@@ -207,6 +218,7 @@ describe('SearchSelectField', () => {
     });
 
     const trigger = wrapper.get('button');
+
     expect(trigger.attributes('aria-describedby')).toBe('country-error');
     expect(trigger.attributes('aria-invalid')).toBe('true');
     expect(wrapper.get('#country-error').text()).toBe('Choose a country.');
@@ -217,6 +229,7 @@ describe('SearchSelectField', () => {
     const wrapper = mountSearchSelectField();
 
     await openOptions(wrapper);
+
     await choose('Brazil');
 
     expect(wrapper.emitted('update:modelValue')).toEqual([['br']]);
@@ -239,6 +252,7 @@ describe('SearchSelectField', () => {
     await openOptions(wrapper);
 
     expect(await search('zzz')).toEqual([]);
+
     expect(document.body.textContent).toContain('No countries found.');
   });
 
@@ -246,7 +260,9 @@ describe('SearchSelectField', () => {
     const wrapper = mountSearchSelectField();
 
     await openOptions(wrapper);
+
     await search('RA');
+
     await choose('Brazil');
 
     expect(await openOptions(wrapper)).toEqual(ALL_COUNTRY_LABELS);
@@ -256,6 +272,7 @@ describe('SearchSelectField', () => {
     const wrapper = mountSearchSelectField();
 
     await openOptions(wrapper);
+
     await search('RA');
 
     document.body
@@ -263,9 +280,11 @@ describe('SearchSelectField', () => {
       ?.dispatchEvent(
         new KeyboardEvent('keydown', { key: 'Escape', bubbles: true }),
       );
+
     await flushPromises();
 
     expect(renderedLabels()).toEqual([]);
+
     expect(await openOptions(wrapper)).toEqual(ALL_COUNTRY_LABELS);
   });
 
@@ -275,9 +294,11 @@ describe('SearchSelectField', () => {
     expect(
       new FormData(wrapper.get<HTMLFormElement>('form').element).get('country'),
     ).toBe('ca');
+
     expect(
       wrapper.get<HTMLInputElement>('input[name="country"]').element.required,
     ).toBe(true);
+
     expect(wrapper.get('label span').attributes('aria-hidden')).toBe('true');
   });
 
@@ -285,6 +306,7 @@ describe('SearchSelectField', () => {
     const wrapper = await mountInForm('default-value="ca"');
 
     expect(wrapper.get('button').text()).toBe('Canada');
+
     expect(
       new FormData(wrapper.get<HTMLFormElement>('form').element).get('country'),
     ).toBe('ca');
@@ -294,6 +316,7 @@ describe('SearchSelectField', () => {
     const wrapper = await mountInForm('model-value="ca" disabled');
 
     expect(wrapper.get('button').attributes()).toHaveProperty('disabled');
+
     expect(
       wrapper.get<HTMLInputElement>('input[name="country"]').element.disabled,
     ).toBe(true);
