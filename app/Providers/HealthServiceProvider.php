@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\Providers;
 
+use App\Checks\QueuePreforkCheck;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\Config;
 use Illuminate\Support\ServiceProvider;
@@ -76,6 +77,8 @@ class HealthServiceProvider extends ServiceProvider
             CacheCheck::new(),
 
             HorizonCheck::new(),
+
+            QueuePreforkCheck::new(),
 
             QueueCheck::new()
                 ->onQueue($this->horizonQueues())
