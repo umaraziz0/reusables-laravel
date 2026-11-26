@@ -6,12 +6,10 @@ use Illuminate\Support\Str;
 
 $queueName = static fn (string $name): string => Str::slug((string) env('APP_NAME', 'laravel')) . '-' . env('APP_ENV', 'local') . '-queue-' . $name;
 
-$disabledQueues = array_values(array_filter(array_map(trim(...), explode(',', (string) env('QUEUE_DISABLED', '')))));
+// Jobs dispatched without a queue go here; config/horizon.php works it through `queues.default`.
+$defaultQueue = (string) env('REDIS_QUEUE', $queueName('default'));
 
-// Telescope is registered only locally, so nothing is queued on its queue anywhere else.
-if (env('APP_ENV', 'local') !== 'local') {
-    $disabledQueues[] = 'telescope';
-}
+$disabledQueues = array_values(array_filter(array_map(trim(...), explode(',', (string) env('QUEUE_DISABLED', '')))));
 
 return [
 
@@ -80,7 +78,7 @@ return [
         'redis' => [
             'driver'     => 'redis',
             'connection' => env('REDIS_QUEUE_CONNECTION', 'queue'),
-            'queue'      => env('REDIS_QUEUE', $queueName('default')),
+            'queue'      => $defaultQueue,
             // Must stay above the longest Horizon supervisor timeout (exports: 300), or jobs may run twice.
             'retry_after'  => (int) env('REDIS_QUEUE_RETRY_AFTER', 330),
             'block_for'    => null,
@@ -157,11 +155,10 @@ return [
     'queues' => [
         'emails'        => $queueName('emails'),
         'notifications' => $queueName('notifications'),
-        'default'       => $queueName('default'),
+        'default'       => $defaultQueue,
         'storage'       => $queueName('storage'),
         'logs_activity' => $queueName('logs-activity'),
         'logs_message'  => $queueName('logs-message'),
-        'telescope'     => $queueName('telescope'),
         'exports'       => $queueName('exports'),
     ],
 

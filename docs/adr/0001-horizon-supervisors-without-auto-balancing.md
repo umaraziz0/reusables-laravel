@@ -1,9 +1,9 @@
-- Updated At: 2026-11-26 15:19:57
+- Updated At: 2026-11-26 15:22:33
 - Reviewed By: anthropic/claude-opus-5-5-low
 
 # Horizon supervisors without auto balancing
 
-Horizon's `auto` balancing keeps at least `minProcesses` workers per queue, so one supervisor with 8 queues never ran fewer than 8 workers, whatever `maxProcesses` said. Typical project hosts are small, and most of these queues are empty most of the time, so `config/horizon.php` uses `balance => false` instead. The light supervisor's workers take jobs from all of its queues in the order of `config/queue.php` `queues` (emails and notifications first), and the total process count scales between `minProcesses` and `maxProcesses`. Exports run on their own supervisor so a long export can't hold up emails.
+Horizon's `auto` balancing keeps at least `minProcesses` workers per queue, so one supervisor with 7 queues never ran fewer than 7 workers, whatever `maxProcesses` said. Typical project hosts are small, and most of these queues are empty most of the time, so `config/horizon.php` uses `balance => false` instead. The light supervisor's workers take jobs from all of its queues in the order of `config/queue.php` `queues` (emails and notifications first), and the total process count scales between `minProcesses` and `maxProcesses`. Exports run on their own supervisor so a long export can't hold up emails.
 
 ## Consequences
 
