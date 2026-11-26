@@ -24,10 +24,6 @@ const isComponentPreviewsEnabled =
   (env.APP_ENV ?? 'production') !== 'production';
 
 /**
- * Turns off the preset's React and JSX rules. This app has no JSX, and the
- * React compiler rules misread Vue composables as React hooks.
- */
-/**
  * Enables landmines' `recommended` rules (its correctness and suspicious
  * categories). The JSON import widens severities to `string`, so the rule
  * names are read from it and set to `error` here.
@@ -39,6 +35,10 @@ const landminesRules = Object.fromEntries(
   ]),
 );
 
+/**
+ * Turns off the preset's React and JSX rules. This app has no JSX, and the
+ * React compiler rules misread Vue composables as React hooks.
+ */
 const disabledReactRules = Object.fromEntries(
   Object.keys(cloudflare.rules ?? {})
     .filter((rule) => /^(react|jsx-a11y)\//.test(rule))
