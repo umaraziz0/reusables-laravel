@@ -9,13 +9,16 @@ return [
     | Image Uploads
     |--------------------------------------------------------------------------
     |
-    | Default constraints for ValidImage. max_filesize is in kilobytes.
+    | Default constraints for ValidImage. max_filesize is in kilobytes;
+    | max_width and max_height are in pixels.
     |
     */
 
     'image' => [
         'max_filesize' => 1024,
-        'mimes'        => ['jpg', 'jpeg', 'png', 'webp', 'avif'],
+        'max_width'    => 4096,
+        'max_height'   => 4096,
+        'mimes'        => ['jpg', 'jpeg', 'png', 'webp'],
     ],
 
     /*
