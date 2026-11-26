@@ -5,22 +5,35 @@ declare(strict_types=1);
 use Illuminate\Support\Str;
 use Laravel\Telescope\Jobs\ProcessPendingUpdates;
 
-$queueName = static fn (string $name): string => Str::slug((string) env('APP_NAME', 'laravel')) . '-' . env('APP_ENV', 'local') . '-queue-' . $name;
+/**
+ * Read in its own scope so its variables don't leak into this file.
+ *
+ * @var array{queues: array<string, string>, disabled: list<string>} $queueConfig
+ */
+$queueConfig = (static fn (): array => require __DIR__ . '/queue.php')();
 
-$applicationQueues = [
-    'exports',
-    'emails',
-    'storage',
-    'logs-message',
-    'logs-activity',
-    'telescope',
-    'notifications',
-];
+$enabledQueues = array_diff_key($queueConfig['queues'], array_flip($queueConfig['disabled']));
 
-$redisWaits = [];
+/** Queues whose jobs may run for minutes; they get their own supervisor so they can't hold up emails and notifications. */
+$longRunningQueueKeys = ['exports'];
 
-foreach ($applicationQueues as $name) {
-    $redisWaits['redis:' . $queueName($name)] = 60;
+$supervisorQueues = array_filter([
+    'supervisor-default' => array_values(array_diff_key($enabledQueues, array_flip($longRunningQueueKeys))),
+    'supervisor-exports' => array_values(array_intersect_key($enabledQueues, array_flip($longRunningQueueKeys))),
+]);
+
+/**
+ * Keep only the entries for supervisors that work at least one queue.
+ *
+ * @param  array<string, array<string, mixed>>  $supervisors
+ * @return array<string, array<string, mixed>>
+ */
+$forActiveSupervisors = static fn (array $supervisors): array => array_intersect_key($supervisors, $supervisorQueues);
+
+$waits = [];
+
+foreach ($enabledQueues as $key => $name) {
+    $waits['redis:' . $name] = in_array($key, $longRunningQueueKeys, true) ? 600 : 60;
 }
 
 return [
@@ -120,9 +133,7 @@ return [
     |
     */
 
-    'waits' => [
-        'redis:default' => 60,
-    ],
+    'waits' => $waits,
 
     /*
     |--------------------------------------------------------------------------
@@ -221,50 +232,60 @@ return [
     |
     */
 
-    'defaults' => [
-        'supervisor-1' => [
-            'connection' => 'redis',
-            'queue'      => [
-                $queueName('exports'),
-                $queueName('emails'),
-                $queueName('storage'),
-                $queueName('logs-message'),
-                $queueName('logs-activity'),
-                $queueName('telescope'),
-                $queueName('notifications'),
-            ],
-            'balance'             => 'auto',
-            'autoScalingStrategy' => 'time',
-            'maxProcesses'        => 1,
-            'maxTime'             => 0,
-            'maxJobs'             => 0,
-            'memory'              => 128,
-            'tries'               => 1,
-            'timeout'             => 60,
-            'nice'                => 0,
+    'defaults' => $forActiveSupervisors([
+        // Light jobs. With balance off, every worker takes jobs from every queue in
+        // config/queue.php order, so the total process count, not one per queue, is the minimum.
+        'supervisor-default' => [
+            'connection'   => 'redis',
+            'queue'        => $supervisorQueues['supervisor-default'] ?? [],
+            'balance'      => false,
+            'minProcesses' => 1,
+            'maxProcesses' => 1,
+            'maxTime'      => 3600,
+            'maxJobs'      => 1000,
+            'memory'       => 128,
+            'tries'        => 3,
+            'backoff'      => [10, 60],
+            'timeout'      => 60,
+            'nice'         => 0,
         ],
-    ],
+
+        // Long-running jobs. Its timeout must stay below the redis connection's retry_after.
+        'supervisor-exports' => [
+            'connection'   => 'redis',
+            'queue'        => $supervisorQueues['supervisor-exports'] ?? [],
+            'balance'      => false,
+            'minProcesses' => 1,
+            'maxProcesses' => 1,
+            'maxTime'      => 3600,
+            'maxJobs'      => 100,
+            'memory'       => 512,
+            'tries'        => 1,
+            'timeout'      => 300,
+            'nice'         => 10,
+        ],
+    ]),
 
     'environments' => [
-        'production' => [
-            'supervisor-1' => [
-                'maxProcesses'    => 10,
-                'balanceMaxShift' => 1,
-                'balanceCooldown' => 3,
+        'production' => $forActiveSupervisors([
+            'supervisor-default' => [
+                'maxProcesses' => (int) env('HORIZON_MAX_PROCESSES', 4),
             ],
-        ],
 
-        'local' => [
-            'supervisor-1' => [
-                'maxProcesses' => 3,
+            'supervisor-exports' => [
+                'maxProcesses' => (int) env('HORIZON_EXPORTS_MAX_PROCESSES', 2),
             ],
-        ],
+        ]),
 
-        '*' => [
-            'supervisor-1' => [
-                'maxProcesses' => 3,
+        '*' => $forActiveSupervisors([
+            'supervisor-default' => [
+                'maxProcesses' => 2,
             ],
-        ],
+
+            'supervisor-exports' => [
+                'maxProcesses' => 1,
+            ],
+        ]),
     ],
 
     /*
