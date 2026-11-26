@@ -145,7 +145,6 @@ export default defineConfig({
       'typescript/ban-ts-comment': 'off',
       'typescript/consistent-type-imports': 'off',
       'typescript/no-explicit-any': 'off',
-      'typescript/no-import-type-side-effects': 'off',
       'typescript/no-unsafe-assignment': 'off',
       'typescript/no-unsafe-member-access': 'off',
       'typescript/no-unsafe-return': 'off',
