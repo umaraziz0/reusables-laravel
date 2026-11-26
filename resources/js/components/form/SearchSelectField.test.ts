@@ -1,9 +1,6 @@
-import {
-  enableAutoUnmount,
-  flushPromises,
-  mount,
-  type VueWrapper,
-} from '@vue/test-utils';
+import type { VueWrapper } from '@vue/test-utils';
+
+import { enableAutoUnmount, flushPromises, mount } from '@vue/test-utils';
 import {
   afterEach,
   beforeEach,

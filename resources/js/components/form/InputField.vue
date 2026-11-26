@@ -1,11 +1,8 @@
 <script setup lang="ts">
+import type { HTMLAttributes, InputTypeHTMLAttribute } from 'vue';
+
 import { cn } from 'cn';
-import {
-  computed,
-  ref,
-  type HTMLAttributes,
-  type InputTypeHTMLAttribute,
-} from 'vue';
+import { computed, ref } from 'vue';
 
 import { Field, FieldLabel } from '@/components/ui/field';
 import { Input } from '@/components/ui/input';

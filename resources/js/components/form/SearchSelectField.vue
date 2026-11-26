@@ -1,10 +1,11 @@
 <script setup lang="ts">
 import type { SelectFieldOption } from './SelectField.vue';
+import type { HTMLAttributes } from 'vue';
 
 import { Check, ChevronsUpDown } from '@lucide/vue';
 import { cn } from 'cn';
 import { ComboboxVirtualizer } from 'reka-ui';
-import { computed, type HTMLAttributes, ref } from 'vue';
+import { computed, ref } from 'vue';
 
 import {
   Combobox,

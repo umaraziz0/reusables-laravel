@@ -1,4 +1,6 @@
 <script setup lang="ts">
+import type { NavItem } from '@/types';
+
 import { Link } from '@inertiajs/vue3';
 import {
   AlertCircle,
@@ -56,7 +58,6 @@ import {
   pagination,
   table,
 } from '@/routes/components';
-import { type NavItem } from '@/types';
 
 // --- Constants --- //
 

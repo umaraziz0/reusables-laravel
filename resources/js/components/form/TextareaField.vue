@@ -1,7 +1,9 @@
 <script setup lang="ts">
+import type { HTMLAttributes } from 'vue';
+
 import { useDebounceFn } from '@vueuse/core';
 import { cn } from 'cn';
-import { computed, ref, type HTMLAttributes } from 'vue';
+import { computed, ref } from 'vue';
 
 import { Field, FieldLabel } from '@/components/ui/field';
 import { Textarea } from '@/components/ui/textarea';

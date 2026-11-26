@@ -1,9 +1,7 @@
-import {
-  enableAutoUnmount,
-  flushPromises,
-  mount,
-  type VueWrapper,
-} from '@vue/test-utils';
+import type { Country } from '@/lib/countries';
+import type { VueWrapper } from '@vue/test-utils';
+
+import { enableAutoUnmount, flushPromises, mount } from '@vue/test-utils';
 import {
   afterEach,
   beforeEach,
@@ -12,8 +10,6 @@ import {
   it,
   vi,
 } from 'vite-plus/test';
-
-import { type Country } from '@/lib/countries';
 
 import PhoneNumberField from './PhoneNumberField.vue';
 

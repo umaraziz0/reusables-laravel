@@ -1,6 +1,8 @@
 <script setup lang="ts">
+import type { HTMLAttributes } from 'vue';
+
 import { cn } from 'cn';
-import { computed, type HTMLAttributes } from 'vue';
+import { computed } from 'vue';
 
 import { Checkbox } from '@/components/ui/checkbox';
 import { Field, FieldContent, FieldLabel } from '@/components/ui/field';

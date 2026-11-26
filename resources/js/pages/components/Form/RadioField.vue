@@ -1,4 +1,6 @@
 <script setup lang="ts">
+import type { RadioFieldOption } from '@/components/form/RadioField.vue';
+
 import { Head } from '@inertiajs/vue3';
 import { ref } from 'vue';
 
@@ -7,9 +9,7 @@ import {
   formRadioField,
 } from '@/actions/App/Http/Controllers/ComponentPreviewController';
 // --- Components --- //
-import RadioField, {
-  type RadioFieldOption,
-} from '@/components/form/RadioField.vue';
+import RadioField from '@/components/form/RadioField.vue';
 import Heading from '@/components/Heading.vue';
 import ComponentsLayout from '@/layouts/components/ComponentsLayout.vue';
 
