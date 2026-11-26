@@ -1,4 +1,4 @@
-// oxlint-disable-next-line anti-slop/no-unsafe-dictionary-type -- Inertia auth payloads may contain server-provided user attributes.
+// oxlint-disable-next-line quality/no-unsafe-dictionary-type -- Inertia auth payloads may contain server-provided user attributes.
 export type User = {
   id: number;
   name: string;
@@ -12,7 +12,7 @@ export type User = {
 };
 
 export type Auth = {
-  // oxlint-disable-next-line anti-slop/no-unsafe-dictionary-type -- Auth carries the server-provided user payload.
+  // oxlint-disable-next-line quality/no-unsafe-dictionary-type -- Auth carries the server-provided user payload.
   user: User;
 };
 

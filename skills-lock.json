@@ -7,12 +7,6 @@
       "skillPath": "docs/skills/doctor/SKILL.md",
       "computedHash": "52480730d3246e8a78af41cbebdf21c69e3f8138f9f20d0dc15c77e2348ce103"
     },
-    "install-anti-slop": {
-      "source": "dmmulroy/anti-slop",
-      "sourceType": "github",
-      "skillPath": "skills/install-anti-slop/SKILL.md",
-      "computedHash": "72309811a88f92e56b6041960b7bd6f187deea251486982fd457378460b38d8a"
-    },
     "pnpm": {
       "source": "antfu/skills",
       "sourceType": "github",

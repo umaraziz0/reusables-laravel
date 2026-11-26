@@ -4,7 +4,6 @@
     "resources/js/actions/**",
     "resources/js/routes/**",
     "resources/js/wayfinder/**",
-    "tools/oxlint/anti-slop/**",
     "bootstrap/ssr/**",
     "vendor/**"
   ]

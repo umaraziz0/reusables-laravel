@@ -53,7 +53,7 @@ BREAKING CHANGE: refactor(user): change user model structure
 
 Git hooks are defined in [`lefthook.yml`](lefthook.yml). On each commit, Lefthook typically runs:
 
-- **Frontend**: Vite+ staged checks (`vp staged`) for JS/TS/Vue (and related) files, including anti-slop and security rules
+- **Frontend**: Vite+ staged checks (`vp staged`) for JS/TS/Vue (and related) files, including the Cloudflare Oxlint preset and security rules
 - **Backend**: Pint, Rector, and PHPStan for staged PHP and Blade files
 - **Security**: [Betterleaks](https://github.com/betterleaks/betterleaks) `git --pre-commit --staged` (with `--redact`) to block secrets in staged changes; CI scans incoming pull-request commits (see `.github/workflows/ci.yml`)
 - **Commit message**: [Conventional Commits](https://www.conventionalcommits.org/) lint via Commitlint
