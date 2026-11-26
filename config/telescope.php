@@ -2,7 +2,6 @@
 
 declare(strict_types=1);
 
-use Illuminate\Support\Str;
 use Laravel\Telescope\Http\Middleware\Authorize;
 use Laravel\Telescope\Watchers\BatchWatcher;
 use Laravel\Telescope\Watchers\CacheWatcher;
@@ -97,7 +96,7 @@ return [
 
     'queue' => [
         'connection' => env('TELESCOPE_QUEUE_CONNECTION'),
-        'queue'      => Str::slug((string) env('APP_NAME', 'laravel')) . '-' . env('APP_ENV', 'local') . '-queue-telescope',
+        'queue'      => env('TELESCOPE_QUEUE'),
         'delay'      => env('TELESCOPE_QUEUE_DELAY', 10),
     ],
 

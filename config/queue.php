@@ -6,6 +6,11 @@ use Illuminate\Support\Str;
 
 $queueName = static fn (string $name): string => Str::slug((string) env('APP_NAME', 'laravel')) . '-' . env('APP_ENV', 'local') . '-queue-' . $name;
 
+// Jobs dispatched without a queue go here; config/horizon.php works it through `queues.default`.
+$defaultQueue = (string) env('REDIS_QUEUE', $queueName('default'));
+
+$disabledQueues = array_values(array_filter(array_map(trim(...), explode(',', (string) env('QUEUE_DISABLED', '')))));
+
 return [
 
     /*
@@ -19,7 +24,7 @@ return [
     |
     */
 
-    'default' => env('QUEUE_CONNECTION', 'database'),
+    'default' => env('QUEUE_CONNECTION', 'redis'),
 
     /*
     |--------------------------------------------------------------------------
@@ -71,10 +76,11 @@ return [
         ],
 
         'redis' => [
-            'driver'       => 'redis',
-            'connection'   => env('REDIS_QUEUE_CONNECTION', 'queue'),
-            'queue'        => env('REDIS_QUEUE', 'default'),
-            'retry_after'  => (int) env('REDIS_QUEUE_RETRY_AFTER', 90),
+            'driver'     => 'redis',
+            'connection' => env('REDIS_QUEUE_CONNECTION', 'queue'),
+            'queue'      => $defaultQueue,
+            // Must stay above the longest Horizon supervisor timeout (exports: 300), or jobs may run twice.
+            'retry_after'  => (int) env('REDIS_QUEUE_RETRY_AFTER', 330),
             'block_for'    => null,
             'after_commit' => false,
         ],
@@ -135,20 +141,26 @@ return [
 
     /*
     |--------------------------------------------------------------------------
-    | Custom Queue Names
+    | Application Queues
     |--------------------------------------------------------------------------
     |
-    | This a list of the different queues for the application.
+    | The application's queues, keyed by the name code looks up with
+    | `queue.queues.<key>`. config/horizon.php assigns every queue that is
+    | not disabled to a supervisor; the order is the light supervisor's
+    | priority. Disable a queue by listing its key in QUEUE_DISABLED
+    | (comma-separated), so no worker runs for it.
     |
     */
 
     'queues' => [
-        'exports'       => $queueName('exports'),
         'emails'        => $queueName('emails'),
-        'storage'       => $queueName('storage'),
-        'logs_message'  => $queueName('logs-message'),
-        'logs_activity' => $queueName('logs-activity'),
-        'telescope'     => $queueName('telescope'),
         'notifications' => $queueName('notifications'),
+        'default'       => $defaultQueue,
+        'storage'       => $queueName('storage'),
+        'logs_activity' => $queueName('logs-activity'),
+        'logs_message'  => $queueName('logs-message'),
+        'exports'       => $queueName('exports'),
     ],
+
+    'disabled' => array_values(array_unique($disabledQueues)),
 ];
