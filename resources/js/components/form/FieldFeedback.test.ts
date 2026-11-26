@@ -19,6 +19,7 @@ describe('FieldFeedback', () => {
     });
 
     const feedback = wrapper.get('[data-slot="field-description"]');
+
     expect(feedback.text()).toBe('Shown only once.');
     expect(feedback.attributes('id')).toBe('token-description');
     expect(feedback.attributes('role')).toBeUndefined();
@@ -35,6 +36,7 @@ describe('FieldFeedback', () => {
     });
 
     const feedback = wrapper.get('[data-slot="field-error"]');
+
     expect(feedback.text()).toBe('Token is required.');
     expect(feedback.attributes('id')).toBe('token-error');
     expect(feedback.attributes('role')).toBe('alert');
@@ -47,6 +49,7 @@ describe('FieldFeedback', () => {
     });
 
     const feedback = wrapper.get('[data-slot="field-description"]');
+
     expect(feedback.html()).toContain('<strong>Rich text</strong>');
     expect(feedback.text()).not.toContain('Plain text');
   });

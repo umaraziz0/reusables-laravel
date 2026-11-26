@@ -165,6 +165,7 @@ export default defineConfig({
       'no-unsanitized/property': 'error',
       'no-unsanitized/method': 'error',
       ...landminesRules,
+      'landmines/padding-between-statements': 'error',
       ...disabledReactRules,
       // Hex values here are code points, which read better ungrouped.
       'unicorn/numeric-separators-style': [

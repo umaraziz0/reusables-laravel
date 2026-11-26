@@ -52,6 +52,7 @@ const bioLength = computed(() => bio.value.length);
 
 async function copyApiKey(): Promise<void> {
   await navigator.clipboard.writeText(API_KEY);
+
   isApiKeyCopied.value = true;
 }
 </script>

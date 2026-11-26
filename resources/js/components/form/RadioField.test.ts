@@ -44,10 +44,12 @@ describe('RadioField', () => {
     expect(wrapper.get('legend').text()).toBe('Plan');
 
     const radios = wrapper.findAll('[role="radio"]');
+
     expect(radios.map((radio) => radio.attributes('id'))).toEqual([
       'plan-free',
       'plan-pro',
     ]);
+
     expect(
       wrapper.findAll('label').map((label) => label.attributes('for')),
     ).toEqual(['plan-free', 'plan-pro']);
@@ -78,6 +80,7 @@ describe('RadioField', () => {
     expect(wrapper.get('[role="radiogroup"]').attributes('id')).toBe(
       'billing-plan',
     );
+
     expect(wrapper.get('[role="radio"]').attributes('id')).toBe(
       'billing-plan-free',
     );
@@ -115,9 +118,11 @@ describe('RadioField', () => {
     expect(
       wrapper.get('#delivery-express').attributes('aria-describedby'),
     ).toBe('delivery-express-description');
+
     expect(
       wrapper.get('#delivery-pickup').attributes('aria-describedby'),
     ).toBeUndefined();
+
     expect(wrapper.get('#delivery-express-description').text()).toBe(
       'Next business day',
     );
@@ -157,6 +162,7 @@ describe('RadioField', () => {
     expect(wrapper.get('[role="radiogroup"]').attributes('data-test')).toBe(
       'plan-group',
     );
+
     expect(wrapper.get('fieldset').attributes('data-test')).toBeUndefined();
   });
 
@@ -192,6 +198,7 @@ describe('RadioField', () => {
     expect(wrapper.get('#plan-enterprise').attributes()).toHaveProperty(
       'disabled',
     );
+
     expect(wrapper.get('#plan-pro').attributes()).not.toHaveProperty(
       'disabled',
     );
@@ -211,6 +218,7 @@ describe('RadioField', () => {
     expect(
       wrapper.get('[role="radiogroup"]').attributes('aria-describedby'),
     ).toBe('plan-hint plan-description');
+
     expect(wrapper.get('#plan-description').text()).toBe(
       'You can change this later.',
     );
@@ -228,11 +236,14 @@ describe('RadioField', () => {
     });
 
     const group = wrapper.get('[role="radiogroup"]');
+
     expect(group.attributes('aria-describedby')).toBe('plan-error');
     expect(group.attributes('aria-invalid')).toBe('true');
+
     expect(wrapper.get('#plan-error').text()).toBe(
       'The plan field is required.',
     );
+
     expect(wrapper.get('fieldset').attributes('data-invalid')).toBe('true');
     expect(wrapper.find('#plan-description').exists()).toBe(false);
   });
@@ -245,6 +256,7 @@ describe('RadioField', () => {
     expect(
       wrapper.get('[role="radiogroup"]').attributes('aria-describedby'),
     ).toBeUndefined();
+
     expect(wrapper.get('fieldset').attributes('data-invalid')).toBeUndefined();
   });
 
@@ -257,7 +269,9 @@ describe('RadioField', () => {
           .querySelector('[role="radiogroup"]')
           ?.getAttribute('aria-required'),
       ).toBe('true');
+
       expect(form.checkValidity()).toBe(false);
+
       expect(
         form.querySelector('legend span')?.getAttribute('aria-hidden'),
       ).toBe('true');

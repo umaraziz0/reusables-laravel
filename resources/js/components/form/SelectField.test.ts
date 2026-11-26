@@ -77,6 +77,7 @@ describe('SelectField', () => {
     expect(wrapper.get('[role="combobox"]').attributes('id')).toBe(
       'billing-plan',
     );
+
     expect(wrapper.get('label').attributes('for')).toBe('billing-plan');
   });
 
@@ -106,6 +107,7 @@ describe('SelectField', () => {
     expect(wrapper.get('[role="combobox"]').attributes('aria-required')).toBe(
       'true',
     );
+
     expect(wrapper.get('label span').attributes('aria-hidden')).toBe('true');
   });
 
@@ -118,6 +120,7 @@ describe('SelectField', () => {
     expect(wrapper.get('[role="combobox"]').attributes('data-testid')).toBe(
       'plan-select',
     );
+
     expect(wrapper.attributes('data-testid')).toBeUndefined();
   });
 
@@ -135,6 +138,7 @@ describe('SelectField', () => {
     expect(
       wrapper.get('[role="combobox"]').attributes('aria-describedby'),
     ).toBe('plan-hint plan-description');
+
     expect(wrapper.get('#plan-description').text()).toBe(
       'You can change it later.',
     );
@@ -152,6 +156,7 @@ describe('SelectField', () => {
     });
 
     const trigger = wrapper.get('[role="combobox"]');
+
     expect(trigger.attributes('aria-describedby')).toBe('plan-error');
     expect(trigger.attributes('aria-invalid')).toBe('true');
     expect(wrapper.get('#plan-error').text()).toBe('Choose a plan.');
@@ -169,6 +174,7 @@ describe('SelectField', () => {
     });
 
     const trigger = wrapper.get('[role="combobox"]');
+
     expect(trigger.text()).toBe('Choose a plan…');
     expect(trigger.attributes()).toHaveProperty('data-placeholder');
   });
@@ -186,6 +192,7 @@ describe('SelectField', () => {
     const wrapper = await mountSelectField({ modelValue: 'free' });
 
     await wrapper.get('[role="combobox"]').trigger('keydown', { key: 'Enter' });
+
     await flushPromises();
 
     const proOption = [
@@ -197,6 +204,7 @@ describe('SelectField', () => {
     proOption?.dispatchEvent(
       new KeyboardEvent('keydown', { key: 'Enter', bubbles: true }),
     );
+
     await flushPromises();
 
     expect(wrapper.emitted('update:modelValue')).toEqual([['pro']]);
@@ -208,6 +216,7 @@ describe('SelectField', () => {
     expect(wrapper.get<HTMLSelectElement>('select').element.required).toBe(
       true,
     );
+
     expect(
       new FormData(wrapper.get<HTMLFormElement>('form').element).get('plan'),
     ).toBe('pro');
@@ -219,6 +228,7 @@ describe('SelectField', () => {
     expect(wrapper.get('[role="combobox"]').attributes()).toHaveProperty(
       'disabled',
     );
+
     // happy-dom's FormData still includes disabled selects, so assert the flag
     // browsers use to leave the control out of submission.
     expect(wrapper.get<HTMLSelectElement>('select').element.disabled).toBe(

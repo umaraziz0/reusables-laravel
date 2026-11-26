@@ -71,6 +71,7 @@ describe('TextareaField', () => {
     expect(wrapper.get('textarea').attributes('placeholder')).toBe(
       'Tell us about yourself',
     );
+
     expect(wrapper.get('textarea').attributes('rows')).toBe('6');
     expect(wrapper.attributes('placeholder')).toBeUndefined();
   });
@@ -88,6 +89,7 @@ describe('TextareaField', () => {
     expect(wrapper.get('textarea').attributes('aria-describedby')).toBe(
       'bio-hint bio-description',
     );
+
     expect(wrapper.get('#bio-description').text()).toBe(
       'Shown on your public profile.',
     );
@@ -104,6 +106,7 @@ describe('TextareaField', () => {
     });
 
     const textarea = wrapper.get('textarea');
+
     expect(textarea.attributes('aria-describedby')).toBe('bio-error');
     expect(textarea.attributes('aria-invalid')).toBe('true');
     expect(wrapper.get('#bio-error').text()).toBe('Bio is required.');
@@ -118,6 +121,7 @@ describe('TextareaField', () => {
     expect(
       wrapper.get('textarea').attributes('aria-describedby'),
     ).toBeUndefined();
+
     expect(wrapper.attributes('data-invalid')).toBeUndefined();
   });
 
@@ -216,6 +220,7 @@ describe('TextareaField', () => {
         expect(status.text()).toBe('');
 
         await wrapper.get('textarea').setValue('Hel');
+
         await wrapper.get('textarea').setValue('Hello');
 
         expect(status.text()).toBe('');
@@ -237,6 +242,7 @@ describe('TextareaField', () => {
         });
 
         await wrapper.get('textarea').setValue('123456789');
+
         await vi.runAllTimersAsync();
 
         expect(wrapper.get('[role="status"]').text()).toBe(
@@ -254,6 +260,7 @@ describe('TextareaField', () => {
         const { wrapper, content } = mountWithVModel('Draft');
 
         content.value = '';
+
         await vi.runAllTimersAsync();
 
         expect(wrapper.get(counter).text()).toBe('0 / 10');

@@ -47,6 +47,7 @@ describe('SwitchField', () => {
     expect(wrapper.get('[role="switch"]').attributes('aria-checked')).toBe(
       'true',
     );
+
     expect(wrapper.emitted('update:modelValue')).toEqual([[true]]);
   });
 
@@ -68,6 +69,7 @@ describe('SwitchField', () => {
     expect(wrapper.get('[role="switch"]').attributes('id')).toBe(
       'settings-dark',
     );
+
     expect(wrapper.get('label').attributes('for')).toBe('settings-dark');
   });
 
@@ -85,7 +87,9 @@ describe('SwitchField', () => {
     expect(
       form.querySelector<HTMLInputElement>('input[type="checkbox"]')?.required,
     ).toBe(true);
+
     expect(form.checkValidity()).toBe(false);
+
     expect(form.querySelector('label span')?.getAttribute('aria-hidden')).toBe(
       'true',
     );
@@ -98,6 +102,7 @@ describe('SwitchField', () => {
     });
 
     const switchElement = wrapper.get('[role="switch"]');
+
     expect(switchElement.attributes('data-test')).toBe('dark-mode-switch');
     expect(switchElement.classes()).toContain('ms-auto');
     expect(wrapper.attributes('data-test')).toBeUndefined();
@@ -111,6 +116,7 @@ describe('SwitchField', () => {
     expect(wrapper.get('[role="switch"]').attributes()).toHaveProperty(
       'disabled',
     );
+
     expect(wrapper.attributes('data-disabled')).toBe('true');
   });
 
@@ -127,6 +133,7 @@ describe('SwitchField', () => {
     expect(wrapper.get('[role="switch"]').attributes('aria-describedby')).toBe(
       'dark-mode-hint dark_mode-description',
     );
+
     expect(wrapper.get('#dark_mode-description').text()).toBe(
       'Easier on the eyes at night.',
     );
@@ -143,13 +150,17 @@ describe('SwitchField', () => {
     });
 
     const switchElement = wrapper.get('[role="switch"]');
+
     expect(switchElement.attributes('aria-describedby')).toBe(
       'marketing-error',
     );
+
     expect(switchElement.attributes('aria-invalid')).toBe('true');
+
     expect(wrapper.get('#marketing-error').text()).toBe(
       'This setting cannot be changed right now.',
     );
+
     expect(wrapper.attributes('data-invalid')).toBe('true');
   });
 
@@ -161,6 +172,7 @@ describe('SwitchField', () => {
     expect(
       wrapper.get('[role="switch"]').attributes('aria-describedby'),
     ).toBeUndefined();
+
     expect(wrapper.attributes('data-invalid')).toBeUndefined();
   });
 

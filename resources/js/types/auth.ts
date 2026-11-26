@@ -24,6 +24,7 @@ export type Passkey = {
   created_at_diff: string;
   last_used_at_diff: string | null;
 };
+
 /* @end-chisel-passkeys */
 
 export type TwoFactorConfigContent = {

@@ -40,7 +40,9 @@ const showForm = ref(false);
 const { register, isLoading, error, isSupported } = usePasskeyRegister({
   onSuccess: () => {
     name.value = '';
+
     showForm.value = false;
+
     emit('success');
   },
 });
@@ -57,6 +59,7 @@ const handleSubmit = async (event: Event) => {
 
 const handleCancel = () => {
   showForm.value = false;
+
   name.value = '';
 };
 </script>

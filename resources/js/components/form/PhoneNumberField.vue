@@ -145,6 +145,7 @@ const selectedCountryCode = computed({
     }
 
     pickedCountryCode.value = country.code;
+
     dialCode.value = country.dialCode;
   },
 });

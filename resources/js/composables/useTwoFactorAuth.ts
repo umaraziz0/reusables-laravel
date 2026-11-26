@@ -53,6 +53,7 @@ export const useTwoFactorAuth = (): UseTwoFactorAuthReturn => {
       qrCodeSvg.value = svg;
     } catch {
       errors.value.push('Failed to fetch QR code');
+
       qrCodeSvg.value = null;
     }
   };
@@ -64,13 +65,16 @@ export const useTwoFactorAuth = (): UseTwoFactorAuthReturn => {
       manualSetupKey.value = key;
     } catch {
       errors.value.push('Failed to fetch a setup key');
+
       manualSetupKey.value = null;
     }
   };
 
   const clearSetupData = (): void => {
     manualSetupKey.value = null;
+
     qrCodeSvg.value = null;
+
     clearErrors();
   };
 
@@ -80,16 +84,20 @@ export const useTwoFactorAuth = (): UseTwoFactorAuthReturn => {
 
   const clearTwoFactorAuthData = (): void => {
     clearSetupData();
+
     clearErrors();
+
     recoveryCodesList.value = [];
   };
 
   const fetchRecoveryCodes = async (): Promise<void> => {
     try {
       clearErrors();
+
       recoveryCodesList.value = await recoveryHttp.submit(recoveryCodes());
     } catch {
       errors.value.push('Failed to fetch recovery codes');
+
       recoveryCodesList.value = [];
     }
   };
@@ -97,9 +105,11 @@ export const useTwoFactorAuth = (): UseTwoFactorAuthReturn => {
   const fetchSetupData = async (): Promise<void> => {
     try {
       clearErrors();
+
       await Promise.all([fetchQrCode(), fetchSetupKey()]);
     } catch {
       qrCodeSvg.value = null;
+
       manualSetupKey.value = null;
     }
   };

@@ -45,7 +45,9 @@ watchEffect(() => {
 
 const toggleRecoveryMode = (clearErrors: () => void): void => {
   showRecoveryInput.value = !showRecoveryInput.value;
+
   clearErrors();
+
   code.value = '';
 };
 </script>

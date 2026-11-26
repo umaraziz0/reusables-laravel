@@ -94,6 +94,7 @@ function renderedNames(): Array<string> {
 
 async function openOptions(wrapper: VueWrapper): Promise<Array<string>> {
   await trigger(wrapper).trigger('click');
+
   await flushPromises();
 
   return renderedNames();
@@ -112,7 +113,9 @@ async function search(term: string): Promise<Array<string>> {
   }
 
   input.value = term;
+
   input.dispatchEvent(new Event('input', { bubbles: true }));
+
   await flushPromises();
 
   return renderedNames();
@@ -128,6 +131,7 @@ async function choose(name: string): Promise<void> {
   }
 
   option.click();
+
   await flushPromises();
 }
 
@@ -144,12 +148,14 @@ beforeEach(() => {
       return this.dataset.slot === 'combobox-viewport' ? 288 : 32;
     },
   );
+
   vi.spyOn(HTMLElement.prototype, 'clientHeight', 'get').mockImplementation(
     function (this: HTMLElement) {
       return this.dataset.slot === 'combobox-viewport' ? 288 : 0;
     },
   );
 });
+
 /* oxlint-enable landmines/no-test-doubles */
 
 afterEach(() => {
@@ -161,10 +167,12 @@ describe('PhoneNumberField', () => {
     const wrapper = mountPhoneNumberField();
 
     const input = wrapper.get('input[type="tel"]');
+
     expect(input.attributes('id')).toBe('phone');
     expect(wrapper.get('label').attributes('for')).toBe('phone');
     expect(trigger(wrapper).text()).toContain('🇮🇩');
     expect(trigger(wrapper).text()).toContain('+62');
+
     expect(trigger(wrapper).attributes('aria-label')).toBe(
       'Country code: Indonesia +62',
     );
@@ -177,6 +185,7 @@ describe('PhoneNumberField', () => {
     );
 
     const input = wrapper.get('input[type="tel"]');
+
     expect(input.attributes('placeholder')).toBe('812 3456 7890');
     expect(input.attributes('autocomplete')).toBe('tel');
     expect(wrapper.attributes('placeholder')).toBeUndefined();
@@ -199,6 +208,7 @@ describe('PhoneNumberField', () => {
     expect(wrapper.get('#phone-error').text()).toBe(
       'Enter a valid phone number.',
     );
+
     expect(wrapper.attributes('data-invalid')).toBe('true');
   });
 
@@ -214,10 +224,12 @@ describe('PhoneNumberField', () => {
     const wrapper = mountPhoneNumberField();
 
     await openOptions(wrapper);
+
     await choose('Canada');
 
     expect(wrapper.emitted('update:dialCode')).toEqual([['+1']]);
     expect(trigger(wrapper).text()).toContain('🇨🇦');
+
     expect(trigger(wrapper).attributes('aria-label')).toBe(
       'Country code: Canada +1',
     );
@@ -242,6 +254,7 @@ describe('PhoneNumberField', () => {
     await openOptions(wrapper);
 
     expect(await search('zzz')).toEqual([]);
+
     expect(document.body.textContent).toContain('Nothing here.');
   });
 
@@ -252,6 +265,7 @@ describe('PhoneNumberField', () => {
 
     expect(submitted(wrapper).get('phone')).toBe('5550100');
     expect(submitted(wrapper).get('phone_dial_code')).toBe('+1');
+
     expect(
       wrapper.get<HTMLInputElement>('input[type="tel"]').element.required,
     ).toBe(true);
@@ -298,9 +312,11 @@ describe('PhoneNumberField', () => {
     const wrapper = await mountInForm('model-value="812" disabled');
 
     expect(trigger(wrapper).attributes()).toHaveProperty('disabled');
+
     expect(
       wrapper.get<HTMLInputElement>('input[type="tel"]').element.disabled,
     ).toBe(true);
+
     expect(submitted(wrapper).has('phone')).toBe(false);
     expect(submitted(wrapper).has('phone_dial_code')).toBe(false);
   });

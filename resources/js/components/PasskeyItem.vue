@@ -27,6 +27,7 @@ const isDeleting = ref(false);
 
 const handleDelete = () => {
   isDeleting.value = true;
+
   emit('remove', props.passkey.id, () => {
     isDeleting.value = false;
   });
