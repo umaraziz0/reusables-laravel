@@ -1,5 +1,17 @@
 # Changelog
 
+## [0.12.0](https://github.com/umaraziz0/reusables-laravel/compare/reusables-laravel-v0.11.1...reusables-laravel-v0.12.0) (2026-11-26)
+
+
+### Features
+
+* **media:** add dimension limits to ValidImage ([576b339](https://github.com/umaraziz0/reusables-laravel/commit/576b33907e8c03d9f0ec21a6eec0dab6916d756c)), closes [#140](https://github.com/umaraziz0/reusables-laravel/issues/140)
+* **media:** add dimension limits to ValidImage ([#152](https://github.com/umaraziz0/reusables-laravel/issues/152)) ([cec7b9d](https://github.com/umaraziz0/reusables-laravel/commit/cec7b9df82b8026dd0fad95736d6e0eef1d16b1b))
+* **media:** keep avif as an allowed image type ([e015629](https://github.com/umaraziz0/reusables-laravel/commit/e015629146e1dbdeae6bcebb2c30407d2e49e707))
+* **queue:** fork Horizon workers with queue-prefork ([665c89d](https://github.com/umaraziz0/reusables-laravel/commit/665c89d170845910728df7cdbe38f1c617dc2cc0)), closes [#126](https://github.com/umaraziz0/reusables-laravel/issues/126)
+* **queue:** fork Horizon workers with queue-prefork ([#149](https://github.com/umaraziz0/reusables-laravel/issues/149)) ([6ba2b88](https://github.com/umaraziz0/reusables-laravel/commit/6ba2b8861bb63ae9a3608c3f1939992e2e0ed320)), closes [#126](https://github.com/umaraziz0/reusables-laravel/issues/126)
+* **queue:** split Horizon supervisors and make queues toggleable ([#151](https://github.com/umaraziz0/reusables-laravel/issues/151)) ([ac070d0](https://github.com/umaraziz0/reusables-laravel/commit/ac070d0822752cfd5c82373a8ec4d58444fea3a4)), closes [#148](https://github.com/umaraziz0/reusables-laravel/issues/148)
+
 ## [0.11.1](https://github.com/umaraziz0/reusables-laravel/compare/reusables-laravel-v0.11.0...reusables-laravel-v0.11.1) (2026-11-18)
 
 
